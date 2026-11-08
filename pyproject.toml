@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "multi-broker-bridge"
+version = "0.1.0"
+description = "Small PAPER-only broker adapters with strict preview and no-live guards"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.setuptools.packages.find]
+include = ["multi_broker_bridge*"]
+
+[project.scripts]
+multi-broker-paper = "multi_broker_bridge.cli:main"
