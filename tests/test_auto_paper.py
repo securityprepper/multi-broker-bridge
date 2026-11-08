@@ -47,6 +47,8 @@ class RunnerTests(unittest.TestCase):
         if path=="/v2/account":
             return {"id":"PAPER","status":"ACTIVE","trading_blocked":False,
                     "cash":"10000.00"}
+        if path=="/v2/clock":
+            return {"is_open":True}
         if path=="/v2/positions" or path.startswith("/v2/orders?"):
             return []
         if path.startswith("/v2/orders:by_client_order_id?client_order_id="):
@@ -115,7 +117,9 @@ class RunnerTests(unittest.TestCase):
         self.assertEqual(sells[0]["qty"],"4")
         self.assertFalse(sells[0]["extended_hours"])
         self.assertNotIn("limit_price",sells[0])
-        self.assertEqual(result["orders"][0]["symbol"],"AMD")
+        self.assertEqual(result["status"],"PAPER_DAILY_EXIT_GUARD")
+        self.assertFalse(result["exit_guard"]["flat_verified"])
+        self.assertIn("MARKET_FLATTEN_ACCEPTED_NOT_FILLED:AMD",result["orders"])
 
     def test_only_own_stale_buy_cancels_and_no_same_tick_reentry(self):
         now=NOW
