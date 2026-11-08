@@ -202,8 +202,8 @@ def run(now=None,send=False):
     event="sector_severe" if risk["sector_severe"] else (
         "stock_urgent" if risk["stock_urgent"] else
         "sector_watch" if risk["sector_watch"] else "stock_watch" if risk["stock_watch"] else None)
-    # This sidecar only PUSHES severe sector and urgent company symptoms.
-    # Lesser watch observations are logged, not spammed to the user's phone.
+    # Deduplicated early sector watches, high-severity sector and urgent stock
+    # symptoms are notified; other low-confidence single-stock watches log only.
     if send and event in ("sector_severe","stock_urgent","sector_watch"):
         file=state_file()
         key=day.isoformat()+":"+event
