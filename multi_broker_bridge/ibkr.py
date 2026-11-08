@@ -33,6 +33,9 @@ def _new_app():
             EClient.__init__(self,self)
             self.ready=threading.Event()
             self.accounts_event=threading.Event()
+            self.positions_event=threading.Event()
+            self.position_rows=[]
+            self.position_malformed=False
             self.order_event=threading.Event()
             self.managed_accounts=[]
             self.next_order_id=None
@@ -51,6 +54,20 @@ def _new_app():
         def managedAccounts(self, accountsList):
             self.managed_accounts=[a.strip() for a in accountsList.split(",") if a.strip()]
             self.accounts_event.set()
+
+        def position(self, account, contract, pos, avgCost):
+            try:
+                from decimal import Decimal
+                quantity=Decimal(str(pos))
+                if not quantity.is_finite():
+                    raise ValueError("nonfinite position")
+                self.position_rows.append((account, getattr(contract,"symbol",None),
+                                           getattr(contract,"secType",None), quantity))
+            except (TypeError,ValueError):
+                self.position_malformed=True
+
+        def positionEnd(self):
+            self.positions_event.set()
 
         def openOrder(self, orderId, contract, order, orderState):
             if orderId==self.target_order_id:
@@ -123,6 +140,22 @@ def submit(req: LimitOrder) -> Receipt:
     account=_paper_account()
     app=_connected(account)
     try:
+        if req.side=="sell":
+            # Complete broker position inventory: never create an accidental short.
+            app.reqPositions()
+            try:
+                if not app.positions_event.wait(TIMEOUT) or app.position_malformed or app.broker_error:
+                    raise UnknownSubmission("IBKR position inventory incomplete; SELL refused")
+                for row in app.position_rows:
+                    if row[0] != account:
+                        raise OrderRejected("additional IBKR account in position stream")
+                available=sum((row[3] for row in app.position_rows
+                               if row[1]==req.symbol and row[2]=="STK"),
+                              start=__import__("decimal").Decimal("0"))
+                if available<req.qty:
+                    raise OrderRejected("SELL exceeds verified IBKR PAPER long position")
+            finally:
+                app.cancelPositions()
         from ibapi.contract import Contract
         from ibapi.order import Order
         oid=app.next_order_id
