@@ -35,7 +35,8 @@ STATE_SCHEMA = """CREATE TABLE IF NOT EXISTS attempts(
     PRIMARY KEY(trade_date,symbol,side));
 CREATE TABLE IF NOT EXISTS tracked(
     symbol TEXT PRIMARY KEY, entry_ref TEXT NOT NULL,
-    highest TEXT NOT NULL, entry_time TEXT NOT NULL);"""
+    highest TEXT NOT NULL, entry_time TEXT NOT NULL,
+    entry_qty INTEGER NOT NULL);"""
 
 def _credentials() -> tuple[str, str]:
     base = os.getenv("CREDENTIALS_DIRECTORY")
@@ -237,8 +238,8 @@ def run(now: datetime, execute: bool = False) -> dict:
     db=_state()
     try:
         tracked={row[0]:(row[1],Decimal(row[2]),
-                         datetime.fromisoformat(row[3])) for row in
-                 db.execute("SELECT symbol,entry_ref,highest,entry_time FROM tracked")}
+                         datetime.fromisoformat(row[3]),int(row[4])) for row in
+                 db.execute("SELECT symbol,entry_ref,highest,entry_time,entry_qty FROM tracked")}
         symbols=list(dict.fromkeys([*symbols,*tracked]))
         bars,quotes=fetch_bars_and_quotes(now,symbols,feed)
         engine=TrendMonitor()
@@ -246,13 +247,25 @@ def run(now: datetime, execute: bool = False) -> dict:
             for bar in records:
                 engine.add(bar)
         holdings={}
-        for symbol,(entry_id,peak,entry_time) in tracked.items():
+        for symbol,(entry_id,peak,entry_time,entry_qty) in tracked.items():
             position=pos_by_symbol.get(symbol)
             if position is None:
-                # If buy still open, do not mistake unfilled shares for a position.
+                # Broker positions may lag newly accepted orders. Never drop
+                # tracking merely because an open-order snapshot is empty.
+                # Only terminal broker readback with ZERO fills can clear it.
                 if symbol not in occupied:
-                    db.execute("DELETE FROM tracked WHERE symbol=?",(symbol,))
-                    db.commit()
+                    try:
+                        from urllib.parse import quote
+                        status=paper_api("GET","/v2/orders:by_client_order_id?client_order_id="
+                                          +quote(entry_id,safe=""))
+                        if (isinstance(status,dict)
+                                and status.get("client_order_id")==entry_id
+                                and status.get("status") in ("canceled","expired","rejected")
+                                and Decimal(str(status.get("filled_qty",0)))==0):
+                            db.execute("DELETE FROM tracked WHERE symbol=?",(symbol,))
+                            db.commit()
+                    except (OrderRejected,UnknownSubmission,ValueError,TypeError):
+                        pass  # never infer missing holdings are proof of flatness
                 continue
             qty=Decimal(str(position.get("qty_available",position.get("qty",0))))
             entry=Decimal(str(position.get("avg_entry_price",0)))
@@ -266,7 +279,7 @@ def run(now: datetime, execute: bool = False) -> dict:
                     db.execute("UPDATE tracked SET highest=? WHERE symbol=?",
                                (str(updated_peak),symbol))
                     db.commit()
-                holdings[symbol]=Holding(symbol,int(qty),entry,updated_peak)
+                holdings[symbol]=Holding(symbol,min(int(qty),entry_qty),entry,updated_peak)
         result=engine.scan(now,holdings,executable_session=False)
         # A healthy scheduled exit is prioritized over new buys.
         decision=[r for r in result if r["action"] in ("EXIT_WATCH","BUY_WATCH")]
@@ -386,8 +399,8 @@ def run(now: datetime, execute: bool = False) -> dict:
                 raise UnknownSubmission("PAPER submission cannot be uniquely verified")
             _record(db,local_date,symbol,reservation_side,str(receipt.get("status","ACCEPTED")))
             if side=="buy":
-                db.execute("INSERT OR REPLACE INTO tracked VALUES (?,?,?,?)",
-                           (symbol,ref,str(price),now.isoformat()))
+                db.execute("INSERT OR REPLACE INTO tracked VALUES (?,?,?,?,?)",
+                           (symbol,ref,str(price),now.isoformat(),quantity))
                 db.commit()
             placed.append({"symbol":symbol,"side":side,"qty":quantity,
                            "status":receipt.get("status"),"broker_order_id":receipt["id"]})
