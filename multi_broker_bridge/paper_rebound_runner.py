@@ -277,6 +277,24 @@ def _archive_completed(conn,now,today,managed,bypos,orders):
             pass  # any uncertain state remains blocked
     return removed
 
+
+def _exit_retry_allowed(conn,day,symbol):
+    """No second sell unless previous exact broker order is terminal and unfilled."""
+    prior=conn.execute(
+        "SELECT client_id FROM attempts WHERE trading_day=? AND symbol=? AND side='exit'"
+        " ORDER BY count DESC LIMIT 1",(day,symbol)).fetchone()
+    if not prior:
+        return True
+    cid=prior[0]
+    receipt=paper_api("GET","/v2/orders:by_client_order_id?client_order_id="+quote(cid,safe=""))
+    if not isinstance(receipt,dict) or receipt.get("client_order_id")!=cid:
+        return False
+    filled=Decimal(str(receipt.get("filled_qty",0)))
+    if not filled.is_finite() or filled<0:
+        return False
+    return filled==0 and receipt.get("status") in ("canceled","expired","rejected")
+
+
 def run(now:datetime, execute=False):
     if now.tzinfo is None:raise ValueError("timezone aware current time required")
     if execute and os.getenv("MULTI_BROKER_ALLOW_PAPER")!="1":
@@ -336,6 +354,9 @@ def run(now:datetime, execute=False):
                 available=Decimal(str(held.get("qty_available",0)))
                 if current!=available or current!=current.to_integral_value() or current<1 or int(current)>qty:
                     raise OrderRejected("position ownership / available shares mismatch")
+                if not _exit_retry_allowed(state,daystr,symbol):
+                    actions.append("AWAIT_EXACT_EXIT_ORDER_READBACK:"+symbol)
+                    continue
                 if local.time()<LAST_PREOPEN:
                     q=prices.get(symbol)
                     if q is None:
