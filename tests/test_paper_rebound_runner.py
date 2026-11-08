@@ -69,6 +69,8 @@ class TimeSafetyTests(unittest.TestCase):
             {"status":"ACTIVE","cash":"100000","trading_blocked":False},[],[])),patch.object(
             runner,"holiday_gate",return_value=True),patch.object(runner,"_fetch_daily",return_value=closes),patch.object(
             runner,"_fetch_sector_bars",return_value={}),patch.object(runner,"evaluate",return_value=signal),patch.object(
+            runner,"_fetch_causal_news",return_value=[]),patch.object(
+            runner,"_publish_monitor_signal") as publish,patch.object(
             runner,"_quotes",return_value={s:(Decimal("99"),Decimal("100")) for s in runner.BASKET}),patch.object(
             runner,"paper_api",return_value={"tradable":True,"overnight_tradable":True}),patch.object(
             runner,"_submit") as submit:
@@ -77,6 +79,7 @@ class TimeSafetyTests(unittest.TestCase):
             self.assertEqual(len(result["orders"]),9)
             self.assertEqual(readback.execute("SELECT COUNT(*) FROM events WHERE type='BULLISH_ALERT'").fetchone()[0],1)
             submit.assert_not_called()
+            publish.assert_called_once()
 
     def test_existing_open_sell_blocks_duplicate_exit(self):
         import sqlite3
@@ -119,6 +122,35 @@ class TimeSafetyTests(unittest.TestCase):
         }):
             self.assertTrue(runner._exit_retry_allowed(db,"2026-11-09","AMD"))
         db.close()
+
+    def test_company_catalyst_veto_blocks_entire_paper_basket(self):
+        import sqlite3
+        from multi_broker_bridge.five_day_rebound import SectorDecision
+        now=self.moment(2026,11,5,17,10)
+        db=sqlite3.connect("file:rebound_veto_fixture?mode=memory&cache=shared",uri=True)
+        witness=sqlite3.connect("file:rebound_veto_fixture?mode=memory&cache=shared",uri=True)
+        db.executescript("""
+        CREATE TABLE owned(trading_day TEXT,symbol TEXT,buy_client_id TEXT,purchased_qty INTEGER,status TEXT);
+        CREATE TABLE attempts(trading_day TEXT,symbol TEXT,side TEXT,count INTEGER,client_id TEXT,state TEXT);
+        CREATE TABLE events(id INTEGER PRIMARY KEY AUTOINCREMENT,time_utc TEXT,trading_day TEXT,type TEXT,symbol TEXT,details TEXT);
+        """)
+        decision=SectorDecision("down",{}, {}, {}, True,"BUY_WATCH",now)
+        catal={"veto":True,"affected_anchors":("AMD",)}
+        with patch.object(runner,"_db",return_value=db),patch.object(runner,"_broker_inventory",return_value=(
+            {"status":"ACTIVE","cash":"100000","trading_blocked":False},[],[])),patch.object(
+            runner,"holiday_gate",return_value=True),patch.object(runner,"_fetch_daily",return_value={}),patch.object(
+            runner,"_fetch_sector_bars",return_value={}),patch.object(runner,"evaluate",return_value=decision),patch.object(
+            runner,"_fetch_causal_news",return_value=[]),patch.object(runner,"screen_adverse_catalysts",return_value=catal),patch.object(
+            runner,"_publish_monitor_signal") as publish,patch.object(runner,"_submit") as submit:
+            result=runner.run(now,execute=False)
+            self.assertEqual(result["status"],"CATALYST_VETO")
+            self.assertEqual(result["affected_anchors"],["AMD"])
+            self.assertEqual(result["orders"],[])
+            self.assertEqual(witness.execute("SELECT COUNT(*) FROM events WHERE type='CATALYST_VETO'").fetchone()[0],1)
+            self.assertEqual(witness.execute("SELECT COUNT(*) FROM events WHERE type='BULLISH_ALERT'").fetchone()[0],0)
+            submit.assert_not_called()
+            publish.assert_called_once()
+        witness.close()
 
 
 if __name__=="__main__":
