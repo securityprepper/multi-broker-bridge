@@ -30,6 +30,15 @@ class TrendTests(unittest.TestCase):
         self.assertEqual({x["symbol"] for x in buys},{"AMD","MU","SNDK"})
         self.assertTrue(all(x["rising_breadth"]==1 for x in buys))
         self.assertEqual([x["symbol"] for x in result if x["action"]=="ETF_ALTERNATIVE_WATCH"],["SOXX"])
+    def test_one_actionable_entry_per_symbol_per_day(self):
+        m=loaded()
+        now=BASE+timedelta(minutes=3,seconds=5)
+        first=m.scan(now,executable_session=True)
+        second=m.scan(now+timedelta(seconds=15),executable_session=True)
+        first_ids={x["symbol"] for x in first if x["action"]=="BUY_LIMIT_CANDIDATE"}
+        second_ids={x["symbol"] for x in second if x["action"]=="BUY_LIMIT_CANDIDATE"}
+        self.assertEqual(first_ids,{"AMD","MU","SNDK"})
+        self.assertEqual(second_ids,set())
     def test_no_live_broker_calls_when_only_bars_are_fed(self):
         m=loaded()
         result=m.scan(BASE+timedelta(minutes=3,seconds=15),executable_session=False)
