@@ -52,11 +52,20 @@ class TrendTests(unittest.TestCase):
                 else:m.add(b(ticker,i))
         result=m.scan(BASE+timedelta(minutes=3,seconds=10))
         self.assertNotIn("AMD",{x["symbol"] for x in result if x["action"]=="BUY_WATCH"})
-    def test_insufficient_fresh_sector_breadth_blocks(self):
+    def test_sparse_overnight_sector_qualifies_with_three_liquid_anchors(self):
         m=TrendMonitor({"semiconductors":("AMD","MU","SNDK","WDC","NVDA","AVGO","INTC","TSM")})
         for i in range(4):
             for ticker in ("AMD","MU","SNDK"):
                 m.add(b(ticker,i))
+        report=m.breadth("semiconductors",BASE+timedelta(minutes=3))
+        self.assertTrue(report["qualified"])
+        self.assertEqual(report["anchor_rising"],3)
+        self.assertEqual(set(report["rising_symbols"]),{"AMD","MU","SNDK"})
+
+    def test_one_liquid_anchor_cannot_confirm_sector(self):
+        m=TrendMonitor({"semiconductors":("AMD","MU","SNDK","WDC","NVDA")})
+        for i in range(4):
+            m.add(b("AMD",i))
         self.assertFalse(m.breadth("semiconductors",BASE+timedelta(minutes=3))["qualified"])
     def test_stale_price_blocks_fresh_entry(self):
         m=loaded()
