@@ -68,9 +68,9 @@ def classify(prior, observed):
                        and details[ETF][0]<=Decimal("-.0075")
                        and details[ETF][1]<=0)
     stock_watch=[s for s,(p,m) in details.items()
-                 if s!=ETF and p<=Decimal("-.02") and m<=Decimal("-.005")]
+                 if s!=ETF and p<=Decimal("-.015") and m<=Decimal("-.005")]
     stock_urgent=[s for s,(p,m) in details.items()
-                  if s!=ETF and p<=Decimal("-.04") and m<=Decimal("-.01")]
+                  if s!=ETF and p<=Decimal("-.025") and m<=Decimal("-.01")]
     return {
         "sector_watch":sector_watch,
         "sector_severe":sector_severe,
@@ -202,26 +202,38 @@ def run(now=None,send=False):
     event="sector_severe" if risk["sector_severe"] else (
         "stock_urgent" if risk["stock_urgent"] else
         "sector_watch" if risk["sector_watch"] else "stock_watch" if risk["stock_watch"] else None)
-    # Deduplicated early sector watches, high-severity sector and urgent stock
-    # symptoms are notified; other low-confidence single-stock watches log only.
-    if send and event in ("sector_severe","stock_urgent","sector_watch"):
+    # V2 alert-only: per-symbol dedupe is required, or the first stock would
+    # prevent all other stock-specific warnings that trading day.
+    # Reserve before sending to avoid repeated ambiguous network sends.
+    if send:
+        messages=[]
+        if risk["sector_severe"]:
+            messages.append(("sector_severe","V2 TEST | Severe sector downside","AMD, MU, SNDK, SOXX"))
+        elif risk["sector_watch"]:
+            messages.append(("sector_watch","V2 TEST | Sector downside watch","AMD, MU, SNDK, SOXX"))
+        for symbol in risk["stock_urgent"]:
+            messages.append(("stock_urgent:"+symbol,"V2 TEST | Individual stock weakness",symbol))
         file=state_file()
-        key=day.isoformat()+":"+event
-        if not already_seen(file,key):
-            symbols=",".join(risk["stock_urgent"]) if risk["stock_urgent"] else "AMD/MU/SNDK,SOXX"
+        for key_suffix,title,symbols in messages:
+            key=day.isoformat()+":"+key_suffix
+            if already_seen(file,key):
+                continue
             now_ct=asof.astimezone(CT).strftime("%m/%d %I:%M %p CT")
-            message=(f"{'LOW-CONFIDENCE WATCH' if event=='sector_watch' else 'HIGHER-SEVERITY WARNING'} {day.isoformat()} at {now_ct}. "
-                     f"Observed selling pressure: {symbols}. "
-                     "Possible additional downside, but many historical false alarms; NOT a forecast of a 5% drop. "
-                     "Review held positions, fresh quotes, and news before deciding to exit. "
-                     "No broker orders placed.")
-            # Reserve before HTTP to avoid repeat alerts on ambiguous response.
+            severity="URGENT PRICE WARNING" if key_suffix.startswith("stock_urgent:") else (
+                "SEVERE SECTOR WATCH" if key_suffix=="sector_severe" else "EARLY SECTOR WATCH")
+            detail=risk["details"].get(symbols,{}) if key_suffix.startswith("stock_urgent:") else {}
+            numbers=(f" Since previous close: {detail.get('since_close_pct')}%;"
+                     f" last 15 minutes: {detail.get('last_15m_pct')}%."
+                     if detail else "")
+            message=(f"[V2 TEST - WARNING ONLY] {severity}. {symbols} {day.isoformat()} "
+                     f"{now_ct}.{numbers} Observed weakness, not a forecast of another 5% drop. "
+                     "Review held positions and quotes; NO automatic sell or broker orders.")
             remember(file,key,"SEND_ATTEMPTED_NOT_CONFIRMED")
             try:
-                push("Semiconductor risk warning",message)
+                push(title,message)
                 remember(file,key,"PROVIDER_ACCEPTED_NOT_DELIVERED")
             except (OSError,ValueError,TimeoutError):
-                return {"status":"DELIVERY_UNKNOWN_NO_RETRY","event":event,
+                return {"status":"DELIVERY_UNKNOWN_NO_RETRY","event":key_suffix,
                         "order_permissions":False}
     return {"status":status,"event":event,"session":day.isoformat(),
             "asof_utc":asof.astimezone(timezone.utc).isoformat(),
