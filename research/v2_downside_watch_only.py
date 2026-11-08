@@ -119,7 +119,7 @@ def market_snapshot(now,target,feed):
                  "end":(now-timedelta(seconds=15)).isoformat(),"limit":10000})
     bars=get_json(DATA_HOST+"/v2/stocks/bars?"+q,api)
     if bars.get("next_page_token"):raise ValueError("incomplete 5min response")
-    observed={};asof=[]
+    observed={};observed_ends={};asof=[]
     for s in UNIVERSE:
         candles={}
         for b in bars.get("bars",{}).get(s,[]):
@@ -131,7 +131,13 @@ def market_snapshot(now,target,feed):
         previous=latest-timedelta(minutes=15)
         if previous in candles and timedelta(0)<=now-(latest+timedelta(minutes=5))<=timedelta(minutes=10):
             observed[s]=(candles[previous],candles[latest])
+            observed_ends[s]=latest+timedelta(minutes=5)
             asof.append(latest+timedelta(minutes=5))
+    # Only aligned completed anchor/ETF bars may authorize a SECTOR warning.
+    # Individual-stock warnings remain valid even when another ticker is sparse.
+    if all(s in observed_ends for s in (*ANCHORS,ETF)):
+        if len({observed_ends[s] for s in (*ANCHORS,ETF)})!=1:
+            observed.pop(ETF,None)
     return prior,observed,max(asof) if asof else None
 
 
