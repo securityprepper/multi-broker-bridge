@@ -1,0 +1,31 @@
+name: Minimal multi-broker PAPER safety (no broker access)
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # pinned v4.2.2
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Verify exact commit
+        env:
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+      - name: No-network safety tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+          PYTHONPATH: .
+        run: python3 -m unittest discover -s tests -v
+      - name: Preview never sends orders
+        run: |
+          python3 -m multi_broker_bridge.cli --broker alpaca --symbol SPY --side buy --qty 1 --limit 10.00 --client-order-id SMOKE-001
+          python3 -m multi_broker_bridge.cli --broker ibkr --symbol SPY --side buy --qty 1 --limit 10.00 --client-order-id SMOKE-002
+          python3 -m multi_broker_bridge.cli --broker robinhood --symbol SPY --side buy --qty 1 --limit 10.00 --client-order-id SMOKE-003
