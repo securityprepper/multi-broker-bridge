@@ -109,11 +109,18 @@ def market_snapshot(now,target,feed):
                 "end":now.isoformat(),"limit":10000})
     daily=get_json(DATA_HOST+"/v2/stocks/bars?"+q,api)
     if daily.get("next_page_token"):raise ValueError("incomplete daily response")
+    # Do not accidentally use an older close when today's completed close has
+    # not yet been published. Reject missing holiday-session history as
+    # unavailable; no broad risk conclusion from a stale reference.
+    expected=target-timedelta(days=1)
+    while expected.weekday()>=5:
+        expected-=timedelta(days=1)
     prior={}
     for s in UNIVERSE:
         candles=[x for x in daily.get("bars",{}).get(s,[])
                  if str(x.get("t",""))[:10]<target.isoformat()]
-        if candles:prior[s]=Decimal(str(candles[-1]["c"]))
+        if candles and str(candles[-1]["t"])[:10]==expected.isoformat():
+            prior[s]=Decimal(str(candles[-1]["c"]))
     q=urlencode({"symbols":",".join(UNIVERSE),"feed":feed,"timeframe":"5Min",
                  "adjustment":"split","start":(now-timedelta(minutes=40)).isoformat(),
                  "end":(now-timedelta(seconds=15)).isoformat(),"limit":10000})
