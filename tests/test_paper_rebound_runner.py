@@ -101,6 +101,25 @@ class TimeSafetyTests(unittest.TestCase):
             cancel.assert_not_called()
             submit.assert_not_called()
 
+    def test_prevent_second_sell_when_first_sell_filled_or_unknown(self):
+        import sqlite3
+        db=sqlite3.connect(":memory:")
+        db.execute("CREATE TABLE attempts(trading_day TEXT,symbol TEXT,side TEXT,count INTEGER,client_id TEXT,state TEXT)")
+        db.execute("INSERT INTO attempts VALUES(?,?,?,?,?,?)",("2026-11-09","AMD","exit",1,"FDR-EXAMPLE-EXIT","ACCEPTED"))
+        with patch.object(runner,"paper_api",return_value={
+            "client_order_id":"FDR-EXAMPLE-EXIT","side":"sell","status":"filled","filled_qty":"2"
+        }):
+            self.assertFalse(runner._exit_retry_allowed(db,"2026-11-09","AMD"))
+        with patch.object(runner,"paper_api",return_value={
+            "client_order_id":"FDR-EXAMPLE-EXIT","side":"sell","status":"new","filled_qty":"0"
+        }):
+            self.assertFalse(runner._exit_retry_allowed(db,"2026-11-09","AMD"))
+        with patch.object(runner,"paper_api",return_value={
+            "client_order_id":"FDR-EXAMPLE-EXIT","side":"sell","status":"canceled","filled_qty":"0"
+        }):
+            self.assertTrue(runner._exit_retry_allowed(db,"2026-11-09","AMD"))
+        db.close()
+
 
 if __name__=="__main__":
     unittest.main()
