@@ -57,3 +57,17 @@ Per-name large-down days: AMD 23, MU 32, SNDK ~50–51 (source-specific daily-cl
 5. Extend bullish detection to regular-hours gaps, first rising day, multiday follow-through and own-catalyst individual winners; score against 118 up days, not just 18 narrow V1 events.
 
 This document and research scripts live on the *V2 research branch* `research/rebound-v2-conditional-exits`; current Version 1 remains unchanged.
+
+## 6. Subsequent independent alert-only host deployment
+
+Following the original exploratory study, a separate V2 warning-only sidecar was implemented and enabled on the authorized www3 host. This **did not change any V1 monitor, broker executor, PAPER trading policy or LIVE safeguards**.
+
+- Code on V2 research branch: `research/v2_downside_watch_only.py`, and `research/test_v2_downside_watch.py` (6 tests passed).
+- Host-only installation `/opt/securityprepper/semis-downside-v2/research/v2_downside_watch_only.py`; systemd `semis-downside-v2-warning.timer` active and enabled, every **five minutes** at second 25; runs as `tradingsector` with restricted service options and its own private state directory `/var/lib/semis-downside-v2`.
+- **No broker-order functions**, no broker POST endpoints; only historical Alpaca market-data GET and Pushover POST, with deduplicated notification state.
+- Sends one explicitly labeled low-confidence **sector DOWNSIDE WATCH** per trading date when sensitive price and breadth downturn conditions appear; sends separate escalation on severe sector deterioration or urgent individual stock symptoms (individual stock down 4% from prior close plus 1% over preceding 15 minutes). Lesser individual watch signals remain logged, not pushed. Alert text explicitly notes many historical false alarms and is **not an instruction to sell**.
+- It requires aligned, completed five-minute sector bars, a recent previous completed regular close (fail closed on stale/holiday data), and rejects sparse/stale candles; usable on SIP or BOATS if the provider returns sufficient data.
+- Independent host test with historical Nov 4 at 7:00 PM ET returned `DOWNSIDE_WATCH` ahead of Nov 5's severe collapse; historical Nov 5 at 7:35 AM ET returned `STOCK_URGENT` on SNDK. Both used `send=False`: they verified signals, **not actual Pushover delivery**. Sunday service returned `SESSION_CLOSED` with no orders or notifications. Provider delivery and real-session repeatable monitoring remain to be verified.
+- A supplemental hourly ChatGPT automation `Task - Semiconductor Downside Warnings` was enabled; it reads this service's records/journal and current broker positions READ-ONLY. Research task `Task - Trading Strategy Research` was separately enabled daily at 09:30 Chicago time.
+
+**Limits:** At these loose sensitive thresholds false alerts are expected; avoid alarm-based liquidation. A failure to obtain BOATS bars, official holidays, stale daily bars, or unavailable credentials blocks the warning, not the underlying potential decline. It is not a guaranteed early-warning system, and it presently has no model for the six sector-major days that first broke down after the opening bell. Extend V2 specifically for regular-hours breakdown and company-earnings overnight cases, then compare actual broker readbacks to alert issuance times.
