@@ -278,6 +278,46 @@ def _archive_completed(conn,now,today,managed,bypos,orders):
     return removed
 
 
+
+def _publish_monitor_signal(now:datetime,day:str,signal_time:datetime):
+    """Atomic nonsecret read-only handoff to the five-minute alert monitor.
+
+    Monitor cannot order and only sees this alert, never broker credentials.
+    """
+    root=Path(os.getenv("MULTI_BROKER_REBOUND_HANDOFF_DIR",""))
+    if not root.is_absolute() or not root.is_dir() or root.is_symlink():
+        raise OrderRejected("monitored rebound handoff directory invalid")
+    # The host provisioning owns the group permissions; runner cannot write to
+    # arbitrary untrusted destinations or follow symlinks.
+    if root.stat().st_uid != os.geteuid() or root.stat().st_mode & 0o007:
+        raise OrderRejected("rebound handoff owner / mode invalid")
+    out=root/"current.json"
+    if out.is_symlink():raise OrderRejected("rebound signal handoff symlink")
+    stamp=now.astimezone(timezone.utc).isoformat()
+    notice={
+        "schema_version":1,
+        "strategy":"five_day_rebound",
+        "trading_day":day,
+        "kind":"BULLISH_SIGNAL",
+        "issued_at_utc":stamp,
+        "signal_at_utc":signal_time.astimezone(timezone.utc).isoformat(),
+        "order_status":"SIGNAL_ONLY_ORDER_FILL_NOT_VERIFIED",
+        "report":"Prior-five-day downtrend and confirmed semiconductor breakout."
+    }
+    tmp=root/("signal-"+str(os.getpid())+".tmp")
+    old=os.umask(0o027)
+    try:
+        with tmp.open("x",encoding="utf-8") as fd:
+            json.dump(notice,fd,sort_keys=True)
+            fd.flush()
+            os.fsync(fd.fileno())
+        os.replace(tmp,out)
+    finally:
+        os.umask(old)
+        try:tmp.unlink(missing_ok=True)
+        except OSError:pass
+
+
 def _exit_retry_allowed(conn,day,symbol):
     """No second sell unless previous exact broker order is terminal and unfilled."""
     prior=conn.execute(
@@ -392,6 +432,7 @@ def run(now:datetime, execute=False):
         # One signal alert per target trading day; no duplicate spam every minute.
         if not state.execute("SELECT 1 FROM events WHERE trading_day=? AND type='BULLISH_ALERT' LIMIT 1",(daystr,)).fetchone():
             _event(state,now,daystr,"BULLISH_ALERT",details="five_day_down_then_breakout "+decision.asof.isoformat())
+            _publish_monitor_signal(now,daystr,decision.asof)
         q=_quotes(now)
         cash=Decimal(str(account.get("cash",0)))
         if cash<=0 or not cash.is_finite():raise OrderRejected("PAPER cash not valid")
