@@ -24,7 +24,7 @@ class LimitOrder:
     client_order_id: str
 
     def __post_init__(self) -> None:
-        if self.broker not in ("alpaca", "ibkr", "robinhood"):
+        if self.broker not in ("alpaca", "ibkr", "webull", "robinhood"):
             raise OrderRejected("unsupported broker")
         if not isinstance(self.symbol, str) or not TICKER.fullmatch(self.symbol):
             raise OrderRejected("invalid ticker")
