@@ -56,7 +56,8 @@ class TimeSafetyTests(unittest.TestCase):
         from unittest.mock import Mock
         from multi_broker_bridge.five_day_rebound import SectorDecision
         now=self.moment(2026,11,5,17,10)
-        db=sqlite3.connect(":memory:")
+        db=sqlite3.connect("file:rebound_alert_fixture?mode=memory&cache=shared",uri=True)
+        readback=sqlite3.connect("file:rebound_alert_fixture?mode=memory&cache=shared",uri=True)
         db.executescript("""
         CREATE TABLE owned(trading_day TEXT,symbol TEXT,buy_client_id TEXT,purchased_qty INTEGER,status TEXT);
         CREATE TABLE attempts(trading_day TEXT,symbol TEXT,side TEXT,count INTEGER,client_id TEXT,state TEXT);
@@ -74,7 +75,7 @@ class TimeSafetyTests(unittest.TestCase):
             result=runner.run(now,execute=False)
             self.assertEqual(result["status"],"BULLISH_SIGNAL")
             self.assertEqual(len(result["orders"]),9)
-            self.assertEqual(db.execute("SELECT COUNT(*) FROM events WHERE type='BULLISH_ALERT'").fetchone()[0],1)
+            self.assertEqual(readback.execute("SELECT COUNT(*) FROM events WHERE type='BULLISH_ALERT'").fetchone()[0],1)
             submit.assert_not_called()
 
     def test_existing_open_sell_blocks_duplicate_exit(self):
