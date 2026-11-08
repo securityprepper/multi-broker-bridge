@@ -87,6 +87,9 @@ def timed_flatten(now,positions,orders,db,broker_api):
                for row in orders if isinstance(row,dict)):
             return {"status":"UNTRACKED_MBB_ORDERS_NEED_RECONCILIATION",
                     "flat_verified":False,"actions":[],"overdue":urgent}
+        if holdings:
+            return {"status":"UNTRACKED_BROKER_POSITIONS_NEED_RECONCILIATION",
+                    "flat_verified":False,"actions":[],"overdue":urgent}
         return {"status":"NO_TRACKED_STRATEGY_SHARES","flat_verified":True,
                 "actions":[],"overdue":False}
     clock=broker_api("GET","/v2/clock")
