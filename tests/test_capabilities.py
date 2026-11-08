@@ -8,13 +8,13 @@ from multi_broker_bridge.cli import main
 
 class CapabilityTests(unittest.TestCase):
     def test_no_live_capabilities(self):
-        self.assertEqual(set(CAPABILITIES),{"alpaca","ibkr","robinhood"})
+        self.assertEqual(set(CAPABILITIES),{"alpaca","ibkr","webull","robinhood"})
         for broker,info in CAPABILITIES.items():
             self.assertFalse(info["live_enabled"])
             self.assertFalse(info["operationally_verified"])
         self.assertFalse(CAPABILITIES["robinhood"]["paper_environment"])
         self.assertEqual(CAPABILITIES["robinhood"]["order_types"],[])
-        for broker in ("alpaca","ibkr"):
+        for broker in ("alpaca","ibkr","webull"):
             self.assertTrue(CAPABILITIES[broker]["paper_environment"])
             self.assertEqual(CAPABILITIES[broker]["order_types"],["limit"])
             self.assertFalse(CAPABILITIES[broker]["extended_hours"])
