@@ -63,6 +63,16 @@ def submit(req: LimitOrder) -> Receipt:
     if req.broker!="alpaca":
         raise OrderRejected("wrong broker adapter")
     check()
+    if req.side=="sell":
+        # Never create an unintended short position. Read broker holdings first.
+        from decimal import Decimal, InvalidOperation
+        position=_http("GET","/v2/positions/"+req.symbol)
+        try:
+            available=Decimal(str(position.get("qty_available",position.get("qty"))))
+        except (InvalidOperation, ValueError, TypeError) as exc:
+            raise OrderRejected("verified available long position required for SELL") from exc
+        if position.get("symbol")!=req.symbol or position.get("side")!="long" or available<req.qty:
+            raise OrderRejected("SELL exceeds verified available long position")
     payload={"symbol":req.symbol,"qty":str(req.qty),
              "side":req.side,"type":"limit",
              "limit_price":str(req.limit_price),"time_in_force":"day",
