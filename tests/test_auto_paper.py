@@ -93,6 +93,50 @@ class RunnerTests(unittest.TestCase):
                 auto_paper.run(NOW,execute=True)
         self.assertEqual(self.posts,[])
 
+    def test_sell_at_155pm_ct_is_market_exit_not_unfilled_limit(self):
+        close_time=datetime(2026,11,6,19,56,tzinfo=timezone.utc)
+        with auto_paper._state() as db:
+            db.execute("INSERT INTO tracked VALUES(?,?,?,?)",
+                ("AMD","MBB-ENTRY-AMD","100.00",
+                 (close_time-timedelta(minutes=10)).isoformat()))
+        def broker(method,path,payload=None):
+            if path=="/v2/positions":
+                return [{"symbol":"AMD","side":"long","qty":"4",
+                         "qty_available":"4","avg_entry_price":"100.00"}]
+            return self.broker(method,path,payload)
+        with patch.object(auto_paper,"paper_api",side_effect=broker):
+            result=auto_paper.run(close_time,execute=True)
+        sells=[x for x in self.posts if x["side"]=="sell"]
+        self.assertEqual(len(sells),1)
+        self.assertEqual(sells[0]["type"],"market")
+        self.assertEqual(sells[0]["qty"],"4")
+        self.assertFalse(sells[0]["extended_hours"])
+        self.assertNotIn("limit_price",sells[0])
+        self.assertEqual(result["orders"][0]["symbol"],"AMD")
+
+    def test_only_own_stale_buy_cancels_and_no_same_tick_reentry(self):
+        now=NOW
+        refs=[]
+        def broker(method,path,payload=None):
+            if method=="GET" and path.startswith("/v2/orders?"):
+                return [
+                    {"id":"owned-old","symbol":"AMD","side":"buy",
+                     "status":"accepted","client_order_id":"MBB-OLD-AMD",
+                     "created_at":(now-timedelta(minutes=5)).isoformat()},
+                    {"id":"manual-old","symbol":"MU","side":"buy",
+                     "status":"accepted","client_order_id":"EXTERNAL-MU",
+                     "created_at":(now-timedelta(minutes=5)).isoformat()}
+                ]
+            if method=="DELETE":
+                refs.append(path)
+                return {}
+            return self.broker(method,path,payload)
+        with patch.object(auto_paper,"paper_api",side_effect=broker):
+            result=auto_paper.run(now,execute=True)
+        self.assertEqual(refs,["/v2/orders/owned-old"])
+        self.assertEqual([x["symbol"] for x in self.posts],["SNDK"])
+        self.assertTrue(any(x.get("status")=="CANCEL_REQUESTED" for x in result["orders"]))
+
     def test_feed_closed_does_not_request_broker(self):
         saturday=datetime(2026,11,7,22,0,tzinfo=timezone.utc)
         with patch.object(auto_paper,"paper_api",side_effect=AssertionError("broker called")):
