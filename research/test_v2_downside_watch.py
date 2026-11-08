@@ -49,6 +49,47 @@ class WatchOnlyTests(unittest.TestCase):
             self.assertFalse(result["order_permissions"])
             p.assert_not_called()
 
+    def test_stock_urgent_after_2point5_percent_and_1percent_15min(self):
+        prior={s:Decimal("100") for s in watch.UNIVERSE}
+        # 2.6% since regular close, 1.1% over 15 minutes.
+        observed={"AMD":(Decimal("98.48"),Decimal("97.40"))}
+        risk=watch.classify(prior,observed)
+        self.assertIn("AMD",risk["stock_urgent"])
+        self.assertFalse(risk["sector_severe"])
+        self.assertNotIn("MU",risk["stock_urgent"])
+
+    def test_stock_urgency_requires_both_drop_dimensions(self):
+        prior={s:Decimal("100") for s in watch.UNIVERSE}
+        observed={"AMD":(Decimal("97.60"),Decimal("97.40")),
+                  "MU":(Decimal("99.40"),Decimal("98.50"))}
+        risk=watch.classify(prior,observed)
+        self.assertEqual(risk["stock_urgent"],[])
+
+    def test_independent_stock_alert_keys_are_not_shared(self):
+        import tempfile, pathlib, json
+        from unittest.mock import patch
+        now=datetime(2026,11,9,7,10,tzinfo=E)
+        prior={s:Decimal("100") for s in watch.UNIVERSE}
+        observed={"AMD":(Decimal("98.8"),Decimal("97.4")),
+                  "MU":(Decimal("98.8"),Decimal("97.4"))}
+        with tempfile.TemporaryDirectory() as td:
+            root=pathlib.Path(td)
+            hits=[]
+            with patch.object(watch,"market_snapshot",return_value=(prior,observed,now)),patch.object(
+                watch,"state_file",return_value=root/"notifications.json"),patch.object(
+                watch,"push",side_effect=lambda title,msg:hits.append((title,msg))):
+                report=watch.run(now=now,send=True)
+                self.assertEqual(report["status"],"STOCK_URGENT")
+                self.assertEqual(len(hits),2)
+                self.assertTrue(all("V2 TEST" in title for title,msg in hits))
+                self.assertTrue(any("AMD" in msg for _,msg in hits))
+                self.assertTrue(any("MU" in msg for _,msg in hits))
+                watch.run(now=now,send=True)
+                self.assertEqual(len(hits),2)
+                stored=json.loads((root/"notifications.json").read_text())
+                self.assertIn("2026-11-09:stock_urgent:AMD",stored)
+                self.assertIn("2026-11-09:stock_urgent:MU",stored)
+
 
 if __name__=="__main__":
     unittest.main()
