@@ -3,7 +3,7 @@
 ## Alpaca
 
 - **Paper API:** Official REST at https://paper-api.alpaca.markets/v2/orders
-- **Supported now in code:** single stock, whole-share DAY LIMIT, strict $200/order cap, account check, order acknowledgment, client ID readback.
+- **Supported now in code:** single stock, whole-share DAY LIMIT, strict $2,000/order cap, account check, order acknowledgment, client ID readback.
 - **Sell:** blocked unless a long position's available quantity is verified.
 - **Not in v1:** market, margin, fractional, 24-hour, bracket, stop, OCO, replace, automatic daily close, batch orders.
 - **Operational:** Requires separately provisioned PAPER trading credentials. Existing Alpaca market-data credentials on www3 are not presumed to authorize broker PAPER trading. No authenticated submission verified.
@@ -11,7 +11,7 @@
 ## Interactive Brokers
 
 - **Paper API:** Official asynchronous TWS API against local IB Gateway at 127.0.0.1:4002.
-- **Supported now in code:** stock whole-share DAY LIMIT with broker nextValidId, exact single DU PAPER account, receipt callback, $200/order cap. Verifies long position quantity before a sell.
+- **Supported now in code:** stock whole-share DAY LIMIT with broker nextValidId, exact single DU PAPER account, receipt callback, $2,000/order cap. Verifies long position quantity before a sell.
 - **Operational:** Official ibapi Python client exists on IBKR host, but the broker's PAPER port 4002 was not accepting a local connection at the last check. An authenticated PAPER Gateway session is needed before broker-connected testing. No order submitted.
 - **Not in v1:** protective brackets, extended-hours orders, automatic reconnection/retry, multi-account, cancel, flatten, production trading. Until callbacks and broker readback are tested, submission is not considered commissioned.
 
