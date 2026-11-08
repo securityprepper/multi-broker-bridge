@@ -235,6 +235,48 @@ def _submit(conn,now,day,symbol,side,qty,limit=None,market=False):
     return ref
 
 
+
+def _archive_completed(conn,now,today,managed,bypos,orders):
+    """Release next-session eligibility only after exact broker readback.
+
+    A missing broker position alone cannot establish an old order finished.
+    Entry with no fill must be terminal. Filled entry must be matched by
+    broker-confirmed exit quantities and no currently held/open shares.
+    """
+    removed=[]
+    for symbol,(old_day,entry_qty,buy_id,state) in managed.items():
+        if old_day>=today or symbol in bypos or _open_orders(orders,symbol):
+            continue
+        try:
+            entry=paper_api("GET","/v2/orders:by_client_order_id?client_order_id="+quote(buy_id,safe=""))
+            if not isinstance(entry,dict) or entry.get("client_order_id")!=buy_id:
+                continue
+            quantity=Decimal(str(entry.get("filled_qty",0)))
+            if not quantity.is_finite() or quantity<0 or quantity>entry_qty:
+                continue
+            if quantity==0:
+                ready=entry.get("status") in ("canceled","expired","rejected","done_for_day")
+            else:
+                exits=conn.execute(
+                    "SELECT client_id FROM attempts WHERE trading_day=? AND symbol=? AND side='exit'",
+                    (old_day,symbol)).fetchall()
+                covered=Decimal("0")
+                for (cid,) in exits:
+                    receipt=paper_api("GET","/v2/orders:by_client_order_id?client_order_id="+quote(cid,safe=""))
+                    if not isinstance(receipt,dict) or receipt.get("client_order_id")!=cid:
+                        continue
+                    if receipt.get("side")=="sell":
+                        covered+=Decimal(str(receipt.get("filled_qty",0)))
+                ready=covered>=quantity
+            if ready:
+                conn.execute("DELETE FROM owned WHERE symbol=? AND trading_day=?",(symbol,old_day))
+                conn.commit()
+                _event(conn,now,today,"PREVIOUS_PAPER_POSITION_RECONCILED",symbol,old_day)
+                removed.append(symbol)
+        except (OrderRejected,UnknownSubmission,ValueError,TypeError,KeyError):
+            pass  # any uncertain state remains blocked
+    return removed
+
 def run(now:datetime, execute=False):
     if now.tzinfo is None:raise ValueError("timezone aware current time required")
     if execute and os.getenv("MULTI_BROKER_ALLOW_PAPER")!="1":
@@ -250,6 +292,8 @@ def run(now:datetime, execute=False):
         managed={symbol:(trading_day,int(qty),ref,status)
                  for trading_day,symbol,ref,qty,status in state.execute(
                     "SELECT trading_day,symbol,buy_client_id,purchased_qty,status FROM owned")}
+        for symbol in _archive_completed(state,now,daystr,managed,bypos,orders):
+            managed.pop(symbol,None)
         actions=[]
         # Exit-owned positions and stale entry orders before evaluating any new signal.
         in_exit=local.weekday()<5 and local.date()==day and local.time()>=FIRST_EXIT
