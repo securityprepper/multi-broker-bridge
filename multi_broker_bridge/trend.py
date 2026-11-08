@@ -22,8 +22,8 @@ PROFIT_TARGET=Decimal("0.01")
 LOSS_WATCH=Decimal("-0.01")
 TRAIL_ENABLE=Decimal("0.005")
 TRAIL_REVERSAL=Decimal("0.005")
-NEW_ENTRY_CUTOFF=time(13,30)
-DAY_EXIT_CUTOFF=time(13,55)
+NEW_ENTRY_CUTOFF=time(13,15)
+DAY_EXIT_CUTOFF=time(13,40)
 
 @dataclass(frozen=True)
 class Bar:
