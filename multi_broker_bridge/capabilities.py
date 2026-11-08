@@ -9,7 +9,7 @@ CAPABILITIES = {
         "paper_environment": True, "live_enabled": False,
         "order_types": ["limit"], "time_in_force": ["day"],
         "extended_hours": False, "bracket": False, "fractional": False,
-        "max_order_notional_usd": "200.00",
+        "max_order_notional_usd": "2000.00",
         "sell_requires_long_position": True, "broker_readback": True,
         "operationally_verified": False
     },
@@ -17,7 +17,7 @@ CAPABILITIES = {
         "paper_environment": True, "live_enabled": False,
         "order_types": ["limit"], "time_in_force": ["day"],
         "extended_hours": False, "bracket": False, "fractional": False,
-        "max_order_notional_usd": "200.00",
+        "max_order_notional_usd": "2000.00",
         "sell_requires_long_position": True, "broker_readback": "callbacks",
         "operationally_verified": False
     },
