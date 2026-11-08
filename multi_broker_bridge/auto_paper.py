@@ -236,8 +236,9 @@ def run(now: datetime, execute: bool = False) -> dict:
     # Cover tracked symbols even if universe changes after an entry.
     db=_state()
     try:
-        tracked={row[0]:(row[1],Decimal(row[2])) for row in
-                 db.execute("SELECT symbol,entry_ref,highest FROM tracked")}
+        tracked={row[0]:(row[1],Decimal(row[2]),
+                         datetime.fromisoformat(row[3])) for row in
+                 db.execute("SELECT symbol,entry_ref,highest,entry_time FROM tracked")}
         symbols=list(dict.fromkeys([*symbols,*tracked]))
         bars,quotes=fetch_bars_and_quotes(now,symbols,feed)
         engine=TrendMonitor()
@@ -245,7 +246,7 @@ def run(now: datetime, execute: bool = False) -> dict:
             for bar in records:
                 engine.add(bar)
         holdings={}
-        for symbol,(entry_id,peak) in tracked.items():
+        for symbol,(entry_id,peak,entry_time) in tracked.items():
             position=pos_by_symbol.get(symbol)
             if position is None:
                 # If buy still open, do not mistake unfilled shares for a position.
@@ -258,7 +259,8 @@ def run(now: datetime, execute: bool = False) -> dict:
             if position.get("side")!="long" or not qty.is_finite() or not entry.is_finite() or entry<=0:
                 continue
             if qty==qty.to_integral_value() and qty>0:
-                observed=max((bar.high for bar in bars.get(symbol,[])),default=entry)
+                observed=max((bar.high for bar in bars.get(symbol,[])
+                              if bar.timestamp>=entry_time),default=entry)
                 updated_peak=max(peak,entry,observed)
                 if updated_peak>peak:
                     db.execute("UPDATE tracked SET highest=? WHERE symbol=?",
@@ -271,6 +273,52 @@ def run(now: datetime, execute: bool = False) -> dict:
         decision.sort(key=lambda x:0 if x["action"]=="EXIT_WATCH" else 1)
         local_date=now.astimezone(NY).date().isoformat()
         placed=[]
+        # Retire only the strategy's old BUY orders; preserve all manual orders.
+        # A cancel request is NOT proof of cancellation: on this scan, the
+        # symbol remains occupied until a fresh broker readback next tick.
+        for old in orders:
+            if not isinstance(old,dict) or old.get("side")!="buy":
+                continue
+            if not str(old.get("client_order_id","")).startswith("MBB-"):
+                continue
+            oid=old.get("id")
+            if not isinstance(oid,str) or not oid:
+                continue
+            try:
+                created=datetime.fromisoformat(str(old["created_at"]).replace("Z","+00:00"))
+                age=now-created
+            except (KeyError,ValueError,TypeError):
+                continue
+            if age>=timedelta(minutes=2) and execute:
+                try:
+                    paper_api("DELETE","/v2/orders/"+oid)
+                    placed.append({"symbol":old.get("symbol"),
+                                   "action":"CANCEL_STALE_BUY","status":"CANCEL_REQUESTED"})
+                except (OrderRejected,UnknownSubmission):
+                    placed.append({"symbol":old.get("symbol"),
+                                   "action":"CANCEL_STALE_BUY","status":"CANCEL_UNVERIFIED"})
+        # At 13:55 Central, cancel prior pending exits (if any). Do not
+        # replace them with a market order until the next verified broker
+        # snapshot confirms cancellation.
+        local_time=now.astimezone(CHICAGO).time()
+        if local_time>=__import__("datetime").time(13,55) and execute:
+            for old in orders:
+                if not isinstance(old,dict) or old.get("side")!="sell":
+                    continue
+                if not str(old.get("client_order_id","")).startswith("MBB-"):
+                    continue
+                oid=old.get("id")
+                if not isinstance(oid,str) or not oid:
+                    continue
+                try:
+                    paper_api("DELETE","/v2/orders/"+oid)
+                    placed.append({"symbol":old.get("symbol"),
+                                   "action":"CANCEL_PENDING_EXIT_FOR_FLATTEN",
+                                   "status":"CANCEL_REQUESTED"})
+                except (OrderRejected,UnknownSubmission):
+                    placed.append({"symbol":old.get("symbol"),
+                                   "action":"CANCEL_PENDING_EXIT_FOR_FLATTEN",
+                                   "status":"CANCEL_UNVERIFIED"})
         gate_ok=False
         try:
             gate_ok=holiday_gate(now)
@@ -303,7 +351,12 @@ def run(now: datetime, execute: bool = False) -> dict:
                 side="sell"
                 price=bid.quantize(Decimal("0.01"),rounding=ROUND_DOWN)
                 quantity=holdings[symbol].quantity
-            ref=_unique_id(local_date,side,symbol)
+            urgent_flatten=(side=="sell" and
+                now.astimezone(CHICAGO).time()>=__import__("datetime").time(13,55)
+                and now.astimezone(CHICAGO).time()<__import__("datetime").time(15,0)
+                and now.astimezone(CHICAGO).weekday()<5)
+            reservation_side="flatten" if urgent_flatten else side
+            ref=_unique_id(local_date,reservation_side,symbol)
             request=LimitOrder.make("alpaca",symbol,side,quantity,str(price),ref)
             # Exits of tracked PAPER positions could have appreciated above
             # $2000, but the public bridge intentionally enforces $2000 per
@@ -314,22 +367,24 @@ def run(now: datetime, execute: bool = False) -> dict:
                 continue
             if os.getenv("MULTI_BROKER_ALLOW_PAPER")!="1":
                 raise OrderRejected("PAPER execution gate disabled")
-            if not _reserve(db,local_date,symbol,side,ref):
+            if not _reserve(db,local_date,symbol,reservation_side,ref):
                 continue
             payload={"symbol":symbol,"side":side,"qty":str(quantity),
-                     "type":"limit","limit_price":str(price),
-                     "time_in_force":"day","extended_hours":True,
+                     "type":"market" if urgent_flatten else "limit",
+                     "time_in_force":"day","extended_hours":not urgent_flatten,
                      "client_order_id":ref}
+            if not urgent_flatten:
+                payload["limit_price"]=str(price)
             try:
                 receipt=paper_api("POST","/v2/orders",payload)
             except OrderRejected:
-                _record(db,local_date,symbol,side,"REJECTED")
+                _record(db,local_date,symbol,reservation_side,"REJECTED")
                 placed.append({"symbol":symbol,"side":side,"status":"REJECTED"})
                 continue
             # A timeout or unknown broker response leaves UNKNOWN without retry.
             if not isinstance(receipt,dict) or not receipt.get("id") or receipt.get("client_order_id")!=ref:
                 raise UnknownSubmission("PAPER submission cannot be uniquely verified")
-            _record(db,local_date,symbol,side,str(receipt.get("status","ACCEPTED")))
+            _record(db,local_date,symbol,reservation_side,str(receipt.get("status","ACCEPTED")))
             if side=="buy":
                 db.execute("INSERT OR REPLACE INTO tracked VALUES (?,?,?,?)",
                            (symbol,ref,str(price),now.isoformat()))
