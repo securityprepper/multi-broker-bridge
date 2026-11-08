@@ -7,6 +7,7 @@ import sys
 from .models import LimitOrder, OrderRejected, UnknownSubmission
 from . import alpaca, ibkr, robinhood
 from .ledger import connect, record, reserve, state_path
+from .capabilities import CAPABILITIES
 
 BROKERS={"alpaca":alpaca,"ibkr":ibkr,"robinhood":robinhood}
 
@@ -32,6 +33,7 @@ def main(argv=None) -> int:
     p=argparse.ArgumentParser(description="PAPER-only minimal broker adapter; preview by default")
     p.add_argument("--broker",choices=tuple(BROKERS),required=True)
     p.add_argument("--check",action="store_true",help="read-only broker connectivity and capability check")
+    p.add_argument("--capabilities",action="store_true",help="print static implementation capabilities, no broker connection")
     p.add_argument("--readback",metavar="CLIENT_ID",help="read-only order lookup by client order ID (Alpaca PAPER)")
     p.add_argument("--execute",action="store_true",help="send an authorized PAPER order, never LIVE")
     p.add_argument("--symbol",help="uppercase US stock ticker")
@@ -41,7 +43,11 @@ def main(argv=None) -> int:
     p.add_argument("--client-order-id",help="unique 6-64 char id; NEVER reuse after unknown")
     args=p.parse_args(argv)
     try:
-        if args.readback:
+        if args.capabilities:
+            if args.execute or args.check or args.readback:
+                raise OrderRejected("capabilities cannot be combined with other actions")
+            result={"broker":args.broker,**CAPABILITIES[args.broker]}
+        elif args.readback:
             if args.execute or args.check or args.broker!="alpaca":
                 raise OrderRejected("readback only supports Alpaca PAPER without other actions")
             result=alpaca.readback(args.readback)
