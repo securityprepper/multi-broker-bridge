@@ -67,6 +67,13 @@ class TrendTests(unittest.TestCase):
         for i in range(4):
             m.add(b("AMD",i))
         self.assertFalse(m.breadth("semiconductors",BASE+timedelta(minutes=3))["qualified"])
+    def test_completed_minute_bar_is_fresh_at_40_second_scan(self):
+        m=loaded()
+        # The prior fully completed one-minute candle can be 100 seconds
+        # old at the next :40 timer tick; do not suppress all entries.
+        result=m.scan(BASE+timedelta(minutes=4,seconds=40))
+        self.assertTrue(any(x["action"]=="BUY_WATCH" for x in result))
+
     def test_stale_price_blocks_fresh_entry(self):
         m=loaded()
         result=m.scan(BASE+timedelta(minutes=10))
