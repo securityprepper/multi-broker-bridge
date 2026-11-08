@@ -80,7 +80,7 @@ class TimeSafetyTests(unittest.TestCase):
 
     def test_existing_open_sell_blocks_duplicate_exit(self):
         import sqlite3
-        now=self.moment(2026,11,9,8,25)
+        now=self.moment(2026,11,9,8,35)
         db=sqlite3.connect(":memory:")
         db.executescript("""
         CREATE TABLE owned(trading_day TEXT,symbol TEXT,buy_client_id TEXT,purchased_qty INTEGER,status TEXT);
@@ -89,7 +89,7 @@ class TimeSafetyTests(unittest.TestCase):
         """)
         db.execute("INSERT INTO owned VALUES(?,?,?,?,?)",("2026-11-09","AMD","FDR-20261109-B-AMD-1",2,"ENTRY_ACCEPTED_NOT_FILLED"))
         order={"symbol":"AMD","side":"sell","status":"new","client_order_id":"FDR-20261109-E-AMD-1",
-               "id":"example-order","created_at":self.moment(2026,11,9,8,24).isoformat()}
+               "id":"example-order","created_at":self.moment(2026,11,9,8,34).isoformat()}
         position={"symbol":"AMD","side":"long","qty":"2","qty_available":"2"}
         with patch.object(runner,"_db",return_value=db),patch.object(runner,"_broker_inventory",return_value=(
             {"status":"ACTIVE","cash":"100000","trading_blocked":False},[position],[order])),patch.object(
