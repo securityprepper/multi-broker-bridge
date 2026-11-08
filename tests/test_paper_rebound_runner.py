@@ -41,6 +41,7 @@ class TimeSafetyTests(unittest.TestCase):
     def test_paused_holiday_never_queries_new_buys(self):
         import sqlite3
         db=sqlite3.connect(":memory:")
+        db.execute("CREATE TABLE owned(trading_day TEXT,symbol TEXT,buy_client_id TEXT,purchased_qty INTEGER,status TEXT)")
         with patch.object(runner,"_db",return_value=db),patch.object(runner,"_broker_inventory",return_value=(
             {"status":"ACTIVE","cash":"100000","trading_blocked":False},[],[])),patch.object(
             runner,"holiday_gate",return_value=False),patch.object(runner,"_fetch_daily") as history,patch.object(
