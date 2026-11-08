@@ -123,6 +123,17 @@ class TimedFlattenTests(unittest.TestCase):
         self.assertEqual(len(book.posts),2)  # two distinct stocks, not AMD retried
         self.assertEqual({p["symbol"] for p in book.posts},{"AMD","MU"})
         self.assertEqual(again["status"],"FLATTEN_IN_PROGRESS")
+    def test_unknown_account_positions_do_not_claim_flat_when_ledger_missing(self):
+        book=PaperBook()
+        with auto_paper._state() as db:
+            db.execute("DELETE FROM tracked")
+            db.commit()
+        result=self.step(AT_OVERDUE,book)
+        self.assertEqual(result["status"],
+                         "UNTRACKED_BROKER_POSITIONS_NEED_RECONCILIATION")
+        self.assertFalse(result["flat_verified"])
+        self.assertTrue(result["overdue"])
+        self.assertEqual(book.posts,[])
     def test_no_trading_after_regular_session(self):
         book=PaperBook()
         self.assertIsNone(self.step(AT_LATE,book))
