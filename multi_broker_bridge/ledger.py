@@ -21,7 +21,7 @@ def state_path() -> Path:
     if not folder.exists():
         folder.mkdir(mode=0o700, parents=True)
     stat = folder.lstat()
-    if folder.is_symlink() or (stat.st_mode & 0o077):
+    if folder.is_symlink() or stat.st_uid != os.geteuid() or (stat.st_mode & 0o077):
         raise OrderRejected("state folder must not allow group/other access")
     return folder / "paper-orders.sqlite3"
 
