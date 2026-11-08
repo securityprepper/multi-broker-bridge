@@ -237,6 +237,19 @@ def run(now: datetime, execute: bool = False) -> dict:
     # Cover tracked symbols even if universe changes after an entry.
     db=_state()
     try:
+        # The 13:40 CT PAPER liquidation has priority over signal scans.
+        # It queries broker positions/orders and the broker's open clock;
+        # it does not depend on premium minute-bar delivery or fresh quotes.
+        from .paper_time_exit import timed_flatten
+        mandatory_exit=timed_flatten(now,positions,orders,db,paper_api)
+        if mandatory_exit is not None:
+            return {
+                "status":"PAPER_DAILY_EXIT_GUARD",
+                "mode":mode,"data_feed":feed,
+                "gate_allows_new_entries":False,
+                "orders":mandatory_exit["actions"],
+                "exit_guard":mandatory_exit,
+            }
         tracked={row[0]:(row[1],Decimal(row[2]),
                          datetime.fromisoformat(row[3]),int(row[4])) for row in
                  db.execute("SELECT symbol,entry_ref,highest,entry_time,entry_qty FROM tracked")}
@@ -346,7 +359,7 @@ def run(now: datetime, execute: bool = False) -> dict:
             if row["action"]=="BUY_WATCH":
                 if not gate_ok or symbol in pos_by_symbol or symbol in tracked:
                     continue
-                if now.astimezone(CHICAGO).time()>=__import__("datetime").time(13,30):
+                if now.astimezone(CHICAGO).time()>=__import__("datetime").time(13,15):
                     continue
                 side="buy"
                 price=ask.quantize(Decimal("0.01"),rounding="ROUND_UP")
