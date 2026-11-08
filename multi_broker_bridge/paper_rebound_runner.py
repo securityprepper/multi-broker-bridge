@@ -17,6 +17,8 @@ import os
 from pathlib import Path
 import sqlite3
 from urllib.parse import urlencode, quote
+from urllib.request import Request, urlopen
+from urllib.error import HTTPError, URLError
 from zoneinfo import ZoneInfo
 
 from .auto_paper import (
@@ -25,6 +27,7 @@ from .auto_paper import (
     DATA_HOST
 )
 from .five_day_rebound import Candle, SYMBOLS, ANCHORS, evaluate
+from .rebound_catalysts import screen as screen_adverse_catalysts
 
 ET=ZoneInfo("America/New_York")
 BASKET=("AMD","MU","SNDK","SOXX","NVDA","AVGO","WDC","TSM","INTC")
@@ -279,7 +282,39 @@ def _archive_completed(conn,now,today,managed,bypos,orders):
 
 
 
-def _publish_monitor_signal(now:datetime,day:str,signal_time:datetime):
+
+def _fetch_causal_news(asof:datetime):
+    """Fetch news that existed by the completed signal candle's end.
+
+    Page through the full 24-hour query. Network or pagination failure blocks
+    NEW PAPER purchases, never pending exit management.
+    """
+    end=asof.astimezone(timezone.utc)
+    begin=end-timedelta(hours=24)
+    params={"symbols":",".join(ANCHORS),"start":begin.isoformat(),
+            "end":end.isoformat(),"limit":50,"sort":"asc"}
+    rows=[]
+    token=None
+    for page in range(15):
+        q=dict(params)
+        if token:q["page_token"]=token
+        uri="https://data.alpaca.markets/v1beta1/news?"+urlencode(q)
+        try:
+            with urlopen(Request(uri,headers=market_headers(),method="GET"),timeout=7) as response:
+                if response.status!=200:raise OrderRejected("news provider returned non-200")
+                payload=json.loads(response.read(1_000_001))
+        except (HTTPError,URLError,OSError,TimeoutError,ValueError) as exc:
+            raise OrderRejected("historical catalyst news unavailable") from exc
+        if not isinstance(payload,dict) or not isinstance(payload.get("news"),list):
+            raise OrderRejected("news payload malformed")
+        rows.extend(payload["news"])
+        token=payload.get("next_page_token")
+        if not token:return rows
+        if not isinstance(token,str) or len(token)>512:
+            raise OrderRejected("news pagination invalid")
+    raise OrderRejected("news pages incomplete; fail closed")
+
+def _publish_monitor_signal(now:datetime,day:str,signal_time:datetime,kind="BULLISH_SIGNAL"):
     """Atomic nonsecret read-only handoff to the five-minute alert monitor.
 
     Monitor cannot order and only sees this alert, never broker credentials.
@@ -298,11 +333,13 @@ def _publish_monitor_signal(now:datetime,day:str,signal_time:datetime):
         "schema_version":1,
         "strategy":"five_day_rebound",
         "trading_day":day,
-        "kind":"BULLISH_SIGNAL",
+        "kind":kind,
         "issued_at_utc":stamp,
         "signal_at_utc":signal_time.astimezone(timezone.utc).isoformat(),
         "order_status":"SIGNAL_ONLY_ORDER_FILL_NOT_VERIFIED",
-        "report":"Prior-five-day downtrend and confirmed semiconductor breakout."
+        "report":("Adverse company-specific earnings/guidance news blocked rebound PAPER buys."
+                  if kind=="CATALYST_VETO" else
+                  "Prior-five-day downtrend and confirmed semiconductor breakout.")
     }
     tmp=root/("signal-"+str(os.getpid())+".tmp")
     old=os.umask(0o027)
@@ -429,6 +466,18 @@ def run(now:datetime, execute=False):
         decision=evaluate(completed,{s:completed[s][-1] for s in SYMBOLS},bars)
         if not decision.qualifies:
             return {"status":"WAIT","reason":decision.reason,"orders":[]}
+        # Clear, independently timestamped adverse earnings/guidance news for
+        # any of the three sector anchors invalidates the entire rebound buy
+        # basket, because sector-wide sympathy losses were observed historically.
+        news=_fetch_causal_news(decision.asof+timedelta(minutes=5))
+        catalyst=screen_adverse_catalysts(news,decision.asof+timedelta(minutes=5))
+        if catalyst["veto"]:
+            if not state.execute("SELECT 1 FROM events WHERE trading_day=? AND type='CATALYST_VETO' LIMIT 1",(daystr,)).fetchone():
+                _event(state,now,daystr,"CATALYST_VETO",
+                       details="blocked_anchors="+",".join(catalyst["affected_anchors"]))
+                _publish_monitor_signal(now,daystr,decision.asof,"CATALYST_VETO")
+            return {"status":"CATALYST_VETO","affected_anchors":list(catalyst["affected_anchors"]),
+                    "orders":[],"strategy":ALERT_NAME}
         # One signal alert per target trading day; no duplicate spam every minute.
         if not state.execute("SELECT 1 FROM events WHERE trading_day=? AND type='BULLISH_ALERT' LIMIT 1",(daystr,)).fetchone():
             _event(state,now,daystr,"BULLISH_ALERT",details="five_day_down_then_breakout "+decision.asof.isoformat())
