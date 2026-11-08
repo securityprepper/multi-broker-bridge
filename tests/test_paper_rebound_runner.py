@@ -51,6 +51,55 @@ class TimeSafetyTests(unittest.TestCase):
             history.assert_not_called()
             send.assert_not_called()
 
+    def test_bullish_alert_can_be_generated_without_order_execution(self):
+        import sqlite3
+        from unittest.mock import Mock
+        from multi_broker_bridge.five_day_rebound import SectorDecision
+        now=self.moment(2026,11,5,17,10)
+        db=sqlite3.connect(":memory:")
+        db.executescript("""
+        CREATE TABLE owned(trading_day TEXT,symbol TEXT,buy_client_id TEXT,purchased_qty INTEGER,status TEXT);
+        CREATE TABLE attempts(trading_day TEXT,symbol TEXT,side TEXT,count INTEGER,client_id TEXT,state TEXT);
+        CREATE TABLE events(id INTEGER PRIMARY KEY AUTOINCREMENT,time_utc TEXT,trading_day TEXT,type TEXT,symbol TEXT,details TEXT);
+        """)
+        closes={s:[Decimal("100")]*5+[Decimal("95")] for s in runner.SYMBOLS}
+        signal=SectorDecision("down",{}, {}, {}, True,"BUY_WATCH",now)
+        with patch.object(runner,"_db",return_value=db),patch.object(runner,"_broker_inventory",return_value=(
+            {"status":"ACTIVE","cash":"100000","trading_blocked":False},[],[])),patch.object(
+            runner,"holiday_gate",return_value=True),patch.object(runner,"_fetch_daily",return_value=closes),patch.object(
+            runner,"_fetch_sector_bars",return_value={}),patch.object(runner,"evaluate",return_value=signal),patch.object(
+            runner,"_quotes",return_value={s:(Decimal("99"),Decimal("100")) for s in runner.BASKET}),patch.object(
+            runner,"paper_api",return_value={"tradable":True,"overnight_tradable":True}),patch.object(
+            runner,"_submit") as submit:
+            result=runner.run(now,execute=False)
+            self.assertEqual(result["status"],"BULLISH_SIGNAL")
+            self.assertEqual(len(result["orders"]),9)
+            self.assertEqual(db.execute("SELECT COUNT(*) FROM events WHERE type='BULLISH_ALERT'").fetchone()[0],1)
+            submit.assert_not_called()
+
+    def test_existing_open_sell_blocks_duplicate_exit(self):
+        import sqlite3
+        now=self.moment(2026,11,9,8,25)
+        db=sqlite3.connect(":memory:")
+        db.executescript("""
+        CREATE TABLE owned(trading_day TEXT,symbol TEXT,buy_client_id TEXT,purchased_qty INTEGER,status TEXT);
+        CREATE TABLE attempts(trading_day TEXT,symbol TEXT,side TEXT,count INTEGER,client_id TEXT,state TEXT);
+        CREATE TABLE events(id INTEGER PRIMARY KEY AUTOINCREMENT,time_utc TEXT,trading_day TEXT,type TEXT,symbol TEXT,details TEXT);
+        """)
+        db.execute("INSERT INTO owned VALUES(?,?,?,?,?)",("2026-11-09","AMD","FDR-20261109-B-AMD-1",2,"ENTRY_ACCEPTED_NOT_FILLED"))
+        order={"symbol":"AMD","side":"sell","status":"new","client_order_id":"FDR-20261109-E-AMD-1",
+               "id":"example-order","created_at":self.moment(2026,11,9,8,24).isoformat()}
+        position={"symbol":"AMD","side":"long","qty":"2","qty_available":"2"}
+        with patch.object(runner,"_db",return_value=db),patch.object(runner,"_broker_inventory",return_value=(
+            {"status":"ACTIVE","cash":"100000","trading_blocked":False},[position],[order])),patch.object(
+            runner,"_quotes",return_value={"AMD":(Decimal("100"),Decimal("101"))}),patch.object(
+            runner,"_cancel_open") as cancel,patch.object(runner,"_submit") as submit:
+            result=runner.run(now,execute=False)
+            self.assertEqual(result["status"],"EXIT_MANAGEMENT")
+            self.assertIn("AWAIT_SELL_FILL:AMD",result["orders"])
+            cancel.assert_not_called()
+            submit.assert_not_called()
+
 
 if __name__=="__main__":
     unittest.main()
