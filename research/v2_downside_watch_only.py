@@ -201,18 +201,18 @@ def run(now=None,send=False):
         "DOWNSIDE_WATCH" if risk["sector_watch"] or risk["stock_watch"] else "NO_RISK_SIGNAL")
     event="sector_severe" if risk["sector_severe"] else (
         "stock_urgent" if risk["stock_urgent"] else
-        "watch" if risk["sector_watch"] or risk["stock_watch"] else None)
+        "sector_watch" if risk["sector_watch"] else "stock_watch" if risk["stock_watch"] else None)
     # This sidecar only PUSHES severe sector and urgent company symptoms.
     # Lesser watch observations are logged, not spammed to the user's phone.
-    if send and event in ("sector_severe","stock_urgent"):
+    if send and event in ("sector_severe","stock_urgent","sector_watch"):
         file=state_file()
         key=day.isoformat()+":"+event
         if not already_seen(file,key):
             symbols=",".join(risk["stock_urgent"]) if risk["stock_urgent"] else "AMD/MU/SNDK,SOXX"
             now_ct=asof.astimezone(CT).strftime("%m/%d %I:%M %p CT")
-            message=(f"EARLY DOWNSIDE WATCH {day.isoformat()} at {now_ct}. "
+            message=(f"{'LOW-CONFIDENCE WATCH' if event=='sector_watch' else 'HIGHER-SEVERITY WARNING'} {day.isoformat()} at {now_ct}. "
                      f"Observed selling pressure: {symbols}. "
-                     "Possible additional downside; NOT a forecast of a 5% drop. "
+                     "Possible additional downside, but many historical false alarms; NOT a forecast of a 5% drop. "
                      "Review held positions, fresh quotes, and news before deciding to exit. "
                      "No broker orders placed.")
             # Reserve before HTTP to avoid repeat alerts on ambiguous response.
