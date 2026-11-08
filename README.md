@@ -19,15 +19,15 @@ Robinhood live Agentic placement is a **different project and permission**. No u
 - Exact broker/environment/account verification, whole positive share quantities, positive limit prices, bounded notional, and strict ticker validation.
 - A durable local SQLite submission registry prevents repeating the same client order ID after a timeout, including ambiguous broker responses. `UNKNOWN` requires reconciliation; never auto-retry it.
 - Provider acknowledgments are not fills. Print status and identifiers without account details.
-- No automatic extended-hours stops or bracket protections in v1.
+- No automatic extended-hours stops or bracket protections in v1. SELL checks an existing long position; no deliberate shorts. Robinhood has **no broker PAPER environment** and remains simulation-only.
 
 ## First-run steps
 
 1. Configure each broker's PAPER credentials/session outside the repository (environment or protected service configuration). Do not commit credentials.
 2. Run `python -m multi_broker_bridge.cli --broker alpaca --symbol SPY --side buy --qty 1 --limit 100 --client-order-id TEST-001` for a preview.
 3. Verify connectivity and account ownership with `python -m multi_broker_bridge.cli --broker alpaca --check`.
-4. An explicitly approved small PAPER test may use `--execute`. For IBKR, use the official Python `ibapi` package installed on the host.
-5. Inspect broker activity before asserting a fill, then test cancel and close separately when implemented.
+4. An explicitly approved small PAPER test may use `MULTI_BROKER_ALLOW_PAPER=1` and `--execute` together. For IBKR, use the official Python `ibapi` package installed on the IBKR host under an unprivileged service account. Never run from root.
+5. Alpaca status: `python -m multi_broker_bridge.cli --broker alpaca --readback TEST-001` (requires PAPER credentials). Inspect broker activity before asserting a fill, then test cancel and close separately when implemented.
 
 **Do not use a dummy low limit order as proof of an actual fill.** The first safe milestone is a broker-accepted PAPER order with a matching readback, not a profitable or fully protected position.
 
@@ -35,7 +35,7 @@ Robinhood live Agentic placement is a **different project and permission**. No u
 
 ```text
 ALPACA_PAPER_KEY_ID=...
-ALPACA_PAPER_SECRET_KEY=...
+ALPACA_PAPER_SECRET_KEY=...\nMULTI_BROKER_ALLOW_PAPER=1           # only for explicitly authorized PAPER orders
 IBKR_PAPER_ACCOUNT=DU...          # Exact known paper account
 IBKR_PAPER_PORT=4002              # Fixed by implementation
 MULTI_BROKER_STATE_DIR=/path/to/private/state
