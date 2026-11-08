@@ -59,7 +59,7 @@ def _entering_window(now):
     if (local.weekday()==6 or local.weekday()<5) and (
         local.time()>=time(20) or local.time()<LAST_ENTRY
     ):
-        return local.weekday()!=4
+        return not (local.weekday()==4 and local.time()>=time(20))
     return False
 
 
@@ -259,18 +259,30 @@ def run(now:datetime, execute=False):
                 if trade_day!=daystr:continue
                 open_own=_open_orders(orders,symbol)
                 if open_own:
-                    # In an exit window, cancel a lingering BUY before any SELL.
-                    # Cancel requests are not confirmation: next tick must re-read.
-                    if execute and _cancel_open(state,now,daystr,orders,symbol):
-                        actions.append("AWAIT_CANCELLATION:"+symbol)
+                    # Never add another SELL while a previous SELL is live.
+                    # Buy orders are canceled immediately in the exit window;
+                    # sell orders are allowed a short fill window, then canceled.
+                    # The NEXT tick must verify broker cancellation readback.
+                    pending_buys=any(o.get("side")=="buy" for o in open_own)
+                    old_sell=False
+                    for o in open_own:
+                        try:
+                            created=datetime.fromisoformat(str(o["created_at"]).replace("Z","+00:00"))
+                            if now-created>=timedelta(minutes=3):old_sell=True
+                        except (KeyError,TypeError,ValueError):old_sell=False
+                    if execute and (pending_buys or old_sell or local.time()>=LAST_PREOPEN):
+                        if _cancel_open(state,now,daystr,orders,symbol):
+                            actions.append("AWAIT_CANCELLATION:"+symbol)
+                    else:
+                        actions.append("AWAIT_SELL_FILL:"+symbol)
                     continue
                 held=bypos.get(symbol)
                 if held is None:
                     # Do not erase ledger. Prior client-id readback is required.
                     try:
                         detail=paper_api("GET","/v2/orders:by_client_order_id?client_order_id="+quote(ref,safe=""))
-                        if isinstance(detail,dict) and detail.get("client_order_id")==ref and
-                           detail.get("status") in ("filled","canceled","expired","rejected"):
+                        if (isinstance(detail,dict) and detail.get("client_order_id")==ref and
+                            detail.get("status") in ("filled","canceled","expired","rejected")):
                             state.execute("UPDATE owned SET status='NO_POSITION_READBACK' WHERE symbol=?",(symbol,))
                             state.commit()
                     except (OrderRejected,UnknownSubmission,ValueError):pass
