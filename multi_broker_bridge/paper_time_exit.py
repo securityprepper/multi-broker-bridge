@@ -80,12 +80,17 @@ def timed_flatten(now,positions,orders,db,broker_api):
     overdue=local.time()>=DEADLINE
     urgent=local.time()>=ESCALATE_START
     holdings=_broker_inventory(positions,orders)
-    tracked={str(s):str(ref) for s,ref in
-             db.execute("SELECT symbol,entry_ref FROM tracked")}
+    tracked={str(s):(str(ref),int(qty)) for s,ref,qty in
+             db.execute("SELECT symbol,entry_ref,entry_qty FROM tracked")}
     if not tracked:
+        if any(str(row.get("client_order_id","")).startswith(START_CLIENT_PREFIX)
+               for row in orders if isinstance(row,dict)):
+            return {"status":"UNTRACKED_MBB_ORDERS_NEED_RECONCILIATION",
+                    "flat_verified":False,"actions":[],"overdue":urgent}
         return {"status":"NO_TRACKED_STRATEGY_SHARES","flat_verified":True,
                 "actions":[],"overdue":False}
-    if not isinstance(broker_api("GET","/v2/clock"),dict) or broker_api("GET","/v2/clock").get("is_open") is not True:
+    clock=broker_api("GET","/v2/clock")
+    if not isinstance(clock,dict) or clock.get("is_open") is not True:
         return {"status":"BROKER_CLOCK_BLOCKED","flat_verified":False,
                 "actions":[],"overdue":urgent}
     own_open=[];other_open=[]
@@ -117,7 +122,7 @@ def timed_flatten(now,positions,orders,db,broker_api):
         return {"status":"AWAIT_BROKER_CANCEL_READBACK","flat_verified":False,
                 "actions":actions,"overdue":urgent}
     actions=[];open_symbols=[]
-    for symbol,entry_ref in tracked.items():
+    for symbol,(entry_ref,entry_qty) in tracked.items():
         if not re.fullmatch(r"[A-Z0-9.]{1,12}",symbol):
             raise OrderRejected("Untrusted symbol in strategy ledger")
         pos=holdings.get(symbol)
@@ -126,6 +131,8 @@ def timed_flatten(now,positions,orders,db,broker_api):
             # do not delete tracked ledger until fill reconciliation.
             continue
         qty=_positive_whole_qty(pos)
+        if entry_qty<1 or qty>entry_qty:
+            raise OrderRejected("Broker holds more than tracked strategy quantity; possible manual shares")
         open_symbols.append(symbol)
         client_id=f"MBB-{local:%Y%m%d}-F-{symbol}"[:48]
         if not _attempt(db,date,symbol,client_id):
