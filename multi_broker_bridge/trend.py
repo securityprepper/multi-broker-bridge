@@ -11,7 +11,7 @@ from decimal import Decimal, InvalidOperation
 from math import ceil
 from zoneinfo import ZoneInfo
 from collections import defaultdict, deque
-from .watchlists import SECTORS, SECTOR_ETFS
+from .watchlists import SECTORS, SECTOR_ETFS, SECTOR_ANCHORS
 
 CHICAGO=ZoneInfo("America/Chicago")
 MAX_BAR_AGE=timedelta(seconds=95)
@@ -123,12 +123,26 @@ class TrendMonitor:
                 covered+=1
                 if _three_rising(bars):
                     qualifying.append(symbol)
-        required=max(3,ceil(len(symbols)*MIN_COVERAGE))
-        breadth=(len(qualifying)/covered) if covered else 0.
+        anchors=tuple(s for s in SECTOR_ANCHORS.get(sector,tuple(symbols[:3]))
+                      if s in symbols)
+        available_anchors=[s for s in anchors
+                           if len(self.bars[s])>=4 and
+                           _is_fresh(self.bars[s][-1],now)]
+        rising_anchors=sum(1 for s in available_anchors
+                           if _three_rising(list(self.bars[s])))
+        # The liquid leaders establish sector direction; thin overnight
+        # constituents can qualify individually when they do print bars.
+        anchor_breadth=(rising_anchors/len(available_anchors)
+                        if available_anchors else 0.)
+        required=max(2,ceil(len(anchors)*MIN_RISING_BREADTH))
+        qualified=(len(available_anchors)>=required and
+                   rising_anchors>=required and
+                   anchor_breadth>=MIN_RISING_BREADTH)
         return {"sector":sector,"covered":covered,"total":len(symbols),
-                "rising":len(qualifying),"breadth":round(breadth,3),
-                "qualified":covered>=required and breadth>=MIN_RISING_BREADTH,
-                "rising_symbols":qualifying}
+                "rising":len(qualifying),"breadth":round(anchor_breadth,3),
+                "anchor_covered":len(available_anchors),
+                "anchor_rising":rising_anchors,
+                "qualified":qualified,"rising_symbols":qualifying}
 
     def scan(self,now:datetime,holdings:dict[str,Holding]|None=None,
              executable_session:bool=False)->list[dict]:
