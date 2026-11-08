@@ -5,11 +5,11 @@ import json
 import os
 import sys
 from .models import LimitOrder, OrderRejected, UnknownSubmission
-from . import alpaca, ibkr, robinhood
+from . import alpaca, ibkr, webull, robinhood
 from .ledger import connect, record, reserve, state_path
 from .capabilities import CAPABILITIES
 
-BROKERS={"alpaca":alpaca,"ibkr":ibkr,"robinhood":robinhood}
+BROKERS={"alpaca":alpaca,"ibkr":ibkr,"webull":webull,"robinhood":robinhood}
 
 def execute(req: LimitOrder) -> dict:
     if req.broker=="robinhood":
@@ -48,9 +48,9 @@ def main(argv=None) -> int:
                 raise OrderRejected("capabilities cannot be combined with other actions")
             result={"broker":args.broker,**CAPABILITIES[args.broker]}
         elif args.readback:
-            if args.execute or args.check or args.broker!="alpaca":
+            if args.execute or args.check or args.broker not in ("alpaca","webull"):
                 raise OrderRejected("readback only supports Alpaca PAPER without other actions")
-            result=alpaca.readback(args.readback)
+            result=BROKERS[args.broker].readback(args.readback)
         elif args.check:
             if args.execute:
                 raise OrderRejected("--check and --execute are mutually exclusive")
