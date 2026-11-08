@@ -135,10 +135,11 @@ class TimeSafetyTests(unittest.TestCase):
         CREATE TABLE events(id INTEGER PRIMARY KEY AUTOINCREMENT,time_utc TEXT,trading_day TEXT,type TEXT,symbol TEXT,details TEXT);
         """)
         decision=SectorDecision("down",{}, {}, {}, True,"BUY_WATCH",now)
+        closes={s:[Decimal("100")]*6 for s in runner.SYMBOLS}
         catal={"veto":True,"affected_anchors":("AMD",)}
         with patch.object(runner,"_db",return_value=db),patch.object(runner,"_broker_inventory",return_value=(
             {"status":"ACTIVE","cash":"100000","trading_blocked":False},[],[])),patch.object(
-            runner,"holiday_gate",return_value=True),patch.object(runner,"_fetch_daily",return_value={}),patch.object(
+            runner,"holiday_gate",return_value=True),patch.object(runner,"_fetch_daily",return_value=closes),patch.object(
             runner,"_fetch_sector_bars",return_value={}),patch.object(runner,"evaluate",return_value=decision),patch.object(
             runner,"_fetch_causal_news",return_value=[]),patch.object(runner,"screen_adverse_catalysts",return_value=catal),patch.object(
             runner,"_publish_monitor_signal") as publish,patch.object(runner,"_submit") as submit:
