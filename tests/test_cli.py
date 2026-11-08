@@ -18,7 +18,7 @@ class CLITests(unittest.TestCase):
             status=cli.main(args)
         return status,json.loads(out.getvalue()) if out.getvalue() else None
     def test_preview_does_not_contact_any_broker(self):
-        for broker in ("alpaca","ibkr","robinhood"):
+        for broker in ("alpaca","ibkr","webull","robinhood"):
             args=REQ.copy()
             args[1]=broker
             with patch.object(cli.BROKERS[broker],"submit") as send:
