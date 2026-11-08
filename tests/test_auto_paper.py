@@ -49,6 +49,9 @@ class RunnerTests(unittest.TestCase):
                     "cash":"10000.00"}
         if path=="/v2/positions" or path.startswith("/v2/orders?"):
             return []
+        if path.startswith("/v2/orders:by_client_order_id?client_order_id="):
+            return {"client_order_id":path.split("=",1)[1],
+                    "status":"accepted","filled_qty":"0"}
         if method=="POST" and path=="/v2/orders":
             self.posts.append(payload)
             return {"id":"brokerpaper-"+str(len(self.posts)),
