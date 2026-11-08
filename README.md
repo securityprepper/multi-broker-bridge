@@ -16,7 +16,7 @@ Robinhood live Agentic placement is a **different project and permission**. No u
 
 - Small broker-specific adapters; no second Gateway, root operator, Kubernetes, leader election, or redundant hosts.
 - Default preview-only. `--execute` is required for any PAPER submission.
-- Exact broker/environment/account verification, whole positive share quantities, positive limit prices, bounded notional, and strict ticker validation.
+- Exact broker/environment/account verification, whole positive share quantities, positive limit prices, a **$2,000 cap on each separate stock order**, broker available-funds limits, and strict ticker validation.
 - A durable local SQLite submission registry prevents repeating the same client order ID after a timeout, including ambiguous broker responses. `UNKNOWN` requires reconciliation; never auto-retry it.
 - Provider acknowledgments are not fills. Print status and identifiers without account details.
 - No automatic extended-hours stops or bracket protections in v1. SELL checks an existing long position; no deliberate shorts. Robinhood has **no broker PAPER environment** and remains simulation-only.
@@ -46,3 +46,6 @@ The CLI never prints secrets, does not accept live endpoints, and does not creat
 ## Safety/scope
 
 Do not replace any existing Gateway login or restart other broker systems as part of this project. PAPER orders must be authorized and monitored; market hours, partial fills, rejected orders, and provider outages can change real broker state. New features are added only as needed, with tests and a short review of scope/risks.
+## Initial sizing
+
+Each buy order for a separate symbol is independently limited to $2,000 in PAPER (e.g. 1 SNDK, 2 MU, 4 AMD shares if each order's limit price × quantity is <= $2,000). There is no additional strategy-wide or account-wide exposure ceiling in this bridge; the broker's available PAPER buying power remains binding. Orders may still be rejected for insufficient buying power. No automatic allocation or real broker submission is enabled by this configuration change.
