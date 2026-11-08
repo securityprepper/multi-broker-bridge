@@ -12,8 +12,7 @@ class UnknownSubmission(RuntimeError):
 
 TICKER = re.compile(r"[A-Z][A-Z0-9.]{0,9}\Z")
 CLIENT_ID = re.compile(r"[A-Za-z0-9_-]{6,64}\Z")
-MAX_NOTIONAL = Decimal("200.00")
-MAX_SHARES = 20
+MAX_NOTIONAL = Decimal("2000.00")
 
 @dataclass(frozen=True)
 class LimitOrder:
@@ -31,14 +30,14 @@ class LimitOrder:
             raise OrderRejected("invalid ticker")
         if self.side not in ("buy", "sell"):
             raise OrderRejected("invalid side")
-        if type(self.qty) is not int or not 1 <= self.qty <= MAX_SHARES:
-            raise OrderRejected("quantity must be 1-20 whole shares")
+        if type(self.qty) is not int or self.qty < 1:
+            raise OrderRejected("quantity must be a positive whole-share count")
         if type(self.limit_price) is not Decimal or not self.limit_price.is_finite():
             raise OrderRejected("finite Decimal price required")
         if not Decimal("0.01") <= self.limit_price or self.limit_price != self.limit_price.quantize(Decimal("0.01")):
             raise OrderRejected("price must have two decimal places and be positive")
         if self.qty * self.limit_price > MAX_NOTIONAL:
-            raise OrderRejected("initial PAPER limit: $200 maximum notional")
+            raise OrderRejected("PAPER limit: $2,000 maximum per independent order")
         if not isinstance(self.client_order_id, str) or not CLIENT_ID.fullmatch(self.client_order_id):
             raise OrderRejected("client order id must be 6-64 safe characters")
 
