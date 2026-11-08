@@ -24,6 +24,7 @@ def shadow_preview(req: LimitOrder) -> dict:
     return {
         **req.public(),
         "broker":"robinhood",
+        "environment":"SIMULATION_ONLY",
         "status":"SIMULATED_ONLY",
         "broker_order_id":None,
         "submitted_to_robinhood":False,
