@@ -96,9 +96,9 @@ class RunnerTests(unittest.TestCase):
     def test_sell_at_155pm_ct_is_market_exit_not_unfilled_limit(self):
         close_time=datetime(2026,11,6,19,56,tzinfo=timezone.utc)
         with auto_paper._state() as db:
-            db.execute("INSERT INTO tracked VALUES(?,?,?,?)",
+            db.execute("INSERT INTO tracked VALUES(?,?,?,?,?)",
                 ("AMD","MBB-ENTRY-AMD","100.00",
-                 (close_time-timedelta(minutes=10)).isoformat()))
+                 (close_time-timedelta(minutes=10)).isoformat(),4))
         def broker(method,path,payload=None):
             if path=="/v2/positions":
                 return [{"symbol":"AMD","side":"long","qty":"4",
