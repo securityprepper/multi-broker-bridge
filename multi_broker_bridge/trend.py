@@ -104,6 +104,7 @@ class TrendMonitor:
         self.sectors=dict(SECTORS if sectors is None else sectors)
         self.bars=defaultdict(lambda:deque(maxlen=5))
         self.last_scan_timestamp=None
+        self.issued_entry_candidates=set()  # one actionable candidate per symbol per local trading day
 
     def add(self,bar:Bar):
         if bar.timestamp.tzinfo is None:raise ValueError("UTC required")
@@ -172,8 +173,14 @@ class TrendMonitor:
             for symbol in strength["rising_symbols"]:
                 if symbol in positions:continue
                 last=self.bars[symbol][-1]
+                actionable=last.ask is not None and executable_session
+                entry_key=(chicago.date(),symbol)
+                if actionable and entry_key in self.issued_entry_candidates:
+                    continue
+                if actionable:
+                    self.issued_entry_candidates.add(entry_key)
                 output.append({"sector":sector,"symbol":symbol,
-                               "action":"BUY_LIMIT_CANDIDATE" if last.ask is not None and executable_session else "BUY_WATCH",
+                               "action":"BUY_LIMIT_CANDIDATE" if actionable else "BUY_WATCH",
                                "reference_ask":str(last.ask) if last.ask else None,
                                "rising_breadth":strength["breadth"],
                                "reason":"three successive higher highs and lows; breadth confirmed, no single large spike"})
