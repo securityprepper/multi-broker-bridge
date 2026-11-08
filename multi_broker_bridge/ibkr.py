@@ -103,7 +103,10 @@ def _new_app():
 def _connected(account: str):
     app=_new_app()
     try:
-        app.connect(HOST,PORT,CLIENT_ID)
+        try:
+            app.connect(HOST,PORT,CLIENT_ID)
+        except OSError as exc:
+            raise UnknownSubmission("IBKR PAPER gateway unavailable; no order attempted") from exc
         if not app.isConnected():
             raise UnknownSubmission("IBKR PAPER gateway not connected")
         runner=threading.Thread(target=app.run,daemon=True)
