@@ -36,8 +36,8 @@ class LimitOrder:
             raise OrderRejected("finite Decimal price required")
         if not Decimal("0.01") <= self.limit_price or self.limit_price != self.limit_price.quantize(Decimal("0.01")):
             raise OrderRejected("price must have two decimal places and be positive")
-        if self.qty * self.limit_price > MAX_NOTIONAL:
-            raise OrderRejected("PAPER limit: $2,000 maximum per independent order")
+        if self.side=="buy" and self.qty * self.limit_price > MAX_NOTIONAL:
+            raise OrderRejected("PAPER BUY limit: $2,000 maximum per independent order")
         if not isinstance(self.client_order_id, str) or not CLIENT_ID.fullmatch(self.client_order_id):
             raise OrderRejected("client order id must be 6-64 safe characters")
 
