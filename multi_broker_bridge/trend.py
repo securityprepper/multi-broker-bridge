@@ -14,7 +14,7 @@ from collections import defaultdict, deque
 from .watchlists import SECTORS, SECTOR_ETFS, SECTOR_ANCHORS
 
 CHICAGO=ZoneInfo("America/Chicago")
-MAX_BAR_AGE=timedelta(seconds=95)
+MAX_BAR_AGE=timedelta(seconds=135)  # completed bar at minute :00 observed by :40 after next minute
 MIN_COVERAGE=0.60
 MIN_RISING_BREADTH=0.60
 MAX_SINGLE_BAR_JUMP=Decimal("0.025")  # exclude one-bar +2.5% spikes
