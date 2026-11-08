@@ -39,7 +39,7 @@ FIRST_ENTRY=time(16,0)
 LAST_ENTRY=time(8,15)
 FIRST_EXIT=time(8,30)
 LAST_PREOPEN=time(9,25)
-LAST_EXIT=time(9,35)
+LAST_EXIT=time(15,50)  # RTH emergency fallback when premarket limit cannot be verified
 ALERT_NAME="five_day_rebound"
 
 
@@ -443,7 +443,10 @@ def run(now:datetime, execute=False):
                     if execute:_submit(state,now,daystr,symbol,"sell",int(current),exit_price)
                     actions.append("PREOPEN_EXIT_REQUEST:"+symbol)
                 elif local.time()<=LAST_EXIT:
-                    # Must be the actual broker-open market; do not assume a premarket limit filled.
+                    # Unfilled premarket exit: continue fail-closed broker readback,
+                    # but do not abandon strategy-owned PAPER shares at 09:35.
+                    # Market fallback requires broker clock OPEN and proof prior
+                    # sell is terminal/unfilled. Acceptance is not a fill.
                     clock=paper_api("GET","/v2/clock")
                     if clock.get("is_open") is not True:
                         actions.append("AWAIT_REGULAR_OPEN:"+symbol);continue
