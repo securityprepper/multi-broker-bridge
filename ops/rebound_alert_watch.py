@@ -36,7 +36,7 @@ def run(now=None,send=True):
     if not HANDOFF.is_file() or HANDOFF.is_symlink() or HANDOFF.stat().st_size>4096:
         return {"status":"NO_TRUSTED_REBOUND_SIGNAL"}
     signal=json.loads(HANDOFF.read_text(encoding="utf-8"))
-    if signal.get("schema_version")!=1 or signal.get("strategy")!="five_day_rebound" or signal.get("kind")!="BULLISH_SIGNAL":
+    if signal.get("schema_version")!=1 or signal.get("strategy")!="five_day_rebound" or signal.get("kind") not in ("BULLISH_SIGNAL","CATALYST_VETO"):
         return {"status":"UNEXPECTED_SIGNAL_SCHEMA"}
     issued=_datetime(signal.get("issued_at_utc"))
     signal_time=_datetime(signal.get("signal_at_utc"))
@@ -52,7 +52,8 @@ def run(now=None,send=True):
     creds=get_credentials(Path(creds_dir)) if creds_dir else None
     if not creds:
         return {"status":"PUSHOVER_CREDENTIALS_UNAVAILABLE"}
-    key="FDR:"+day+":"+signal_time.isoformat()
+    kind=signal["kind"]
+    key="FDR:"+day+":"+kind+":"+signal_time.isoformat()
     with sqlite3.connect(DATABASE,timeout=8,isolation_level=None) as conn:
         conn.execute("CREATE TABLE IF NOT EXISTS rebound_alert_delivery ("
                      "event_key TEXT PRIMARY KEY, state TEXT NOT NULL,"
@@ -68,13 +69,16 @@ def run(now=None,send=True):
         conn.execute("COMMIT")
     if not send:return {"status":"WOULD_NOTIFY","strategy":"five_day_rebound"}
     user,token=creds
-    text=("Semiconductor bullish rebound: previous 5 completed trading days DOWN; "
-          "new breadth, momentum and breakout confirmed for "+day+". "
-          "Dedicated Alpaca PAPER executor may attempt limit buys. "
-          "SIGNAL ONLY: do not treat as broker-filled purchase. "
-          "Follow-up ChatGPT alert task reconciles accepted orders and fills.")
+    text=(("Rebound PAPER purchase BLOCKED by major adverse company-specific earnings/news catalyst. "
+           "No order authorized from this signal; review the broker and news before any manual action.")
+          if kind=="CATALYST_VETO" else
+          ("Semiconductor bullish rebound: previous 5 completed trading days DOWN; "
+           "new breadth, momentum and breakout confirmed for "+day+". "
+           "Dedicated Alpaca PAPER executor may attempt limit buys. "
+           "SIGNAL ONLY: do not treat as broker-filled purchase. "
+           "Follow-up ChatGPT alert task reconciles accepted orders and fills."))
     req=Request(API,data=json.dumps({"token":token,"user":user,
-               "device":"IlanPhone","title":"PAPER rebound BUY signal",
+               "device":"IlanPhone","title":("PAPER rebound news VETO" if kind=="CATALYST_VETO" else "PAPER rebound BUY signal"),
                "message":text,"priority":0}).encode("utf-8"),
                headers={"Content-Type":"application/json","Accept":"application/json"},
                method="POST")
