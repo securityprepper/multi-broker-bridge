@@ -29,3 +29,13 @@ SECTOR_ETFS = {
 # One leveraged alternative only by a later separately tested strategy;
 # never buy SOXX and SOXL together just because the sector is strong.
 LEVERAGED_ALTERNATIVES = {"semiconductors":"SOXL"}
+
+# Three representative active equities confirm sector direction. Overnight,
+# many other constituents legitimately have no one-minute trades. Those
+# missing bars must not prevent liquid peers being assessed individually.
+SECTOR_ANCHORS = {
+    "semiconductors": ("AMD", "MU", "SNDK"),
+    "oil_energy": ("XOM", "CVX", "OXY"),
+    "cybersecurity": ("CRWD", "PANW", "ZS"),
+    "ai_infrastructure": ("ANET", "VRT", "DELL"),
+}
