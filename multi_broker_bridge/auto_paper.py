@@ -155,10 +155,12 @@ def paper_api(method: str, path: str, body=None):
     # wrapper is used for array-valued positions/open orders as well.
     if not path.startswith("/v2/") or "://" in path or ".." in path:
         raise OrderRejected("bad paper endpoint")
-    from .alpaca import _headers
+    key, secret = _credentials()
     raw = None if body is None else json.dumps(body).encode("utf-8")
+    headers={"APCA-API-KEY-ID":key,"APCA-API-SECRET-KEY":secret,
+             "Accept":"application/json","Content-Type":"application/json"}
     req = Request("https://paper-api.alpaca.markets" + path,
-                  headers=_headers(), data=raw, method=method)
+                  headers=headers, data=raw, method=method)
     try:
         with urlopen(req, timeout=9) as response:
             status = response.status
@@ -256,7 +258,13 @@ def run(now: datetime, execute: bool = False) -> dict:
             if position.get("side")!="long" or not qty.is_finite() or not entry.is_finite() or entry<=0:
                 continue
             if qty==qty.to_integral_value() and qty>0:
-                holdings[symbol]=Holding(symbol,int(qty),entry,max(peak,entry))
+                observed=max((bar.high for bar in bars.get(symbol,[])),default=entry)
+                updated_peak=max(peak,entry,observed)
+                if updated_peak>peak:
+                    db.execute("UPDATE tracked SET highest=? WHERE symbol=?",
+                               (str(updated_peak),symbol))
+                    db.commit()
+                holdings[symbol]=Holding(symbol,int(qty),entry,updated_peak)
         result=engine.scan(now,holdings,executable_session=False)
         # A healthy scheduled exit is prioritized over new buys.
         decision=[r for r in result if r["action"] in ("EXIT_WATCH","BUY_WATCH")]
