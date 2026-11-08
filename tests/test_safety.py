@@ -15,7 +15,7 @@ class OrderSafetyTests(unittest.TestCase):
     def test_basic_preview_request(self):
         self.assertEqual(order().public()["environment"],"PAPER_ONLY")
     def test_invalid_quantity_price_ticker_and_duplicate_id(self):
-        for arguments in (dict(price="0"),dict(price="NaN"),dict(price="300.00"),
+        for arguments in (dict(price="0"),dict(price="NaN"),dict(price="2000.01"),
                           dict(price="1.234")):
             with self.subTest(arguments=arguments),self.assertRaises(OrderRejected):
                 order(**arguments)
@@ -25,6 +25,13 @@ class OrderSafetyTests(unittest.TestCase):
             LimitOrder.make("alpaca","SPY","buy",-1,"1.00","PAPER-123")
         with self.assertRaises(OrderRejected):
             LimitOrder.make("alpaca","SPY","buy",True,"1.00","PAPER-123")
+    def test_independent_symbols_have_separate_2000_limits(self):
+        cases=[("SNDK",1,"999.00"),("MU",2,"600.00"),("AMD",4,"450.00")]
+        for i,(symbol,qty,price) in enumerate(cases):
+            req=LimitOrder.make("alpaca",symbol,"buy",qty,price,f"PAPER-BASKET-{i:02d}")
+            self.assertLessEqual(req.qty*req.limit_price,Decimal("2000.00"))
+        with self.assertRaises(OrderRejected):
+            LimitOrder.make("alpaca","AMD","buy",5,"450.00","PAPER-BASKET-09")
     def test_ledger_reservation_never_retries(self):
         with tempfile.TemporaryDirectory() as d:
             path=__import__("pathlib").Path(d)/"paper.sqlite3"
