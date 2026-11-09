@@ -1,0 +1,228 @@
+{
+  "scope": "20 independent market days Oct12-Nov6 2026, 1Min SIP research not actual V1 fills",
+  "timing": "09:34 completed 1m forecast, 09:35 next minute OPEN entry; close-trigger next bar OPEN exits; latest 14:40 ET=13:40 Chicago flat",
+  "friction": "0.30 percentage points round trip per trade proxy, no broker bid/ask/short eligibility",
+  "thresholds": "SOXX >=.2% from previous regular close + at least 2 of 3 AMD MU SNDK >=.2%, trade qualifying stocks; prior5 complete regular closes validated",
+  "summary": {
+    "hold_1340_CT": {
+      "total": {
+        "market_days": 20,
+        "signal_days": 9,
+        "trade_count": 27,
+        "up_trades": 24,
+        "down_trades": 3,
+        "after_30bp_winners": 16,
+        "win_pct_after30": 59.26,
+        "mean_gross_pct": 1.0973,
+        "mean_after30_pct": 0.7973,
+        "mean_signal_day_after30_pct": 0.7973,
+        "mean_hold_minutes": 305.0,
+        "one_min_triggers": 0
+      },
+      "earlier10": {
+        "market_days": 10,
+        "signal_days": 3,
+        "trade_count": 9,
+        "up_trades": 9,
+        "down_trades": 0,
+        "after_30bp_winners": 3,
+        "win_pct_after30": 33.33,
+        "mean_gross_pct": -0.1037,
+        "mean_after30_pct": -0.4037,
+        "mean_signal_day_after30_pct": -0.4037,
+        "mean_hold_minutes": 305.0,
+        "one_min_triggers": 0
+      },
+      "later10": {
+        "market_days": 10,
+        "signal_days": 6,
+        "trade_count": 18,
+        "up_trades": 15,
+        "down_trades": 3,
+        "after_30bp_winners": 13,
+        "win_pct_after30": 72.22,
+        "mean_gross_pct": 1.6978,
+        "mean_after30_pct": 1.3978,
+        "mean_signal_day_after30_pct": 1.3978,
+        "mean_hold_minutes": 305.0,
+        "one_min_triggers": 0
+      }
+    },
+    "one_min_sector_tight": {
+      "total": {
+        "market_days": 20,
+        "signal_days": 9,
+        "trade_count": 27,
+        "up_trades": 24,
+        "down_trades": 3,
+        "after_30bp_winners": 14,
+        "win_pct_after30": 51.85,
+        "mean_gross_pct": 0.5803,
+        "mean_after30_pct": 0.2803,
+        "mean_signal_day_after30_pct": 0.2803,
+        "mean_hold_minutes": 7.37,
+        "one_min_triggers": 27
+      },
+      "earlier10": {
+        "market_days": 10,
+        "signal_days": 3,
+        "trade_count": 9,
+        "up_trades": 9,
+        "down_trades": 0,
+        "after_30bp_winners": 3,
+        "win_pct_after30": 33.33,
+        "mean_gross_pct": -0.3215,
+        "mean_after30_pct": -0.6215,
+        "mean_signal_day_after30_pct": -0.6215,
+        "mean_hold_minutes": 6.89,
+        "one_min_triggers": 9
+      },
+      "later10": {
+        "market_days": 10,
+        "signal_days": 6,
+        "trade_count": 18,
+        "up_trades": 15,
+        "down_trades": 3,
+        "after_30bp_winners": 11,
+        "win_pct_after30": 61.11,
+        "mean_gross_pct": 1.0312,
+        "mean_after30_pct": 0.7312,
+        "mean_signal_day_after30_pct": 0.7312,
+        "mean_hold_minutes": 7.61,
+        "one_min_triggers": 18
+      }
+    },
+    "one_pct_target_stop": {
+      "total": {
+        "market_days": 20,
+        "signal_days": 9,
+        "trade_count": 27,
+        "up_trades": 24,
+        "down_trades": 3,
+        "after_30bp_winners": 18,
+        "win_pct_after30": 66.67,
+        "mean_gross_pct": 0.4488,
+        "mean_after30_pct": 0.1488,
+        "mean_signal_day_after30_pct": 0.1488,
+        "mean_hold_minutes": 16.44,
+        "one_min_triggers": 0
+      },
+      "earlier10": {
+        "market_days": 10,
+        "signal_days": 3,
+        "trade_count": 9,
+        "up_trades": 9,
+        "down_trades": 0,
+        "after_30bp_winners": 5,
+        "win_pct_after30": 55.56,
+        "mean_gross_pct": 0.1555,
+        "mean_after30_pct": -0.1445,
+        "mean_signal_day_after30_pct": -0.1445,
+        "mean_hold_minutes": 20.33,
+        "one_min_triggers": 0
+      },
+      "later10": {
+        "market_days": 10,
+        "signal_days": 6,
+        "trade_count": 18,
+        "up_trades": 15,
+        "down_trades": 3,
+        "after_30bp_winners": 13,
+        "win_pct_after30": 72.22,
+        "mean_gross_pct": 0.5954,
+        "mean_after30_pct": 0.2954,
+        "mean_signal_day_after30_pct": 0.2954,
+        "mean_hold_minutes": 14.5,
+        "one_min_triggers": 0
+      }
+    },
+    "five_min_trend_aware": {
+      "total": {
+        "market_days": 20,
+        "signal_days": 9,
+        "trade_count": 27,
+        "up_trades": 24,
+        "down_trades": 3,
+        "after_30bp_winners": 12,
+        "win_pct_after30": 44.44,
+        "mean_gross_pct": 0.6727,
+        "mean_after30_pct": 0.3727,
+        "mean_signal_day_after30_pct": 0.3727,
+        "mean_hold_minutes": 29.3,
+        "one_min_triggers": 0
+      },
+      "earlier10": {
+        "market_days": 10,
+        "signal_days": 3,
+        "trade_count": 9,
+        "up_trades": 9,
+        "down_trades": 0,
+        "after_30bp_winners": 4,
+        "win_pct_after30": 44.44,
+        "mean_gross_pct": -0.5229,
+        "mean_after30_pct": -0.8229,
+        "mean_signal_day_after30_pct": -0.8229,
+        "mean_hold_minutes": 15.67,
+        "one_min_triggers": 0
+      },
+      "later10": {
+        "market_days": 10,
+        "signal_days": 6,
+        "trade_count": 18,
+        "up_trades": 15,
+        "down_trades": 3,
+        "after_30bp_winners": 8,
+        "win_pct_after30": 44.44,
+        "mean_gross_pct": 1.2705,
+        "mean_after30_pct": 0.9705,
+        "mean_signal_day_after30_pct": 0.9705,
+        "mean_hold_minutes": 36.11,
+        "one_min_triggers": 0
+      }
+    },
+    "one_min_one_reentry": {
+      "total": {
+        "market_days": 20,
+        "signal_days": 9,
+        "trade_count": 54,
+        "up_trades": 48,
+        "down_trades": 6,
+        "after_30bp_winners": 20,
+        "win_pct_after30": 37.04,
+        "mean_gross_pct": 0.2159,
+        "mean_after30_pct": -0.0841,
+        "mean_signal_day_after30_pct": -0.0841,
+        "mean_hold_minutes": 6.04,
+        "one_min_triggers": 54
+      },
+      "earlier10": {
+        "market_days": 10,
+        "signal_days": 3,
+        "trade_count": 18,
+        "up_trades": 18,
+        "down_trades": 0,
+        "after_30bp_winners": 4,
+        "win_pct_after30": 22.22,
+        "mean_gross_pct": -0.2663,
+        "mean_after30_pct": -0.5663,
+        "mean_signal_day_after30_pct": -0.5663,
+        "mean_hold_minutes": 5.5,
+        "one_min_triggers": 18
+      },
+      "later10": {
+        "market_days": 10,
+        "signal_days": 6,
+        "trade_count": 36,
+        "up_trades": 30,
+        "down_trades": 6,
+        "after_30bp_winners": 16,
+        "win_pct_after30": 44.44,
+        "mean_gross_pct": 0.457,
+        "mean_after30_pct": 0.157,
+        "mean_signal_day_after30_pct": 0.157,
+        "mean_hold_minutes": 6.31,
+        "one_min_triggers": 36
+      }
+    }
+  }
+}
