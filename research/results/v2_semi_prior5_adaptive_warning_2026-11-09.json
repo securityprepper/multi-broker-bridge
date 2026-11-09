@@ -1,0 +1,1269 @@
+{
+  "input_sources": [
+    "/tmp/semis_52wk_5min_sip_adjusted.json",
+    "/tmp/semis_peers_52wk_5min_adjusted.json"
+  ],
+  "cohort_frozen_stockdays": 2235,
+  "cohort_major_down_close_close": 209,
+  "prior5_required": true,
+  "momentum_overlap_pp": 1.0,
+  "breadth_confirmation": "SOXX -0.5% and >= half other peers -0.5%",
+  "cases": {
+    "fixed2": {
+      "all": {
+        "alerts": 607,
+        "independent_days": 115,
+        "major_hits": 189,
+        "major_total": 209,
+        "sensitivity": 0.9043,
+        "nonmajor_warnings": 418,
+        "major_before_minus5": 116,
+        "major_already_gap_minus5": 58,
+        "model_early_sale_profitable": 248,
+        "modeled_early_sale_precision": 0.4086,
+        "mean_adv_30bp_pp": -0.6427,
+        "mean_adv_60bp_pp": -0.9427,
+        "day_equal_mean_30bp_pp": -0.8759,
+        "earliest_major_warning": "2025-11-13T08:35:00-05:00",
+        "missed_severe_count": 20,
+        "missed_severe_examples": [
+          [
+            "AMD",
+            "2026-01-30"
+          ],
+          [
+            "AMD",
+            "2026-05-04"
+          ],
+          [
+            "AVGO",
+            "2025-12-15"
+          ],
+          [
+            "AVGO",
+            "2026-01-20"
+          ],
+          [
+            "AVGO",
+            "2026-08-14"
+          ],
+          [
+            "AVGO",
+            "2026-10-30"
+          ],
+          [
+            "INTC",
+            "2026-05-29"
+          ],
+          [
+            "MU",
+            "2026-07-31"
+          ],
+          [
+            "MU",
+            "2026-09-14"
+          ],
+          [
+            "MU",
+            "2026-11-02"
+          ]
+        ]
+      },
+      "earlier": {
+        "alerts": 501,
+        "independent_days": 94,
+        "major_hits": 149,
+        "major_total": 160,
+        "sensitivity": 0.9313,
+        "nonmajor_warnings": 352,
+        "major_before_minus5": 91,
+        "major_already_gap_minus5": 45,
+        "model_early_sale_profitable": 203,
+        "modeled_early_sale_precision": 0.4052,
+        "mean_adv_30bp_pp": -0.7925,
+        "mean_adv_60bp_pp": -1.0925,
+        "day_equal_mean_30bp_pp": -1.0428,
+        "earliest_major_warning": "2025-11-13T08:35:00-05:00",
+        "missed_severe_count": 11,
+        "missed_severe_examples": [
+          [
+            "AMD",
+            "2026-01-30"
+          ],
+          [
+            "AMD",
+            "2026-05-04"
+          ],
+          [
+            "AVGO",
+            "2025-12-15"
+          ],
+          [
+            "AVGO",
+            "2026-01-20"
+          ],
+          [
+            "AVGO",
+            "2026-08-14"
+          ],
+          [
+            "INTC",
+            "2026-05-29"
+          ],
+          [
+            "MU",
+            "2026-07-31"
+          ],
+          [
+            "NVDA",
+            "2026-06-05"
+          ],
+          [
+            "SNDK",
+            "2025-12-03"
+          ],
+          [
+            "SNDK",
+            "2026-07-31"
+          ]
+        ]
+      },
+      "later": {
+        "alerts": 106,
+        "independent_days": 21,
+        "major_hits": 40,
+        "major_total": 49,
+        "sensitivity": 0.8163,
+        "nonmajor_warnings": 66,
+        "major_before_minus5": 25,
+        "major_already_gap_minus5": 13,
+        "model_early_sale_profitable": 45,
+        "modeled_early_sale_precision": 0.4245,
+        "mean_adv_30bp_pp": 0.0652,
+        "mean_adv_60bp_pp": -0.2348,
+        "day_equal_mean_30bp_pp": -0.1284,
+        "earliest_major_warning": "2026-09-10T09:55:00-04:00",
+        "missed_severe_count": 9,
+        "missed_severe_examples": [
+          [
+            "AVGO",
+            "2026-10-30"
+          ],
+          [
+            "MU",
+            "2026-09-14"
+          ],
+          [
+            "MU",
+            "2026-11-02"
+          ],
+          [
+            "SOXX",
+            "2026-09-14"
+          ],
+          [
+            "SOXX",
+            "2026-10-22"
+          ],
+          [
+            "SOXX",
+            "2026-10-30"
+          ],
+          [
+            "TSM",
+            "2026-10-30"
+          ],
+          [
+            "WDC",
+            "2026-10-02"
+          ],
+          [
+            "WDC",
+            "2026-10-06"
+          ]
+        ]
+      }
+    },
+    "fixed2p5": {
+      "all": {
+        "alerts": 550,
+        "independent_days": 111,
+        "major_hits": 188,
+        "major_total": 209,
+        "sensitivity": 0.8995,
+        "nonmajor_warnings": 362,
+        "major_before_minus5": 114,
+        "major_already_gap_minus5": 58,
+        "model_early_sale_profitable": 222,
+        "modeled_early_sale_precision": 0.4036,
+        "mean_adv_30bp_pp": -0.8012,
+        "mean_adv_60bp_pp": -1.1012,
+        "day_equal_mean_30bp_pp": -1.0547,
+        "earliest_major_warning": "2025-11-13T08:35:00-05:00",
+        "missed_severe_count": 21,
+        "missed_severe_examples": [
+          [
+            "AMD",
+            "2026-01-30"
+          ],
+          [
+            "AMD",
+            "2026-05-04"
+          ],
+          [
+            "AMD",
+            "2026-10-14"
+          ],
+          [
+            "AVGO",
+            "2025-12-15"
+          ],
+          [
+            "AVGO",
+            "2026-01-20"
+          ],
+          [
+            "AVGO",
+            "2026-08-14"
+          ],
+          [
+            "AVGO",
+            "2026-10-30"
+          ],
+          [
+            "INTC",
+            "2026-05-29"
+          ],
+          [
+            "MU",
+            "2026-07-31"
+          ],
+          [
+            "MU",
+            "2026-09-14"
+          ]
+        ]
+      },
+      "earlier": {
+        "alerts": 453,
+        "independent_days": 90,
+        "major_hits": 149,
+        "major_total": 160,
+        "sensitivity": 0.9313,
+        "nonmajor_warnings": 304,
+        "major_before_minus5": 91,
+        "major_already_gap_minus5": 45,
+        "model_early_sale_profitable": 183,
+        "modeled_early_sale_precision": 0.404,
+        "mean_adv_30bp_pp": -0.9659,
+        "mean_adv_60bp_pp": -1.2659,
+        "day_equal_mean_30bp_pp": -1.2533,
+        "earliest_major_warning": "2025-11-13T08:35:00-05:00",
+        "missed_severe_count": 11,
+        "missed_severe_examples": [
+          [
+            "AMD",
+            "2026-01-30"
+          ],
+          [
+            "AMD",
+            "2026-05-04"
+          ],
+          [
+            "AVGO",
+            "2025-12-15"
+          ],
+          [
+            "AVGO",
+            "2026-01-20"
+          ],
+          [
+            "AVGO",
+            "2026-08-14"
+          ],
+          [
+            "INTC",
+            "2026-05-29"
+          ],
+          [
+            "MU",
+            "2026-07-31"
+          ],
+          [
+            "NVDA",
+            "2026-06-05"
+          ],
+          [
+            "SNDK",
+            "2025-12-03"
+          ],
+          [
+            "SNDK",
+            "2026-07-31"
+          ]
+        ]
+      },
+      "later": {
+        "alerts": 97,
+        "independent_days": 21,
+        "major_hits": 39,
+        "major_total": 49,
+        "sensitivity": 0.7959,
+        "nonmajor_warnings": 58,
+        "major_before_minus5": 23,
+        "major_already_gap_minus5": 13,
+        "model_early_sale_profitable": 39,
+        "modeled_early_sale_precision": 0.4021,
+        "mean_adv_30bp_pp": -0.0321,
+        "mean_adv_60bp_pp": -0.3321,
+        "day_equal_mean_30bp_pp": -0.2034,
+        "earliest_major_warning": "2026-09-10T09:55:00-04:00",
+        "missed_severe_count": 10,
+        "missed_severe_examples": [
+          [
+            "AMD",
+            "2026-10-14"
+          ],
+          [
+            "AVGO",
+            "2026-10-30"
+          ],
+          [
+            "MU",
+            "2026-09-14"
+          ],
+          [
+            "MU",
+            "2026-11-02"
+          ],
+          [
+            "SOXX",
+            "2026-09-14"
+          ],
+          [
+            "SOXX",
+            "2026-10-22"
+          ],
+          [
+            "SOXX",
+            "2026-10-30"
+          ],
+          [
+            "TSM",
+            "2026-10-30"
+          ],
+          [
+            "WDC",
+            "2026-10-02"
+          ],
+          [
+            "WDC",
+            "2026-10-06"
+          ]
+        ]
+      }
+    },
+    "fixed3": {
+      "all": {
+        "alerts": 488,
+        "independent_days": 108,
+        "major_hits": 186,
+        "major_total": 209,
+        "sensitivity": 0.89,
+        "nonmajor_warnings": 302,
+        "major_before_minus5": 112,
+        "major_already_gap_minus5": 58,
+        "model_early_sale_profitable": 189,
+        "modeled_early_sale_precision": 0.3873,
+        "mean_adv_30bp_pp": -0.8685,
+        "mean_adv_60bp_pp": -1.1685,
+        "day_equal_mean_30bp_pp": -1.2457,
+        "earliest_major_warning": "2025-11-13T08:35:00-05:00",
+        "missed_severe_count": 23,
+        "missed_severe_examples": [
+          [
+            "AMD",
+            "2026-01-30"
+          ],
+          [
+            "AMD",
+            "2026-05-04"
+          ],
+          [
+            "AMD",
+            "2026-10-14"
+          ],
+          [
+            "AVGO",
+            "2025-12-15"
+          ],
+          [
+            "AVGO",
+            "2026-01-20"
+          ],
+          [
+            "AVGO",
+            "2026-08-14"
+          ],
+          [
+            "AVGO",
+            "2026-10-30"
+          ],
+          [
+            "INTC",
+            "2025-12-04"
+          ],
+          [
+            "INTC",
+            "2026-05-29"
+          ],
+          [
+            "MU",
+            "2026-07-31"
+          ]
+        ]
+      },
+      "earlier": {
+        "alerts": 404,
+        "independent_days": 88,
+        "major_hits": 147,
+        "major_total": 160,
+        "sensitivity": 0.9187,
+        "nonmajor_warnings": 257,
+        "major_before_minus5": 89,
+        "major_already_gap_minus5": 45,
+        "model_early_sale_profitable": 157,
+        "modeled_early_sale_precision": 0.3886,
+        "mean_adv_30bp_pp": -1.026,
+        "mean_adv_60bp_pp": -1.326,
+        "day_equal_mean_30bp_pp": -1.5035,
+        "earliest_major_warning": "2025-11-13T08:35:00-05:00",
+        "missed_severe_count": 13,
+        "missed_severe_examples": [
+          [
+            "AMD",
+            "2026-01-30"
+          ],
+          [
+            "AMD",
+            "2026-05-04"
+          ],
+          [
+            "AVGO",
+            "2025-12-15"
+          ],
+          [
+            "AVGO",
+            "2026-01-20"
+          ],
+          [
+            "AVGO",
+            "2026-08-14"
+          ],
+          [
+            "INTC",
+            "2025-12-04"
+          ],
+          [
+            "INTC",
+            "2026-05-29"
+          ],
+          [
+            "MU",
+            "2026-07-31"
+          ],
+          [
+            "NVDA",
+            "2026-06-05"
+          ],
+          [
+            "SNDK",
+            "2025-12-03"
+          ]
+        ]
+      },
+      "later": {
+        "alerts": 84,
+        "independent_days": 20,
+        "major_hits": 39,
+        "major_total": 49,
+        "sensitivity": 0.7959,
+        "nonmajor_warnings": 45,
+        "major_before_minus5": 23,
+        "major_already_gap_minus5": 13,
+        "model_early_sale_profitable": 32,
+        "modeled_early_sale_precision": 0.381,
+        "mean_adv_30bp_pp": -0.1108,
+        "mean_adv_60bp_pp": -0.4108,
+        "day_equal_mean_30bp_pp": -0.1115,
+        "earliest_major_warning": "2026-09-10T09:55:00-04:00",
+        "missed_severe_count": 10,
+        "missed_severe_examples": [
+          [
+            "AMD",
+            "2026-10-14"
+          ],
+          [
+            "AVGO",
+            "2026-10-30"
+          ],
+          [
+            "MU",
+            "2026-09-14"
+          ],
+          [
+            "MU",
+            "2026-11-02"
+          ],
+          [
+            "SOXX",
+            "2026-09-14"
+          ],
+          [
+            "SOXX",
+            "2026-10-22"
+          ],
+          [
+            "SOXX",
+            "2026-10-30"
+          ],
+          [
+            "TSM",
+            "2026-10-30"
+          ],
+          [
+            "WDC",
+            "2026-10-02"
+          ],
+          [
+            "WDC",
+            "2026-10-06"
+          ]
+        ]
+      }
+    },
+    "prior5_abs0p80_min2": {
+      "all": {
+        "alerts": 521,
+        "independent_days": 108,
+        "major_hits": 184,
+        "major_total": 209,
+        "sensitivity": 0.8804,
+        "nonmajor_warnings": 337,
+        "major_before_minus5": 89,
+        "major_already_gap_minus5": 58,
+        "model_early_sale_profitable": 197,
+        "modeled_early_sale_precision": 0.3781,
+        "mean_adv_30bp_pp": -0.6677,
+        "mean_adv_60bp_pp": -0.9677,
+        "day_equal_mean_30bp_pp": -0.9363,
+        "earliest_major_warning": "2025-11-13T09:35:00-05:00",
+        "missed_severe_count": 25,
+        "missed_severe_examples": [
+          [
+            "AMD",
+            "2026-01-30"
+          ],
+          [
+            "AMD",
+            "2026-05-04"
+          ],
+          [
+            "AVGO",
+            "2025-12-15"
+          ],
+          [
+            "AVGO",
+            "2026-01-20"
+          ],
+          [
+            "AVGO",
+            "2026-08-14"
+          ],
+          [
+            "AVGO",
+            "2026-10-30"
+          ],
+          [
+            "INTC",
+            "2025-12-04"
+          ],
+          [
+            "INTC",
+            "2026-01-26"
+          ],
+          [
+            "INTC",
+            "2026-05-29"
+          ],
+          [
+            "MU",
+            "2026-07-31"
+          ]
+        ]
+      },
+      "earlier": {
+        "alerts": 427,
+        "independent_days": 87,
+        "major_hits": 145,
+        "major_total": 160,
+        "sensitivity": 0.9062,
+        "nonmajor_warnings": 282,
+        "major_before_minus5": 69,
+        "major_already_gap_minus5": 45,
+        "model_early_sale_profitable": 162,
+        "modeled_early_sale_precision": 0.3794,
+        "mean_adv_30bp_pp": -0.7726,
+        "mean_adv_60bp_pp": -1.0726,
+        "day_equal_mean_30bp_pp": -1.1573,
+        "earliest_major_warning": "2025-11-13T09:35:00-05:00",
+        "missed_severe_count": 15,
+        "missed_severe_examples": [
+          [
+            "AMD",
+            "2026-01-30"
+          ],
+          [
+            "AMD",
+            "2026-05-04"
+          ],
+          [
+            "AVGO",
+            "2025-12-15"
+          ],
+          [
+            "AVGO",
+            "2026-01-20"
+          ],
+          [
+            "AVGO",
+            "2026-08-14"
+          ],
+          [
+            "INTC",
+            "2025-12-04"
+          ],
+          [
+            "INTC",
+            "2026-01-26"
+          ],
+          [
+            "INTC",
+            "2026-05-29"
+          ],
+          [
+            "MU",
+            "2026-07-31"
+          ],
+          [
+            "NVDA",
+            "2026-06-05"
+          ]
+        ]
+      },
+      "later": {
+        "alerts": 94,
+        "independent_days": 21,
+        "major_hits": 39,
+        "major_total": 49,
+        "sensitivity": 0.7959,
+        "nonmajor_warnings": 55,
+        "major_before_minus5": 20,
+        "major_already_gap_minus5": 13,
+        "model_early_sale_profitable": 35,
+        "modeled_early_sale_precision": 0.3723,
+        "mean_adv_30bp_pp": -0.1913,
+        "mean_adv_60bp_pp": -0.4913,
+        "day_equal_mean_30bp_pp": -0.0207,
+        "earliest_major_warning": "2026-09-10T09:55:00-04:00",
+        "missed_severe_count": 10,
+        "missed_severe_examples": [
+          [
+            "AVGO",
+            "2026-10-30"
+          ],
+          [
+            "MU",
+            "2026-09-14"
+          ],
+          [
+            "MU",
+            "2026-11-02"
+          ],
+          [
+            "SNDK",
+            "2026-10-29"
+          ],
+          [
+            "SOXX",
+            "2026-09-14"
+          ],
+          [
+            "SOXX",
+            "2026-10-22"
+          ],
+          [
+            "SOXX",
+            "2026-10-30"
+          ],
+          [
+            "TSM",
+            "2026-10-30"
+          ],
+          [
+            "WDC",
+            "2026-10-02"
+          ],
+          [
+            "WDC",
+            "2026-10-06"
+          ]
+        ]
+      }
+    },
+    "prior5_abs1p00_min2": {
+      "all": {
+        "alerts": 463,
+        "independent_days": 104,
+        "major_hits": 175,
+        "major_total": 209,
+        "sensitivity": 0.8373,
+        "nonmajor_warnings": 288,
+        "major_before_minus5": 67,
+        "major_already_gap_minus5": 56,
+        "model_early_sale_profitable": 172,
+        "modeled_early_sale_precision": 0.3715,
+        "mean_adv_30bp_pp": -0.7185,
+        "mean_adv_60bp_pp": -1.0185,
+        "day_equal_mean_30bp_pp": -1.2114,
+        "earliest_major_warning": "2025-11-13T09:35:00-05:00",
+        "missed_severe_count": 34,
+        "missed_severe_examples": [
+          [
+            "AMD",
+            "2026-01-30"
+          ],
+          [
+            "AMD",
+            "2026-05-04"
+          ],
+          [
+            "AMD",
+            "2026-10-14"
+          ],
+          [
+            "AVGO",
+            "2025-12-15"
+          ],
+          [
+            "AVGO",
+            "2026-01-20"
+          ],
+          [
+            "AVGO",
+            "2026-06-05"
+          ],
+          [
+            "AVGO",
+            "2026-08-14"
+          ],
+          [
+            "AVGO",
+            "2026-10-30"
+          ],
+          [
+            "INTC",
+            "2025-12-04"
+          ],
+          [
+            "INTC",
+            "2026-01-26"
+          ]
+        ]
+      },
+      "earlier": {
+        "alerts": 377,
+        "independent_days": 85,
+        "major_hits": 138,
+        "major_total": 160,
+        "sensitivity": 0.8625,
+        "nonmajor_warnings": 239,
+        "major_before_minus5": 51,
+        "major_already_gap_minus5": 43,
+        "model_early_sale_profitable": 144,
+        "modeled_early_sale_precision": 0.382,
+        "mean_adv_30bp_pp": -0.7736,
+        "mean_adv_60bp_pp": -1.0736,
+        "day_equal_mean_30bp_pp": -1.3484,
+        "earliest_major_warning": "2025-11-13T09:35:00-05:00",
+        "missed_severe_count": 22,
+        "missed_severe_examples": [
+          [
+            "AMD",
+            "2026-01-30"
+          ],
+          [
+            "AMD",
+            "2026-05-04"
+          ],
+          [
+            "AVGO",
+            "2025-12-15"
+          ],
+          [
+            "AVGO",
+            "2026-01-20"
+          ],
+          [
+            "AVGO",
+            "2026-06-05"
+          ],
+          [
+            "AVGO",
+            "2026-08-14"
+          ],
+          [
+            "INTC",
+            "2025-12-04"
+          ],
+          [
+            "INTC",
+            "2026-01-26"
+          ],
+          [
+            "INTC",
+            "2026-05-29"
+          ],
+          [
+            "MU",
+            "2026-06-16"
+          ]
+        ]
+      },
+      "later": {
+        "alerts": 86,
+        "independent_days": 19,
+        "major_hits": 37,
+        "major_total": 49,
+        "sensitivity": 0.7551,
+        "nonmajor_warnings": 49,
+        "major_before_minus5": 16,
+        "major_already_gap_minus5": 13,
+        "model_early_sale_profitable": 28,
+        "modeled_early_sale_precision": 0.3256,
+        "mean_adv_30bp_pp": -0.4767,
+        "mean_adv_60bp_pp": -0.7767,
+        "day_equal_mean_30bp_pp": -0.5985,
+        "earliest_major_warning": "2026-09-10T09:55:00-04:00",
+        "missed_severe_count": 12,
+        "missed_severe_examples": [
+          [
+            "AMD",
+            "2026-10-14"
+          ],
+          [
+            "AVGO",
+            "2026-10-30"
+          ],
+          [
+            "INTC",
+            "2026-11-05"
+          ],
+          [
+            "MU",
+            "2026-09-14"
+          ],
+          [
+            "MU",
+            "2026-11-02"
+          ],
+          [
+            "SNDK",
+            "2026-10-29"
+          ],
+          [
+            "SOXX",
+            "2026-09-14"
+          ],
+          [
+            "SOXX",
+            "2026-10-22"
+          ],
+          [
+            "SOXX",
+            "2026-10-30"
+          ],
+          [
+            "TSM",
+            "2026-10-30"
+          ]
+        ]
+      }
+    },
+    "prior5_abs1p25_min2": {
+      "all": {
+        "alerts": 379,
+        "independent_days": 95,
+        "major_hits": 152,
+        "major_total": 209,
+        "sensitivity": 0.7273,
+        "nonmajor_warnings": 227,
+        "major_before_minus5": 49,
+        "major_already_gap_minus5": 50,
+        "model_early_sale_profitable": 144,
+        "modeled_early_sale_precision": 0.3799,
+        "mean_adv_30bp_pp": -0.7299,
+        "mean_adv_60bp_pp": -1.0299,
+        "day_equal_mean_30bp_pp": -1.3186,
+        "earliest_major_warning": "2025-11-13T09:40:00-05:00",
+        "missed_severe_count": 57,
+        "missed_severe_examples": [
+          [
+            "AMD",
+            "2026-01-30"
+          ],
+          [
+            "AMD",
+            "2026-05-04"
+          ],
+          [
+            "AMD",
+            "2026-06-16"
+          ],
+          [
+            "AMD",
+            "2026-10-14"
+          ],
+          [
+            "AVGO",
+            "2025-12-15"
+          ],
+          [
+            "AVGO",
+            "2026-01-20"
+          ],
+          [
+            "AVGO",
+            "2026-06-05"
+          ],
+          [
+            "AVGO",
+            "2026-06-10"
+          ],
+          [
+            "AVGO",
+            "2026-08-14"
+          ],
+          [
+            "AVGO",
+            "2026-10-30"
+          ]
+        ]
+      },
+      "earlier": {
+        "alerts": 300,
+        "independent_days": 76,
+        "major_hits": 118,
+        "major_total": 160,
+        "sensitivity": 0.7375,
+        "nonmajor_warnings": 182,
+        "major_before_minus5": 35,
+        "major_already_gap_minus5": 37,
+        "model_early_sale_profitable": 120,
+        "modeled_early_sale_precision": 0.4,
+        "mean_adv_30bp_pp": -0.7821,
+        "mean_adv_60bp_pp": -1.0821,
+        "day_equal_mean_30bp_pp": -1.5044,
+        "earliest_major_warning": "2025-11-13T09:40:00-05:00",
+        "missed_severe_count": 42,
+        "missed_severe_examples": [
+          [
+            "AMD",
+            "2026-01-30"
+          ],
+          [
+            "AMD",
+            "2026-05-04"
+          ],
+          [
+            "AMD",
+            "2026-06-16"
+          ],
+          [
+            "AVGO",
+            "2025-12-15"
+          ],
+          [
+            "AVGO",
+            "2026-01-20"
+          ],
+          [
+            "AVGO",
+            "2026-06-05"
+          ],
+          [
+            "AVGO",
+            "2026-06-10"
+          ],
+          [
+            "AVGO",
+            "2026-08-14"
+          ],
+          [
+            "INTC",
+            "2025-12-04"
+          ],
+          [
+            "INTC",
+            "2026-01-26"
+          ]
+        ]
+      },
+      "later": {
+        "alerts": 79,
+        "independent_days": 19,
+        "major_hits": 34,
+        "major_total": 49,
+        "sensitivity": 0.6939,
+        "nonmajor_warnings": 45,
+        "major_before_minus5": 14,
+        "major_already_gap_minus5": 13,
+        "model_early_sale_profitable": 24,
+        "modeled_early_sale_precision": 0.3038,
+        "mean_adv_30bp_pp": -0.532,
+        "mean_adv_60bp_pp": -0.832,
+        "day_equal_mean_30bp_pp": -0.5752,
+        "earliest_major_warning": "2026-09-10T09:55:00-04:00",
+        "missed_severe_count": 15,
+        "missed_severe_examples": [
+          [
+            "AMD",
+            "2026-10-14"
+          ],
+          [
+            "AVGO",
+            "2026-10-30"
+          ],
+          [
+            "INTC",
+            "2026-11-02"
+          ],
+          [
+            "INTC",
+            "2026-11-05"
+          ],
+          [
+            "MU",
+            "2026-09-14"
+          ],
+          [
+            "MU",
+            "2026-11-02"
+          ],
+          [
+            "SNDK",
+            "2026-10-29"
+          ],
+          [
+            "SNDK",
+            "2026-11-02"
+          ],
+          [
+            "SNDK",
+            "2026-11-04"
+          ],
+          [
+            "SOXX",
+            "2026-09-14"
+          ]
+        ]
+      }
+    },
+    "prior5_abs1p00_min2p5": {
+      "all": {
+        "alerts": 437,
+        "independent_days": 101,
+        "major_hits": 175,
+        "major_total": 209,
+        "sensitivity": 0.8373,
+        "nonmajor_warnings": 262,
+        "major_before_minus5": 67,
+        "major_already_gap_minus5": 56,
+        "model_early_sale_profitable": 163,
+        "modeled_early_sale_precision": 0.373,
+        "mean_adv_30bp_pp": -0.8057,
+        "mean_adv_60bp_pp": -1.1057,
+        "day_equal_mean_30bp_pp": -1.3031,
+        "earliest_major_warning": "2025-11-13T09:35:00-05:00",
+        "missed_severe_count": 34,
+        "missed_severe_examples": [
+          [
+            "AMD",
+            "2026-01-30"
+          ],
+          [
+            "AMD",
+            "2026-05-04"
+          ],
+          [
+            "AMD",
+            "2026-10-14"
+          ],
+          [
+            "AVGO",
+            "2025-12-15"
+          ],
+          [
+            "AVGO",
+            "2026-01-20"
+          ],
+          [
+            "AVGO",
+            "2026-06-05"
+          ],
+          [
+            "AVGO",
+            "2026-08-14"
+          ],
+          [
+            "AVGO",
+            "2026-10-30"
+          ],
+          [
+            "INTC",
+            "2025-12-04"
+          ],
+          [
+            "INTC",
+            "2026-01-26"
+          ]
+        ]
+      },
+      "earlier": {
+        "alerts": 356,
+        "independent_days": 82,
+        "major_hits": 138,
+        "major_total": 160,
+        "sensitivity": 0.8625,
+        "nonmajor_warnings": 218,
+        "major_before_minus5": 51,
+        "major_already_gap_minus5": 43,
+        "model_early_sale_profitable": 137,
+        "modeled_early_sale_precision": 0.3848,
+        "mean_adv_30bp_pp": -0.8623,
+        "mean_adv_60bp_pp": -1.1623,
+        "day_equal_mean_30bp_pp": -1.4524,
+        "earliest_major_warning": "2025-11-13T09:35:00-05:00",
+        "missed_severe_count": 22,
+        "missed_severe_examples": [
+          [
+            "AMD",
+            "2026-01-30"
+          ],
+          [
+            "AMD",
+            "2026-05-04"
+          ],
+          [
+            "AVGO",
+            "2025-12-15"
+          ],
+          [
+            "AVGO",
+            "2026-01-20"
+          ],
+          [
+            "AVGO",
+            "2026-06-05"
+          ],
+          [
+            "AVGO",
+            "2026-08-14"
+          ],
+          [
+            "INTC",
+            "2025-12-04"
+          ],
+          [
+            "INTC",
+            "2026-01-26"
+          ],
+          [
+            "INTC",
+            "2026-05-29"
+          ],
+          [
+            "MU",
+            "2026-06-16"
+          ]
+        ]
+      },
+      "later": {
+        "alerts": 81,
+        "independent_days": 19,
+        "major_hits": 37,
+        "major_total": 49,
+        "sensitivity": 0.7551,
+        "nonmajor_warnings": 44,
+        "major_before_minus5": 16,
+        "major_already_gap_minus5": 13,
+        "model_early_sale_profitable": 26,
+        "modeled_early_sale_precision": 0.321,
+        "mean_adv_30bp_pp": -0.5567,
+        "mean_adv_60bp_pp": -0.8567,
+        "day_equal_mean_30bp_pp": -0.6588,
+        "earliest_major_warning": "2026-09-10T09:55:00-04:00",
+        "missed_severe_count": 12,
+        "missed_severe_examples": [
+          [
+            "AMD",
+            "2026-10-14"
+          ],
+          [
+            "AVGO",
+            "2026-10-30"
+          ],
+          [
+            "INTC",
+            "2026-11-05"
+          ],
+          [
+            "MU",
+            "2026-09-14"
+          ],
+          [
+            "MU",
+            "2026-11-02"
+          ],
+          [
+            "SNDK",
+            "2026-10-29"
+          ],
+          [
+            "SOXX",
+            "2026-09-14"
+          ],
+          [
+            "SOXX",
+            "2026-10-22"
+          ],
+          [
+            "SOXX",
+            "2026-10-30"
+          ],
+          [
+            "TSM",
+            "2026-10-30"
+          ]
+        ]
+      }
+    }
+  },
+  "notes": [
+    "Prior-five absolute regular-close returns computed using six earlier complete closes only",
+    "No same-day prices in any prior-five threshold calculation",
+    "Later period 2026-09-01 through 2026-11-06 is frozen OOS evaluation",
+    "Simulated next-bar/next-open price proxy not executable bid/ask or broker fills",
+    "No LIVE/PAPER order actions"
+  ]
+}
