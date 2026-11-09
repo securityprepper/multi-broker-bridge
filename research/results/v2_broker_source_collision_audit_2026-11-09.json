@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-09",
+  "inventory_asof_utc": "2026-11-09T20:03:34.871492+00:00",
+  "broker_verified": true,
+  "position_count_snapshot": 0,
+  "open_order_count_snapshot": 0,
+  "filled_orders_total": 80,
+  "by_family": {
+    "MBB": {
+      "filled_orders": 62,
+      "buy_orders": 31,
+      "sell_orders": 31,
+      "unique_symbols": 31,
+      "strategy_tags": {
+        "sector_or_other": 62
+      }
+    },
+    "FDR": {
+      "filled_orders": 18,
+      "buy_orders": 9,
+      "sell_orders": 9,
+      "unique_symbols": 9,
+      "strategy_tags": {
+        "rebound": 18
+      }
+    },
+    "UNATTRIBUTED": {
+      "filled_orders": 0,
+      "buy_orders": 0,
+      "sell_orders": 0,
+      "unique_symbols": 0,
+      "strategy_tags": {}
+    }
+  },
+  "missing_client_order_ids": 0,
+  "duplicate_client_order_ids": 0,
+  "shared_symbols_between_MBB_and_FDR": [
+    "AMD",
+    "AVGO",
+    "INTC",
+    "MU",
+    "NVDA",
+    "SNDK",
+    "TSM",
+    "WDC"
+  ],
+  "fully_pairable_shared_symbols": 8,
+  "simultaneously_open_both_strategies": [],
+  "minutes_between_nearest_exposure": {
+    "AMD": 5.49,
+    "AVGO": 226.85,
+    "INTC": 224.58,
+    "MU": 379.55,
+    "NVDA": 173.53,
+    "SNDK": 380.87,
+    "TSM": 185.87,
+    "WDC": 150.55
+  },
+  "note": "Order snapshots cannot reconcile individual partial FILL activity IDs or prove no other broker writer outside this date/range."
+}
