@@ -1,0 +1,1959 @@
+{
+  "cross_sector": {
+    "energy": {
+      "earlier": {
+        "direction": "UP",
+        "legacy_30bps_no_ticket": {
+          "day_bootstrap_95_pct": [
+            -0.4344,
+            0.1176
+          ],
+          "days": 37,
+          "mean_pct": -0.1505,
+          "median_pct": -0.042,
+          "signals": 37,
+          "wilson95_lower_pct": 31.04,
+          "win_pct": 45.95,
+          "wins": 17,
+          "worst_pct": -3.1744
+        },
+        "price_mark_stress": {
+          "10shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.4153,
+              0.1384
+            ],
+            "days": 37,
+            "mean_pct": -0.1299,
+            "median_pct": -0.021,
+            "signals": 37,
+            "wilson95_lower_pct": 33.45,
+            "win_pct": 48.65,
+            "wins": 18,
+            "worst_pct": -3.1266
+          },
+          "10shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.5653,
+              -0.0116
+            ],
+            "days": 37,
+            "mean_pct": -0.2799,
+            "median_pct": -0.171,
+            "signals": 37,
+            "wilson95_lower_pct": 21.83,
+            "win_pct": 35.14,
+            "wins": 13,
+            "worst_pct": -3.2766
+          },
+          "10shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.8653,
+              -0.3116
+            ],
+            "days": 37,
+            "mean_pct": -0.5799,
+            "median_pct": -0.471,
+            "signals": 37,
+            "wilson95_lower_pct": 11.39,
+            "win_pct": 21.62,
+            "wins": 8,
+            "worst_pct": -3.5766
+          },
+          "1shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.5824,
+              -1.033
+            ],
+            "days": 37,
+            "mean_pct": -1.2949,
+            "median_pct": -1.3221,
+            "signals": 37,
+            "wilson95_lower_pct": 2.8,
+            "win_pct": 8.11,
+            "wins": 3,
+            "worst_pct": -4.0464
+          },
+          "1shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.7324,
+              -1.183
+            ],
+            "days": 37,
+            "mean_pct": -1.4449,
+            "median_pct": -1.4721,
+            "signals": 37,
+            "wilson95_lower_pct": 2.8,
+            "win_pct": 8.11,
+            "wins": 3,
+            "worst_pct": -4.1964
+          },
+          "1shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -2.0324,
+              -1.483
+            ],
+            "days": 37,
+            "mean_pct": -1.7449,
+            "median_pct": -1.7721,
+            "signals": 37,
+            "wilson95_lower_pct": 0.0,
+            "win_pct": 0.0,
+            "wins": 0,
+            "worst_pct": -4.4964
+          },
+          "5shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.5431,
+              0.0075
+            ],
+            "days": 37,
+            "mean_pct": -0.2594,
+            "median_pct": -0.15,
+            "signals": 37,
+            "wilson95_lower_pct": 21.83,
+            "win_pct": 35.14,
+            "wins": 13,
+            "worst_pct": -3.2288
+          },
+          "5shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.6931,
+              -0.1425
+            ],
+            "days": 37,
+            "mean_pct": -0.4094,
+            "median_pct": -0.3,
+            "signals": 37,
+            "wilson95_lower_pct": 17.49,
+            "win_pct": 29.73,
+            "wins": 11,
+            "worst_pct": -3.3788
+          },
+          "5shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.9931,
+              -0.4425
+            ],
+            "days": 37,
+            "mean_pct": -0.7094,
+            "median_pct": -0.6,
+            "signals": 37,
+            "wilson95_lower_pct": 11.39,
+            "win_pct": 21.62,
+            "wins": 8,
+            "worst_pct": -3.6788
+          }
+        },
+        "source_policy": "10:00_prior5_scaled_UP_strongest_peer"
+      },
+      "later": {
+        "direction": "UP",
+        "legacy_30bps_no_ticket": {
+          "day_bootstrap_95_pct": [
+            -0.6559,
+            0.2905
+          ],
+          "days": 11,
+          "mean_pct": -0.1346,
+          "median_pct": -0.0629,
+          "signals": 11,
+          "wilson95_lower_pct": 21.27,
+          "win_pct": 45.45,
+          "wins": 5,
+          "worst_pct": -1.874
+        },
+        "price_mark_stress": {
+          "10shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.62,
+              0.33
+            ],
+            "days": 11,
+            "mean_pct": -0.0965,
+            "median_pct": -0.0077,
+            "signals": 11,
+            "wilson95_lower_pct": 21.27,
+            "win_pct": 45.45,
+            "wins": 5,
+            "worst_pct": -1.843
+          },
+          "10shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.77,
+              0.18
+            ],
+            "days": 11,
+            "mean_pct": -0.2465,
+            "median_pct": -0.1577,
+            "signals": 11,
+            "wilson95_lower_pct": 21.27,
+            "win_pct": 45.45,
+            "wins": 5,
+            "worst_pct": -1.993
+          },
+          "10shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.07,
+              -0.12
+            ],
+            "days": 11,
+            "mean_pct": -0.5465,
+            "median_pct": -0.4577,
+            "signals": 11,
+            "wilson95_lower_pct": 9.75,
+            "win_pct": 27.27,
+            "wins": 3,
+            "worst_pct": -2.293
+          },
+          "1shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.6411,
+              -0.6707
+            ],
+            "days": 11,
+            "mean_pct": -1.1032,
+            "median_pct": -0.8613,
+            "signals": 11,
+            "wilson95_lower_pct": 0.0,
+            "win_pct": 0.0,
+            "wins": 0,
+            "worst_pct": -2.9141
+          },
+          "1shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.7911,
+              -0.8207
+            ],
+            "days": 11,
+            "mean_pct": -1.2532,
+            "median_pct": -1.0113,
+            "signals": 11,
+            "wilson95_lower_pct": 0.0,
+            "win_pct": 0.0,
+            "wins": 0,
+            "worst_pct": -3.0641
+          },
+          "1shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -2.0911,
+              -1.1207
+            ],
+            "days": 11,
+            "mean_pct": -1.5532,
+            "median_pct": -1.3113,
+            "signals": 11,
+            "wilson95_lower_pct": 0.0,
+            "win_pct": 0.0,
+            "wins": 0,
+            "worst_pct": -3.3641
+          },
+          "5shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.7308,
+              0.2212
+            ],
+            "days": 11,
+            "mean_pct": -0.2083,
+            "median_pct": -0.1026,
+            "signals": 11,
+            "wilson95_lower_pct": 21.27,
+            "win_pct": 45.45,
+            "wins": 5,
+            "worst_pct": -1.962
+          },
+          "5shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.8808,
+              0.0712
+            ],
+            "days": 11,
+            "mean_pct": -0.3583,
+            "median_pct": -0.2526,
+            "signals": 11,
+            "wilson95_lower_pct": 21.27,
+            "win_pct": 45.45,
+            "wins": 5,
+            "worst_pct": -2.112
+          },
+          "5shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.1808,
+              -0.2288
+            ],
+            "days": 11,
+            "mean_pct": -0.6583,
+            "median_pct": -0.5526,
+            "signals": 11,
+            "wilson95_lower_pct": 5.14,
+            "win_pct": 18.18,
+            "wins": 2,
+            "worst_pct": -2.412
+          }
+        },
+        "source_policy": "10:00_prior5_scaled_UP_strongest_peer"
+      }
+    },
+    "financials": {
+      "earlier": {
+        "direction": "DOWN",
+        "legacy_30bps_no_ticket": {
+          "day_bootstrap_95_pct": [
+            -0.5003,
+            -0.0127
+          ],
+          "days": 48,
+          "mean_pct": -0.2546,
+          "median_pct": -0.1663,
+          "signals": 48,
+          "wilson95_lower_pct": 25.22,
+          "win_pct": 37.5,
+          "wins": 18,
+          "worst_pct": -2.0518
+        },
+        "price_mark_stress": {
+          "10shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.7337,
+              -0.2472
+            ],
+            "days": 48,
+            "mean_pct": -0.4881,
+            "median_pct": -0.4035,
+            "signals": 48,
+            "wilson95_lower_pct": 13.31,
+            "win_pct": 22.92,
+            "wins": 11,
+            "worst_pct": -2.2977
+          },
+          "10shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.8837,
+              -0.3972
+            ],
+            "days": 48,
+            "mean_pct": -0.6381,
+            "median_pct": -0.5535,
+            "signals": 48,
+            "wilson95_lower_pct": 11.73,
+            "win_pct": 20.83,
+            "wins": 10,
+            "worst_pct": -2.4477
+          },
+          "10shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.1837,
+              -0.6972
+            ],
+            "days": 48,
+            "mean_pct": -0.9381,
+            "median_pct": -0.8535,
+            "signals": 48,
+            "wilson95_lower_pct": 5.86,
+            "win_pct": 12.5,
+            "wins": 6,
+            "worst_pct": -2.7477
+          },
+          "1shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -4.1924,
+              -3.6767
+            ],
+            "days": 48,
+            "mean_pct": -3.9399,
+            "median_pct": -3.8175,
+            "signals": 48,
+            "wilson95_lower_pct": 0.0,
+            "win_pct": 0.0,
+            "wins": 0,
+            "worst_pct": -5.8606
+          },
+          "1shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -4.3424,
+              -3.8267
+            ],
+            "days": 48,
+            "mean_pct": -4.0899,
+            "median_pct": -3.9675,
+            "signals": 48,
+            "wilson95_lower_pct": 0.0,
+            "win_pct": 0.0,
+            "wins": 0,
+            "worst_pct": -6.0106
+          },
+          "1shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -4.6424,
+              -4.1267
+            ],
+            "days": 48,
+            "mean_pct": -4.3899,
+            "median_pct": -4.2675,
+            "signals": 48,
+            "wilson95_lower_pct": 0.0,
+            "win_pct": 0.0,
+            "wins": 0,
+            "worst_pct": -6.3106
+          },
+          "5shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.1159,
+              -0.629
+            ],
+            "days": 48,
+            "mean_pct": -0.8716,
+            "median_pct": -0.7936,
+            "signals": 48,
+            "wilson95_lower_pct": 7.25,
+            "win_pct": 14.58,
+            "wins": 7,
+            "worst_pct": -2.6935
+          },
+          "5shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.2659,
+              -0.779
+            ],
+            "days": 48,
+            "mean_pct": -1.0216,
+            "median_pct": -0.9436,
+            "signals": 48,
+            "wilson95_lower_pct": 4.53,
+            "win_pct": 10.42,
+            "wins": 5,
+            "worst_pct": -2.8435
+          },
+          "5shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.5659,
+              -1.079
+            ],
+            "days": 48,
+            "mean_pct": -1.3216,
+            "median_pct": -1.2436,
+            "signals": 48,
+            "wilson95_lower_pct": 1.15,
+            "win_pct": 4.17,
+            "wins": 2,
+            "worst_pct": -3.1435
+          }
+        },
+        "source_policy": "09:25_sector_only_DOWN_etf"
+      },
+      "later": {
+        "direction": "DOWN",
+        "legacy_30bps_no_ticket": {
+          "day_bootstrap_95_pct": [
+            -0.7493,
+            -0.2759
+          ],
+          "days": 14,
+          "mean_pct": -0.5133,
+          "median_pct": -0.4005,
+          "signals": 14,
+          "wilson95_lower_pct": 4.01,
+          "win_pct": 14.29,
+          "wins": 2,
+          "worst_pct": -1.4383
+        },
+        "price_mark_stress": {
+          "10shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.9604,
+              -0.4842
+            ],
+            "days": 14,
+            "mean_pct": -0.7226,
+            "median_pct": -0.6158,
+            "signals": 14,
+            "wilson95_lower_pct": 1.27,
+            "win_pct": 7.14,
+            "wins": 1,
+            "worst_pct": -1.6615
+          },
+          "10shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.1104,
+              -0.6342
+            ],
+            "days": 14,
+            "mean_pct": -0.8726,
+            "median_pct": -0.7658,
+            "signals": 14,
+            "wilson95_lower_pct": 0.0,
+            "win_pct": 0.0,
+            "wins": 0,
+            "worst_pct": -1.8115
+          },
+          "10shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.4104,
+              -0.9342
+            ],
+            "days": 14,
+            "mean_pct": -1.1726,
+            "median_pct": -1.0658,
+            "signals": 14,
+            "wilson95_lower_pct": 0.0,
+            "win_pct": 0.0,
+            "wins": 0,
+            "worst_pct": -2.1115
+          },
+          "1shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -4.2081,
+              -3.7108
+            ],
+            "days": 14,
+            "mean_pct": -3.9565,
+            "median_pct": -3.9041,
+            "signals": 14,
+            "wilson95_lower_pct": 0.0,
+            "win_pct": 0.0,
+            "wins": 0,
+            "worst_pct": -5.0203
+          },
+          "1shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -4.3581,
+              -3.8608
+            ],
+            "days": 14,
+            "mean_pct": -4.1065,
+            "median_pct": -4.0541,
+            "signals": 14,
+            "wilson95_lower_pct": 0.0,
+            "win_pct": 0.0,
+            "wins": 0,
+            "worst_pct": -5.1703
+          },
+          "1shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -4.6581,
+              -4.1608
+            ],
+            "days": 14,
+            "mean_pct": -4.4065,
+            "median_pct": -4.3541,
+            "signals": 14,
+            "wilson95_lower_pct": 0.0,
+            "win_pct": 0.0,
+            "wins": 0,
+            "worst_pct": -5.4703
+          },
+          "5shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.3215,
+              -0.842
+            ],
+            "days": 14,
+            "mean_pct": -1.0819,
+            "median_pct": -0.9812,
+            "signals": 14,
+            "wilson95_lower_pct": 0.0,
+            "win_pct": 0.0,
+            "wins": 0,
+            "worst_pct": -2.0347
+          },
+          "5shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.4715,
+              -0.992
+            ],
+            "days": 14,
+            "mean_pct": -1.2319,
+            "median_pct": -1.1312,
+            "signals": 14,
+            "wilson95_lower_pct": 0.0,
+            "win_pct": 0.0,
+            "wins": 0,
+            "worst_pct": -2.1847
+          },
+          "5shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.7715,
+              -1.292
+            ],
+            "days": 14,
+            "mean_pct": -1.5319,
+            "median_pct": -1.4312,
+            "signals": 14,
+            "wilson95_lower_pct": 0.0,
+            "win_pct": 0.0,
+            "wins": 0,
+            "worst_pct": -2.4847
+          }
+        },
+        "source_policy": "09:25_sector_only_DOWN_etf"
+      }
+    },
+    "healthcare": {
+      "earlier": {
+        "direction": "DOWN",
+        "legacy_30bps_no_ticket": {
+          "day_bootstrap_95_pct": [
+            -0.3805,
+            0.416
+          ],
+          "days": 39,
+          "mean_pct": 0.0051,
+          "median_pct": 0.1032,
+          "signals": 39,
+          "wilson95_lower_pct": 36.2,
+          "win_pct": 51.28,
+          "wins": 20,
+          "worst_pct": -2.5037
+        },
+        "price_mark_stress": {
+          "10shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.2726,
+              0.5325
+            ],
+            "days": 39,
+            "mean_pct": 0.1196,
+            "median_pct": 0.2311,
+            "signals": 39,
+            "wilson95_lower_pct": 40.98,
+            "win_pct": 56.41,
+            "wins": 22,
+            "worst_pct": -2.4143
+          },
+          "10shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.4226,
+              0.3825
+            ],
+            "days": 39,
+            "mean_pct": -0.0304,
+            "median_pct": 0.0811,
+            "signals": 39,
+            "wilson95_lower_pct": 36.2,
+            "win_pct": 51.28,
+            "wins": 20,
+            "worst_pct": -2.5643
+          },
+          "10shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.7226,
+              0.0825
+            ],
+            "days": 39,
+            "mean_pct": -0.3304,
+            "median_pct": -0.2189,
+            "signals": 39,
+            "wilson95_lower_pct": 24.89,
+            "win_pct": 38.46,
+            "wins": 15,
+            "worst_pct": -2.8643
+          },
+          "1shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.6186,
+              0.2317
+            ],
+            "days": 39,
+            "mean_pct": -0.2006,
+            "median_pct": -0.1377,
+            "signals": 39,
+            "wilson95_lower_pct": 27.08,
+            "win_pct": 41.03,
+            "wins": 16,
+            "worst_pct": -2.9599
+          },
+          "1shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.7686,
+              0.0817
+            ],
+            "days": 39,
+            "mean_pct": -0.3506,
+            "median_pct": -0.2877,
+            "signals": 39,
+            "wilson95_lower_pct": 24.89,
+            "win_pct": 38.46,
+            "wins": 15,
+            "worst_pct": -3.1099
+          },
+          "1shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.0686,
+              -0.2183
+            ],
+            "days": 39,
+            "mean_pct": -0.6506,
+            "median_pct": -0.5877,
+            "signals": 39,
+            "wilson95_lower_pct": 18.57,
+            "win_pct": 30.77,
+            "wins": 12,
+            "worst_pct": -3.4099
+          },
+          "5shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.3096,
+              0.4981
+            ],
+            "days": 39,
+            "mean_pct": 0.084,
+            "median_pct": 0.1777,
+            "signals": 39,
+            "wilson95_lower_pct": 38.57,
+            "win_pct": 53.85,
+            "wins": 21,
+            "worst_pct": -2.4749
+          },
+          "5shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.4596,
+              0.3481
+            ],
+            "days": 39,
+            "mean_pct": -0.066,
+            "median_pct": 0.0277,
+            "signals": 39,
+            "wilson95_lower_pct": 36.2,
+            "win_pct": 51.28,
+            "wins": 20,
+            "worst_pct": -2.6249
+          },
+          "5shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.7596,
+              0.0481
+            ],
+            "days": 39,
+            "mean_pct": -0.366,
+            "median_pct": -0.2723,
+            "signals": 39,
+            "wilson95_lower_pct": 24.89,
+            "win_pct": 38.46,
+            "wins": 15,
+            "worst_pct": -2.9249
+          }
+        },
+        "source_policy": "09:25_sector_only_DOWN_strongest_peer"
+      },
+      "later": {
+        "direction": "DOWN",
+        "legacy_30bps_no_ticket": {
+          "day_bootstrap_95_pct": [
+            -0.908,
+            -0.0087
+          ],
+          "days": 12,
+          "mean_pct": -0.4558,
+          "median_pct": -0.5543,
+          "signals": 12,
+          "wilson95_lower_pct": 19.33,
+          "win_pct": 41.67,
+          "wins": 5,
+          "worst_pct": -1.6397
+        },
+        "price_mark_stress": {
+          "10shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.783,
+              0.1146
+            ],
+            "days": 12,
+            "mean_pct": -0.3332,
+            "median_pct": -0.42,
+            "signals": 12,
+            "wilson95_lower_pct": 19.33,
+            "win_pct": 41.67,
+            "wins": 5,
+            "worst_pct": -1.5071
+          },
+          "10shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.933,
+              -0.0354
+            ],
+            "days": 12,
+            "mean_pct": -0.4832,
+            "median_pct": -0.57,
+            "signals": 12,
+            "wilson95_lower_pct": 13.81,
+            "win_pct": 33.33,
+            "wins": 4,
+            "worst_pct": -1.6571
+          },
+          "10shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.233,
+              -0.3354
+            ],
+            "days": 12,
+            "mean_pct": -0.7832,
+            "median_pct": -0.87,
+            "signals": 12,
+            "wilson95_lower_pct": 4.7,
+            "win_pct": 16.67,
+            "wins": 2,
+            "worst_pct": -1.9571
+          },
+          "1shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.0075,
+              -0.1321
+            ],
+            "days": 12,
+            "mean_pct": -0.5802,
+            "median_pct": -0.561,
+            "signals": 12,
+            "wilson95_lower_pct": 13.81,
+            "win_pct": 33.33,
+            "wins": 4,
+            "worst_pct": -1.6636
+          },
+          "1shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.1575,
+              -0.2821
+            ],
+            "days": 12,
+            "mean_pct": -0.7302,
+            "median_pct": -0.711,
+            "signals": 12,
+            "wilson95_lower_pct": 8.89,
+            "win_pct": 25.0,
+            "wins": 3,
+            "worst_pct": -1.8136
+          },
+          "1shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.4575,
+              -0.5821
+            ],
+            "days": 12,
+            "mean_pct": -1.0302,
+            "median_pct": -1.011,
+            "signals": 12,
+            "wilson95_lower_pct": 4.7,
+            "win_pct": 16.67,
+            "wins": 2,
+            "worst_pct": -2.1136
+          },
+          "5shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.8057,
+              0.0846
+            ],
+            "days": 12,
+            "mean_pct": -0.3606,
+            "median_pct": -0.4356,
+            "signals": 12,
+            "wilson95_lower_pct": 19.33,
+            "win_pct": 41.67,
+            "wins": 5,
+            "worst_pct": -1.5245
+          },
+          "5shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.9557,
+              -0.0654
+            ],
+            "days": 12,
+            "mean_pct": -0.5106,
+            "median_pct": -0.5856,
+            "signals": 12,
+            "wilson95_lower_pct": 13.81,
+            "win_pct": 33.33,
+            "wins": 4,
+            "worst_pct": -1.6745
+          },
+          "5shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.2557,
+              -0.3654
+            ],
+            "days": 12,
+            "mean_pct": -0.8106,
+            "median_pct": -0.8856,
+            "signals": 12,
+            "wilson95_lower_pct": 4.7,
+            "win_pct": 16.67,
+            "wins": 2,
+            "worst_pct": -1.9745
+          }
+        },
+        "source_policy": "09:25_sector_only_DOWN_strongest_peer"
+      }
+    },
+    "industrials": {
+      "earlier": {
+        "direction": "DOWN",
+        "legacy_30bps_no_ticket": {
+          "day_bootstrap_95_pct": [
+            -0.1927,
+            0.7575
+          ],
+          "days": 34,
+          "mean_pct": 0.2928,
+          "median_pct": 0.1289,
+          "signals": 34,
+          "wilson95_lower_pct": 34.07,
+          "win_pct": 50.0,
+          "wins": 17,
+          "worst_pct": -2.1295
+        },
+        "price_mark_stress": {
+          "10shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.0906,
+              0.8586
+            ],
+            "days": 34,
+            "mean_pct": 0.3973,
+            "median_pct": 0.2195,
+            "signals": 34,
+            "wilson95_lower_pct": 34.07,
+            "win_pct": 50.0,
+            "wins": 17,
+            "worst_pct": -2.05
+          },
+          "10shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.2406,
+              0.7086
+            ],
+            "days": 34,
+            "mean_pct": 0.2473,
+            "median_pct": 0.0695,
+            "signals": 34,
+            "wilson95_lower_pct": 34.07,
+            "win_pct": 50.0,
+            "wins": 17,
+            "worst_pct": -2.2
+          },
+          "10shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.5406,
+              0.4086
+            ],
+            "days": 34,
+            "mean_pct": -0.0527,
+            "median_pct": -0.2305,
+            "signals": 34,
+            "wilson95_lower_pct": 26.37,
+            "win_pct": 41.18,
+            "wins": 14,
+            "worst_pct": -2.5
+          },
+          "1shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.515,
+              0.4597
+            ],
+            "days": 34,
+            "mean_pct": -0.0118,
+            "median_pct": -0.2352,
+            "signals": 34,
+            "wilson95_lower_pct": 28.88,
+            "win_pct": 44.12,
+            "wins": 15,
+            "worst_pct": -2.6839
+          },
+          "1shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.665,
+              0.3097
+            ],
+            "days": 34,
+            "mean_pct": -0.1618,
+            "median_pct": -0.3852,
+            "signals": 34,
+            "wilson95_lower_pct": 26.37,
+            "win_pct": 41.18,
+            "wins": 14,
+            "worst_pct": -2.8339
+          },
+          "1shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.965,
+              0.0097
+            ],
+            "days": 34,
+            "mean_pct": -0.4618,
+            "median_pct": -0.6852,
+            "signals": 34,
+            "wilson95_lower_pct": 19.13,
+            "win_pct": 32.35,
+            "wins": 11,
+            "worst_pct": -3.1339
+          },
+          "5shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.1386,
+              0.8108
+            ],
+            "days": 34,
+            "mean_pct": 0.3519,
+            "median_pct": 0.1601,
+            "signals": 34,
+            "wilson95_lower_pct": 34.07,
+            "win_pct": 50.0,
+            "wins": 17,
+            "worst_pct": -2.1204
+          },
+          "5shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.2886,
+              0.6608
+            ],
+            "days": 34,
+            "mean_pct": 0.2019,
+            "median_pct": 0.0101,
+            "signals": 34,
+            "wilson95_lower_pct": 34.07,
+            "win_pct": 50.0,
+            "wins": 17,
+            "worst_pct": -2.2704
+          },
+          "5shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.5886,
+              0.3608
+            ],
+            "days": 34,
+            "mean_pct": -0.0981,
+            "median_pct": -0.2899,
+            "signals": 34,
+            "wilson95_lower_pct": 26.37,
+            "win_pct": 41.18,
+            "wins": 14,
+            "worst_pct": -2.5704
+          }
+        },
+        "source_policy": "10:00_breadth_DOWN_strongest_peer"
+      },
+      "later": {
+        "direction": "DOWN",
+        "legacy_30bps_no_ticket": {
+          "day_bootstrap_95_pct": [
+            -1.0074,
+            0.4153
+          ],
+          "days": 13,
+          "mean_pct": -0.263,
+          "median_pct": 0.0273,
+          "signals": 13,
+          "wilson95_lower_pct": 29.14,
+          "win_pct": 53.85,
+          "wins": 7,
+          "worst_pct": -2.7342
+        },
+        "price_mark_stress": {
+          "10shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.8867,
+              0.5344
+            ],
+            "days": 13,
+            "mean_pct": -0.146,
+            "median_pct": 0.1517,
+            "signals": 13,
+            "wilson95_lower_pct": 29.14,
+            "win_pct": 53.85,
+            "wins": 7,
+            "worst_pct": -2.608
+          },
+          "10shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.0367,
+              0.3844
+            ],
+            "days": 13,
+            "mean_pct": -0.296,
+            "median_pct": 0.0017,
+            "signals": 13,
+            "wilson95_lower_pct": 29.14,
+            "win_pct": 53.85,
+            "wins": 7,
+            "worst_pct": -2.758
+          },
+          "10shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.3367,
+              0.0844
+            ],
+            "days": 13,
+            "mean_pct": -0.596,
+            "median_pct": -0.2983,
+            "signals": 13,
+            "wilson95_lower_pct": 23.21,
+            "win_pct": 46.15,
+            "wins": 6,
+            "worst_pct": -3.058
+          },
+          "1shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.1746,
+              0.2534
+            ],
+            "days": 13,
+            "mean_pct": -0.4436,
+            "median_pct": -0.0794,
+            "signals": 13,
+            "wilson95_lower_pct": 23.21,
+            "win_pct": 46.15,
+            "wins": 6,
+            "worst_pct": -2.823
+          },
+          "1shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.3246,
+              0.1034
+            ],
+            "days": 13,
+            "mean_pct": -0.5936,
+            "median_pct": -0.2294,
+            "signals": 13,
+            "wilson95_lower_pct": 23.21,
+            "win_pct": 46.15,
+            "wins": 6,
+            "worst_pct": -2.973
+          },
+          "1shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.6246,
+              -0.1966
+            ],
+            "days": 13,
+            "mean_pct": -0.8936,
+            "median_pct": -0.5294,
+            "signals": 13,
+            "wilson95_lower_pct": 8.18,
+            "win_pct": 23.08,
+            "wins": 3,
+            "worst_pct": -3.273
+          },
+          "5shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.9206,
+              0.4974
+            ],
+            "days": 13,
+            "mean_pct": -0.1791,
+            "median_pct": 0.126,
+            "signals": 13,
+            "wilson95_lower_pct": 29.14,
+            "win_pct": 53.85,
+            "wins": 7,
+            "worst_pct": -2.6319
+          },
+          "5shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.0706,
+              0.3474
+            ],
+            "days": 13,
+            "mean_pct": -0.3291,
+            "median_pct": -0.024,
+            "signals": 13,
+            "wilson95_lower_pct": 23.21,
+            "win_pct": 46.15,
+            "wins": 6,
+            "worst_pct": -2.7819
+          },
+          "5shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.3706,
+              0.0474
+            ],
+            "days": 13,
+            "mean_pct": -0.6291,
+            "median_pct": -0.324,
+            "signals": 13,
+            "wilson95_lower_pct": 17.71,
+            "win_pct": 38.46,
+            "wins": 5,
+            "worst_pct": -3.0819
+          }
+        },
+        "source_policy": "10:00_breadth_DOWN_strongest_peer"
+      }
+    },
+    "software": {
+      "earlier": {
+        "direction": "UP",
+        "legacy_30bps_no_ticket": {
+          "day_bootstrap_95_pct": [
+            -0.5064,
+            0.8116
+          ],
+          "days": 39,
+          "mean_pct": 0.1237,
+          "median_pct": 0.0554,
+          "signals": 39,
+          "wilson95_lower_pct": 36.2,
+          "win_pct": 51.28,
+          "wins": 20,
+          "worst_pct": -3.0816
+        },
+        "price_mark_stress": {
+          "10shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.4423,
+              0.873
+            ],
+            "days": 39,
+            "mean_pct": 0.1874,
+            "median_pct": 0.096,
+            "signals": 39,
+            "wilson95_lower_pct": 40.98,
+            "win_pct": 56.41,
+            "wins": 22,
+            "worst_pct": -3.0479
+          },
+          "10shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.5923,
+              0.723
+            ],
+            "days": 39,
+            "mean_pct": 0.0374,
+            "median_pct": -0.054,
+            "signals": 39,
+            "wilson95_lower_pct": 33.86,
+            "win_pct": 48.72,
+            "wins": 19,
+            "worst_pct": -3.1979
+          },
+          "10shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.8923,
+              0.423
+            ],
+            "days": 39,
+            "mean_pct": -0.2626,
+            "median_pct": -0.354,
+            "signals": 39,
+            "wilson95_lower_pct": 27.08,
+            "win_pct": 41.03,
+            "wins": 16,
+            "worst_pct": -3.4979
+          },
+          "1shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.2317,
+              0.1026
+            ],
+            "days": 39,
+            "mean_pct": -0.5894,
+            "median_pct": -0.4598,
+            "signals": 39,
+            "wilson95_lower_pct": 22.74,
+            "win_pct": 35.9,
+            "wins": 14,
+            "worst_pct": -4.0954
+          },
+          "1shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.3817,
+              -0.0474
+            ],
+            "days": 39,
+            "mean_pct": -0.7394,
+            "median_pct": -0.6098,
+            "signals": 39,
+            "wilson95_lower_pct": 18.57,
+            "win_pct": 30.77,
+            "wins": 12,
+            "worst_pct": -4.2454
+          },
+          "1shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.6817,
+              -0.3474
+            ],
+            "days": 39,
+            "mean_pct": -1.0394,
+            "median_pct": -0.9098,
+            "signals": 39,
+            "wilson95_lower_pct": 14.57,
+            "win_pct": 25.64,
+            "wins": 10,
+            "worst_pct": -4.5454
+          },
+          "5shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.5276,
+              0.7843
+            ],
+            "days": 39,
+            "mean_pct": 0.1011,
+            "median_pct": 0.0108,
+            "signals": 39,
+            "wilson95_lower_pct": 38.57,
+            "win_pct": 53.85,
+            "wins": 21,
+            "worst_pct": -3.1643
+          },
+          "5shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.6776,
+              0.6343
+            ],
+            "days": 39,
+            "mean_pct": -0.0489,
+            "median_pct": -0.1392,
+            "signals": 39,
+            "wilson95_lower_pct": 33.86,
+            "win_pct": 48.72,
+            "wins": 19,
+            "worst_pct": -3.3143
+          },
+          "5shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -0.9776,
+              0.3343
+            ],
+            "days": 39,
+            "mean_pct": -0.3489,
+            "median_pct": -0.4392,
+            "signals": 39,
+            "wilson95_lower_pct": 24.89,
+            "win_pct": 38.46,
+            "wins": 15,
+            "worst_pct": -3.6143
+          }
+        },
+        "source_policy": "09:25_breadth_UP_strongest_peer"
+      },
+      "later": {
+        "direction": "UP",
+        "legacy_30bps_no_ticket": {
+          "day_bootstrap_95_pct": [
+            -1.7807,
+            -0.1683
+          ],
+          "days": 10,
+          "mean_pct": -0.9816,
+          "median_pct": -0.8471,
+          "signals": 10,
+          "wilson95_lower_pct": 10.78,
+          "win_pct": 30.0,
+          "wins": 3,
+          "worst_pct": -2.797
+        },
+        "price_mark_stress": {
+          "10shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.7054,
+              -0.0834
+            ],
+            "days": 10,
+            "mean_pct": -0.8968,
+            "median_pct": -0.7369,
+            "signals": 10,
+            "wilson95_lower_pct": 10.78,
+            "win_pct": 30.0,
+            "wins": 3,
+            "worst_pct": -2.7308
+          },
+          "10shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.8554,
+              -0.2334
+            ],
+            "days": 10,
+            "mean_pct": -1.0468,
+            "median_pct": -0.8869,
+            "signals": 10,
+            "wilson95_lower_pct": 10.78,
+            "win_pct": 30.0,
+            "wins": 3,
+            "worst_pct": -2.8808
+          },
+          "10shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -2.1554,
+              -0.5334
+            ],
+            "days": 10,
+            "mean_pct": -1.3468,
+            "median_pct": -1.1869,
+            "signals": 10,
+            "wilson95_lower_pct": 5.67,
+            "win_pct": 20.0,
+            "wins": 2,
+            "worst_pct": -3.1808
+          },
+          "1shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -2.3683,
+              -0.6085
+            ],
+            "days": 10,
+            "mean_pct": -1.4831,
+            "median_pct": -1.095,
+            "signals": 10,
+            "wilson95_lower_pct": 10.78,
+            "win_pct": 30.0,
+            "wins": 3,
+            "worst_pct": -3.4856
+          },
+          "1shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -2.5183,
+              -0.7585
+            ],
+            "days": 10,
+            "mean_pct": -1.6331,
+            "median_pct": -1.245,
+            "signals": 10,
+            "wilson95_lower_pct": 5.67,
+            "win_pct": 20.0,
+            "wins": 2,
+            "worst_pct": -3.6356
+          },
+          "1shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -2.8183,
+              -1.0585
+            ],
+            "days": 10,
+            "mean_pct": -1.9331,
+            "median_pct": -1.545,
+            "signals": 10,
+            "wilson95_lower_pct": 1.79,
+            "win_pct": 10.0,
+            "wins": 1,
+            "worst_pct": -3.9356
+          },
+          "5shares_15bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.7802,
+              -0.1396
+            ],
+            "days": 10,
+            "mean_pct": -0.9619,
+            "median_pct": -0.7767,
+            "signals": 10,
+            "wilson95_lower_pct": 10.78,
+            "win_pct": 30.0,
+            "wins": 3,
+            "worst_pct": -2.8147
+          },
+          "5shares_30bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -1.9302,
+              -0.2896
+            ],
+            "days": 10,
+            "mean_pct": -1.1119,
+            "median_pct": -0.9267,
+            "signals": 10,
+            "wilson95_lower_pct": 10.78,
+            "win_pct": 30.0,
+            "wins": 3,
+            "worst_pct": -2.9647
+          },
+          "5shares_60bps_1USD_per_side": {
+            "day_bootstrap_95_pct": [
+              -2.2302,
+              -0.5896
+            ],
+            "days": 10,
+            "mean_pct": -1.4119,
+            "median_pct": -1.2267,
+            "signals": 10,
+            "wilson95_lower_pct": 5.67,
+            "win_pct": 20.0,
+            "wins": 2,
+            "worst_pct": -3.2647
+          }
+        },
+        "source_policy": "09:25_breadth_UP_strongest_peer"
+      }
+    }
+  },
+  "gold": {
+    "earlier": {
+      "direction": "down",
+      "legacy_30bps_no_ticket": {
+        "day_bootstrap_95_pct": [
+          -0.3719,
+          0.2004
+        ],
+        "days": 94,
+        "mean_pct": -0.0897,
+        "median_pct": -0.2227,
+        "signals": 94,
+        "wilson95_lower_pct": 28.14,
+        "win_pct": 37.23,
+        "wins": 35,
+        "worst_pct": -3.6874
+      },
+      "mark_stress": {
+        "10shares_15bps_1USD_per_side": {
+          "day_bootstrap_95_pct": [
+            -0.5303,
+            0.0357
+          ],
+          "days": 94,
+          "mean_pct": -0.2508,
+          "median_pct": -0.2518,
+          "signals": 94,
+          "wilson95_lower_pct": 25.26,
+          "win_pct": 34.04,
+          "wins": 32,
+          "worst_pct": -4.2581
+        },
+        "10shares_30bps_1USD_per_side": {
+          "day_bootstrap_95_pct": [
+            -0.6803,
+            -0.1143
+          ],
+          "days": 94,
+          "mean_pct": -0.4008,
+          "median_pct": -0.4018,
+          "signals": 94,
+          "wilson95_lower_pct": 21.48,
+          "win_pct": 29.79,
+          "wins": 28,
+          "worst_pct": -4.4081
+        },
+        "10shares_60bps_1USD_per_side": {
+          "day_bootstrap_95_pct": [
+            -0.9803,
+            -0.4143
+          ],
+          "days": 94,
+          "mean_pct": -0.7008,
+          "median_pct": -0.7018,
+          "signals": 94,
+          "wilson95_lower_pct": 15.1,
+          "win_pct": 22.34,
+          "wins": 21,
+          "worst_pct": -4.7081
+        },
+        "1shares_15bps_1USD_per_side": {
+          "day_bootstrap_95_pct": [
+            -3.6309,
+            -2.4721
+          ],
+          "days": 94,
+          "mean_pct": -3.0503,
+          "median_pct": -1.8434,
+          "signals": 94,
+          "wilson95_lower_pct": 5.12,
+          "win_pct": 9.57,
+          "wins": 9,
+          "worst_pct": -10.7446
+        },
+        "1shares_30bps_1USD_per_side": {
+          "day_bootstrap_95_pct": [
+            -3.7809,
+            -2.6221
+          ],
+          "days": 94,
+          "mean_pct": -3.2003,
+          "median_pct": -1.9934,
+          "signals": 94,
+          "wilson95_lower_pct": 5.12,
+          "win_pct": 9.57,
+          "wins": 9,
+          "worst_pct": -10.8946
+        },
+        "1shares_60bps_1USD_per_side": {
+          "day_bootstrap_95_pct": [
+            -4.0809,
+            -2.9221
+          ],
+          "days": 94,
+          "mean_pct": -3.5003,
+          "median_pct": -2.2934,
+          "signals": 94,
+          "wilson95_lower_pct": 3.65,
+          "win_pct": 7.45,
+          "wins": 7,
+          "worst_pct": -11.1946
+        },
+        "5shares_15bps_1USD_per_side": {
+          "day_bootstrap_95_pct": [
+            -0.8496,
+            -0.2633
+          ],
+          "days": 94,
+          "mean_pct": -0.5618,
+          "median_pct": -0.5603,
+          "signals": 94,
+          "wilson95_lower_pct": 16.89,
+          "win_pct": 24.47,
+          "wins": 23,
+          "worst_pct": -4.9788
+        },
+        "5shares_30bps_1USD_per_side": {
+          "day_bootstrap_95_pct": [
+            -0.9996,
+            -0.4133
+          ],
+          "days": 94,
+          "mean_pct": -0.7118,
+          "median_pct": -0.7103,
+          "signals": 94,
+          "wilson95_lower_pct": 14.22,
+          "win_pct": 21.28,
+          "wins": 20,
+          "worst_pct": -5.1288
+        },
+        "5shares_60bps_1USD_per_side": {
+          "day_bootstrap_95_pct": [
+            -1.2996,
+            -0.7133
+          ],
+          "days": 94,
+          "mean_pct": -1.0118,
+          "median_pct": -1.0103,
+          "signals": 94,
+          "wilson95_lower_pct": 9.92,
+          "win_pct": 15.96,
+          "wins": 15,
+          "worst_pct": -5.4288
+        }
+      },
+      "source_policy": "gold_only_lag30_gold0.25_down"
+    },
+    "later": {
+      "direction": "down",
+      "legacy_30bps_no_ticket": {
+        "day_bootstrap_95_pct": [
+          -1.1814,
+          -0.0934
+        ],
+        "days": 16,
+        "mean_pct": -0.6759,
+        "median_pct": -1.0034,
+        "signals": 16,
+        "wilson95_lower_pct": 6.59,
+        "win_pct": 18.75,
+        "wins": 3,
+        "worst_pct": -2.3197
+      },
+      "mark_stress": {
+        "10shares_15bps_1USD_per_side": {
+          "day_bootstrap_95_pct": [
+            -1.4125,
+            -0.3362
+          ],
+          "days": 16,
+          "mean_pct": -0.9238,
+          "median_pct": -1.048,
+          "signals": 16,
+          "wilson95_lower_pct": 6.59,
+          "win_pct": 18.75,
+          "wins": 3,
+          "worst_pct": -2.3442
+        },
+        "10shares_30bps_1USD_per_side": {
+          "day_bootstrap_95_pct": [
+            -1.5625,
+            -0.4862
+          ],
+          "days": 16,
+          "mean_pct": -1.0738,
+          "median_pct": -1.198,
+          "signals": 16,
+          "wilson95_lower_pct": 6.59,
+          "win_pct": 18.75,
+          "wins": 3,
+          "worst_pct": -2.4942
+        },
+        "10shares_60bps_1USD_per_side": {
+          "day_bootstrap_95_pct": [
+            -1.8625,
+            -0.7862
+          ],
+          "days": 16,
+          "mean_pct": -1.3738,
+          "median_pct": -1.498,
+          "signals": 16,
+          "wilson95_lower_pct": 6.59,
+          "win_pct": 18.75,
+          "wins": 3,
+          "worst_pct": -2.7942
+        },
+        "1shares_15bps_1USD_per_side": {
+          "day_bootstrap_95_pct": [
+            -6.1425,
+            -2.8244
+          ],
+          "days": 16,
+          "mean_pct": -4.5055,
+          "median_pct": -3.1353,
+          "signals": 16,
+          "wilson95_lower_pct": 1.11,
+          "win_pct": 6.25,
+          "wins": 1,
+          "worst_pct": -9.8891
+        },
+        "1shares_30bps_1USD_per_side": {
+          "day_bootstrap_95_pct": [
+            -6.2925,
+            -2.9744
+          ],
+          "days": 16,
+          "mean_pct": -4.6555,
+          "median_pct": -3.2853,
+          "signals": 16,
+          "wilson95_lower_pct": 1.11,
+          "win_pct": 6.25,
+          "wins": 1,
+          "worst_pct": -10.0391
+        },
+        "1shares_60bps_1USD_per_side": {
+          "day_bootstrap_95_pct": [
+            -6.5925,
+            -3.2744
+          ],
+          "days": 16,
+          "mean_pct": -4.9555,
+          "median_pct": -3.5853,
+          "signals": 16,
+          "wilson95_lower_pct": 1.11,
+          "win_pct": 6.25,
+          "wins": 1,
+          "worst_pct": -10.3391
+        },
+        "5shares_15bps_1USD_per_side": {
+          "day_bootstrap_95_pct": [
+            -1.8349,
+            -0.7033
+          ],
+          "days": 16,
+          "mean_pct": -1.3218,
+          "median_pct": -1.3228,
+          "signals": 16,
+          "wilson95_lower_pct": 3.5,
+          "win_pct": 12.5,
+          "wins": 2,
+          "worst_pct": -2.8576
+        },
+        "5shares_30bps_1USD_per_side": {
+          "day_bootstrap_95_pct": [
+            -1.9849,
+            -0.8533
+          ],
+          "days": 16,
+          "mean_pct": -1.4718,
+          "median_pct": -1.4728,
+          "signals": 16,
+          "wilson95_lower_pct": 3.5,
+          "win_pct": 12.5,
+          "wins": 2,
+          "worst_pct": -3.0076
+        },
+        "5shares_60bps_1USD_per_side": {
+          "day_bootstrap_95_pct": [
+            -2.2849,
+            -1.1533
+          ],
+          "days": 16,
+          "mean_pct": -1.7718,
+          "median_pct": -1.7728,
+          "signals": 16,
+          "wilson95_lower_pct": 3.5,
+          "win_pct": 12.5,
+          "wins": 2,
+          "worst_pct": -3.3076
+        }
+      },
+      "source_policy": "gold_only_lag30_gold0.25_down"
+    }
+  },
+  "gold_sector_sessions": {
+    "earlier": {
+      "major_down_days": 35,
+      "major_up_days": 43,
+      "total_days": 200
+    },
+    "later": {
+      "major_down_days": 11,
+      "major_up_days": 7,
+      "total_days": 48
+    }
+  },
+  "limitations": [
+    "Replay uses price marks not executable NBBO/BOATS asks/bids or fills",
+    "Ticket model illustrative: $1 per side, not Alpaca fee schedule",
+    "Sample policies locked by earlier-period selection; all remain NO GO",
+    "Indicators use completed 5m bars and prior five completed sessions from source replays",
+    "No synchronized earnings/news/futures or matched V1 executions; no causal prediction from retrospective labels",
+    "Resampled sessions are only a descriptive uncertainty estimate, not fully OOS proof"
+  ],
+  "safety": "NO BROKER CONTACT; NO PAPER OR LIVE ORDERS",
+  "sector_sessions": {
+    "energy": {
+      "mixed": 48,
+      "negative": 86,
+      "positive": 114
+    },
+    "financials": {
+      "mixed": 66,
+      "negative": 80,
+      "positive": 102
+    },
+    "healthcare": {
+      "mixed": 122,
+      "negative": 71,
+      "positive": 55
+    },
+    "industrials": {
+      "mixed": 93,
+      "negative": 71,
+      "positive": 84
+    },
+    "software": {
+      "mixed": 93,
+      "negative": 82,
+      "positive": 73
+    }
+  },
+  "semiconductor_sell_warning_costs": {
+    "fixed2": {
+      "earlier": {
+        "earliest_major_warning": "2025-11-13T08:35:00-05:00",
+        "event_quality_vs_next_open": {
+          "day_bootstrap_95_pct": [
+            -1.6197,
+            -0.495
+          ],
+          "days": 94,
+          "mean_pct": -0.7925,
+          "median_pct": -0.3399,
+          "signals": 501,
+          "wilson95_lower_pct": 36.31,
+          "win_pct": 40.52,
+          "wins": 203,
+          "worst_pct": -26.2844
+        },
+        "major_before_minus5_hits": 91,
+        "major_hits": 149,
+        "major_pre_regular_open_hits": 53,
+        "nonmajor_warnings": 352,
+        "warnings_with_2pp_or_more_missed_rebound": 136
+      },
+      "later": {
+        "earliest_major_warning": "2026-09-10T09:55:00-04:00",
+        "event_quality_vs_next_open": {
+          "day_bootstrap_95_pct": [
+            -1.3382,
+            1.3095
+          ],
+          "days": 21,
+          "mean_pct": 0.0652,
+          "median_pct": -0.3,
+          "signals": 106,
+          "wilson95_lower_pct": 33.47,
+          "win_pct": 42.45,
+          "wins": 45,
+          "worst_pct": -5.9449
+        },
+        "major_before_minus5_hits": 25,
+        "major_hits": 40,
+        "major_pre_regular_open_hits": 15,
+        "nonmajor_warnings": 66,
+        "warnings_with_2pp_or_more_missed_rebound": 24
+      }
+    },
+    "fixed2p5": {
+      "earlier": {
+        "earliest_major_warning": "2025-11-13T08:35:00-05:00",
+        "event_quality_vs_next_open": {
+          "day_bootstrap_95_pct": [
+            -1.902,
+            -0.6554
+          ],
+          "days": 90,
+          "mean_pct": -0.9659,
+          "median_pct": -0.3502,
+          "signals": 453,
+          "wilson95_lower_pct": 35.98,
+          "win_pct": 40.4,
+          "wins": 183,
+          "worst_pct": -26.2844
+        },
+        "major_before_minus5_hits": 91,
+        "major_hits": 149,
+        "major_pre_regular_open_hits": 48,
+        "nonmajor_warnings": 304,
+        "warnings_with_2pp_or_more_missed_rebound": 139
+      },
+      "later": {
+        "earliest_major_warning": "2026-09-10T09:55:00-04:00",
+        "event_quality_vs_next_open": {
+          "day_bootstrap_95_pct": [
+            -1.3899,
+            1.3958
+          ],
+          "days": 21,
+          "mean_pct": -0.0321,
+          "median_pct": -0.3,
+          "signals": 97,
+          "wilson95_lower_pct": 31.0,
+          "win_pct": 40.21,
+          "wins": 39,
+          "worst_pct": -5.9449
+        },
+        "major_before_minus5_hits": 23,
+        "major_hits": 39,
+        "major_pre_regular_open_hits": 13,
+        "nonmajor_warnings": 58,
+        "warnings_with_2pp_or_more_missed_rebound": 23
+      }
+    },
+    "fixed3": {
+      "earlier": {
+        "earliest_major_warning": "2025-11-13T08:35:00-05:00",
+        "event_quality_vs_next_open": {
+          "day_bootstrap_95_pct": [
+            -2.2456,
+            -0.8111
+          ],
+          "days": 88,
+          "mean_pct": -1.026,
+          "median_pct": -0.4414,
+          "signals": 404,
+          "wilson95_lower_pct": 34.23,
+          "win_pct": 38.86,
+          "wins": 157,
+          "worst_pct": -27.3725
+        },
+        "major_before_minus5_hits": 89,
+        "major_hits": 147,
+        "major_pre_regular_open_hits": 45,
+        "nonmajor_warnings": 257,
+        "warnings_with_2pp_or_more_missed_rebound": 124
+      },
+      "later": {
+        "earliest_major_warning": "2026-09-10T09:55:00-04:00",
+        "event_quality_vs_next_open": {
+          "day_bootstrap_95_pct": [
+            -1.5326,
+            1.6187
+          ],
+          "days": 20,
+          "mean_pct": -0.1108,
+          "median_pct": -0.3248,
+          "signals": 84,
+          "wilson95_lower_pct": 28.45,
+          "win_pct": 38.1,
+          "wins": 32,
+          "worst_pct": -5.9449
+        },
+        "major_before_minus5_hits": 23,
+        "major_hits": 39,
+        "major_pre_regular_open_hits": 12,
+        "nonmajor_warnings": 45,
+        "warnings_with_2pp_or_more_missed_rebound": 22
+      }
+    }
+  },
+  "source": "locked historical actual timestamped Alpaca SIP 5m event audits",
+  "source_dataset_end": "2026-11-06",
+  "training_split": "2026-09-01"
+}
