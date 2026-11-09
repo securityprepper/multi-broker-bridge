@@ -132,6 +132,12 @@ def premarket_sell_decision(
         return "EMERGENCY_DOWNSIDE_EXIT"
     if peak is None or not isinstance(peak,Decimal) or not peak.is_finite() or peak<entry:
         return "PEAK_NOT_VERIFIED"
+    # Owner's premarket rule: routine shakeouts and trailing-stop proposals
+    # MUST NOT liquidate a position before substantial executable profit
+    # exists. A verified -2.5% emergency breach is the only loss exception.
+    # Historical candle highs do not prove the broker can sell at a profit.
+    if gain<SUBSTANTIAL_PROFIT:
+        return "HOLD_FOR_TREND"
     if reason=="premarket steady peak trailing stop":
         if steady_confirmed and (bid/peak-1)<=-STEADY_PEAK_TRAIL:
             return "TRAILING_STOP_SOFTWARE"
