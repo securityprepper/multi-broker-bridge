@@ -13,7 +13,9 @@ from zoneinfo import ZoneInfo
 from collections import defaultdict, deque
 from .watchlists import SECTORS, SECTOR_ETFS, SECTOR_ANCHORS
 from .premarket_policy import (
-    is_early_market,SUBSTANTIAL_PROFIT,EMERGENCY_LOSS
+    is_early_market,SUBSTANTIAL_PROFIT,EMERGENCY_LOSS,
+    STEADY_PEAK_TRAIL,DEFAULT_PEAK_TRAIL,SPIKE_RETRACE,
+    recent_price_spike
 )
 
 CHICAGO=ZoneInfo("America/Chicago")
@@ -148,7 +150,8 @@ class TrendMonitor:
                 "qualified":qualified,"rising_symbols":qualifying}
 
     def scan(self,now:datetime,holdings:dict[str,Holding]|None=None,
-             executable_session:bool=False)->list[dict]:
+             executable_session:bool=False,
+             steady_uptrend_symbols:set[str]|None=None)->list[dict]:
         if now.tzinfo is None:raise ValueError("aware scan time required")
         if self.last_scan_timestamp is not None and now<=self.last_scan_timestamp:
             raise ValueError("scan time did not advance")
@@ -156,6 +159,7 @@ class TrendMonitor:
         chicago=now.astimezone(CHICAGO)
         current=chicago.timetz().replace(tzinfo=None)
         positions=holdings or {}
+        steady_set=steady_uptrend_symbols or set()
         output=[]
         # Exit evaluations run even when a sector is no longer rising.
         for symbol,position in positions.items():
@@ -172,16 +176,26 @@ class TrendMonitor:
             if current>=DAY_EXIT_CUTOFF:
                 reason="mandatory exit by 2 PM Chicago"
             elif is_early_market(now):
-                # Early BOATS/PRE: preserve winners through ordinary
-                # one-minute wiggles; only bank substantial profit after
-                # evidence of a turn. Keep a hard -2.5% risk exception.
+                # High-water is persisted across 1-minute service restarts.
+                # Once a stock's distributed overnight rise is confirmed,
+                # use a wider 2.5% peak trail; never tighten it during an
+                # ordinary 15-30 minute shakeout. Otherwise use 2% and
+                # bank >=2% profits from quick spikes with real reversal.
+                steady=symbol in steady_set
+                distance=STEADY_PEAK_TRAIL if steady else DEFAULT_PEAK_TRAIL
                 if change<=EMERGENCY_LOSS:
                     reason="premarket emergency downside exit"
-                elif change>=SUBSTANTIAL_PROFIT and (
-                        high>=position.entry_price*Decimal("1.025")
-                        and trail<=-TRAIL_REVERSAL):
+                elif trail<=-distance:
+                    reason=("premarket steady peak trailing stop"
+                            if steady else
+                            "premarket standard peak trailing stop")
+                elif not steady and change>=SUBSTANTIAL_PROFIT and (
+                        (recent_price_spike(bars,now)
+                         and trail<=-SPIKE_RETRACE) or
+                        (high>=position.entry_price*Decimal("1.025")
+                         and trail<=-TRAIL_REVERSAL)):
                     reason="premarket confirmed trailing profit reversal"
-                elif change>=SUBSTANTIAL_PROFIT and _two_falling(bars):
+                elif not steady and change>=SUBSTANTIAL_PROFIT and _two_falling(bars):
                     reason="premarket substantial profit reversal"
             elif change<=LOSS_WATCH:reason="loss threshold reached"
             elif change>=PROFIT_TARGET:reason="profit target reached"
