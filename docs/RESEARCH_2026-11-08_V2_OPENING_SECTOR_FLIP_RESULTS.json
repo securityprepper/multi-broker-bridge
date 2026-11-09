@@ -1,0 +1,664 @@
+{
+  "dataset_stock_days": 2244,
+  "definition": "09:15 preopen SOXX+4/8 peers +/-0.5%; from 09:35 to 10:30 first opposite SOXX and stock >=1 percentage point and >=half other peers >=0.5 pp since 09:15; completed 5m bars only",
+  "major_down": 209,
+  "major_up": 254,
+  "nov2_2026": [
+    {
+      "close_pct": -7.6092,
+      "event": "2026-11-02T09:40:00-05:00",
+      "side": "down",
+      "signal_price_relative_prev_close_pct": 0.0564,
+      "symbol": "AMD"
+    },
+    {
+      "close_pct": -1.1558,
+      "event": "2026-11-02T09:40:00-05:00",
+      "side": "down",
+      "signal_price_relative_prev_close_pct": -0.161,
+      "symbol": "AVGO"
+    },
+    {
+      "close_pct": -8.9459,
+      "event": "2026-11-02T09:40:00-05:00",
+      "side": "down",
+      "signal_price_relative_prev_close_pct": -1.9593,
+      "symbol": "INTC"
+    },
+    {
+      "close_pct": -5.8359,
+      "event": "2026-11-02T09:40:00-05:00",
+      "side": "down",
+      "signal_price_relative_prev_close_pct": -0.2899,
+      "symbol": "MU"
+    },
+    {
+      "close_pct": -6.4624,
+      "event": "2026-11-02T09:40:00-05:00",
+      "side": "down",
+      "signal_price_relative_prev_close_pct": -1.3635,
+      "symbol": "SNDK"
+    },
+    {
+      "close_pct": -3.8041,
+      "event": "2026-11-02T09:40:00-05:00",
+      "side": "down",
+      "signal_price_relative_prev_close_pct": 0.3562,
+      "symbol": "SOXX"
+    },
+    {
+      "close_pct": -1.8451,
+      "event": "2026-11-02T09:40:00-05:00",
+      "side": "down",
+      "signal_price_relative_prev_close_pct": 0.436,
+      "symbol": "TSM"
+    },
+    {
+      "close_pct": -7.4659,
+      "event": "2026-11-02T09:40:00-05:00",
+      "side": "down",
+      "signal_price_relative_prev_close_pct": -1.1683,
+      "symbol": "WDC"
+    }
+  ],
+  "period": "2025-11-10 through 2026-11-06",
+  "price_provenance": "SIP 5-minute OHLC marks only; no NBBO, BOATS or executable fills",
+  "segments": {
+    "all": {
+      "down": {
+        "day_equal_mean_to14_pp": 0.581,
+        "earliest_major_warnings": [
+          {
+            "at": "2025-12-15T10:20:00-05:00",
+            "close_pct": -5.571,
+            "date": "2025-12-15",
+            "symbol": "AVGO"
+          },
+          {
+            "at": "2026-03-30T09:40:00-04:00",
+            "close_pct": -9.9457,
+            "date": "2026-03-30",
+            "symbol": "MU"
+          },
+          {
+            "at": "2026-03-30T09:40:00-04:00",
+            "close_pct": -7.0052,
+            "date": "2026-03-30",
+            "symbol": "SNDK"
+          },
+          {
+            "at": "2026-03-30T09:40:00-04:00",
+            "close_pct": -8.6439,
+            "date": "2026-03-30",
+            "symbol": "WDC"
+          },
+          {
+            "at": "2026-05-18T09:40:00-04:00",
+            "close_pct": -5.8568,
+            "date": "2026-05-18",
+            "symbol": "MU"
+          },
+          {
+            "at": "2026-05-18T09:40:00-04:00",
+            "close_pct": -5.3136,
+            "date": "2026-05-18",
+            "symbol": "SNDK"
+          },
+          {
+            "at": "2026-07-02T09:40:00-04:00",
+            "close_pct": -5.4323,
+            "date": "2026-07-02",
+            "symbol": "SOXX"
+          }
+        ],
+        "major_days": 209,
+        "major_hit_before_5pct": 25,
+        "major_hits": 25,
+        "major_hits_earlier_than_strict_or_not_detected_by_1030": 18,
+        "major_hits_no_strict_signal_by_1030": 8,
+        "major_missed": 184,
+        "mean_bounded_to14_pp": 0.6945,
+        "mean_bounded_to_nextopen_pp": 1.0592,
+        "mean_to14_excluding_nov2_pp": 0.6084,
+        "median_bounded_to14_pp": 0.2788,
+        "missed_major_examples": [
+          {
+            "close_pct": -28.497,
+            "date": "2026-10-30",
+            "symbol": "INTC"
+          },
+          {
+            "close_pct": -22.2474,
+            "date": "2026-11-05",
+            "symbol": "SNDK"
+          },
+          {
+            "close_pct": -20.3335,
+            "date": "2025-11-20",
+            "symbol": "SNDK"
+          },
+          {
+            "close_pct": -17.6459,
+            "date": "2026-11-05",
+            "symbol": "AMD"
+          },
+          {
+            "close_pct": -17.3975,
+            "date": "2026-11-05",
+            "symbol": "WDC"
+          },
+          {
+            "close_pct": -17.3185,
+            "date": "2026-02-04",
+            "symbol": "AMD"
+          },
+          {
+            "close_pct": -17.2239,
+            "date": "2026-11-05",
+            "symbol": "MU"
+          }
+        ],
+        "negative_14_count": 113,
+        "next_open_scenarios": 242,
+        "nonmajor_warnings": 224,
+        "positive_14_count": 136,
+        "price_eligible_14": 249,
+        "price_scenarios_14": 249,
+        "prior5_weak_soxx": {
+          "down_at_least_5pct": {
+            "mean_to14_pp": -0.9423,
+            "warnings": 74
+          },
+          "other": {
+            "mean_to14_pp": 1.3866,
+            "warnings": 175
+          }
+        },
+        "signal_day_count": 34,
+        "stock_days": 2244,
+        "warnings": 249
+      },
+      "up": {
+        "day_equal_mean_to14_pp": -0.3724,
+        "earliest_major_warnings": [
+          {
+            "at": "2026-01-12T09:40:00-05:00",
+            "close_pct": 5.8477,
+            "date": "2026-01-12",
+            "symbol": "WDC"
+          },
+          {
+            "at": "2026-01-20T09:35:00-05:00",
+            "close_pct": 9.603,
+            "date": "2026-01-20",
+            "symbol": "SNDK"
+          },
+          {
+            "at": "2026-02-02T09:35:00-05:00",
+            "close_pct": 15.5789,
+            "date": "2026-02-02",
+            "symbol": "SNDK"
+          },
+          {
+            "at": "2026-02-02T09:35:00-05:00",
+            "close_pct": 7.9458,
+            "date": "2026-02-02",
+            "symbol": "WDC"
+          },
+          {
+            "at": "2026-02-02T09:40:00-05:00",
+            "close_pct": 5.5699,
+            "date": "2026-02-02",
+            "symbol": "MU"
+          },
+          {
+            "at": "2026-05-01T10:00:00-04:00",
+            "close_pct": 5.4709,
+            "date": "2026-05-01",
+            "symbol": "INTC"
+          },
+          {
+            "at": "2026-05-01T10:00:00-04:00",
+            "close_pct": 8.3564,
+            "date": "2026-05-01",
+            "symbol": "SNDK"
+          }
+        ],
+        "major_days": 254,
+        "major_hit_before_5pct": 12,
+        "major_hits": 13,
+        "major_hits_earlier_than_strict_or_not_detected_by_1030": null,
+        "major_hits_no_strict_signal_by_1030": null,
+        "major_missed": 241,
+        "mean_bounded_to14_pp": -0.2204,
+        "mean_bounded_to_nextopen_pp": -0.2529,
+        "mean_to14_excluding_nov2_pp": -0.2204,
+        "median_bounded_to14_pp": -0.0869,
+        "missed_major_examples": [
+          {
+            "close_pct": 27.5364,
+            "date": "2026-01-06",
+            "symbol": "SNDK"
+          },
+          {
+            "close_pct": 26.1478,
+            "date": "2026-07-30",
+            "symbol": "SNDK"
+          },
+          {
+            "close_pct": 23.5004,
+            "date": "2026-04-24",
+            "symbol": "INTC"
+          },
+          {
+            "close_pct": 21.6931,
+            "date": "2026-06-25",
+            "symbol": "SNDK"
+          },
+          {
+            "close_pct": 19.3383,
+            "date": "2026-05-26",
+            "symbol": "MU"
+          },
+          {
+            "close_pct": 18.6227,
+            "date": "2026-05-06",
+            "symbol": "AMD"
+          },
+          {
+            "close_pct": 18.4774,
+            "date": "2026-07-30",
+            "symbol": "MU"
+          }
+        ],
+        "negative_14_count": 143,
+        "next_open_scenarios": 270,
+        "nonmajor_warnings": 257,
+        "positive_14_count": 125,
+        "price_eligible_14": 268,
+        "price_scenarios_14": 270,
+        "prior5_weak_soxx": {
+          "down_at_least_5pct": {
+            "mean_to14_pp": -0.9362,
+            "warnings": 70
+          },
+          "other": {
+            "mean_to14_pp": 0.0301,
+            "warnings": 200
+          }
+        },
+        "signal_day_count": 38,
+        "stock_days": 2244,
+        "warnings": 270
+      }
+    },
+    "earlier": {
+      "down": {
+        "day_equal_mean_to14_pp": 0.583,
+        "earliest_major_warnings": [
+          {
+            "at": "2025-12-15T10:20:00-05:00",
+            "close_pct": -5.571,
+            "date": "2025-12-15",
+            "symbol": "AVGO"
+          },
+          {
+            "at": "2026-03-30T09:40:00-04:00",
+            "close_pct": -9.9457,
+            "date": "2026-03-30",
+            "symbol": "MU"
+          },
+          {
+            "at": "2026-03-30T09:40:00-04:00",
+            "close_pct": -7.0052,
+            "date": "2026-03-30",
+            "symbol": "SNDK"
+          },
+          {
+            "at": "2026-03-30T09:40:00-04:00",
+            "close_pct": -8.6439,
+            "date": "2026-03-30",
+            "symbol": "WDC"
+          },
+          {
+            "at": "2026-05-18T09:40:00-04:00",
+            "close_pct": -5.8568,
+            "date": "2026-05-18",
+            "symbol": "MU"
+          },
+          {
+            "at": "2026-05-18T09:40:00-04:00",
+            "close_pct": -5.3136,
+            "date": "2026-05-18",
+            "symbol": "SNDK"
+          },
+          {
+            "at": "2026-07-02T09:40:00-04:00",
+            "close_pct": -5.4323,
+            "date": "2026-07-02",
+            "symbol": "SOXX"
+          }
+        ],
+        "major_days": 160,
+        "major_hit_before_5pct": 20,
+        "major_hits": 20,
+        "major_hits_earlier_than_strict_or_not_detected_by_1030": 14,
+        "major_hits_no_strict_signal_by_1030": 5,
+        "major_missed": 140,
+        "mean_bounded_to14_pp": 0.7118,
+        "mean_bounded_to_nextopen_pp": 0.922,
+        "mean_to14_excluding_nov2_pp": 0.7118,
+        "median_bounded_to14_pp": 0.2788,
+        "missed_major_examples": [
+          {
+            "close_pct": -20.3335,
+            "date": "2025-11-20",
+            "symbol": "SNDK"
+          },
+          {
+            "close_pct": -17.3185,
+            "date": "2026-02-04",
+            "symbol": "AMD"
+          },
+          {
+            "close_pct": -17.044,
+            "date": "2026-01-23",
+            "symbol": "INTC"
+          },
+          {
+            "close_pct": -15.9749,
+            "date": "2026-02-04",
+            "symbol": "SNDK"
+          },
+          {
+            "close_pct": -14.7014,
+            "date": "2025-12-12",
+            "symbol": "SNDK"
+          },
+          {
+            "close_pct": -14.3332,
+            "date": "2026-07-28",
+            "symbol": "SNDK"
+          },
+          {
+            "close_pct": -13.9365,
+            "date": "2025-11-13",
+            "symbol": "SNDK"
+          }
+        ],
+        "negative_14_count": 98,
+        "next_open_scenarios": 211,
+        "nonmajor_warnings": 191,
+        "positive_14_count": 113,
+        "price_eligible_14": 211,
+        "price_scenarios_14": 211,
+        "signal_day_count": 29,
+        "stock_days": 1812,
+        "warnings": 211
+      },
+      "up": {
+        "day_equal_mean_to14_pp": -0.2753,
+        "earliest_major_warnings": [
+          {
+            "at": "2026-01-12T09:40:00-05:00",
+            "close_pct": 5.8477,
+            "date": "2026-01-12",
+            "symbol": "WDC"
+          },
+          {
+            "at": "2026-01-20T09:35:00-05:00",
+            "close_pct": 9.603,
+            "date": "2026-01-20",
+            "symbol": "SNDK"
+          },
+          {
+            "at": "2026-02-02T09:35:00-05:00",
+            "close_pct": 15.5789,
+            "date": "2026-02-02",
+            "symbol": "SNDK"
+          },
+          {
+            "at": "2026-02-02T09:35:00-05:00",
+            "close_pct": 7.9458,
+            "date": "2026-02-02",
+            "symbol": "WDC"
+          },
+          {
+            "at": "2026-02-02T09:40:00-05:00",
+            "close_pct": 5.5699,
+            "date": "2026-02-02",
+            "symbol": "MU"
+          },
+          {
+            "at": "2026-05-01T10:00:00-04:00",
+            "close_pct": 5.4709,
+            "date": "2026-05-01",
+            "symbol": "INTC"
+          },
+          {
+            "at": "2026-05-01T10:00:00-04:00",
+            "close_pct": 8.3564,
+            "date": "2026-05-01",
+            "symbol": "SNDK"
+          }
+        ],
+        "major_days": 231,
+        "major_hit_before_5pct": 11,
+        "major_hits": 12,
+        "major_hits_earlier_than_strict_or_not_detected_by_1030": null,
+        "major_hits_no_strict_signal_by_1030": null,
+        "major_missed": 219,
+        "mean_bounded_to14_pp": -0.1343,
+        "mean_bounded_to_nextopen_pp": 0.0402,
+        "mean_to14_excluding_nov2_pp": -0.1343,
+        "median_bounded_to14_pp": -0.0869,
+        "missed_major_examples": [
+          {
+            "close_pct": 27.5364,
+            "date": "2026-01-06",
+            "symbol": "SNDK"
+          },
+          {
+            "close_pct": 26.1478,
+            "date": "2026-07-30",
+            "symbol": "SNDK"
+          },
+          {
+            "close_pct": 23.5004,
+            "date": "2026-04-24",
+            "symbol": "INTC"
+          },
+          {
+            "close_pct": 21.6931,
+            "date": "2026-06-25",
+            "symbol": "SNDK"
+          },
+          {
+            "close_pct": 19.3383,
+            "date": "2026-05-26",
+            "symbol": "MU"
+          },
+          {
+            "close_pct": 18.6227,
+            "date": "2026-05-06",
+            "symbol": "AMD"
+          },
+          {
+            "close_pct": 18.4774,
+            "date": "2026-07-30",
+            "symbol": "MU"
+          }
+        ],
+        "negative_14_count": 122,
+        "next_open_scenarios": 230,
+        "nonmajor_warnings": 218,
+        "positive_14_count": 106,
+        "price_eligible_14": 228,
+        "price_scenarios_14": 230,
+        "signal_day_count": 32,
+        "stock_days": 1812,
+        "warnings": 230
+      }
+    },
+    "later": {
+      "down": {
+        "day_equal_mean_to14_pp": 0.5696,
+        "earliest_major_warnings": [
+          {
+            "at": "2026-11-02T09:40:00-05:00",
+            "close_pct": -7.6092,
+            "date": "2026-11-02",
+            "symbol": "AMD"
+          },
+          {
+            "at": "2026-11-02T09:40:00-05:00",
+            "close_pct": -8.9459,
+            "date": "2026-11-02",
+            "symbol": "INTC"
+          },
+          {
+            "at": "2026-11-02T09:40:00-05:00",
+            "close_pct": -5.8359,
+            "date": "2026-11-02",
+            "symbol": "MU"
+          },
+          {
+            "at": "2026-11-02T09:40:00-05:00",
+            "close_pct": -6.4624,
+            "date": "2026-11-02",
+            "symbol": "SNDK"
+          },
+          {
+            "at": "2026-11-02T09:40:00-05:00",
+            "close_pct": -7.4659,
+            "date": "2026-11-02",
+            "symbol": "WDC"
+          }
+        ],
+        "major_days": 49,
+        "major_hit_before_5pct": 5,
+        "major_hits": 5,
+        "major_hits_earlier_than_strict_or_not_detected_by_1030": 4,
+        "major_hits_no_strict_signal_by_1030": 3,
+        "major_missed": 44,
+        "mean_bounded_to14_pp": 0.5985,
+        "mean_bounded_to_nextopen_pp": 1.9929,
+        "mean_to14_excluding_nov2_pp": -0.1186,
+        "median_bounded_to14_pp": 0.2796,
+        "missed_major_examples": [
+          {
+            "close_pct": -28.497,
+            "date": "2026-10-30",
+            "symbol": "INTC"
+          },
+          {
+            "close_pct": -22.2474,
+            "date": "2026-11-05",
+            "symbol": "SNDK"
+          },
+          {
+            "close_pct": -17.6459,
+            "date": "2026-11-05",
+            "symbol": "AMD"
+          },
+          {
+            "close_pct": -17.3975,
+            "date": "2026-11-05",
+            "symbol": "WDC"
+          },
+          {
+            "close_pct": -17.2239,
+            "date": "2026-11-05",
+            "symbol": "MU"
+          },
+          {
+            "close_pct": -13.6082,
+            "date": "2026-10-30",
+            "symbol": "SNDK"
+          },
+          {
+            "close_pct": -12.9298,
+            "date": "2026-11-05",
+            "symbol": "SOXX"
+          }
+        ],
+        "negative_14_count": 15,
+        "next_open_scenarios": 31,
+        "nonmajor_warnings": 33,
+        "positive_14_count": 23,
+        "price_eligible_14": 38,
+        "price_scenarios_14": 38,
+        "signal_day_count": 5,
+        "stock_days": 432,
+        "warnings": 38
+      },
+      "up": {
+        "day_equal_mean_to14_pp": -0.8904,
+        "earliest_major_warnings": [
+          {
+            "at": "2026-09-22T09:35:00-04:00",
+            "close_pct": 6.793,
+            "date": "2026-09-22",
+            "symbol": "SNDK"
+          }
+        ],
+        "major_days": 23,
+        "major_hit_before_5pct": 1,
+        "major_hits": 1,
+        "major_hits_earlier_than_strict_or_not_detected_by_1030": null,
+        "major_hits_no_strict_signal_by_1030": null,
+        "major_missed": 22,
+        "mean_bounded_to14_pp": -0.7156,
+        "mean_bounded_to_nextopen_pp": -1.9383,
+        "mean_to14_excluding_nov2_pp": -0.7156,
+        "median_bounded_to14_pp": -0.0959,
+        "missed_major_examples": [
+          {
+            "close_pct": 12.1455,
+            "date": "2026-09-21",
+            "symbol": "INTC"
+          },
+          {
+            "close_pct": 11.8813,
+            "date": "2026-09-04",
+            "symbol": "SNDK"
+          },
+          {
+            "close_pct": 11.5575,
+            "date": "2026-11-06",
+            "symbol": "AMD"
+          },
+          {
+            "close_pct": 11.0531,
+            "date": "2026-09-18",
+            "symbol": "SNDK"
+          },
+          {
+            "close_pct": 9.921,
+            "date": "2026-09-21",
+            "symbol": "AMD"
+          },
+          {
+            "close_pct": 9.0075,
+            "date": "2026-09-08",
+            "symbol": "INTC"
+          },
+          {
+            "close_pct": 8.0215,
+            "date": "2026-11-06",
+            "symbol": "INTC"
+          }
+        ],
+        "negative_14_count": 21,
+        "next_open_scenarios": 40,
+        "nonmajor_warnings": 39,
+        "positive_14_count": 19,
+        "price_eligible_14": 40,
+        "price_scenarios_14": 40,
+        "signal_day_count": 6,
+        "stock_days": 432,
+        "warnings": 40
+      }
+    }
+  }
+}
