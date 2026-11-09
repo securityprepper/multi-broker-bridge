@@ -170,10 +170,12 @@ def eligible_discount_reentry(
     if not (t<REENTRY_END and local.weekday()<5):
         return False
     sold_local=sell_filled_at.astimezone(CHICAGO)
-    if not (sold_local.date()==local.date() and
-            sold_local.time().replace(tzinfo=None)<PREMARKET_END):
+    if not (trading_session_day(sell_filled_at)==trading_session_day(now) and
+            (sold_local.time().replace(tzinfo=None)<PREMARKET_END
+             or sold_local.time().replace(tzinfo=None)>=time(19,0))):
         return False
-    if not (MIN_REENTRY_DELAY<=now-sell_filled_at<=timedelta(hours=10)):
+    # Overnight Sunday 19:00 CT belongs to Monday's paper session.
+    if not (MIN_REENTRY_DELAY<=now-sell_filled_at<=timedelta(hours=16)):
         return False
     for x in (sell_filled_price,entry_filled_price,next_verified_ask):
         if not isinstance(x,Decimal) or not x.is_finite() or x<=0:
