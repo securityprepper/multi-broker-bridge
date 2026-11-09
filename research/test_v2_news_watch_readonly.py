@@ -66,7 +66,7 @@ class TestNewsReadOnly(unittest.TestCase):
                 self.assertEqual(x["orders_submitted"],0)
                 self.assertFalse(x["broker_order_permissions"])
                 self.assertEqual(x["new_articles"],1)
-                x=v.run(NOW,news_fetcher=lambda n,c:[article(20,"Company raises guidance")])
+                x=v.run(NOW,news_fetcher=lambda n,c:[article(20,"Company raises guidance")],holiday_checker=lambda now:True)
                 self.assertEqual(x["new_articles"],0)
     def test_paused_holiday_blocks_all_news_calls(self):
         with patch.dict("os.environ",{"V2_NEWS_WATCH_STATE":"/not/used.json"}):
