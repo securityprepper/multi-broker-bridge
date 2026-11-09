@@ -5,7 +5,7 @@ from research.v2_high_signal_entry_plan import Catalyst,Quote,PaperAccount,plan
 NOW=datetime(2026,11,9,15,0,tzinfo=timezone.utc)
 E=Catalyst("AMD","EARNINGS_RELEASE_CANDIDATE_UNVERIFIED",NOW-timedelta(seconds=35),
            NOW-timedelta(seconds=25),True,True)
-Q=Quote(NOW-timedelta(seconds=3),199.0,200.0,195.0,199.0,(1.0,1.5,2,1.7,2))
+Q=Quote(NOW-timedelta(seconds=3),199.2,200.0,195.0,199.0,(1.0,1.5,2,1.7,2))
 A=PaperAccount("PAPER-A","PAPER",NOW-timedelta(seconds=7),8000,stop_controller_verified=True)
 def doit(e=E,q=Q,a=A,now=NOW,session="RTH",validated=True):
     return plan(e,q,a,now,session,validated)
