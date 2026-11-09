@@ -90,6 +90,14 @@ def recent_price_spike(bars,now:datetime)->bool:
                if 0<=(cur.timestamp-prev.timestamp).total_seconds()<=90)
 
 
+def trading_session_day(now:datetime):
+    """Map Sunday 19:00 CT and following Monday morning to Monday session."""
+    local=now.astimezone(CHICAGO)
+    if local.time().replace(tzinfo=None)>=time(19,0):
+        return (local+timedelta(days=1)).date()
+    return local.date()
+
+
 def peak_trail_percent(*,steady_confirmed:bool)->Decimal:
     return STEADY_PEAK_TRAIL if steady_confirmed else DEFAULT_PEAK_TRAIL
 
@@ -106,24 +114,37 @@ def quoted_return(entry:Decimal,bid:Decimal)->Decimal:
     return (bid-entry)/entry
 
 
-def premarket_sell_decision(now:datetime,entry:Decimal,bid:Decimal,reason:str)->str:
-    """Only profit-taking on a reversal, or an emergency stop.
+def premarket_sell_decision(
+    now:datetime,entry:Decimal,bid:Decimal,reason:str,
+    *,peak:Decimal|None=None,steady_confirmed:bool=False
+)->str:
+    """Validate an actual fresh broker bid against software PAPER exits.
 
-    A normal one-minute down-candle, a +1% target, or small fluctuations
-    cannot force an early sale. The emergency exception remains essential
-    to avoid unlimited loss exposure in leveraged/volatile instruments.
+    The one-minute monitor may propose a sell using completed traded bars.
+    Never treat its close or minute-low alone as an executable stop price.
+    Broker-native trailing orders do not work in extended hours. Here a
+    verified bid may trigger an eligible DAY limit sell; no fill guaranteed.
     """
     if not is_early_market(now):
         return "NOT_PREMARKET"
     gain=quoted_return(entry,bid)
     if gain<=EMERGENCY_LOSS:
         return "EMERGENCY_DOWNSIDE_EXIT"
-    if (gain>=SUBSTANTIAL_PROFIT
-            and reason in ("premarket substantial profit reversal",
-                           "premarket confirmed trailing profit reversal")):
+    if peak is None or not isinstance(peak,Decimal) or not peak.is_finite() or peak<entry:
+        return "PEAK_NOT_VERIFIED"
+    if reason=="premarket steady peak trailing stop":
+        if steady_confirmed and (bid/peak-1)<=-STEADY_PEAK_TRAIL:
+            return "TRAILING_STOP_SOFTWARE"
+        return "HOLD_FOR_TREND"
+    if reason=="premarket standard peak trailing stop":
+        if not steady_confirmed and (bid/peak-1)<=-DEFAULT_PEAK_TRAIL:
+            return "TRAILING_STOP_SOFTWARE"
+        return "HOLD_FOR_TREND"
+    if (gain>=SUBSTANTIAL_PROFIT and not steady_confirmed and
+            reason in ("premarket substantial profit reversal",
+                       "premarket confirmed trailing profit reversal")):
         return "SUBSTANTIAL_PROFIT_TAKE"
     return "HOLD_FOR_TREND"
-
 
 def eligible_discount_reentry(
     now:datetime,*,sell_filled_at:datetime,
