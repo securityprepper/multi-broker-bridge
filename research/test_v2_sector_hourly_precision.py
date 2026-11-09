@@ -29,5 +29,3 @@ class SectorResearchTests(unittest.TestCase):
   self.assertIsNone(summarize([])["precision"])
 if __name__=="__main__":
  unittest.main()
-
-[executed on device: www3.securityprepper.com (1016f4a4-5f2e-452e-8c88-0e4b9430d76e)]
