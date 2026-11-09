@@ -1,0 +1,143 @@
+{
+  "data": "Split-adjusted 5m SIP OHLC; no full BOATS, NBBO depth or V1 fills",
+  "date_start": "2025-11-07",
+  "date_end": "2026-11-06",
+  "full_stock_day_records": 2244,
+  "with_completed_prior5_soxx": 2148,
+  "excluded_missing_completed_prior5_soxx": 96,
+  "reports": {
+    "all": {
+      "all": {
+        "stock_days": 2148,
+        "major_down_days": 206,
+        "preopen_warnings": 201,
+        "major_down_detected": 79,
+        "major_down_missed": 127,
+        "nonmajor_warnings": 122,
+        "major_detected_before_minus5": 48,
+        "observed_first_after_alert_and_rth_open": 200,
+        "mean_preopen_price_mark_vs_rth_open_pp": -0.4403,
+        "improved_vs_open": 97,
+        "worse_vs_open": 103,
+        "earliest_warning": "2025-11-18T08:00:00-05:00"
+      },
+      "weak": {
+        "stock_days": 423,
+        "major_down_days": 44,
+        "preopen_warnings": 62,
+        "major_down_detected": 15,
+        "major_down_missed": 29,
+        "nonmajor_warnings": 47,
+        "major_detected_before_minus5": 14,
+        "observed_first_after_alert_and_rth_open": 62,
+        "mean_preopen_price_mark_vs_rth_open_pp": -2.3674,
+        "improved_vs_open": 19,
+        "worse_vs_open": 43,
+        "earliest_warning": "2025-11-18T08:00:00-05:00"
+      },
+      "not_weak": {
+        "stock_days": 1725,
+        "major_down_days": 162,
+        "preopen_warnings": 139,
+        "major_down_detected": 64,
+        "major_down_missed": 98,
+        "nonmajor_warnings": 75,
+        "major_detected_before_minus5": 34,
+        "observed_first_after_alert_and_rth_open": 138,
+        "mean_preopen_price_mark_vs_rth_open_pp": 0.4255,
+        "improved_vs_open": 78,
+        "worse_vs_open": 60,
+        "earliest_warning": "2025-11-24T18:10:00-05:00"
+      }
+    },
+    "earlier": {
+      "all": {
+        "stock_days": 1716,
+        "major_down_days": 157,
+        "preopen_warnings": 164,
+        "major_down_detected": 61,
+        "major_down_missed": 96,
+        "nonmajor_warnings": 103,
+        "major_detected_before_minus5": 32,
+        "observed_first_after_alert_and_rth_open": 163,
+        "mean_preopen_price_mark_vs_rth_open_pp": -0.6559,
+        "improved_vs_open": 73,
+        "worse_vs_open": 90,
+        "earliest_warning": "2025-11-18T08:00:00-05:00"
+      },
+      "weak": {
+        "stock_days": 297,
+        "major_down_days": 25,
+        "preopen_warnings": 43,
+        "major_down_detected": 7,
+        "major_down_missed": 18,
+        "nonmajor_warnings": 36,
+        "major_detected_before_minus5": 7,
+        "observed_first_after_alert_and_rth_open": 43,
+        "mean_preopen_price_mark_vs_rth_open_pp": -3.2559,
+        "improved_vs_open": 6,
+        "worse_vs_open": 37,
+        "earliest_warning": "2025-11-18T08:00:00-05:00"
+      },
+      "not_weak": {
+        "stock_days": 1419,
+        "major_down_days": 132,
+        "preopen_warnings": 121,
+        "major_down_detected": 54,
+        "major_down_missed": 78,
+        "nonmajor_warnings": 67,
+        "major_detected_before_minus5": 25,
+        "observed_first_after_alert_and_rth_open": 120,
+        "mean_preopen_price_mark_vs_rth_open_pp": 0.2758,
+        "improved_vs_open": 67,
+        "worse_vs_open": 53,
+        "earliest_warning": "2025-11-24T18:10:00-05:00"
+      }
+    },
+    "later": {
+      "all": {
+        "stock_days": 432,
+        "major_down_days": 49,
+        "preopen_warnings": 37,
+        "major_down_detected": 18,
+        "major_down_missed": 31,
+        "nonmajor_warnings": 19,
+        "major_detected_before_minus5": 16,
+        "observed_first_after_alert_and_rth_open": 37,
+        "mean_preopen_price_mark_vs_rth_open_pp": 0.5095,
+        "improved_vs_open": 24,
+        "worse_vs_open": 13,
+        "earliest_warning": "2026-09-02T16:20:00-04:00"
+      },
+      "weak": {
+        "stock_days": 126,
+        "major_down_days": 19,
+        "preopen_warnings": 19,
+        "major_down_detected": 8,
+        "major_down_missed": 11,
+        "nonmajor_warnings": 11,
+        "major_detected_before_minus5": 7,
+        "observed_first_after_alert_and_rth_open": 19,
+        "mean_preopen_price_mark_vs_rth_open_pp": -0.3567,
+        "improved_vs_open": 13,
+        "worse_vs_open": 6,
+        "earliest_warning": "2026-10-13T07:05:00-04:00"
+      },
+      "not_weak": {
+        "stock_days": 306,
+        "major_down_days": 30,
+        "preopen_warnings": 18,
+        "major_down_detected": 10,
+        "major_down_missed": 20,
+        "nonmajor_warnings": 8,
+        "major_detected_before_minus5": 9,
+        "observed_first_after_alert_and_rth_open": 18,
+        "mean_preopen_price_mark_vs_rth_open_pp": 1.4238,
+        "improved_vs_open": 11,
+        "worse_vs_open": 7,
+        "earliest_warning": "2026-09-02T16:20:00-04:00"
+      }
+    }
+  },
+  "interpretation": "Premarket signals use previous regular close, completed 5m bars, and 15-minute momentum. Actual next bar and regular open are future evaluations only; price marks are not executable sales."
+}
