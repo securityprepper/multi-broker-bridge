@@ -11,6 +11,8 @@ from decimal import Decimal
 from zoneinfo import ZoneInfo
 import json
 from .premarket_historical_replay import bars
+from .trend import Bar as LiveBar
+from .premarket_policy import sustained_trend_shape,recent_price_spike
 CT=ZoneInfo("America/Chicago")
 DAY=(2026,11,9)
 OPEN=datetime(*DAY,8,30,tzinfo=CT)
@@ -97,6 +99,31 @@ def trend_metrics(rows:list[dict],start:datetime,end:datetime)->dict:
             "first_close":rounded(chosen[0]["close"]),
             "last_close":rounded(chosen[-1]["close"])}
 
+def classification_replay(records):
+    typed=[LiveBar("AMD",b["dt"],b["high"],b["low"],b["close"])
+           for b in records]
+    started=[]
+    is_steady=False
+    at_points={}
+    for b in typed:
+        now=b.timestamp+timedelta(minutes=1,seconds=40)
+        if not is_steady and sustained_trend_shape(typed,now):
+            is_steady=True
+            started.append(now.strftime("%H:%M"))
+        if now.strftime("%H:%M") in ("03:18","04:00","06:00","06:36",
+                                     "07:06","07:16","07:20","07:21",
+                                     "07:35","07:38","08:29"):
+            at_points[now.strftime("%H:%M")]={
+                "steady_confirmed_ever":is_steady,
+                "steady_now":sustained_trend_shape(typed,now),
+                "spike_recent":recent_price_spike(typed,now),
+            }
+        # The typed list includes future data but the policy filters by
+        # timestamp so neither later bars nor next-day outcomes leak.
+    return {"first_steady_time_ct":started[0] if started else None,
+            "times":at_points}
+
+
 def main():
     amd=bars("AMD")
     rba=bars("RBA")
@@ -140,6 +167,11 @@ def main():
             "AMD_0720_0750":trend_metrics(amd,clock(7,20),clock(7,50)),
             "SNDK_0300_TO_OPEN":trend_metrics(sndk,START,OPEN),
             "RBA_0830_0900":trend_metrics(rba,OPEN,clock(9,0)),
+        },
+        "classification_examples":{
+            "AMD":classification_replay(amd),
+            "SNDK":classification_replay(sndk),
+            "RBA":classification_replay(rba),
         },
         "fills_and_trails":checks,
         "all_trailing_outcomes":"Minute-low threshold crossings only; executable bid/ask, real slippage and fill timing NOT available",
