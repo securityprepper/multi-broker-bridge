@@ -6,6 +6,7 @@ from zoneinfo import ZoneInfo
 from research.v2_evening_next_open_gap import (
     ET, compute_rows, index_bars, parse_bar, previous_five_return,
     snapshot_bar, strict_overlap_at, summarize, warning,
+    independent_day_diagnostics,
 )
 
 def bar(close, vol=10):
@@ -83,6 +84,26 @@ class AsOfEveningTests(unittest.TestCase):
         self.assertNotEqual(before["next_open_gap_outcome_only"],after["next_open_gap_outcome_only"])
         self.assertEqual(before["warnings"]["17:00"]["asof"],
                          "2026-01-06T17:00:00-05:00")
+
+    def test_independent_date_bootstrap_is_deterministic(self):
+        def row(day, symbol, gap, score):
+            return {
+                "next_session":day, "symbol":symbol,
+                "next_open_gap_outcome_only":gap,
+                "warnings":{"19:00":{"asof":day+"T19:00:00-05:00",
+                   "direction":"DOWN",
+                   "estimated_advantage_vs_next_open_pp_outcome_only":score}},
+            }
+        example=[row("2026-01-06","AMD",-8,3),
+                 row("2026-01-06","MU",-6,1),
+                 row("2026-01-07","AMD",2,-3)]
+        first=independent_day_diagnostics(example,n_bootstrap=200)
+        second=independent_day_diagnostics(example,n_bootstrap=200)
+        self.assertEqual(first,second)
+        self.assertEqual(first["down"]["independent_warned_sessions"],2)
+        self.assertEqual(first["down"]["independent_severe_gap_sessions"],1)
+        self.assertEqual(first["down"]["severe_gap_sessions_caught"],1)
+        self.assertEqual(first["down"]["day_equal_mean_proxy_pp"],-0.5)
 
     def test_earliest_alarm_and_nonmajor_accounting(self):
         rows=[{"next_open_gap_outcome_only":-7,

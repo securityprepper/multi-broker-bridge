@@ -125,5 +125,31 @@
       "first_true_warning": "2025-11-11T17:00:00-05:00 AMD"
     }
   },
-  "previous_five_available_stockdays": 2232
+  "previous_five_available_stockdays": 2232,
+  "independent_session_diagnostics": {
+    "down": {
+      "independent_warned_sessions": 23,
+      "independent_severe_gap_sessions": 34,
+      "severe_gap_sessions_caught": 12,
+      "day_equal_mean_proxy_pp": 0.2898,
+      "naive_independent_session_bootstrap95_pp": [
+        -1.6268,
+        2.1465
+      ],
+      "bootstrap_draws": 5000,
+      "bootstrap_seed": 20261109
+    },
+    "up": {
+      "independent_warned_sessions": 37,
+      "independent_severe_gap_sessions": 45,
+      "severe_gap_sessions_caught": 16,
+      "day_equal_mean_proxy_pp": -0.3629,
+      "naive_independent_session_bootstrap95_pp": [
+        -1.6949,
+        0.893
+      ],
+      "bootstrap_draws": 5000,
+      "bootstrap_seed": 20261109
+    }
+  }
 }

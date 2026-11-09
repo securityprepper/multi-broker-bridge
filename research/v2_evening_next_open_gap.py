@@ -14,6 +14,7 @@ from zoneinfo import ZoneInfo
 import json
 from pathlib import Path
 from statistics import mean
+from random import Random
 
 ET = ZoneInfo("America/New_York")
 CLOCKS = (time(17), time(19))
@@ -255,6 +256,54 @@ def summarize(rows):
     return out
 
 
+
+def independent_day_diagnostics(rows, n_bootstrap=5000, seed=20261109):
+    """Outcome-only resampling of independent next-RTH dates, not instruments.
+
+    Bootstrap assumes independent calendar dates and does NOT address serial
+    dependence, price/quote fill uncertainty, or strategy selection.
+    """
+    output = {}
+    for direction, sign in (("DOWN", -1), ("UP", 1)):
+        byday = defaultdict(list)
+        severe_days = set()
+        captured_days = set()
+        for r in rows:
+            gap = r["next_open_gap_outcome_only"]
+            if gap is None:
+                continue
+            if gap * sign >= 5:
+                severe_days.add(r["next_session"])
+            alarms = [w for w in r["warnings"].values()
+                      if w["direction"] == direction]
+            if not alarms:
+                continue
+            first = min(alarms, key=lambda w: w["asof"])
+            if gap * sign >= 5:
+                captured_days.add(r["next_session"])
+            if first["estimated_advantage_vs_next_open_pp_outcome_only"] is not None:
+                byday[r["next_session"]].append(
+                    first["estimated_advantage_vs_next_open_pp_outcome_only"])
+        day_scores = [mean(vals) for _, vals in sorted(byday.items())]
+        if day_scores:
+            rng = Random(seed)
+            boot = sorted(mean(rng.choices(day_scores, k=len(day_scores)))
+                          for _ in range(n_bootstrap))
+            ci = [round(boot[int(n_bootstrap*0.025)], 4),
+                  round(boot[int(n_bootstrap*0.975)-1], 4)]
+        else:
+            ci = None
+        output[direction.lower()] = {
+            "independent_warned_sessions": len(day_scores),
+            "independent_severe_gap_sessions": len(severe_days),
+            "severe_gap_sessions_caught": len(captured_days),
+            "day_equal_mean_proxy_pp": round(mean(day_scores), 4) if day_scores else None,
+            "naive_independent_session_bootstrap95_pp": ci,
+            "bootstrap_draws": n_bootstrap, "bootstrap_seed": seed,
+        }
+    return output
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--main-input",default="/tmp/semis_52wk_5min_sip_adjusted.json")
@@ -276,6 +325,7 @@ def main():
     if {(r["next_session"],r["symbol"]) for r in rows} != baseline:
         raise ValueError("incomplete baseline intersection")
     summary=summarize(rows)
+    summary["independent_session_diagnostics"] = independent_day_diagnostics(rows)
     Path(a.results).write_text(json.dumps(summary,indent=2)+"\n")
     Path(a.audit).write_text(json.dumps(rows,indent=2)+"\n")
     print(json.dumps(summary,indent=2))

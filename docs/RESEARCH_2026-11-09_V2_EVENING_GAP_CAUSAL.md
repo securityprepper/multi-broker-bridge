@@ -34,6 +34,17 @@ The important chronological instability: at **19:00 ET**, mean DOWN early-sale b
 
 Material misses include the **June 23, 2026** severe next-opening declines in SNDK (-11.70%), MU (-10.84%), WDC (-9.15%) and INTC (-7.92%) with **no preceding-evening signal** in this candidate. These remained potentially detectable by a separate next-morning premarket system, but did not receive an advance warning from this fixed evening hypothesis. Prior research's after-the-open 209/209 severe-close hindsight coverage must never be presented as preceding-evening or avoidable-gap protection.
 
+## Independence and uncertainty check
+
+Stock-level signals cluster on common semiconductor dates, so counting 79 or 123 names as independent trades can overstate confidence. The same earliest-warning outcomes averaged **equally by independent next-session date** yield:
+
+| Direction | Distinct warning sessions | Distinct >=5% gap sessions detected | Day-equal proxy advantage | Naive 95% date-bootstrap interval |
+|---|---:|---:|---:|---:|
+| Early sell | 23 | 12 / 34 down-gap sessions | **+0.290pp** | **[-1.627, +2.147]pp** |
+| Early buy | 37 | 16 / 45 up-gap sessions | **-0.363pp** | **[-1.695, +0.893]pp** |
+
+The event-weighted **down -0.451pp / up +0.386pp** results therefore change sign when measured by trading dates. These intervals use 5,000 deterministic resamples of dates; they **do not** correct serial time dependence, parameter search, missing quotes, or selection after observing outcomes. Both intervals include zero. Neither direction demonstrates robust executable edge.
+
 ## Why this changes research priorities
 
 This demonstrates a practical failure mode: symmetric, causal evening-bar momentum explains some overnight gaps but **cannot provide reliable prior-evening risk control** with these two snapshots. Increasing 19:00 coverage over 17:00 also raises false warnings and the benefit of selling reverses across chronological cohorts. Immediate WATCH remains separate from any trading recommendation.
@@ -49,4 +60,4 @@ python3 -m research.v2_evening_next_open_gap --results /tmp/v2-evening-summary.j
 python3 -m unittest discover -s research -p 'test_*.py' -q
 ```
 
-**198 offline tests passed** on an isolated copy of the earlier V2 research scratch tree (188 existing + 10 new deterministic tests). Output rows and summary were written under `/tmp/v2-run14-evening-gap/`; only new source, tests, JSON summary and this report are intended for the canonical research branch. No new broker permission or host trading action is authorized.
+**199 offline tests passed** on an isolated copy of the earlier V2 research scratch tree (188 existing + 11 new deterministic tests). Output rows and summary were written under `/tmp/v2-run14-evening-gap/`; only new source, tests, JSON summary and this report are intended for the canonical research branch. No new broker permission or host trading action is authorized.
