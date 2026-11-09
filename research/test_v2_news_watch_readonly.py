@@ -62,12 +62,21 @@ class TestNewsReadOnly(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             p=Path(d)/"current.json"
             with patch.dict("os.environ",{"V2_NEWS_WATCH_STATE":str(p)}):
-                x=v.run(NOW,news_fetcher=lambda n,c:[article(20,"Company raises guidance")])
+                x=v.run(NOW,news_fetcher=lambda n,c:[article(20,"Company raises guidance")],holiday_checker=lambda now:True)
                 self.assertEqual(x["orders_submitted"],0)
                 self.assertFalse(x["broker_order_permissions"])
                 self.assertEqual(x["new_articles"],1)
                 x=v.run(NOW,news_fetcher=lambda n,c:[article(20,"Company raises guidance")])
                 self.assertEqual(x["new_articles"],0)
+    def test_paused_holiday_blocks_all_news_calls(self):
+        with patch.dict("os.environ",{"V2_NEWS_WATCH_STATE":"/not/used.json"}):
+            x=v.run(NOW,news_fetcher=lambda n,c: (_ for _ in ()).throw(AssertionError("news was fetched")),
+                    holiday_checker=lambda now:False)
+        self.assertEqual(x["market_data_requests"],0)
+        self.assertEqual(x["status"],"HOLIDAY_PAUSED_NO_NEWS_POLL")
+    def test_unverified_holiday_fails_closed(self):
+        with self.assertRaises(ValueError):
+            v.run(NOW,news_fetcher=lambda n,c:[],holiday_checker=lambda now: (_ for _ in ()).throw(ValueError("unknown gate")))
     def test_no_invented_executions(self):
         self.assertFalse(hasattr(v,"place_order"))
         self.assertFalse(hasattr(v,"submit_order"))
