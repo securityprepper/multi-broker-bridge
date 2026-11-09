@@ -1,0 +1,654 @@
+{
+  "data_limitations": "No actual SIP/BOATS NBBO, futures/news, V1 fills, other-sector sample.",
+  "downside": {
+    "alternatives": {
+      "open_1p0": {
+        "added_misses": [
+          {
+            "at": "2025-11-20T09:50:00-05:00",
+            "before_already_minus5": true,
+            "close_pct": -7.8196,
+            "day": "2025-11-20",
+            "own_from_open_pct": -1.4232,
+            "symbol": "AMD"
+          },
+          {
+            "at": "2025-12-17T09:45:00-05:00",
+            "before_already_minus5": true,
+            "close_pct": -5.2239,
+            "day": "2025-12-17",
+            "own_from_open_pct": -1.3802,
+            "symbol": "AMD"
+          },
+          {
+            "at": "2026-05-29T09:45:00-04:00",
+            "before_already_minus5": true,
+            "close_pct": -5.115,
+            "day": "2026-05-29",
+            "own_from_open_pct": -1.9621,
+            "symbol": "INTC"
+          },
+          {
+            "at": "2026-06-16T10:05:00-04:00",
+            "before_already_minus5": true,
+            "close_pct": -6.1565,
+            "day": "2026-06-16",
+            "own_from_open_pct": -1.0421,
+            "symbol": "MU"
+          },
+          {
+            "at": "2026-06-16T10:00:00-04:00",
+            "before_already_minus5": true,
+            "close_pct": -5.5024,
+            "day": "2026-06-16",
+            "own_from_open_pct": -1.3485,
+            "symbol": "SNDK"
+          },
+          {
+            "at": "2025-11-20T09:35:00-05:00",
+            "before_already_minus5": true,
+            "close_pct": -8.912,
+            "day": "2025-11-20",
+            "own_from_open_pct": -1.4309,
+            "symbol": "WDC"
+          }
+        ],
+        "incremental_nonmajor_to_union": 372,
+        "new_before_already_down5": 101,
+        "new_earlier_than_union_for_major": 29,
+        "new_earliest_major_warning": "2025-11-13T09:35:00-05:00",
+        "new_major_hits": 169,
+        "new_nonmajor": 857,
+        "new_on_major_winner": 48,
+        "new_warnings": 1026,
+        "periods": {
+          "earlier": {
+            "major_hits": 136,
+            "major_mean_sale_benefit_pp": 2.5781,
+            "mean_sell_vs_nextopen_pp": -0.171,
+            "nonmajor": 711,
+            "nonmajor_mean_sale_benefit_pp": -0.6969,
+            "price_eligible_proxy": 837,
+            "price_scorable": 847,
+            "warnings": 847
+          },
+          "later": {
+            "major_hits": 33,
+            "major_mean_sale_benefit_pp": 1.7669,
+            "mean_sell_vs_nextopen_pp": 0.6724,
+            "nonmajor": 146,
+            "nonmajor_mean_sale_benefit_pp": 0.4125,
+            "price_eligible_proxy": 172,
+            "price_scorable": 172,
+            "warnings": 179
+          }
+        },
+        "previous_union_miss_before_down5": 6,
+        "previous_union_miss_newly_detected": 6,
+        "union_major_hits": 206,
+        "union_major_misses": 3,
+        "union_nonmajor": 1178
+      },
+      "open_1p0_soxx": {
+        "added_misses": [
+          {
+            "at": "2025-11-20T09:50:00-05:00",
+            "before_already_minus5": true,
+            "close_pct": -7.8196,
+            "day": "2025-11-20",
+            "own_from_open_pct": -1.4232,
+            "symbol": "AMD"
+          },
+          {
+            "at": "2025-12-17T09:45:00-05:00",
+            "before_already_minus5": true,
+            "close_pct": -5.2239,
+            "day": "2025-12-17",
+            "own_from_open_pct": -1.3802,
+            "symbol": "AMD"
+          },
+          {
+            "at": "2026-05-29T10:25:00-04:00",
+            "before_already_minus5": true,
+            "close_pct": -5.115,
+            "day": "2026-05-29",
+            "own_from_open_pct": -2.8825,
+            "symbol": "INTC"
+          },
+          {
+            "at": "2026-06-16T10:20:00-04:00",
+            "before_already_minus5": true,
+            "close_pct": -6.1565,
+            "day": "2026-06-16",
+            "own_from_open_pct": -1.8909,
+            "symbol": "MU"
+          },
+          {
+            "at": "2026-06-16T10:20:00-04:00",
+            "before_already_minus5": true,
+            "close_pct": -5.5024,
+            "day": "2026-06-16",
+            "own_from_open_pct": -2.101,
+            "symbol": "SNDK"
+          },
+          {
+            "at": "2025-11-20T09:45:00-05:00",
+            "before_already_minus5": true,
+            "close_pct": -8.912,
+            "day": "2025-11-20",
+            "own_from_open_pct": -2.9357,
+            "symbol": "WDC"
+          }
+        ],
+        "incremental_nonmajor_to_union": 258,
+        "new_before_already_down5": 89,
+        "new_earlier_than_union_for_major": 24,
+        "new_earliest_major_warning": "2025-11-13T09:40:00-05:00",
+        "new_major_hits": 158,
+        "new_nonmajor": 699,
+        "new_on_major_winner": 39,
+        "new_warnings": 857,
+        "periods": {
+          "earlier": {
+            "major_hits": 128,
+            "major_mean_sale_benefit_pp": 2.4734,
+            "mean_sell_vs_nextopen_pp": -0.1488,
+            "nonmajor": 578,
+            "nonmajor_mean_sale_benefit_pp": -0.7295,
+            "price_eligible_proxy": 699,
+            "price_scorable": 706,
+            "warnings": 706
+          },
+          "later": {
+            "major_hits": 30,
+            "major_mean_sale_benefit_pp": 1.8653,
+            "mean_sell_vs_nextopen_pp": 0.6985,
+            "nonmajor": 121,
+            "nonmajor_mean_sale_benefit_pp": 0.3915,
+            "price_eligible_proxy": 144,
+            "price_scorable": 144,
+            "warnings": 151
+          }
+        },
+        "previous_union_miss_before_down5": 6,
+        "previous_union_miss_newly_detected": 6,
+        "union_major_hits": 206,
+        "union_major_misses": 3,
+        "union_nonmajor": 1064
+      },
+      "open_1p5": {
+        "added_misses": [
+          {
+            "at": "2025-11-20T10:10:00-05:00",
+            "before_already_minus5": true,
+            "close_pct": -7.8196,
+            "day": "2025-11-20",
+            "own_from_open_pct": -1.8575,
+            "symbol": "AMD"
+          },
+          {
+            "at": "2025-12-17T10:10:00-05:00",
+            "before_already_minus5": true,
+            "close_pct": -5.2239,
+            "day": "2025-12-17",
+            "own_from_open_pct": -1.5968,
+            "symbol": "AMD"
+          },
+          {
+            "at": "2026-05-29T09:45:00-04:00",
+            "before_already_minus5": true,
+            "close_pct": -5.115,
+            "day": "2026-05-29",
+            "own_from_open_pct": -1.9621,
+            "symbol": "INTC"
+          },
+          {
+            "at": "2026-06-16T10:20:00-04:00",
+            "before_already_minus5": true,
+            "close_pct": -6.1565,
+            "day": "2026-06-16",
+            "own_from_open_pct": -1.8909,
+            "symbol": "MU"
+          },
+          {
+            "at": "2026-06-16T10:20:00-04:00",
+            "before_already_minus5": true,
+            "close_pct": -5.5024,
+            "day": "2026-06-16",
+            "own_from_open_pct": -2.101,
+            "symbol": "SNDK"
+          },
+          {
+            "at": "2025-11-20T09:40:00-05:00",
+            "before_already_minus5": true,
+            "close_pct": -8.912,
+            "day": "2025-11-20",
+            "own_from_open_pct": -2.271,
+            "symbol": "WDC"
+          }
+        ],
+        "incremental_nonmajor_to_union": 226,
+        "new_before_already_down5": 80,
+        "new_earlier_than_union_for_major": 20,
+        "new_earliest_major_warning": "2025-11-13T09:35:00-05:00",
+        "new_major_hits": 148,
+        "new_nonmajor": 618,
+        "new_on_major_winner": 34,
+        "new_warnings": 766,
+        "periods": {
+          "earlier": {
+            "major_hits": 124,
+            "major_mean_sale_benefit_pp": 2.252,
+            "mean_sell_vs_nextopen_pp": -0.1021,
+            "nonmajor": 530,
+            "nonmajor_mean_sale_benefit_pp": -0.6528,
+            "price_eligible_proxy": 645,
+            "price_scorable": 654,
+            "warnings": 654
+          },
+          "later": {
+            "major_hits": 24,
+            "major_mean_sale_benefit_pp": 1.7063,
+            "mean_sell_vs_nextopen_pp": 0.6333,
+            "nonmajor": 88,
+            "nonmajor_mean_sale_benefit_pp": 0.3154,
+            "price_eligible_proxy": 105,
+            "price_scorable": 105,
+            "warnings": 112
+          }
+        },
+        "previous_union_miss_before_down5": 6,
+        "previous_union_miss_newly_detected": 6,
+        "union_major_hits": 206,
+        "union_major_misses": 3,
+        "union_nonmajor": 1032
+      },
+      "open_1p5_soxx": {
+        "added_misses": [
+          {
+            "at": "2025-12-17T10:10:00-05:00",
+            "before_already_minus5": true,
+            "close_pct": -5.2239,
+            "day": "2025-12-17",
+            "own_from_open_pct": -1.5968,
+            "symbol": "AMD"
+          },
+          {
+            "at": "2026-05-29T10:25:00-04:00",
+            "before_already_minus5": true,
+            "close_pct": -5.115,
+            "day": "2026-05-29",
+            "own_from_open_pct": -2.8825,
+            "symbol": "INTC"
+          },
+          {
+            "at": "2026-06-16T10:20:00-04:00",
+            "before_already_minus5": true,
+            "close_pct": -6.1565,
+            "day": "2026-06-16",
+            "own_from_open_pct": -1.8909,
+            "symbol": "MU"
+          },
+          {
+            "at": "2026-06-16T10:20:00-04:00",
+            "before_already_minus5": true,
+            "close_pct": -5.5024,
+            "day": "2026-06-16",
+            "own_from_open_pct": -2.101,
+            "symbol": "SNDK"
+          },
+          {
+            "at": "2025-11-20T09:45:00-05:00",
+            "before_already_minus5": true,
+            "close_pct": -8.912,
+            "day": "2025-11-20",
+            "own_from_open_pct": -2.9357,
+            "symbol": "WDC"
+          }
+        ],
+        "incremental_nonmajor_to_union": 151,
+        "new_before_already_down5": 73,
+        "new_earlier_than_union_for_major": 17,
+        "new_earliest_major_warning": "2025-11-13T09:40:00-05:00",
+        "new_major_hits": 138,
+        "new_nonmajor": 506,
+        "new_on_major_winner": 27,
+        "new_warnings": 644,
+        "periods": {
+          "earlier": {
+            "major_hits": 116,
+            "major_mean_sale_benefit_pp": 2.1357,
+            "mean_sell_vs_nextopen_pp": -0.0241,
+            "nonmajor": 436,
+            "nonmajor_mean_sale_benefit_pp": -0.5988,
+            "price_eligible_proxy": 546,
+            "price_scorable": 552,
+            "warnings": 552
+          },
+          "later": {
+            "major_hits": 22,
+            "major_mean_sale_benefit_pp": 1.7345,
+            "mean_sell_vs_nextopen_pp": 0.6531,
+            "nonmajor": 70,
+            "nonmajor_mean_sale_benefit_pp": 0.2754,
+            "price_eligible_proxy": 85,
+            "price_scorable": 85,
+            "warnings": 92
+          }
+        },
+        "previous_union_miss_before_down5": 5,
+        "previous_union_miss_newly_detected": 5,
+        "union_major_hits": 205,
+        "union_major_misses": 4,
+        "union_nonmajor": 957
+      },
+      "open_2p5": {
+        "added_misses": [
+          {
+            "at": "2026-05-29T10:25:00-04:00",
+            "before_already_minus5": true,
+            "close_pct": -5.115,
+            "day": "2026-05-29",
+            "own_from_open_pct": -2.8825,
+            "symbol": "INTC"
+          },
+          {
+            "at": "2026-06-16T10:30:00-04:00",
+            "before_already_minus5": true,
+            "close_pct": -6.1565,
+            "day": "2026-06-16",
+            "own_from_open_pct": -2.6079,
+            "symbol": "MU"
+          },
+          {
+            "at": "2026-06-16T10:25:00-04:00",
+            "before_already_minus5": true,
+            "close_pct": -5.5024,
+            "day": "2026-06-16",
+            "own_from_open_pct": -2.5023,
+            "symbol": "SNDK"
+          },
+          {
+            "at": "2025-11-20T09:45:00-05:00",
+            "before_already_minus5": true,
+            "close_pct": -8.912,
+            "day": "2025-11-20",
+            "own_from_open_pct": -2.9357,
+            "symbol": "WDC"
+          }
+        ],
+        "incremental_nonmajor_to_union": 72,
+        "new_before_already_down5": 55,
+        "new_earlier_than_union_for_major": 11,
+        "new_earliest_major_warning": "2025-11-13T09:40:00-05:00",
+        "new_major_hits": 115,
+        "new_nonmajor": 294,
+        "new_on_major_winner": 13,
+        "new_warnings": 409,
+        "periods": {
+          "earlier": {
+            "major_hits": 97,
+            "major_mean_sale_benefit_pp": 2.1069,
+            "mean_sell_vs_nextopen_pp": 0.113,
+            "nonmajor": 265,
+            "nonmajor_mean_sale_benefit_pp": -0.6169,
+            "price_eligible_proxy": 355,
+            "price_scorable": 362,
+            "warnings": 362
+          },
+          "later": {
+            "major_hits": 18,
+            "major_mean_sale_benefit_pp": 0.3228,
+            "mean_sell_vs_nextopen_pp": -0.1738,
+            "nonmajor": 29,
+            "nonmajor_mean_sale_benefit_pp": -0.5462,
+            "price_eligible_proxy": 42,
+            "price_scorable": 42,
+            "warnings": 47
+          }
+        },
+        "previous_union_miss_before_down5": 4,
+        "previous_union_miss_newly_detected": 4,
+        "union_major_hits": 204,
+        "union_major_misses": 5,
+        "union_nonmajor": 878
+      }
+    },
+    "baseline_major_misses": [
+      {
+        "close_pct": -7.8196,
+        "day": "2025-11-20",
+        "symbol": "AMD"
+      },
+      {
+        "close_pct": -5.2239,
+        "day": "2025-12-17",
+        "symbol": "AMD"
+      },
+      {
+        "close_pct": -5.115,
+        "day": "2026-05-29",
+        "symbol": "INTC"
+      },
+      {
+        "close_pct": -6.1565,
+        "day": "2026-06-16",
+        "symbol": "MU"
+      },
+      {
+        "close_pct": -5.3568,
+        "day": "2026-03-05",
+        "symbol": "SNDK"
+      },
+      {
+        "close_pct": -5.5024,
+        "day": "2026-06-16",
+        "symbol": "SNDK"
+      },
+      {
+        "close_pct": -5.938,
+        "day": "2026-06-16",
+        "symbol": "SOXX"
+      },
+      {
+        "close_pct": -8.912,
+        "day": "2025-11-20",
+        "symbol": "WDC"
+      },
+      {
+        "close_pct": -5.3589,
+        "day": "2026-08-05",
+        "symbol": "WDC"
+      }
+    ],
+    "baseline_union_major_hits": 200,
+    "baseline_union_nonmajor": 806,
+    "major_down": 209,
+    "major_up": 254,
+    "missed_details_1p5": [
+      {
+        "at": "2025-11-20T10:10:00-05:00",
+        "before_already_minus5": true,
+        "close_pct": -7.8196,
+        "day": "2025-11-20",
+        "own_from_open_pct": -1.8575,
+        "symbol": "AMD"
+      },
+      {
+        "at": "2025-12-17T10:10:00-05:00",
+        "before_already_minus5": true,
+        "close_pct": -5.2239,
+        "day": "2025-12-17",
+        "own_from_open_pct": -1.5968,
+        "symbol": "AMD"
+      },
+      {
+        "at": "2026-05-29T09:45:00-04:00",
+        "before_already_minus5": true,
+        "close_pct": -5.115,
+        "day": "2026-05-29",
+        "own_from_open_pct": -1.9621,
+        "symbol": "INTC"
+      },
+      {
+        "at": "2026-06-16T10:20:00-04:00",
+        "before_already_minus5": true,
+        "close_pct": -6.1565,
+        "day": "2026-06-16",
+        "own_from_open_pct": -1.8909,
+        "symbol": "MU"
+      },
+      {
+        "at": "2026-06-16T10:20:00-04:00",
+        "before_already_minus5": true,
+        "close_pct": -5.5024,
+        "day": "2026-06-16",
+        "own_from_open_pct": -2.101,
+        "symbol": "SNDK"
+      },
+      {
+        "at": "2025-11-20T09:40:00-05:00",
+        "before_already_minus5": true,
+        "close_pct": -8.912,
+        "day": "2025-11-20",
+        "own_from_open_pct": -2.271,
+        "symbol": "WDC"
+      }
+    ],
+    "stockdays": 2244
+  },
+  "opportunities": {
+    "policies": {
+      "all": {
+        "all": {
+          "day_equal_pct": -0.041,
+          "days": 117,
+          "eligible_price_proxy": 688,
+          "losing_days": 58,
+          "major_down_signals_retained": 40,
+          "major_up_signals_retained": 150,
+          "selected_signals": 697,
+          "winning_days": 59
+        },
+        "earlier": {
+          "day_equal_pct": 0.086,
+          "days": 97,
+          "eligible_price_proxy": 581,
+          "losing_days": 50,
+          "major_down_signals_retained": 27,
+          "major_up_signals_retained": 139,
+          "selected_signals": 590,
+          "winning_days": 47
+        },
+        "later": {
+          "day_equal_pct": -0.6568,
+          "days": 20,
+          "eligible_price_proxy": 107,
+          "losing_days": 8,
+          "major_down_signals_retained": 13,
+          "major_up_signals_retained": 11,
+          "selected_signals": 107,
+          "winning_days": 12
+        }
+      },
+      "first_1": {
+        "all": {
+          "day_equal_pct": 0.2729,
+          "days": 117,
+          "eligible_price_proxy": 115,
+          "losing_days": 51,
+          "major_down_signals_retained": 8,
+          "major_up_signals_retained": 38,
+          "selected_signals": 117,
+          "winning_days": 64
+        },
+        "earlier": {
+          "day_equal_pct": 0.3806,
+          "days": 97,
+          "eligible_price_proxy": 95,
+          "losing_days": 43,
+          "major_down_signals_retained": 6,
+          "major_up_signals_retained": 34,
+          "selected_signals": 97,
+          "winning_days": 52
+        },
+        "later": {
+          "day_equal_pct": -0.2497,
+          "days": 20,
+          "eligible_price_proxy": 20,
+          "losing_days": 8,
+          "major_down_signals_retained": 2,
+          "major_up_signals_retained": 4,
+          "selected_signals": 20,
+          "winning_days": 12
+        }
+      },
+      "first_2": {
+        "all": {
+          "day_equal_pct": 0.1469,
+          "days": 117,
+          "eligible_price_proxy": 226,
+          "losing_days": 54,
+          "major_down_signals_retained": 18,
+          "major_up_signals_retained": 69,
+          "selected_signals": 232,
+          "winning_days": 63
+        },
+        "earlier": {
+          "day_equal_pct": 0.2792,
+          "days": 97,
+          "eligible_price_proxy": 187,
+          "losing_days": 45,
+          "major_down_signals_retained": 12,
+          "major_up_signals_retained": 61,
+          "selected_signals": 193,
+          "winning_days": 52
+        },
+        "later": {
+          "day_equal_pct": -0.4948,
+          "days": 20,
+          "eligible_price_proxy": 39,
+          "losing_days": 9,
+          "major_down_signals_retained": 6,
+          "major_up_signals_retained": 8,
+          "selected_signals": 39,
+          "winning_days": 11
+        }
+      },
+      "first_3": {
+        "all": {
+          "day_equal_pct": 0.227,
+          "days": 117,
+          "eligible_price_proxy": 335,
+          "losing_days": 51,
+          "major_down_signals_retained": 23,
+          "major_up_signals_retained": 92,
+          "selected_signals": 341,
+          "winning_days": 66
+        },
+        "earlier": {
+          "day_equal_pct": 0.3816,
+          "days": 97,
+          "eligible_price_proxy": 279,
+          "losing_days": 43,
+          "major_down_signals_retained": 15,
+          "major_up_signals_retained": 83,
+          "selected_signals": 285,
+          "winning_days": 54
+        },
+        "later": {
+          "day_equal_pct": -0.5226,
+          "days": 20,
+          "eligible_price_proxy": 56,
+          "losing_days": 8,
+          "major_down_signals_retained": 8,
+          "major_up_signals_retained": 9,
+          "selected_signals": 56,
+          "winning_days": 12
+        }
+      }
+    },
+    "signal_days": 117,
+    "signals": 697
+  }
+}
