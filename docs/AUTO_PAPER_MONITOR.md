@@ -1,5 +1,23 @@
 # PAPER premarket timing upgrade — installed November 9, 2026
 
+## Read-only historical executable-quote plausibility — November 9
+
+After the initial completed-bar replay, we requested historical **Alpaca SIP best bid/ask quotes** for the candidate minute, centered on the actual one-minute MBB scheduler's `:40`-second decision time (no broker orders). All six queried names returned positive, sufficiently recent bid/ask with spread below the executor's 1% ceiling. They are observations of contemporaneous quotes, not guaranteed fills or evidence the strategy would have executed automatically.
+
+| Stock | Historical theoretical decision (CST) | SIP ask | Spread | Historical bar confirmation |
+|---|---|---:|---:|---|
+| AMD | 03:18:40 | $457.95 | 0.197% | SMH/AMD/MU/SNDK 2/3-anchor uptrend |
+| CAT | 06:50:40 | $569.96 | 0.521% | Semiconductor-anchored fallback breadth in research replay; CAT is outside the current MBB universe |
+| CRWD | 08:46:40 | $219.94 | 0.145% | Semiconductor-anchor replay; require independent cybersecurity confirmation for actual BUY |
+| PANW | 08:47:40 | $318.79 | 0.097% | Semiconductor-anchor replay; require independent cybersecurity confirmation for actual BUY |
+| PWR | 08:50:40 | $570.69 | 0.175% | Research replay only, outside the current MBB universe |
+| GS | 09:53:40 | $905.00 | 0.034% | Research replay only, outside the current MBB universe |
+
+**Critical qualification:** The study code used AMD/MU/SNDK anchor confirmation for every historical candidate as an investigative comparator, regardless of the candidate's sector. It is **not** a faithful replay of the deployed MBB's per-sector gate for CAT/PWR/GS/CRWD/PANW. Only AMD is a direct semiconductor-sector example. Re-run other names with their own sector anchors and current quote/spread/risk gates before enabling purchases. The quotes cannot establish likelihood of order fill or favorable subsequent P&L, and should not be represented as guaranteed earlier order prices.
+
+---
+
+
 The owner requested earlier qualified PAPER stock purchases, fewer premature premarket sales, and **one lower-price re-entry before 10 AM Chicago** after a substantial realized profit. This change is now installed in the restricted `trading-sector-paper-executor.service` on www3; its enabled one-minute timer remains active, while the separate FDR rebound strategy's `MULTI_BROKER_REBOUND_NEW_ENTRIES=0` validation pause is unchanged. **114 automated non-pytest unit tests passed on the installed code.** No LIVE orders/API endpoints and no IBKR Gateway changes.
 
 - Early entries: the existing Multi-Broker Bridge scans eligible BOATS overnight and SIP premarket quotes and 1-minute volume-backed bars, with at least 2/3 sector anchors confirming rising price structure and each specific stock independently qualifying. Earlier timestamps are possible; no guarantee of best price or available liquidity. The broader momentum strategy retains original up to $2,000 per-stock PAPER order cap and buy/open-order duplicate checks.
