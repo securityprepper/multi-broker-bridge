@@ -160,5 +160,3 @@ def main():
                                       "total3.0_15min1.0_none",
                                       "total2.5_15min1.0_soxx_breadth")}},indent=2))
 if __name__=="__main__":main()
-
-[executed on device: www3.securityprepper.com (1016f4a4-5f2e-452e-8c88-0e4b9430d76e)]
