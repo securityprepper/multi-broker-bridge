@@ -29,7 +29,7 @@ def daily_1min(all_data,day):
             t=tparse(ts)
             if t.date().isoformat()!=day or not (time(9,30)<=t.time()<=time(14,40)):continue
             if a[5]!="sip":continue
-            o[t.strftime("%H:%M")]=a
+            o[t.strftime("%H:%M")]=list(a)
         if not all(x in o for x in ("09:34","09:35","14:40")):
             return None
         if len(o)!=311:return None
@@ -50,6 +50,26 @@ def prior_5_history(path=SIP5):
 def previous_five(series,day):
     eligible=[p for d,p in series if d<day]
     return eligible[-5:] if len(eligible)>=5 else None
+
+def reconcile_sector_price_basis(daybars, previous_close):
+    """Normalize raw SOXX 1m to the prior-five split-adjusted 5m basis.
+
+    As-of 09:35 ET only: 09:34 completed 1m + PREVIOUS completed RTH close.
+    Fail closed on unrecognized ratio, never infer from same-day final close.
+    """
+    current=daybars["SOXX"]["09:34"][3]
+    ratio=current/previous_close
+    if 2.50<=ratio<=3.50:
+        factor=3
+    elif .65<=ratio<=1.45:
+        factor=1
+    else:
+        raise ValueError("Unknown SOXX 1m/5m price basis; refuse day")
+    if factor!=1:
+        for row in daybars["SOXX"].values():
+            for i in range(4):
+                row[i]=float(row[i])/factor
+    return factor
 
 def sign_at_window(daybars, prev, obs="09:34", threshold=.20):
     pct={s:100*(daybars[s][obs][3]/prev[s]-1) for s in ALL}
@@ -111,6 +131,7 @@ def run(all_data,hist):
         prior={s:previous_five(hist[s],day) for s in ALL}
         if not all(prior.values()):continue
         prev={s:prior[s][-1] for s in ALL}
+        reconcile_sector_price_basis(bars,prev["SOXX"])
         sign=sign_at_window(bars,prev)
         for policy in STRATS:
             if not sign:
