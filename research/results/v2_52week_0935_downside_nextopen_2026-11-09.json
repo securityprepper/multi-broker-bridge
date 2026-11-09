@@ -1,0 +1,643 @@
+{
+  "semiconductors": {
+    "all": {
+      "total_stock_days": 744,
+      "severe_down_stock_days": 106,
+      "warning_stock_days": 222,
+      "severe_hits": 74,
+      "sensitivity_pct": 69.81,
+      "nonsevere_warnings": 148,
+      "severe_missed": 32,
+      "misses_first_10": [
+        [
+          "2025-11-20",
+          "AMD"
+        ],
+        [
+          "2025-11-20",
+          "MU"
+        ],
+        [
+          "2025-11-20",
+          "SNDK"
+        ],
+        [
+          "2025-12-01",
+          "SNDK"
+        ],
+        [
+          "2025-12-03",
+          "SNDK"
+        ],
+        [
+          "2025-12-17",
+          "AMD"
+        ],
+        [
+          "2026-01-30",
+          "AMD"
+        ],
+        [
+          "2026-02-10",
+          "SNDK"
+        ],
+        [
+          "2026-03-05",
+          "SNDK"
+        ],
+        [
+          "2026-03-20",
+          "SNDK"
+        ]
+      ],
+      "severe_hits_after_already_down5": 32,
+      "earliest_major_warning": "2025-11-13T09:35:00 America/New_York SNDK",
+      "warned_next_open_comparable": 222,
+      "early_sale_better_vs_next_open_30bp": 108,
+      "early_sale_mean_gross_vs_next_open_pp": 0.0924,
+      "early_sale_mean_after30_vs_next_open_pp": -0.2076,
+      "early_sale_worse_by_gt2pp": 67
+    },
+    "earlier70": {
+      "total_stock_days": 519,
+      "severe_down_stock_days": 64,
+      "warning_stock_days": 137,
+      "severe_hits": 42,
+      "sensitivity_pct": 65.62,
+      "nonsevere_warnings": 95,
+      "severe_missed": 22,
+      "misses_first_10": [
+        [
+          "2025-11-20",
+          "AMD"
+        ],
+        [
+          "2025-11-20",
+          "MU"
+        ],
+        [
+          "2025-11-20",
+          "SNDK"
+        ],
+        [
+          "2025-12-01",
+          "SNDK"
+        ],
+        [
+          "2025-12-03",
+          "SNDK"
+        ],
+        [
+          "2025-12-17",
+          "AMD"
+        ],
+        [
+          "2026-01-30",
+          "AMD"
+        ],
+        [
+          "2026-02-10",
+          "SNDK"
+        ],
+        [
+          "2026-03-05",
+          "SNDK"
+        ],
+        [
+          "2026-03-20",
+          "SNDK"
+        ]
+      ],
+      "severe_hits_after_already_down5": 16,
+      "earliest_major_warning": "2025-11-13T09:35:00 America/New_York SNDK",
+      "warned_next_open_comparable": 137,
+      "early_sale_better_vs_next_open_30bp": 67,
+      "early_sale_mean_gross_vs_next_open_pp": -0.1718,
+      "early_sale_mean_after30_vs_next_open_pp": -0.4718,
+      "early_sale_worse_by_gt2pp": 43
+    },
+    "later30": {
+      "total_stock_days": 225,
+      "severe_down_stock_days": 42,
+      "warning_stock_days": 85,
+      "severe_hits": 32,
+      "sensitivity_pct": 76.19,
+      "nonsevere_warnings": 53,
+      "severe_missed": 10,
+      "misses_first_10": [
+        [
+          "2026-07-27",
+          "AMD"
+        ],
+        [
+          "2026-07-27",
+          "SNDK"
+        ],
+        [
+          "2026-07-29",
+          "AMD"
+        ],
+        [
+          "2026-07-29",
+          "MU"
+        ],
+        [
+          "2026-07-29",
+          "SNDK"
+        ],
+        [
+          "2026-07-31",
+          "MU"
+        ],
+        [
+          "2026-07-31",
+          "SNDK"
+        ],
+        [
+          "2026-11-02",
+          "AMD"
+        ],
+        [
+          "2026-11-02",
+          "MU"
+        ],
+        [
+          "2026-11-02",
+          "SNDK"
+        ]
+      ],
+      "severe_hits_after_already_down5": 16,
+      "earliest_major_warning": "2026-07-24T09:35:00 America/New_York MU",
+      "warned_next_open_comparable": 85,
+      "early_sale_better_vs_next_open_30bp": 41,
+      "early_sale_mean_gross_vs_next_open_pp": 0.5183,
+      "early_sale_mean_after30_vs_next_open_pp": 0.2183,
+      "early_sale_worse_by_gt2pp": 24
+    }
+  },
+  "energy": {
+    "all": {
+      "total_stock_days": 496,
+      "severe_down_stock_days": 1,
+      "warning_stock_days": 158,
+      "severe_hits": 1,
+      "sensitivity_pct": 100.0,
+      "nonsevere_warnings": 157,
+      "severe_missed": 0,
+      "misses_first_10": [],
+      "severe_hits_after_already_down5": 0,
+      "earliest_major_warning": "2026-04-01T09:35:00 America/New_York XOM",
+      "warned_next_open_comparable": 156,
+      "early_sale_better_vs_next_open_30bp": 40,
+      "early_sale_mean_gross_vs_next_open_pp": -0.3182,
+      "early_sale_mean_after30_vs_next_open_pp": -0.6182,
+      "early_sale_worse_by_gt2pp": 14
+    },
+    "earlier70": {
+      "total_stock_days": 346,
+      "severe_down_stock_days": 1,
+      "warning_stock_days": 102,
+      "severe_hits": 1,
+      "sensitivity_pct": 100.0,
+      "nonsevere_warnings": 101,
+      "severe_missed": 0,
+      "misses_first_10": [],
+      "severe_hits_after_already_down5": 0,
+      "earliest_major_warning": "2026-04-01T09:35:00 America/New_York XOM",
+      "warned_next_open_comparable": 102,
+      "early_sale_better_vs_next_open_30bp": 24,
+      "early_sale_mean_gross_vs_next_open_pp": -0.4226,
+      "early_sale_mean_after30_vs_next_open_pp": -0.7226,
+      "early_sale_worse_by_gt2pp": 11
+    },
+    "later30": {
+      "total_stock_days": 150,
+      "severe_down_stock_days": 0,
+      "warning_stock_days": 56,
+      "severe_hits": 0,
+      "sensitivity_pct": null,
+      "nonsevere_warnings": 56,
+      "severe_missed": 0,
+      "misses_first_10": [],
+      "severe_hits_after_already_down5": 0,
+      "earliest_major_warning": null,
+      "warned_next_open_comparable": 54,
+      "early_sale_better_vs_next_open_30bp": 16,
+      "early_sale_mean_gross_vs_next_open_pp": -0.121,
+      "early_sale_mean_after30_vs_next_open_pp": -0.421,
+      "early_sale_worse_by_gt2pp": 3
+    }
+  },
+  "financials": {
+    "all": {
+      "total_stock_days": 496,
+      "severe_down_stock_days": 1,
+      "warning_stock_days": 96,
+      "severe_hits": 0,
+      "sensitivity_pct": 0.0,
+      "nonsevere_warnings": 96,
+      "severe_missed": 1,
+      "misses_first_10": [
+        [
+          "2026-09-14",
+          "BAC"
+        ]
+      ],
+      "severe_hits_after_already_down5": 0,
+      "earliest_major_warning": null,
+      "warned_next_open_comparable": 94,
+      "early_sale_better_vs_next_open_30bp": 32,
+      "early_sale_mean_gross_vs_next_open_pp": -0.3399,
+      "early_sale_mean_after30_vs_next_open_pp": -0.6399,
+      "early_sale_worse_by_gt2pp": 12
+    },
+    "earlier70": {
+      "total_stock_days": 346,
+      "severe_down_stock_days": 0,
+      "warning_stock_days": 66,
+      "severe_hits": 0,
+      "sensitivity_pct": null,
+      "nonsevere_warnings": 66,
+      "severe_missed": 0,
+      "misses_first_10": [],
+      "severe_hits_after_already_down5": 0,
+      "earliest_major_warning": null,
+      "warned_next_open_comparable": 66,
+      "early_sale_better_vs_next_open_30bp": 23,
+      "early_sale_mean_gross_vs_next_open_pp": -0.3824,
+      "early_sale_mean_after30_vs_next_open_pp": -0.6824,
+      "early_sale_worse_by_gt2pp": 10
+    },
+    "later30": {
+      "total_stock_days": 150,
+      "severe_down_stock_days": 1,
+      "warning_stock_days": 30,
+      "severe_hits": 0,
+      "sensitivity_pct": 0.0,
+      "nonsevere_warnings": 30,
+      "severe_missed": 1,
+      "misses_first_10": [
+        [
+          "2026-09-14",
+          "BAC"
+        ]
+      ],
+      "severe_hits_after_already_down5": 0,
+      "earliest_major_warning": null,
+      "warned_next_open_comparable": 28,
+      "early_sale_better_vs_next_open_30bp": 9,
+      "early_sale_mean_gross_vs_next_open_pp": -0.2398,
+      "early_sale_mean_after30_vs_next_open_pp": -0.5397,
+      "early_sale_worse_by_gt2pp": 2
+    }
+  },
+  "industrials": {
+    "all": {
+      "total_stock_days": 496,
+      "severe_down_stock_days": 12,
+      "warning_stock_days": 90,
+      "severe_hits": 5,
+      "sensitivity_pct": 41.67,
+      "nonsevere_warnings": 85,
+      "severe_missed": 7,
+      "misses_first_10": [
+        [
+          "2026-01-22",
+          "GE"
+        ],
+        [
+          "2026-04-21",
+          "GE"
+        ],
+        [
+          "2026-07-01",
+          "CAT"
+        ],
+        [
+          "2026-08-19",
+          "GE"
+        ],
+        [
+          "2026-10-29",
+          "CAT"
+        ],
+        [
+          "2026-11-04",
+          "CAT"
+        ],
+        [
+          "2026-11-05",
+          "CAT"
+        ]
+      ],
+      "severe_hits_after_already_down5": 0,
+      "earliest_major_warning": "2026-03-12T09:35:00 America/New_York GE",
+      "warned_next_open_comparable": 90,
+      "early_sale_better_vs_next_open_30bp": 32,
+      "early_sale_mean_gross_vs_next_open_pp": -0.3435,
+      "early_sale_mean_after30_vs_next_open_pp": -0.6435,
+      "early_sale_worse_by_gt2pp": 10
+    },
+    "earlier70": {
+      "total_stock_days": 346,
+      "severe_down_stock_days": 6,
+      "warning_stock_days": 62,
+      "severe_hits": 3,
+      "sensitivity_pct": 50.0,
+      "nonsevere_warnings": 59,
+      "severe_missed": 3,
+      "misses_first_10": [
+        [
+          "2026-01-22",
+          "GE"
+        ],
+        [
+          "2026-04-21",
+          "GE"
+        ],
+        [
+          "2026-07-01",
+          "CAT"
+        ]
+      ],
+      "severe_hits_after_already_down5": 0,
+      "earliest_major_warning": "2026-03-12T09:35:00 America/New_York GE",
+      "warned_next_open_comparable": 62,
+      "early_sale_better_vs_next_open_30bp": 20,
+      "early_sale_mean_gross_vs_next_open_pp": -0.4147,
+      "early_sale_mean_after30_vs_next_open_pp": -0.7147,
+      "early_sale_worse_by_gt2pp": 5
+    },
+    "later30": {
+      "total_stock_days": 150,
+      "severe_down_stock_days": 6,
+      "warning_stock_days": 28,
+      "severe_hits": 2,
+      "sensitivity_pct": 33.33,
+      "nonsevere_warnings": 26,
+      "severe_missed": 4,
+      "misses_first_10": [
+        [
+          "2026-08-19",
+          "GE"
+        ],
+        [
+          "2026-10-29",
+          "CAT"
+        ],
+        [
+          "2026-11-04",
+          "CAT"
+        ],
+        [
+          "2026-11-05",
+          "CAT"
+        ]
+      ],
+      "severe_hits_after_already_down5": 0,
+      "earliest_major_warning": "2026-07-29T09:35:00 America/New_York CAT",
+      "warned_next_open_comparable": 28,
+      "early_sale_better_vs_next_open_30bp": 12,
+      "early_sale_mean_gross_vs_next_open_pp": -0.1857,
+      "early_sale_mean_after30_vs_next_open_pp": -0.4857,
+      "early_sale_worse_by_gt2pp": 5
+    }
+  },
+  "healthcare": {
+    "all": {
+      "total_stock_days": 496,
+      "severe_down_stock_days": 3,
+      "warning_stock_days": 90,
+      "severe_hits": 0,
+      "sensitivity_pct": 0.0,
+      "nonsevere_warnings": 90,
+      "severe_missed": 3,
+      "misses_first_10": [
+        [
+          "2026-01-27",
+          "UNH"
+        ],
+        [
+          "2026-02-05",
+          "LLY"
+        ],
+        [
+          "2026-03-17",
+          "LLY"
+        ]
+      ],
+      "severe_hits_after_already_down5": 0,
+      "earliest_major_warning": null,
+      "warned_next_open_comparable": 88,
+      "early_sale_better_vs_next_open_30bp": 39,
+      "early_sale_mean_gross_vs_next_open_pp": -0.1875,
+      "early_sale_mean_after30_vs_next_open_pp": -0.4875,
+      "early_sale_worse_by_gt2pp": 14
+    },
+    "earlier70": {
+      "total_stock_days": 346,
+      "severe_down_stock_days": 3,
+      "warning_stock_days": 60,
+      "severe_hits": 0,
+      "sensitivity_pct": 0.0,
+      "nonsevere_warnings": 60,
+      "severe_missed": 3,
+      "misses_first_10": [
+        [
+          "2026-01-27",
+          "UNH"
+        ],
+        [
+          "2026-02-05",
+          "LLY"
+        ],
+        [
+          "2026-03-17",
+          "LLY"
+        ]
+      ],
+      "severe_hits_after_already_down5": 0,
+      "earliest_major_warning": null,
+      "warned_next_open_comparable": 60,
+      "early_sale_better_vs_next_open_30bp": 27,
+      "early_sale_mean_gross_vs_next_open_pp": -0.2521,
+      "early_sale_mean_after30_vs_next_open_pp": -0.5521,
+      "early_sale_worse_by_gt2pp": 10
+    },
+    "later30": {
+      "total_stock_days": 150,
+      "severe_down_stock_days": 0,
+      "warning_stock_days": 30,
+      "severe_hits": 0,
+      "sensitivity_pct": null,
+      "nonsevere_warnings": 30,
+      "severe_missed": 0,
+      "misses_first_10": [],
+      "severe_hits_after_already_down5": 0,
+      "earliest_major_warning": null,
+      "warned_next_open_comparable": 28,
+      "early_sale_better_vs_next_open_30bp": 12,
+      "early_sale_mean_gross_vs_next_open_pp": -0.0491,
+      "early_sale_mean_after30_vs_next_open_pp": -0.3491,
+      "early_sale_worse_by_gt2pp": 4
+    }
+  },
+  "software": {
+    "all": {
+      "total_stock_days": 496,
+      "severe_down_stock_days": 7,
+      "warning_stock_days": 108,
+      "severe_hits": 6,
+      "sensitivity_pct": 85.71,
+      "nonsevere_warnings": 102,
+      "severe_missed": 1,
+      "misses_first_10": [
+        [
+          "2026-01-13",
+          "CRM"
+        ]
+      ],
+      "severe_hits_after_already_down5": 3,
+      "earliest_major_warning": "2026-01-29T09:35:00 America/New_York CRM",
+      "warned_next_open_comparable": 108,
+      "early_sale_better_vs_next_open_30bp": 53,
+      "early_sale_mean_gross_vs_next_open_pp": 0.3462,
+      "early_sale_mean_after30_vs_next_open_pp": 0.0462,
+      "early_sale_worse_by_gt2pp": 11
+    },
+    "earlier70": {
+      "total_stock_days": 346,
+      "severe_down_stock_days": 7,
+      "warning_stock_days": 80,
+      "severe_hits": 6,
+      "sensitivity_pct": 85.71,
+      "nonsevere_warnings": 74,
+      "severe_missed": 1,
+      "misses_first_10": [
+        [
+          "2026-01-13",
+          "CRM"
+        ]
+      ],
+      "severe_hits_after_already_down5": 3,
+      "earliest_major_warning": "2026-01-29T09:35:00 America/New_York CRM",
+      "warned_next_open_comparable": 80,
+      "early_sale_better_vs_next_open_30bp": 38,
+      "early_sale_mean_gross_vs_next_open_pp": 0.1617,
+      "early_sale_mean_after30_vs_next_open_pp": -0.1383,
+      "early_sale_worse_by_gt2pp": 11
+    },
+    "later30": {
+      "total_stock_days": 150,
+      "severe_down_stock_days": 0,
+      "warning_stock_days": 28,
+      "severe_hits": 0,
+      "sensitivity_pct": null,
+      "nonsevere_warnings": 28,
+      "severe_missed": 0,
+      "misses_first_10": [],
+      "severe_hits_after_already_down5": 0,
+      "earliest_major_warning": null,
+      "warned_next_open_comparable": 28,
+      "early_sale_better_vs_next_open_30bp": 15,
+      "early_sale_mean_gross_vs_next_open_pp": 0.8735,
+      "early_sale_mean_after30_vs_next_open_pp": 0.5735,
+      "early_sale_worse_by_gt2pp": 0
+    }
+  },
+  "gold_miners": {
+    "all": {
+      "total_stock_days": 744,
+      "severe_down_stock_days": 43,
+      "warning_stock_days": 234,
+      "severe_hits": 38,
+      "sensitivity_pct": 88.37,
+      "nonsevere_warnings": 196,
+      "severe_missed": 5,
+      "misses_first_10": [
+        [
+          "2025-11-20",
+          "NEM"
+        ],
+        [
+          "2025-11-20",
+          "AEM"
+        ],
+        [
+          "2025-11-20",
+          "KGC"
+        ],
+        [
+          "2026-02-12",
+          "NEM"
+        ],
+        [
+          "2026-03-13",
+          "KGC"
+        ]
+      ],
+      "severe_hits_after_already_down5": 17,
+      "earliest_major_warning": "2025-12-29T09:35:00 America/New_York AEM",
+      "warned_next_open_comparable": 232,
+      "early_sale_better_vs_next_open_30bp": 96,
+      "early_sale_mean_gross_vs_next_open_pp": 0.0063,
+      "early_sale_mean_after30_vs_next_open_pp": -0.2937,
+      "early_sale_worse_by_gt2pp": 47
+    },
+    "earlier70": {
+      "total_stock_days": 519,
+      "severe_down_stock_days": 36,
+      "warning_stock_days": 157,
+      "severe_hits": 31,
+      "sensitivity_pct": 86.11,
+      "nonsevere_warnings": 126,
+      "severe_missed": 5,
+      "misses_first_10": [
+        [
+          "2025-11-20",
+          "NEM"
+        ],
+        [
+          "2025-11-20",
+          "AEM"
+        ],
+        [
+          "2025-11-20",
+          "KGC"
+        ],
+        [
+          "2026-02-12",
+          "NEM"
+        ],
+        [
+          "2026-03-13",
+          "KGC"
+        ]
+      ],
+      "severe_hits_after_already_down5": 13,
+      "earliest_major_warning": "2025-12-29T09:35:00 America/New_York AEM",
+      "warned_next_open_comparable": 157,
+      "early_sale_better_vs_next_open_30bp": 70,
+      "early_sale_mean_gross_vs_next_open_pp": 0.1186,
+      "early_sale_mean_after30_vs_next_open_pp": -0.1814,
+      "early_sale_worse_by_gt2pp": 36
+    },
+    "later30": {
+      "total_stock_days": 225,
+      "severe_down_stock_days": 7,
+      "warning_stock_days": 77,
+      "severe_hits": 7,
+      "sensitivity_pct": 100.0,
+      "nonsevere_warnings": 70,
+      "severe_missed": 0,
+      "misses_first_10": [],
+      "severe_hits_after_already_down5": 4,
+      "earliest_major_warning": "2026-09-24T09:35:00 America/New_York KGC",
+      "warned_next_open_comparable": 75,
+      "early_sale_better_vs_next_open_30bp": 26,
+      "early_sale_mean_gross_vs_next_open_pp": -0.2288,
+      "early_sale_mean_after30_vs_next_open_pp": -0.5288,
+      "early_sale_worse_by_gt2pp": 11
+    }
+  }
+}
