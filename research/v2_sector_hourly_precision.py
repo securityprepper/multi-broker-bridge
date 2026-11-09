@@ -170,5 +170,3 @@ def main():
                                       "dual_prior5":v.get("rules",{}).get("dual_prior5",{})} for k,v in r["sectors"].items()}},indent=2))
 if __name__=="__main__":
     main()
-
-[executed on device: www3.securityprepper.com (1016f4a4-5f2e-452e-8c88-0e4b9430d76e)]
