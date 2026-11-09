@@ -1,0 +1,340 @@
+{
+  "scope": "20 complete 1m SIP session sample, 09:35 ET 3-constituent long/short proxy, last 13:40 Chicago",
+  "inputs": "Historical SIP TRADE open/close, not NBBO or broker fills; 30/60bp illustrative round-trip friction",
+  "summary": {
+    "market_days": 20,
+    "signal_days": 18,
+    "split_days_earlier": [
+      "2026-10-12",
+      "2026-10-13",
+      "2026-10-14",
+      "2026-10-15",
+      "2026-10-16",
+      "2026-10-19",
+      "2026-10-20",
+      "2026-10-21",
+      "2026-10-22"
+    ],
+    "split_days_later": [
+      "2026-10-26",
+      "2026-10-27",
+      "2026-10-28",
+      "2026-10-29",
+      "2026-10-30",
+      "2026-11-03",
+      "2026-11-04",
+      "2026-11-05",
+      "2026-11-06"
+    ],
+    "policies": {
+      "hold": {
+        "full": {
+          "trades": 54,
+          "win_after_30bp": 33,
+          "win_pct_after_30bp": 61.11,
+          "win_after_60bp": 30,
+          "mean_net_30bp": 0.6361,
+          "mean_net_60bp": 0.3361,
+          "worst_net_30bp": -5.5987,
+          "max_adverse_close_pct_mean": -2.1274,
+          "trades_below_minus_2pct_net": 11,
+          "trades_below_minus_4pct_net": 4,
+          "mean_minutes_held": 305,
+          "stops": 0
+        },
+        "earlier": {
+          "trades": 27,
+          "win_after_30bp": 12,
+          "win_pct_after_30bp": 44.44,
+          "win_after_60bp": 10,
+          "mean_net_30bp": -0.4645,
+          "mean_net_60bp": -0.7645,
+          "worst_net_30bp": -5.5987,
+          "max_adverse_close_pct_mean": -2.3774,
+          "trades_below_minus_2pct_net": 8,
+          "trades_below_minus_4pct_net": 3,
+          "mean_minutes_held": 305,
+          "stops": 0
+        },
+        "later": {
+          "trades": 27,
+          "win_after_30bp": 21,
+          "win_pct_after_30bp": 77.78,
+          "win_after_60bp": 20,
+          "mean_net_30bp": 1.7367,
+          "mean_net_60bp": 1.4367,
+          "worst_net_30bp": -4.7272,
+          "max_adverse_close_pct_mean": -1.8775,
+          "trades_below_minus_2pct_net": 3,
+          "trades_below_minus_4pct_net": 1,
+          "mean_minutes_held": 305,
+          "stops": 0
+        }
+      },
+      "hard_stop_1p5": {
+        "full": {
+          "trades": 54,
+          "win_after_30bp": 21,
+          "win_pct_after_30bp": 38.89,
+          "win_after_60bp": 20,
+          "mean_net_30bp": -0.0996,
+          "mean_net_60bp": -0.3996,
+          "worst_net_30bp": -2.9191,
+          "max_adverse_close_pct_mean": -1.277,
+          "trades_below_minus_2pct_net": 14,
+          "trades_below_minus_4pct_net": 0,
+          "mean_minutes_held": 146.44,
+          "stops": 30
+        },
+        "earlier": {
+          "trades": 27,
+          "win_after_30bp": 9,
+          "win_pct_after_30bp": 33.33,
+          "win_after_60bp": 8,
+          "mean_net_30bp": -0.7961,
+          "mean_net_60bp": -1.0961,
+          "worst_net_30bp": -2.9191,
+          "max_adverse_close_pct_mean": -1.3962,
+          "trades_below_minus_2pct_net": 7,
+          "trades_below_minus_4pct_net": 0,
+          "mean_minutes_held": 134.41,
+          "stops": 16
+        },
+        "later": {
+          "trades": 27,
+          "win_after_30bp": 12,
+          "win_pct_after_30bp": 44.44,
+          "win_after_60bp": 12,
+          "mean_net_30bp": 0.597,
+          "mean_net_60bp": 0.297,
+          "worst_net_30bp": -2.2668,
+          "max_adverse_close_pct_mean": -1.1578,
+          "trades_below_minus_2pct_net": 7,
+          "trades_below_minus_4pct_net": 0,
+          "mean_minutes_held": 158.48,
+          "stops": 14
+        }
+      },
+      "hard_stop_2p5": {
+        "full": {
+          "trades": 54,
+          "win_after_30bp": 29,
+          "win_pct_after_30bp": 53.7,
+          "win_after_60bp": 27,
+          "mean_net_30bp": 0.1476,
+          "mean_net_60bp": -0.1524,
+          "worst_net_30bp": -3.5894,
+          "max_adverse_close_pct_mean": -1.6678,
+          "trades_below_minus_2pct_net": 20,
+          "trades_below_minus_4pct_net": 0,
+          "mean_minutes_held": 212.72,
+          "stops": 19
+        },
+        "earlier": {
+          "trades": 27,
+          "win_after_30bp": 10,
+          "win_pct_after_30bp": 37.04,
+          "win_after_60bp": 9,
+          "mean_net_30bp": -0.9148,
+          "mean_net_60bp": -1.2148,
+          "worst_net_30bp": -3.1837,
+          "max_adverse_close_pct_mean": -1.8107,
+          "trades_below_minus_2pct_net": 13,
+          "trades_below_minus_4pct_net": 0,
+          "mean_minutes_held": 185.81,
+          "stops": 12
+        },
+        "later": {
+          "trades": 27,
+          "win_after_30bp": 19,
+          "win_pct_after_30bp": 70.37,
+          "win_after_60bp": 18,
+          "mean_net_30bp": 1.21,
+          "mean_net_60bp": 0.91,
+          "worst_net_30bp": -3.5894,
+          "max_adverse_close_pct_mean": -1.5248,
+          "trades_below_minus_2pct_net": 7,
+          "trades_below_minus_4pct_net": 0,
+          "mean_minutes_held": 239.63,
+          "stops": 7
+        }
+      },
+      "hard_stop_4": {
+        "full": {
+          "trades": 54,
+          "win_after_30bp": 31,
+          "win_pct_after_30bp": 57.41,
+          "win_after_60bp": 28,
+          "mean_net_30bp": 0.3487,
+          "mean_net_60bp": 0.0487,
+          "worst_net_30bp": -4.9613,
+          "max_adverse_close_pct_mean": -1.9571,
+          "trades_below_minus_2pct_net": 14,
+          "trades_below_minus_4pct_net": 7,
+          "mean_minutes_held": 275.24,
+          "stops": 7
+        },
+        "earlier": {
+          "trades": 27,
+          "win_after_30bp": 12,
+          "win_pct_after_30bp": 44.44,
+          "win_after_60bp": 10,
+          "mean_net_30bp": -0.402,
+          "mean_net_60bp": -0.702,
+          "worst_net_30bp": -4.4933,
+          "max_adverse_close_pct_mean": -2.1683,
+          "trades_below_minus_2pct_net": 8,
+          "trades_below_minus_4pct_net": 3,
+          "mean_minutes_held": 282.56,
+          "stops": 3
+        },
+        "later": {
+          "trades": 27,
+          "win_after_30bp": 19,
+          "win_pct_after_30bp": 70.37,
+          "win_after_60bp": 18,
+          "mean_net_30bp": 1.0994,
+          "mean_net_60bp": 0.7994,
+          "worst_net_30bp": -4.9613,
+          "max_adverse_close_pct_mean": -1.7459,
+          "trades_below_minus_2pct_net": 6,
+          "trades_below_minus_4pct_net": 4,
+          "mean_minutes_held": 267.93,
+          "stops": 4
+        }
+      },
+      "hard_stop_6": {
+        "full": {
+          "trades": 54,
+          "win_after_30bp": 33,
+          "win_pct_after_30bp": 61.11,
+          "win_after_60bp": 30,
+          "mean_net_30bp": 0.4952,
+          "mean_net_60bp": 0.1952,
+          "worst_net_30bp": -6.554,
+          "max_adverse_close_pct_mean": -2.0828,
+          "trades_below_minus_2pct_net": 12,
+          "trades_below_minus_4pct_net": 5,
+          "mean_minutes_held": 291.56,
+          "stops": 3
+        },
+        "earlier": {
+          "trades": 27,
+          "win_after_30bp": 12,
+          "win_pct_after_30bp": 44.44,
+          "win_after_60bp": 10,
+          "mean_net_30bp": -0.5439,
+          "mean_net_60bp": -0.8439,
+          "worst_net_30bp": -6.5281,
+          "max_adverse_close_pct_mean": -2.3377,
+          "trades_below_minus_2pct_net": 8,
+          "trades_below_minus_4pct_net": 3,
+          "mean_minutes_held": 289.15,
+          "stops": 2
+        },
+        "later": {
+          "trades": 27,
+          "win_after_30bp": 21,
+          "win_pct_after_30bp": 77.78,
+          "win_after_60bp": 20,
+          "mean_net_30bp": 1.5342,
+          "mean_net_60bp": 1.2342,
+          "worst_net_30bp": -6.554,
+          "max_adverse_close_pct_mean": -1.828,
+          "trades_below_minus_2pct_net": 4,
+          "trades_below_minus_4pct_net": 2,
+          "mean_minutes_held": 293.96,
+          "stops": 1
+        }
+      },
+      "trail_1p5_after_1": {
+        "full": {
+          "trades": 54,
+          "win_after_30bp": 28,
+          "win_pct_after_30bp": 51.85,
+          "win_after_60bp": 23,
+          "mean_net_30bp": 0.3569,
+          "mean_net_60bp": 0.0569,
+          "worst_net_30bp": -5.5987,
+          "max_adverse_close_pct_mean": -1.8712,
+          "trades_below_minus_2pct_net": 8,
+          "trades_below_minus_4pct_net": 3,
+          "mean_minutes_held": 195.94,
+          "stops": 25
+        },
+        "earlier": {
+          "trades": 27,
+          "win_after_30bp": 10,
+          "win_pct_after_30bp": 37.04,
+          "win_after_60bp": 7,
+          "mean_net_30bp": -0.6,
+          "mean_net_60bp": -0.9,
+          "worst_net_30bp": -5.5987,
+          "max_adverse_close_pct_mean": -2.2967,
+          "trades_below_minus_2pct_net": 7,
+          "trades_below_minus_4pct_net": 3,
+          "mean_minutes_held": 241.26,
+          "stops": 8
+        },
+        "later": {
+          "trades": 27,
+          "win_after_30bp": 18,
+          "win_pct_after_30bp": 66.67,
+          "win_after_60bp": 16,
+          "mean_net_30bp": 1.3137,
+          "mean_net_60bp": 1.0137,
+          "worst_net_30bp": -2.569,
+          "max_adverse_close_pct_mean": -1.4457,
+          "trades_below_minus_2pct_net": 1,
+          "trades_below_minus_4pct_net": 0,
+          "mean_minutes_held": 150.63,
+          "stops": 17
+        }
+      },
+      "trail_2p5_after_1": {
+        "full": {
+          "trades": 54,
+          "win_after_30bp": 33,
+          "win_pct_after_30bp": 61.11,
+          "win_after_60bp": 30,
+          "mean_net_30bp": 0.6856,
+          "mean_net_60bp": 0.3856,
+          "worst_net_30bp": -5.5987,
+          "max_adverse_close_pct_mean": -1.9544,
+          "trades_below_minus_2pct_net": 9,
+          "trades_below_minus_4pct_net": 3,
+          "mean_minutes_held": 249.61,
+          "stops": 13
+        },
+        "earlier": {
+          "trades": 27,
+          "win_after_30bp": 12,
+          "win_pct_after_30bp": 44.44,
+          "win_after_60bp": 10,
+          "mean_net_30bp": -0.4379,
+          "mean_net_60bp": -0.7379,
+          "worst_net_30bp": -5.5987,
+          "max_adverse_close_pct_mean": -2.3263,
+          "trades_below_minus_2pct_net": 7,
+          "trades_below_minus_4pct_net": 3,
+          "mean_minutes_held": 284.07,
+          "stops": 3
+        },
+        "later": {
+          "trades": 27,
+          "win_after_30bp": 21,
+          "win_pct_after_30bp": 77.78,
+          "win_after_60bp": 20,
+          "mean_net_30bp": 1.8092,
+          "mean_net_60bp": 1.5092,
+          "worst_net_30bp": -2.569,
+          "max_adverse_close_pct_mean": -1.5825,
+          "trades_below_minus_2pct_net": 2,
+          "trades_below_minus_4pct_net": 0,
+          "mean_minutes_held": 215.15,
+          "stops": 10
+        }
+      }
+    }
+  }
+}
