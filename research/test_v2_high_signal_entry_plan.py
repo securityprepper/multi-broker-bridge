@@ -22,6 +22,10 @@ class TestPlan(unittest.TestCase):
         self.assertEqual(doit(a=replace(A,broker_environment="LIVE"))["status"],"BLOCKED")
     def test_research_unverified(self):
         self.assertIn("validated",doit(validated=False)["reason"])
+    def test_future_quote_rejected(self):
+        self.assertIn("future",doit(q=replace(Q,observed_at=NOW+timedelta(seconds=5)))["reason"])
+    def test_future_broker_readback_rejected(self):
+        self.assertIn("future",doit(a=replace(A,broker_verified_at=NOW+timedelta(seconds=5)))["reason"])
     def test_stale_quote(self):
         self.assertEqual(doit(q=replace(Q,observed_at=NOW-timedelta(minutes=2)))["status"],"BLOCKED")
     def test_unsafe_overnight(self):
