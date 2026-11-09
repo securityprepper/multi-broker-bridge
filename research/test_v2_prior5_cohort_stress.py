@@ -29,6 +29,10 @@ class PriorFiveTests(unittest.TestCase):
         q={day:100 for day in d}
         del q[d[3]]
         self.assertIsNone(five_completed_return(q,d,d[6]))
+        q[d[3]]=float("nan")
+        self.assertIsNone(five_completed_return(q,d,d[6]))
+        q[d[3]]=float("inf")
+        self.assertIsNone(five_completed_return(q,d,d[6]))
     def test_cohort_boundaries(self):
         self.assertEqual(cohort(-5,-8)["sector"],"weak")
         self.assertEqual(cohort(-5,-8)["relative"],"lagging")
