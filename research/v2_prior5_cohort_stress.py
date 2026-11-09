@@ -10,6 +10,7 @@ from datetime import date, datetime, time
 from functools import lru_cache
 from pathlib import Path
 from statistics import mean
+from math import isfinite
 import argparse
 import json
 
@@ -39,13 +40,13 @@ def five_completed_return(closes, calendar, current):
     if i < 6:
         return None
     observed = [closes.get(day) for day in calendar[i - 6:i]]
-    if any(value is None or value <= 0 for value in observed):
+    if any(value is None or not isfinite(value) or value <= 0 for value in observed):
         return None
     return 100 * (observed[-1] / observed[0] - 1)
 
 
 def cohort(sector5, stock5):
-    if sector5 is None or stock5 is None:
+    if sector5 is None or stock5 is None or not isfinite(sector5) or not isfinite(stock5):
         return None
     sector = ("weak" if sector5 <= SECTOR_WEAK else
               "strong" if sector5 >= SECTOR_STRONG else "neutral")
