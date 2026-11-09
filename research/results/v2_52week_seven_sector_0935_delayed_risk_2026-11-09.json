@@ -1,0 +1,1835 @@
+{
+  "asof": "2026-11-09",
+  "purpose": "V2 research only, no broker or V1 writes",
+  "timing": "09:30-09:35 ET bar completed; signal at 09:35; entry at 09:40 ET open as 5m latency; flat at 14:40 ET (13:40 Chicago)",
+  "data": "2025-11-10 to 2026-11-06, 5Min split adjusted Alpaca SIP trades; no executable quotes, borrow, fills or commissions",
+  "friction": "0.30 and 0.60 percent point sensitivity, hypothetical",
+  "notes": [
+    "Frozen candidate from last 20 day 1m study is backward-tested on earlier historical dates; not a prospective independent validation",
+    "Later 30% dates overlap already-studied final 20-day period",
+    "Five-minute stops are not equivalent to live one-minute exit rules"
+  ],
+  "sectors": {
+    "semiconductors": {
+      "market_days": 248,
+      "skipped_days": 0,
+      "first_day": "2025-11-10",
+      "last_day": "2026-11-06",
+      "late_start": "2026-07-24",
+      "late_days": 75,
+      "signal_days": 194,
+      "up_down_mixed": {
+        "UP": 76,
+        "MIXED": 109,
+        "DOWN": 63
+      },
+      "serious_stock_winners": 139,
+      "serious_stock_losers": 106,
+      "caught_winners": 113,
+      "caught_losers": 74,
+      "bootstrap": {
+        "traded_days": 194,
+        "trail_minus_hold_mean_day_equal_pp": -0.2105,
+        "trail_minus_hold_bootstrap95": [
+          -0.3651,
+          -0.0667
+        ],
+        "tight_minus_hold_mean_day_equal_pp": -0.3456,
+        "tight_minus_hold_bootstrap95": [
+          -0.6813,
+          -0.0119
+        ]
+      },
+      "policy": {
+        "hold": {
+          "all": {
+            "trades": 526,
+            "signal_days": 194,
+            "winning_trades": 262,
+            "win_rate_after30": 49.81,
+            "avg_after30": 0.1166,
+            "day_equal_avg_after30": 0.0275,
+            "avg_after60": -0.1834,
+            "worst_net30": -10.7403,
+            "losses_below_minus4": 52,
+            "stop_events": 0
+          },
+          "earlier70": {
+            "trades": 351,
+            "signal_days": 131,
+            "winning_trades": 178,
+            "win_rate_after30": 50.71,
+            "avg_after30": 0.1298,
+            "day_equal_avg_after30": 0.0218,
+            "avg_after60": -0.1702,
+            "worst_net30": -10.7403,
+            "losses_below_minus4": 38,
+            "stop_events": 0
+          },
+          "later30": {
+            "trades": 175,
+            "signal_days": 63,
+            "winning_trades": 84,
+            "win_rate_after30": 48.0,
+            "avg_after30": 0.0901,
+            "day_equal_avg_after30": 0.0394,
+            "avg_after60": -0.2099,
+            "worst_net30": -8.5112,
+            "losses_below_minus4": 14,
+            "stop_events": 0
+          }
+        },
+        "tight_5m": {
+          "all": {
+            "trades": 526,
+            "signal_days": 194,
+            "winning_trades": 217,
+            "win_rate_after30": 41.25,
+            "avg_after30": -0.289,
+            "day_equal_avg_after30": -0.3181,
+            "avg_after60": -0.589,
+            "worst_net30": -8.4097,
+            "losses_below_minus4": 16,
+            "stop_events": 525
+          },
+          "earlier70": {
+            "trades": 351,
+            "signal_days": 131,
+            "winning_trades": 143,
+            "win_rate_after30": 40.74,
+            "avg_after30": -0.3218,
+            "day_equal_avg_after30": -0.3466,
+            "avg_after60": -0.6218,
+            "worst_net30": -8.4097,
+            "losses_below_minus4": 14,
+            "stop_events": 350
+          },
+          "later30": {
+            "trades": 175,
+            "signal_days": 63,
+            "winning_trades": 74,
+            "win_rate_after30": 42.29,
+            "avg_after30": -0.2233,
+            "day_equal_avg_after30": -0.2586,
+            "avg_after60": -0.5233,
+            "worst_net30": -7.6445,
+            "losses_below_minus4": 2,
+            "stop_events": 175
+          }
+        },
+        "target_stop_1": {
+          "all": {
+            "trades": 526,
+            "signal_days": 194,
+            "winning_trades": 261,
+            "win_rate_after30": 49.62,
+            "avg_after30": -0.2399,
+            "day_equal_avg_after30": -0.2616,
+            "avg_after60": -0.5399,
+            "worst_net30": -6.1757,
+            "losses_below_minus4": 9,
+            "stop_events": 510
+          },
+          "earlier70": {
+            "trades": 351,
+            "signal_days": 131,
+            "winning_trades": 169,
+            "win_rate_after30": 48.15,
+            "avg_after30": -0.2764,
+            "day_equal_avg_after30": -0.2933,
+            "avg_after60": -0.5764,
+            "worst_net30": -5.9818,
+            "losses_below_minus4": 7,
+            "stop_events": 344
+          },
+          "later30": {
+            "trades": 175,
+            "signal_days": 63,
+            "winning_trades": 92,
+            "win_rate_after30": 52.57,
+            "avg_after30": -0.1667,
+            "day_equal_avg_after30": -0.1958,
+            "avg_after60": -0.4667,
+            "worst_net30": -6.1757,
+            "losses_below_minus4": 2,
+            "stop_events": 166
+          }
+        },
+        "hard_stop_1p5": {
+          "all": {
+            "trades": 526,
+            "signal_days": 194,
+            "winning_trades": 215,
+            "win_rate_after30": 40.87,
+            "avg_after30": 0.0057,
+            "day_equal_avg_after30": -0.0642,
+            "avg_after60": -0.2943,
+            "worst_net30": -6.1757,
+            "losses_below_minus4": 13,
+            "stop_events": 250
+          },
+          "earlier70": {
+            "trades": 351,
+            "signal_days": 131,
+            "winning_trades": 143,
+            "win_rate_after30": 40.74,
+            "avg_after30": -0.0093,
+            "day_equal_avg_after30": -0.0931,
+            "avg_after60": -0.3093,
+            "worst_net30": -5.9818,
+            "losses_below_minus4": 10,
+            "stop_events": 174
+          },
+          "later30": {
+            "trades": 175,
+            "signal_days": 63,
+            "winning_trades": 72,
+            "win_rate_after30": 41.14,
+            "avg_after30": 0.0359,
+            "day_equal_avg_after30": -0.0039,
+            "avg_after60": -0.2641,
+            "worst_net30": -6.1757,
+            "losses_below_minus4": 3,
+            "stop_events": 76
+          }
+        },
+        "hard_stop_2p5": {
+          "all": {
+            "trades": 526,
+            "signal_days": 194,
+            "winning_trades": 244,
+            "win_rate_after30": 46.39,
+            "avg_after30": 0.0596,
+            "day_equal_avg_after30": -0.0266,
+            "avg_after60": -0.2404,
+            "worst_net30": -6.939,
+            "losses_below_minus4": 27,
+            "stop_events": 162
+          },
+          "earlier70": {
+            "trades": 351,
+            "signal_days": 131,
+            "winning_trades": 162,
+            "win_rate_after30": 46.15,
+            "avg_after30": 0.0343,
+            "day_equal_avg_after30": -0.0737,
+            "avg_after60": -0.2657,
+            "worst_net30": -6.939,
+            "losses_below_minus4": 20,
+            "stop_events": 118
+          },
+          "later30": {
+            "trades": 175,
+            "signal_days": 63,
+            "winning_trades": 82,
+            "win_rate_after30": 46.86,
+            "avg_after30": 0.1102,
+            "day_equal_avg_after30": 0.0712,
+            "avg_after60": -0.1898,
+            "worst_net30": -6.1757,
+            "losses_below_minus4": 7,
+            "stop_events": 44
+          }
+        },
+        "trail_2p5_after_1": {
+          "all": {
+            "trades": 526,
+            "signal_days": 194,
+            "winning_trades": 239,
+            "win_rate_after30": 45.44,
+            "avg_after30": -0.1005,
+            "day_equal_avg_after30": -0.183,
+            "avg_after60": -0.4005,
+            "worst_net30": -10.7403,
+            "losses_below_minus4": 47,
+            "stop_events": 146
+          },
+          "earlier70": {
+            "trades": 351,
+            "signal_days": 131,
+            "winning_trades": 157,
+            "win_rate_after30": 44.73,
+            "avg_after30": -0.1563,
+            "day_equal_avg_after30": -0.2453,
+            "avg_after60": -0.4563,
+            "worst_net30": -10.7403,
+            "losses_below_minus4": 37,
+            "stop_events": 113
+          },
+          "later30": {
+            "trades": 175,
+            "signal_days": 63,
+            "winning_trades": 82,
+            "win_rate_after30": 46.86,
+            "avg_after30": 0.0115,
+            "day_equal_avg_after30": -0.0533,
+            "avg_after60": -0.2885,
+            "worst_net30": -8.5112,
+            "losses_below_minus4": 10,
+            "stop_events": 33
+          }
+        }
+      }
+    },
+    "energy": {
+      "market_days": 248,
+      "skipped_days": 0,
+      "first": "2025-11-10",
+      "last": "2026-11-06",
+      "later_start": "2026-07-24",
+      "forecast_days": 186,
+      "sector_state": {
+        "UP": 114,
+        "DOWN": 86,
+        "MIXED": 48
+      },
+      "major_up_stock_days": 1,
+      "major_down_stock_days": 1,
+      "major_up_detected": 1,
+      "major_down_detected": 1,
+      "bootstrap": {
+        "traded_days": 186,
+        "trail_minus_hold_mean_day_equal_pp": 0.0024,
+        "trail_minus_hold_bootstrap95": [
+          -0.0007,
+          0.0079
+        ],
+        "tight_minus_hold_mean_day_equal_pp": 0.0738,
+        "tight_minus_hold_bootstrap95": [
+          -0.0529,
+          0.2006
+        ]
+      },
+      "policy": {
+        "hold": {
+          "all": {
+            "trades": 372,
+            "signal_days": 186,
+            "winning_trades": 123,
+            "win_rate_after30": 33.06,
+            "avg_after30": -0.4346,
+            "day_equal_avg_after30": -0.4346,
+            "avg_after60": -0.7346,
+            "worst_net30": -3.8019,
+            "losses_below_minus4": 0,
+            "stop_events": 0
+          },
+          "earlier70": {
+            "trades": 254,
+            "signal_days": 127,
+            "winning_trades": 88,
+            "win_rate_after30": 34.65,
+            "avg_after30": -0.4031,
+            "day_equal_avg_after30": -0.4031,
+            "avg_after60": -0.7031,
+            "worst_net30": -3.8019,
+            "losses_below_minus4": 0,
+            "stop_events": 0
+          },
+          "later30": {
+            "trades": 118,
+            "signal_days": 59,
+            "winning_trades": 35,
+            "win_rate_after30": 29.66,
+            "avg_after30": -0.5026,
+            "day_equal_avg_after30": -0.5026,
+            "avg_after60": -0.8026,
+            "worst_net30": -3.7395,
+            "losses_below_minus4": 0,
+            "stop_events": 0
+          }
+        },
+        "tight_5m": {
+          "all": {
+            "trades": 372,
+            "signal_days": 186,
+            "winning_trades": 79,
+            "win_rate_after30": 21.24,
+            "avg_after30": -0.3608,
+            "day_equal_avg_after30": -0.3608,
+            "avg_after60": -0.6608,
+            "worst_net30": -1.874,
+            "losses_below_minus4": 0,
+            "stop_events": 359
+          },
+          "earlier70": {
+            "trades": 254,
+            "signal_days": 127,
+            "winning_trades": 59,
+            "win_rate_after30": 23.23,
+            "avg_after30": -0.3243,
+            "day_equal_avg_after30": -0.3243,
+            "avg_after60": -0.6243,
+            "worst_net30": -1.874,
+            "losses_below_minus4": 0,
+            "stop_events": 242
+          },
+          "later30": {
+            "trades": 118,
+            "signal_days": 59,
+            "winning_trades": 20,
+            "win_rate_after30": 16.95,
+            "avg_after30": -0.4395,
+            "day_equal_avg_after30": -0.4395,
+            "avg_after60": -0.7395,
+            "worst_net30": -1.4394,
+            "losses_below_minus4": 0,
+            "stop_events": 117
+          }
+        },
+        "target_stop_1": {
+          "all": {
+            "trades": 372,
+            "signal_days": 186,
+            "winning_trades": 129,
+            "win_rate_after30": 34.68,
+            "avg_after30": -0.3954,
+            "day_equal_avg_after30": -0.3954,
+            "avg_after60": -0.6954,
+            "worst_net30": -1.9579,
+            "losses_below_minus4": 0,
+            "stop_events": 207
+          },
+          "earlier70": {
+            "trades": 254,
+            "signal_days": 127,
+            "winning_trades": 95,
+            "win_rate_after30": 37.4,
+            "avg_after30": -0.3372,
+            "day_equal_avg_after30": -0.3372,
+            "avg_after60": -0.6372,
+            "worst_net30": -1.874,
+            "losses_below_minus4": 0,
+            "stop_events": 135
+          },
+          "later30": {
+            "trades": 118,
+            "signal_days": 59,
+            "winning_trades": 34,
+            "win_rate_after30": 28.81,
+            "avg_after30": -0.5207,
+            "day_equal_avg_after30": -0.5207,
+            "avg_after60": -0.8207,
+            "worst_net30": -1.9579,
+            "losses_below_minus4": 0,
+            "stop_events": 72
+          }
+        },
+        "hard_stop_1p5": {
+          "all": {
+            "trades": 372,
+            "signal_days": 186,
+            "winning_trades": 123,
+            "win_rate_after30": 33.06,
+            "avg_after30": -0.4147,
+            "day_equal_avg_after30": -0.4147,
+            "avg_after60": -0.7147,
+            "worst_net30": -3.0342,
+            "losses_below_minus4": 0,
+            "stop_events": 60
+          },
+          "earlier70": {
+            "trades": 254,
+            "signal_days": 127,
+            "winning_trades": 88,
+            "win_rate_after30": 34.65,
+            "avg_after30": -0.3645,
+            "day_equal_avg_after30": -0.3645,
+            "avg_after60": -0.6645,
+            "worst_net30": -3.0342,
+            "losses_below_minus4": 0,
+            "stop_events": 36
+          },
+          "later30": {
+            "trades": 118,
+            "signal_days": 59,
+            "winning_trades": 35,
+            "win_rate_after30": 29.66,
+            "avg_after30": -0.5229,
+            "day_equal_avg_after30": -0.5229,
+            "avg_after60": -0.8229,
+            "worst_net30": -2.083,
+            "losses_below_minus4": 0,
+            "stop_events": 24
+          }
+        },
+        "hard_stop_2p5": {
+          "all": {
+            "trades": 372,
+            "signal_days": 186,
+            "winning_trades": 123,
+            "win_rate_after30": 33.06,
+            "avg_after30": -0.4334,
+            "day_equal_avg_after30": -0.4334,
+            "avg_after60": -0.7334,
+            "worst_net30": -3.7743,
+            "losses_below_minus4": 0,
+            "stop_events": 16
+          },
+          "earlier70": {
+            "trades": 254,
+            "signal_days": 127,
+            "winning_trades": 88,
+            "win_rate_after30": 34.65,
+            "avg_after30": -0.4035,
+            "day_equal_avg_after30": -0.4035,
+            "avg_after60": -0.7035,
+            "worst_net30": -3.7743,
+            "losses_below_minus4": 0,
+            "stop_events": 14
+          },
+          "later30": {
+            "trades": 118,
+            "signal_days": 59,
+            "winning_trades": 35,
+            "win_rate_after30": 29.66,
+            "avg_after30": -0.4976,
+            "day_equal_avg_after30": -0.4976,
+            "avg_after60": -0.7976,
+            "worst_net30": -2.9573,
+            "losses_below_minus4": 0,
+            "stop_events": 2
+          }
+        },
+        "trail_2p5_after_1": {
+          "all": {
+            "trades": 372,
+            "signal_days": 186,
+            "winning_trades": 123,
+            "win_rate_after30": 33.06,
+            "avg_after30": -0.4322,
+            "day_equal_avg_after30": -0.4322,
+            "avg_after60": -0.7322,
+            "worst_net30": -3.8019,
+            "losses_below_minus4": 0,
+            "stop_events": 4
+          },
+          "earlier70": {
+            "trades": 254,
+            "signal_days": 127,
+            "winning_trades": 88,
+            "win_rate_after30": 34.65,
+            "avg_after30": -0.4001,
+            "day_equal_avg_after30": -0.4001,
+            "avg_after60": -0.7001,
+            "worst_net30": -3.8019,
+            "losses_below_minus4": 0,
+            "stop_events": 3
+          },
+          "later30": {
+            "trades": 118,
+            "signal_days": 59,
+            "winning_trades": 35,
+            "win_rate_after30": 29.66,
+            "avg_after30": -0.5012,
+            "day_equal_avg_after30": -0.5012,
+            "avg_after60": -0.8012,
+            "worst_net30": -3.7395,
+            "losses_below_minus4": 0,
+            "stop_events": 1
+          }
+        }
+      }
+    },
+    "financials": {
+      "market_days": 248,
+      "skipped_days": 0,
+      "first": "2025-11-10",
+      "last": "2026-11-06",
+      "later_start": "2026-07-24",
+      "forecast_days": 126,
+      "sector_state": {
+        "UP": 102,
+        "MIXED": 66,
+        "DOWN": 80
+      },
+      "major_up_stock_days": 0,
+      "major_down_stock_days": 1,
+      "major_up_detected": 0,
+      "major_down_detected": 0,
+      "bootstrap": {
+        "traded_days": 126,
+        "trail_minus_hold_mean_day_equal_pp": -0.0036,
+        "trail_minus_hold_bootstrap95": [
+          -0.0133,
+          0.0024
+        ],
+        "tight_minus_hold_mean_day_equal_pp": 0.0976,
+        "tight_minus_hold_bootstrap95": [
+          -0.0527,
+          0.248
+        ]
+      },
+      "policy": {
+        "hold": {
+          "all": {
+            "trades": 252,
+            "signal_days": 126,
+            "winning_trades": 74,
+            "win_rate_after30": 29.37,
+            "avg_after30": -0.5359,
+            "day_equal_avg_after30": -0.5359,
+            "avg_after60": -0.8359,
+            "worst_net30": -5.6836,
+            "losses_below_minus4": 2,
+            "stop_events": 0
+          },
+          "earlier70": {
+            "trades": 186,
+            "signal_days": 93,
+            "winning_trades": 56,
+            "win_rate_after30": 30.11,
+            "avg_after30": -0.5023,
+            "day_equal_avg_after30": -0.5023,
+            "avg_after60": -0.8023,
+            "worst_net30": -3.8321,
+            "losses_below_minus4": 0,
+            "stop_events": 0
+          },
+          "later30": {
+            "trades": 66,
+            "signal_days": 33,
+            "winning_trades": 18,
+            "win_rate_after30": 27.27,
+            "avg_after30": -0.6303,
+            "day_equal_avg_after30": -0.6303,
+            "avg_after60": -0.9303,
+            "worst_net30": -5.6836,
+            "losses_below_minus4": 2,
+            "stop_events": 0
+          }
+        },
+        "tight_5m": {
+          "all": {
+            "trades": 252,
+            "signal_days": 126,
+            "winning_trades": 56,
+            "win_rate_after30": 22.22,
+            "avg_after30": -0.4383,
+            "day_equal_avg_after30": -0.4383,
+            "avg_after60": -0.7383,
+            "worst_net30": -2.0043,
+            "losses_below_minus4": 0,
+            "stop_events": 231
+          },
+          "earlier70": {
+            "trades": 186,
+            "signal_days": 93,
+            "winning_trades": 43,
+            "win_rate_after30": 23.12,
+            "avg_after30": -0.4218,
+            "day_equal_avg_after30": -0.4218,
+            "avg_after60": -0.7218,
+            "worst_net30": -1.5922,
+            "losses_below_minus4": 0,
+            "stop_events": 173
+          },
+          "later30": {
+            "trades": 66,
+            "signal_days": 33,
+            "winning_trades": 13,
+            "win_rate_after30": 19.7,
+            "avg_after30": -0.4846,
+            "day_equal_avg_after30": -0.4846,
+            "avg_after60": -0.7846,
+            "worst_net30": -2.0043,
+            "losses_below_minus4": 0,
+            "stop_events": 58
+          }
+        },
+        "target_stop_1": {
+          "all": {
+            "trades": 252,
+            "signal_days": 126,
+            "winning_trades": 83,
+            "win_rate_after30": 32.94,
+            "avg_after30": -0.4623,
+            "day_equal_avg_after30": -0.4623,
+            "avg_after60": -0.7623,
+            "worst_net30": -2.2555,
+            "losses_below_minus4": 0,
+            "stop_events": 136
+          },
+          "earlier70": {
+            "trades": 186,
+            "signal_days": 93,
+            "winning_trades": 60,
+            "win_rate_after30": 32.26,
+            "avg_after30": -0.4758,
+            "day_equal_avg_after30": -0.4758,
+            "avg_after60": -0.7758,
+            "worst_net30": -2.2555,
+            "losses_below_minus4": 0,
+            "stop_events": 106
+          },
+          "later30": {
+            "trades": 66,
+            "signal_days": 33,
+            "winning_trades": 23,
+            "win_rate_after30": 34.85,
+            "avg_after30": -0.4241,
+            "day_equal_avg_after30": -0.4241,
+            "avg_after60": -0.7241,
+            "worst_net30": -2.0937,
+            "losses_below_minus4": 0,
+            "stop_events": 30
+          }
+        },
+        "hard_stop_1p5": {
+          "all": {
+            "trades": 252,
+            "signal_days": 126,
+            "winning_trades": 72,
+            "win_rate_after30": 28.57,
+            "avg_after30": -0.5098,
+            "day_equal_avg_after30": -0.5098,
+            "avg_after60": -0.8098,
+            "worst_net30": -2.5444,
+            "losses_below_minus4": 0,
+            "stop_events": 42
+          },
+          "earlier70": {
+            "trades": 186,
+            "signal_days": 93,
+            "winning_trades": 54,
+            "win_rate_after30": 29.03,
+            "avg_after30": -0.4965,
+            "day_equal_avg_after30": -0.4965,
+            "avg_after60": -0.7965,
+            "worst_net30": -2.1839,
+            "losses_below_minus4": 0,
+            "stop_events": 33
+          },
+          "later30": {
+            "trades": 66,
+            "signal_days": 33,
+            "winning_trades": 18,
+            "win_rate_after30": 27.27,
+            "avg_after30": -0.5471,
+            "day_equal_avg_after30": -0.5471,
+            "avg_after60": -0.8471,
+            "worst_net30": -2.5444,
+            "losses_below_minus4": 0,
+            "stop_events": 9
+          }
+        },
+        "hard_stop_2p5": {
+          "all": {
+            "trades": 252,
+            "signal_days": 126,
+            "winning_trades": 74,
+            "win_rate_after30": 29.37,
+            "avg_after30": -0.5113,
+            "day_equal_avg_after30": -0.5113,
+            "avg_after60": -0.8113,
+            "worst_net30": -3.299,
+            "losses_below_minus4": 0,
+            "stop_events": 9
+          },
+          "earlier70": {
+            "trades": 186,
+            "signal_days": 93,
+            "winning_trades": 56,
+            "win_rate_after30": 30.11,
+            "avg_after30": -0.4929,
+            "day_equal_avg_after30": -0.4929,
+            "avg_after60": -0.7929,
+            "worst_net30": -3.0105,
+            "losses_below_minus4": 0,
+            "stop_events": 6
+          },
+          "later30": {
+            "trades": 66,
+            "signal_days": 33,
+            "winning_trades": 18,
+            "win_rate_after30": 27.27,
+            "avg_after30": -0.5632,
+            "day_equal_avg_after30": -0.5632,
+            "avg_after60": -0.8632,
+            "worst_net30": -3.299,
+            "losses_below_minus4": 0,
+            "stop_events": 3
+          }
+        },
+        "trail_2p5_after_1": {
+          "all": {
+            "trades": 252,
+            "signal_days": 126,
+            "winning_trades": 74,
+            "win_rate_after30": 29.37,
+            "avg_after30": -0.5395,
+            "day_equal_avg_after30": -0.5395,
+            "avg_after60": -0.8395,
+            "worst_net30": -5.6836,
+            "losses_below_minus4": 2,
+            "stop_events": 3
+          },
+          "earlier70": {
+            "trades": 186,
+            "signal_days": 93,
+            "winning_trades": 56,
+            "win_rate_after30": 30.11,
+            "avg_after30": -0.5083,
+            "day_equal_avg_after30": -0.5083,
+            "avg_after60": -0.8083,
+            "worst_net30": -3.8321,
+            "losses_below_minus4": 0,
+            "stop_events": 2
+          },
+          "later30": {
+            "trades": 66,
+            "signal_days": 33,
+            "winning_trades": 18,
+            "win_rate_after30": 27.27,
+            "avg_after30": -0.6273,
+            "day_equal_avg_after30": -0.6273,
+            "avg_after60": -0.9273,
+            "worst_net30": -5.6836,
+            "losses_below_minus4": 2,
+            "stop_events": 1
+          }
+        }
+      }
+    },
+    "industrials": {
+      "market_days": 248,
+      "skipped_days": 0,
+      "first": "2025-11-10",
+      "last": "2026-11-06",
+      "later_start": "2026-07-24",
+      "forecast_days": 105,
+      "sector_state": {
+        "UP": 84,
+        "MIXED": 93,
+        "DOWN": 71
+      },
+      "major_up_stock_days": 11,
+      "major_down_stock_days": 12,
+      "major_up_detected": 8,
+      "major_down_detected": 5,
+      "bootstrap": {
+        "traded_days": 105,
+        "trail_minus_hold_mean_day_equal_pp": -0.0266,
+        "trail_minus_hold_bootstrap95": [
+          -0.0668,
+          0.01
+        ],
+        "tight_minus_hold_mean_day_equal_pp": -0.0193,
+        "tight_minus_hold_bootstrap95": [
+          -0.1977,
+          0.1618
+        ]
+      },
+      "policy": {
+        "hold": {
+          "all": {
+            "trades": 210,
+            "signal_days": 105,
+            "winning_trades": 85,
+            "win_rate_after30": 40.48,
+            "avg_after30": -0.362,
+            "day_equal_avg_after30": -0.362,
+            "avg_after60": -0.662,
+            "worst_net30": -4.6596,
+            "losses_below_minus4": 3,
+            "stop_events": 0
+          },
+          "earlier70": {
+            "trades": 148,
+            "signal_days": 74,
+            "winning_trades": 58,
+            "win_rate_after30": 39.19,
+            "avg_after30": -0.3708,
+            "day_equal_avg_after30": -0.3708,
+            "avg_after60": -0.6708,
+            "worst_net30": -4.6596,
+            "losses_below_minus4": 3,
+            "stop_events": 0
+          },
+          "later30": {
+            "trades": 62,
+            "signal_days": 31,
+            "winning_trades": 27,
+            "win_rate_after30": 43.55,
+            "avg_after30": -0.3411,
+            "day_equal_avg_after30": -0.3411,
+            "avg_after60": -0.6411,
+            "worst_net30": -3.9258,
+            "losses_below_minus4": 0,
+            "stop_events": 0
+          }
+        },
+        "tight_5m": {
+          "all": {
+            "trades": 210,
+            "signal_days": 105,
+            "winning_trades": 64,
+            "win_rate_after30": 30.48,
+            "avg_after30": -0.3814,
+            "day_equal_avg_after30": -0.3814,
+            "avg_after60": -0.6814,
+            "worst_net30": -3.9182,
+            "losses_below_minus4": 0,
+            "stop_events": 199
+          },
+          "earlier70": {
+            "trades": 148,
+            "signal_days": 74,
+            "winning_trades": 45,
+            "win_rate_after30": 30.41,
+            "avg_after30": -0.385,
+            "day_equal_avg_after30": -0.385,
+            "avg_after60": -0.685,
+            "worst_net30": -2.2659,
+            "losses_below_minus4": 0,
+            "stop_events": 140
+          },
+          "later30": {
+            "trades": 62,
+            "signal_days": 31,
+            "winning_trades": 19,
+            "win_rate_after30": 30.65,
+            "avg_after30": -0.3728,
+            "day_equal_avg_after30": -0.3728,
+            "avg_after60": -0.6728,
+            "worst_net30": -3.9182,
+            "losses_below_minus4": 0,
+            "stop_events": 59
+          }
+        },
+        "target_stop_1": {
+          "all": {
+            "trades": 210,
+            "signal_days": 105,
+            "winning_trades": 89,
+            "win_rate_after30": 42.38,
+            "avg_after30": -0.3674,
+            "day_equal_avg_after30": -0.3674,
+            "avg_after60": -0.6674,
+            "worst_net30": -2.6543,
+            "losses_below_minus4": 0,
+            "stop_events": 158
+          },
+          "earlier70": {
+            "trades": 148,
+            "signal_days": 74,
+            "winning_trades": 63,
+            "win_rate_after30": 42.57,
+            "avg_after30": -0.3639,
+            "day_equal_avg_after30": -0.3639,
+            "avg_after60": -0.6639,
+            "worst_net30": -2.1683,
+            "losses_below_minus4": 0,
+            "stop_events": 112
+          },
+          "later30": {
+            "trades": 62,
+            "signal_days": 31,
+            "winning_trades": 26,
+            "win_rate_after30": 41.94,
+            "avg_after30": -0.3756,
+            "day_equal_avg_after30": -0.3756,
+            "avg_after60": -0.6756,
+            "worst_net30": -2.6543,
+            "losses_below_minus4": 0,
+            "stop_events": 46
+          }
+        },
+        "hard_stop_1p5": {
+          "all": {
+            "trades": 210,
+            "signal_days": 105,
+            "winning_trades": 81,
+            "win_rate_after30": 38.57,
+            "avg_after30": -0.3515,
+            "day_equal_avg_after30": -0.3515,
+            "avg_after60": -0.6515,
+            "worst_net30": -3.771,
+            "losses_below_minus4": 0,
+            "stop_events": 57
+          },
+          "earlier70": {
+            "trades": 148,
+            "signal_days": 74,
+            "winning_trades": 55,
+            "win_rate_after30": 37.16,
+            "avg_after30": -0.3547,
+            "day_equal_avg_after30": -0.3547,
+            "avg_after60": -0.6547,
+            "worst_net30": -2.8159,
+            "losses_below_minus4": 0,
+            "stop_events": 45
+          },
+          "later30": {
+            "trades": 62,
+            "signal_days": 31,
+            "winning_trades": 26,
+            "win_rate_after30": 41.94,
+            "avg_after30": -0.3439,
+            "day_equal_avg_after30": -0.3439,
+            "avg_after60": -0.6439,
+            "worst_net30": -3.771,
+            "losses_below_minus4": 0,
+            "stop_events": 12
+          }
+        },
+        "hard_stop_2p5": {
+          "all": {
+            "trades": 210,
+            "signal_days": 105,
+            "winning_trades": 85,
+            "win_rate_after30": 40.48,
+            "avg_after30": -0.3775,
+            "day_equal_avg_after30": -0.3775,
+            "avg_after60": -0.6775,
+            "worst_net30": -3.9182,
+            "losses_below_minus4": 0,
+            "stop_events": 24
+          },
+          "earlier70": {
+            "trades": 148,
+            "signal_days": 74,
+            "winning_trades": 58,
+            "win_rate_after30": 39.19,
+            "avg_after30": -0.3918,
+            "day_equal_avg_after30": -0.3918,
+            "avg_after60": -0.6918,
+            "worst_net30": -3.6049,
+            "losses_below_minus4": 0,
+            "stop_events": 19
+          },
+          "later30": {
+            "trades": 62,
+            "signal_days": 31,
+            "winning_trades": 27,
+            "win_rate_after30": 43.55,
+            "avg_after30": -0.3435,
+            "day_equal_avg_after30": -0.3435,
+            "avg_after60": -0.6435,
+            "worst_net30": -3.9182,
+            "losses_below_minus4": 0,
+            "stop_events": 5
+          }
+        },
+        "trail_2p5_after_1": {
+          "all": {
+            "trades": 210,
+            "signal_days": 105,
+            "winning_trades": 81,
+            "win_rate_after30": 38.57,
+            "avg_after30": -0.3886,
+            "day_equal_avg_after30": -0.3886,
+            "avg_after60": -0.6886,
+            "worst_net30": -4.6596,
+            "losses_below_minus4": 3,
+            "stop_events": 12
+          },
+          "earlier70": {
+            "trades": 148,
+            "signal_days": 74,
+            "winning_trades": 55,
+            "win_rate_after30": 37.16,
+            "avg_after30": -0.4018,
+            "day_equal_avg_after30": -0.4018,
+            "avg_after60": -0.7018,
+            "worst_net30": -4.6596,
+            "losses_below_minus4": 3,
+            "stop_events": 10
+          },
+          "later30": {
+            "trades": 62,
+            "signal_days": 31,
+            "winning_trades": 26,
+            "win_rate_after30": 41.94,
+            "avg_after30": -0.3573,
+            "day_equal_avg_after30": -0.3573,
+            "avg_after60": -0.6573,
+            "worst_net30": -3.9258,
+            "losses_below_minus4": 0,
+            "stop_events": 2
+          }
+        }
+      }
+    },
+    "healthcare": {
+      "market_days": 248,
+      "skipped_days": 0,
+      "first": "2025-11-10",
+      "last": "2026-11-06",
+      "later_start": "2026-07-24",
+      "forecast_days": 99,
+      "sector_state": {
+        "MIXED": 122,
+        "UP": 55,
+        "DOWN": 71
+      },
+      "major_up_stock_days": 7,
+      "major_down_stock_days": 3,
+      "major_up_detected": 3,
+      "major_down_detected": 0,
+      "bootstrap": {
+        "traded_days": 99,
+        "trail_minus_hold_mean_day_equal_pp": -0.0005,
+        "trail_minus_hold_bootstrap95": [
+          -0.0172,
+          0.021
+        ],
+        "tight_minus_hold_mean_day_equal_pp": -0.0147,
+        "tight_minus_hold_bootstrap95": [
+          -0.1706,
+          0.146
+        ]
+      },
+      "policy": {
+        "hold": {
+          "all": {
+            "trades": 198,
+            "signal_days": 99,
+            "winning_trades": 93,
+            "win_rate_after30": 46.97,
+            "avg_after30": -0.2233,
+            "day_equal_avg_after30": -0.2233,
+            "avg_after60": -0.5233,
+            "worst_net30": -4.1463,
+            "losses_below_minus4": 1,
+            "stop_events": 0
+          },
+          "earlier70": {
+            "trades": 134,
+            "signal_days": 67,
+            "winning_trades": 66,
+            "win_rate_after30": 49.25,
+            "avg_after30": -0.1439,
+            "day_equal_avg_after30": -0.1439,
+            "avg_after60": -0.4439,
+            "worst_net30": -3.527,
+            "losses_below_minus4": 0,
+            "stop_events": 0
+          },
+          "later30": {
+            "trades": 64,
+            "signal_days": 32,
+            "winning_trades": 27,
+            "win_rate_after30": 42.19,
+            "avg_after30": -0.3896,
+            "day_equal_avg_after30": -0.3896,
+            "avg_after60": -0.6896,
+            "worst_net30": -4.1463,
+            "losses_below_minus4": 1,
+            "stop_events": 0
+          }
+        },
+        "tight_5m": {
+          "all": {
+            "trades": 198,
+            "signal_days": 99,
+            "winning_trades": 69,
+            "win_rate_after30": 34.85,
+            "avg_after30": -0.238,
+            "day_equal_avg_after30": -0.238,
+            "avg_after60": -0.538,
+            "worst_net30": -2.509,
+            "losses_below_minus4": 0,
+            "stop_events": 182
+          },
+          "earlier70": {
+            "trades": 134,
+            "signal_days": 67,
+            "winning_trades": 50,
+            "win_rate_after30": 37.31,
+            "avg_after30": -0.2265,
+            "day_equal_avg_after30": -0.2265,
+            "avg_after60": -0.5265,
+            "worst_net30": -2.509,
+            "losses_below_minus4": 0,
+            "stop_events": 119
+          },
+          "later30": {
+            "trades": 64,
+            "signal_days": 32,
+            "winning_trades": 19,
+            "win_rate_after30": 29.69,
+            "avg_after30": -0.262,
+            "day_equal_avg_after30": -0.262,
+            "avg_after60": -0.562,
+            "worst_net30": -2.3325,
+            "losses_below_minus4": 0,
+            "stop_events": 63
+          }
+        },
+        "target_stop_1": {
+          "all": {
+            "trades": 198,
+            "signal_days": 99,
+            "winning_trades": 98,
+            "win_rate_after30": 49.49,
+            "avg_after30": -0.1554,
+            "day_equal_avg_after30": -0.1554,
+            "avg_after60": -0.4554,
+            "worst_net30": -2.0131,
+            "losses_below_minus4": 0,
+            "stop_events": 140
+          },
+          "earlier70": {
+            "trades": 134,
+            "signal_days": 67,
+            "winning_trades": 67,
+            "win_rate_after30": 50.0,
+            "avg_after30": -0.1646,
+            "day_equal_avg_after30": -0.1646,
+            "avg_after60": -0.4646,
+            "worst_net30": -2.0131,
+            "losses_below_minus4": 0,
+            "stop_events": 100
+          },
+          "later30": {
+            "trades": 64,
+            "signal_days": 32,
+            "winning_trades": 31,
+            "win_rate_after30": 48.44,
+            "avg_after30": -0.1361,
+            "day_equal_avg_after30": -0.1361,
+            "avg_after60": -0.4361,
+            "worst_net30": -1.9943,
+            "losses_below_minus4": 0,
+            "stop_events": 40
+          }
+        },
+        "hard_stop_1p5": {
+          "all": {
+            "trades": 198,
+            "signal_days": 99,
+            "winning_trades": 93,
+            "win_rate_after30": 46.97,
+            "avg_after30": -0.1984,
+            "day_equal_avg_after30": -0.1984,
+            "avg_after60": -0.4984,
+            "worst_net30": -2.4123,
+            "losses_below_minus4": 0,
+            "stop_events": 38
+          },
+          "earlier70": {
+            "trades": 134,
+            "signal_days": 67,
+            "winning_trades": 66,
+            "win_rate_after30": 49.25,
+            "avg_after30": -0.1495,
+            "day_equal_avg_after30": -0.1495,
+            "avg_after60": -0.4495,
+            "worst_net30": -2.4123,
+            "losses_below_minus4": 0,
+            "stop_events": 26
+          },
+          "later30": {
+            "trades": 64,
+            "signal_days": 32,
+            "winning_trades": 27,
+            "win_rate_after30": 42.19,
+            "avg_after30": -0.3007,
+            "day_equal_avg_after30": -0.3007,
+            "avg_after60": -0.6007,
+            "worst_net30": -2.3325,
+            "losses_below_minus4": 0,
+            "stop_events": 12
+          }
+        },
+        "hard_stop_2p5": {
+          "all": {
+            "trades": 198,
+            "signal_days": 99,
+            "winning_trades": 93,
+            "win_rate_after30": 46.97,
+            "avg_after30": -0.2269,
+            "day_equal_avg_after30": -0.2269,
+            "avg_after60": -0.5269,
+            "worst_net30": -3.4956,
+            "losses_below_minus4": 0,
+            "stop_events": 13
+          },
+          "earlier70": {
+            "trades": 134,
+            "signal_days": 67,
+            "winning_trades": 66,
+            "win_rate_after30": 49.25,
+            "avg_after30": -0.1615,
+            "day_equal_avg_after30": -0.1615,
+            "avg_after60": -0.4615,
+            "worst_net30": -3.4956,
+            "losses_below_minus4": 0,
+            "stop_events": 8
+          },
+          "later30": {
+            "trades": 64,
+            "signal_days": 32,
+            "winning_trades": 27,
+            "win_rate_after30": 42.19,
+            "avg_after30": -0.3638,
+            "day_equal_avg_after30": -0.3638,
+            "avg_after60": -0.6638,
+            "worst_net30": -3.185,
+            "losses_below_minus4": 0,
+            "stop_events": 5
+          }
+        },
+        "trail_2p5_after_1": {
+          "all": {
+            "trades": 198,
+            "signal_days": 99,
+            "winning_trades": 92,
+            "win_rate_after30": 46.46,
+            "avg_after30": -0.2238,
+            "day_equal_avg_after30": -0.2238,
+            "avg_after60": -0.5238,
+            "worst_net30": -4.1463,
+            "losses_below_minus4": 1,
+            "stop_events": 4
+          },
+          "earlier70": {
+            "trades": 134,
+            "signal_days": 67,
+            "winning_trades": 65,
+            "win_rate_after30": 48.51,
+            "avg_after30": -0.1556,
+            "day_equal_avg_after30": -0.1556,
+            "avg_after60": -0.4556,
+            "worst_net30": -3.527,
+            "losses_below_minus4": 0,
+            "stop_events": 3
+          },
+          "later30": {
+            "trades": 64,
+            "signal_days": 32,
+            "winning_trades": 27,
+            "win_rate_after30": 42.19,
+            "avg_after30": -0.3665,
+            "day_equal_avg_after30": -0.3665,
+            "avg_after60": -0.6665,
+            "worst_net30": -4.1463,
+            "losses_below_minus4": 1,
+            "stop_events": 1
+          }
+        }
+      }
+    },
+    "software": {
+      "market_days": 248,
+      "skipped_days": 0,
+      "first": "2025-11-10",
+      "last": "2026-11-06",
+      "later_start": "2026-07-24",
+      "forecast_days": 107,
+      "sector_state": {
+        "UP": 73,
+        "MIXED": 93,
+        "DOWN": 82
+      },
+      "major_up_stock_days": 11,
+      "major_down_stock_days": 7,
+      "major_up_detected": 6,
+      "major_down_detected": 6,
+      "bootstrap": {
+        "traded_days": 107,
+        "trail_minus_hold_mean_day_equal_pp": -0.0017,
+        "trail_minus_hold_bootstrap95": [
+          -0.0102,
+          0.005
+        ],
+        "tight_minus_hold_mean_day_equal_pp": -0.112,
+        "tight_minus_hold_bootstrap95": [
+          -0.3183,
+          0.0898
+        ]
+      },
+      "policy": {
+        "hold": {
+          "all": {
+            "trades": 214,
+            "signal_days": 107,
+            "winning_trades": 97,
+            "win_rate_after30": 45.33,
+            "avg_after30": -0.2107,
+            "day_equal_avg_after30": -0.2107,
+            "avg_after60": -0.5107,
+            "worst_net30": -3.6446,
+            "losses_below_minus4": 0,
+            "stop_events": 0
+          },
+          "earlier70": {
+            "trades": 150,
+            "signal_days": 75,
+            "winning_trades": 70,
+            "win_rate_after30": 46.67,
+            "avg_after30": -0.2421,
+            "day_equal_avg_after30": -0.2421,
+            "avg_after60": -0.5421,
+            "worst_net30": -3.6446,
+            "losses_below_minus4": 0,
+            "stop_events": 0
+          },
+          "later30": {
+            "trades": 64,
+            "signal_days": 32,
+            "winning_trades": 27,
+            "win_rate_after30": 42.19,
+            "avg_after30": -0.1371,
+            "day_equal_avg_after30": -0.1371,
+            "avg_after60": -0.4371,
+            "worst_net30": -2.7795,
+            "losses_below_minus4": 0,
+            "stop_events": 0
+          }
+        },
+        "tight_5m": {
+          "all": {
+            "trades": 214,
+            "signal_days": 107,
+            "winning_trades": 62,
+            "win_rate_after30": 28.97,
+            "avg_after30": -0.3227,
+            "day_equal_avg_after30": -0.3227,
+            "avg_after60": -0.6227,
+            "worst_net30": -2.4014,
+            "losses_below_minus4": 0,
+            "stop_events": 206
+          },
+          "earlier70": {
+            "trades": 150,
+            "signal_days": 75,
+            "winning_trades": 38,
+            "win_rate_after30": 25.33,
+            "avg_after30": -0.3822,
+            "day_equal_avg_after30": -0.3822,
+            "avg_after60": -0.6822,
+            "worst_net30": -2.1,
+            "losses_below_minus4": 0,
+            "stop_events": 147
+          },
+          "later30": {
+            "trades": 64,
+            "signal_days": 32,
+            "winning_trades": 24,
+            "win_rate_after30": 37.5,
+            "avg_after30": -0.1834,
+            "day_equal_avg_after30": -0.1834,
+            "avg_after60": -0.4834,
+            "worst_net30": -2.4014,
+            "losses_below_minus4": 0,
+            "stop_events": 59
+          }
+        },
+        "target_stop_1": {
+          "all": {
+            "trades": 214,
+            "signal_days": 107,
+            "winning_trades": 95,
+            "win_rate_after30": 44.39,
+            "avg_after30": -0.3268,
+            "day_equal_avg_after30": -0.3268,
+            "avg_after60": -0.6268,
+            "worst_net30": -2.7983,
+            "losses_below_minus4": 0,
+            "stop_events": 160
+          },
+          "earlier70": {
+            "trades": 150,
+            "signal_days": 75,
+            "winning_trades": 69,
+            "win_rate_after30": 46.0,
+            "avg_after30": -0.2969,
+            "day_equal_avg_after30": -0.2969,
+            "avg_after60": -0.5969,
+            "worst_net30": -2.7983,
+            "losses_below_minus4": 0,
+            "stop_events": 115
+          },
+          "later30": {
+            "trades": 64,
+            "signal_days": 32,
+            "winning_trades": 26,
+            "win_rate_after30": 40.62,
+            "avg_after30": -0.3969,
+            "day_equal_avg_after30": -0.3969,
+            "avg_after60": -0.6969,
+            "worst_net30": -1.9607,
+            "losses_below_minus4": 0,
+            "stop_events": 45
+          }
+        },
+        "hard_stop_1p5": {
+          "all": {
+            "trades": 214,
+            "signal_days": 107,
+            "winning_trades": 89,
+            "win_rate_after30": 41.59,
+            "avg_after30": -0.2996,
+            "day_equal_avg_after30": -0.2996,
+            "avg_after60": -0.5996,
+            "worst_net30": -2.7983,
+            "losses_below_minus4": 0,
+            "stop_events": 58
+          },
+          "earlier70": {
+            "trades": 150,
+            "signal_days": 75,
+            "winning_trades": 65,
+            "win_rate_after30": 43.33,
+            "avg_after30": -0.3029,
+            "day_equal_avg_after30": -0.3029,
+            "avg_after60": -0.6029,
+            "worst_net30": -2.7983,
+            "losses_below_minus4": 0,
+            "stop_events": 44
+          },
+          "later30": {
+            "trades": 64,
+            "signal_days": 32,
+            "winning_trades": 24,
+            "win_rate_after30": 37.5,
+            "avg_after30": -0.2919,
+            "day_equal_avg_after30": -0.2919,
+            "avg_after60": -0.5919,
+            "worst_net30": -2.3407,
+            "losses_below_minus4": 0,
+            "stop_events": 14
+          }
+        },
+        "hard_stop_2p5": {
+          "all": {
+            "trades": 214,
+            "signal_days": 107,
+            "winning_trades": 97,
+            "win_rate_after30": 45.33,
+            "avg_after30": -0.2523,
+            "day_equal_avg_after30": -0.2523,
+            "avg_after60": -0.5523,
+            "worst_net30": -3.4538,
+            "losses_below_minus4": 0,
+            "stop_events": 21
+          },
+          "earlier70": {
+            "trades": 150,
+            "signal_days": 75,
+            "winning_trades": 70,
+            "win_rate_after30": 46.67,
+            "avg_after30": -0.2741,
+            "day_equal_avg_after30": -0.2741,
+            "avg_after60": -0.5741,
+            "worst_net30": -3.4538,
+            "losses_below_minus4": 0,
+            "stop_events": 17
+          },
+          "later30": {
+            "trades": 64,
+            "signal_days": 32,
+            "winning_trades": 27,
+            "win_rate_after30": 42.19,
+            "avg_after30": -0.2012,
+            "day_equal_avg_after30": -0.2012,
+            "avg_after60": -0.5012,
+            "worst_net30": -2.8818,
+            "losses_below_minus4": 0,
+            "stop_events": 4
+          }
+        },
+        "trail_2p5_after_1": {
+          "all": {
+            "trades": 214,
+            "signal_days": 107,
+            "winning_trades": 97,
+            "win_rate_after30": 45.33,
+            "avg_after30": -0.2124,
+            "day_equal_avg_after30": -0.2124,
+            "avg_after60": -0.5124,
+            "worst_net30": -3.6446,
+            "losses_below_minus4": 0,
+            "stop_events": 5
+          },
+          "earlier70": {
+            "trades": 150,
+            "signal_days": 75,
+            "winning_trades": 70,
+            "win_rate_after30": 46.67,
+            "avg_after30": -0.2447,
+            "day_equal_avg_after30": -0.2447,
+            "avg_after60": -0.5447,
+            "worst_net30": -3.6446,
+            "losses_below_minus4": 0,
+            "stop_events": 3
+          },
+          "later30": {
+            "trades": 64,
+            "signal_days": 32,
+            "winning_trades": 27,
+            "win_rate_after30": 42.19,
+            "avg_after30": -0.1367,
+            "day_equal_avg_after30": -0.1367,
+            "avg_after60": -0.4367,
+            "worst_net30": -2.7795,
+            "losses_below_minus4": 0,
+            "stop_events": 2
+          }
+        }
+      }
+    },
+    "gold_miners": {
+      "market_days": 248,
+      "skipped_days": 2,
+      "first": "2025-11-10",
+      "last": "2026-11-06",
+      "later_start": "2026-07-24",
+      "forecast_days": 180,
+      "sector_state": {
+        "UP": 106,
+        "MIXED": 48,
+        "DOWN": 94
+      },
+      "major_up_stock_days": 47,
+      "major_down_stock_days": 43,
+      "major_up_detected": 43,
+      "major_down_detected": 38,
+      "bootstrap": {
+        "traded_days": 180,
+        "trail_minus_hold_mean_day_equal_pp": -0.0083,
+        "trail_minus_hold_bootstrap95": [
+          -0.0311,
+          0.0146
+        ],
+        "tight_minus_hold_mean_day_equal_pp": 0.0723,
+        "tight_minus_hold_bootstrap95": [
+          -0.1317,
+          0.2927
+        ]
+      },
+      "policy": {
+        "hold": {
+          "all": {
+            "trades": 523,
+            "signal_days": 180,
+            "winning_trades": 215,
+            "win_rate_after30": 41.11,
+            "avg_after30": -0.2888,
+            "day_equal_avg_after30": -0.2994,
+            "avg_after60": -0.5888,
+            "worst_net30": -6.4836,
+            "losses_below_minus4": 16,
+            "stop_events": 0
+          },
+          "earlier70": {
+            "trades": 372,
+            "signal_days": 128,
+            "winning_trades": 160,
+            "win_rate_after30": 43.01,
+            "avg_after30": -0.2431,
+            "day_equal_avg_after30": -0.2535,
+            "avg_after60": -0.5431,
+            "worst_net30": -6.4836,
+            "losses_below_minus4": 16,
+            "stop_events": 0
+          },
+          "later30": {
+            "trades": 151,
+            "signal_days": 52,
+            "winning_trades": 55,
+            "win_rate_after30": 36.42,
+            "avg_after30": -0.4014,
+            "day_equal_avg_after30": -0.4124,
+            "avg_after60": -0.7014,
+            "worst_net30": -3.8664,
+            "losses_below_minus4": 0,
+            "stop_events": 0
+          }
+        },
+        "tight_5m": {
+          "all": {
+            "trades": 523,
+            "signal_days": 180,
+            "winning_trades": 200,
+            "win_rate_after30": 38.24,
+            "avg_after30": -0.2239,
+            "day_equal_avg_after30": -0.2271,
+            "avg_after60": -0.5239,
+            "worst_net30": -2.4739,
+            "losses_below_minus4": 0,
+            "stop_events": 523
+          },
+          "earlier70": {
+            "trades": 372,
+            "signal_days": 128,
+            "winning_trades": 144,
+            "win_rate_after30": 38.71,
+            "avg_after30": -0.2155,
+            "day_equal_avg_after30": -0.2258,
+            "avg_after60": -0.5155,
+            "worst_net30": -2.4739,
+            "losses_below_minus4": 0,
+            "stop_events": 372
+          },
+          "later30": {
+            "trades": 151,
+            "signal_days": 52,
+            "winning_trades": 56,
+            "win_rate_after30": 37.09,
+            "avg_after30": -0.2445,
+            "day_equal_avg_after30": -0.2304,
+            "avg_after60": -0.5445,
+            "worst_net30": -2.3154,
+            "losses_below_minus4": 0,
+            "stop_events": 151
+          }
+        },
+        "target_stop_1": {
+          "all": {
+            "trades": 523,
+            "signal_days": 180,
+            "winning_trades": 250,
+            "win_rate_after30": 47.8,
+            "avg_after30": -0.2888,
+            "day_equal_avg_after30": -0.2992,
+            "avg_after60": -0.5888,
+            "worst_net30": -3.1187,
+            "losses_below_minus4": 0,
+            "stop_events": 462
+          },
+          "earlier70": {
+            "trades": 372,
+            "signal_days": 128,
+            "winning_trades": 184,
+            "win_rate_after30": 49.46,
+            "avg_after30": -0.2527,
+            "day_equal_avg_after30": -0.2712,
+            "avg_after60": -0.5527,
+            "worst_net30": -3.1187,
+            "losses_below_minus4": 0,
+            "stop_events": 329
+          },
+          "later30": {
+            "trades": 151,
+            "signal_days": 52,
+            "winning_trades": 66,
+            "win_rate_after30": 43.71,
+            "avg_after30": -0.3776,
+            "day_equal_avg_after30": -0.3682,
+            "avg_after60": -0.6776,
+            "worst_net30": -2.4092,
+            "losses_below_minus4": 0,
+            "stop_events": 133
+          }
+        },
+        "hard_stop_1p5": {
+          "all": {
+            "trades": 523,
+            "signal_days": 180,
+            "winning_trades": 207,
+            "win_rate_after30": 39.58,
+            "avg_after30": -0.267,
+            "day_equal_avg_after30": -0.2734,
+            "avg_after60": -0.567,
+            "worst_net30": -3.1187,
+            "losses_below_minus4": 0,
+            "stop_events": 183
+          },
+          "earlier70": {
+            "trades": 372,
+            "signal_days": 128,
+            "winning_trades": 152,
+            "win_rate_after30": 40.86,
+            "avg_after30": -0.1892,
+            "day_equal_avg_after30": -0.1998,
+            "avg_after60": -0.4892,
+            "worst_net30": -3.1187,
+            "losses_below_minus4": 0,
+            "stop_events": 121
+          },
+          "later30": {
+            "trades": 151,
+            "signal_days": 52,
+            "winning_trades": 55,
+            "win_rate_after30": 36.42,
+            "avg_after30": -0.4588,
+            "day_equal_avg_after30": -0.4546,
+            "avg_after60": -0.7588,
+            "worst_net30": -2.51,
+            "losses_below_minus4": 0,
+            "stop_events": 62
+          }
+        },
+        "hard_stop_2p5": {
+          "all": {
+            "trades": 523,
+            "signal_days": 180,
+            "winning_trades": 214,
+            "win_rate_after30": 40.92,
+            "avg_after30": -0.289,
+            "day_equal_avg_after30": -0.2947,
+            "avg_after60": -0.589,
+            "worst_net30": -4.0224,
+            "losses_below_minus4": 1,
+            "stop_events": 76
+          },
+          "earlier70": {
+            "trades": 372,
+            "signal_days": 128,
+            "winning_trades": 159,
+            "win_rate_after30": 42.74,
+            "avg_after30": -0.2169,
+            "day_equal_avg_after30": -0.2228,
+            "avg_after60": -0.5169,
+            "worst_net30": -3.9926,
+            "losses_below_minus4": 0,
+            "stop_events": 57
+          },
+          "later30": {
+            "trades": 151,
+            "signal_days": 52,
+            "winning_trades": 55,
+            "win_rate_after30": 36.42,
+            "avg_after30": -0.4667,
+            "day_equal_avg_after30": -0.4717,
+            "avg_after60": -0.7667,
+            "worst_net30": -4.0224,
+            "losses_below_minus4": 1,
+            "stop_events": 19
+          }
+        },
+        "trail_2p5_after_1": {
+          "all": {
+            "trades": 523,
+            "signal_days": 180,
+            "winning_trades": 214,
+            "win_rate_after30": 40.92,
+            "avg_after30": -0.2974,
+            "day_equal_avg_after30": -0.3077,
+            "avg_after60": -0.5974,
+            "worst_net30": -6.4836,
+            "losses_below_minus4": 16,
+            "stop_events": 32
+          },
+          "earlier70": {
+            "trades": 372,
+            "signal_days": 128,
+            "winning_trades": 159,
+            "win_rate_after30": 42.74,
+            "avg_after30": -0.2492,
+            "day_equal_avg_after30": -0.2594,
+            "avg_after60": -0.5492,
+            "worst_net30": -6.4836,
+            "losses_below_minus4": 16,
+            "stop_events": 24
+          },
+          "later30": {
+            "trades": 151,
+            "signal_days": 52,
+            "winning_trades": 55,
+            "win_rate_after30": 36.42,
+            "avg_after30": -0.4161,
+            "day_equal_avg_after30": -0.4267,
+            "avg_after60": -0.7161,
+            "worst_net30": -3.8664,
+            "losses_below_minus4": 0,
+            "stop_events": 8
+          }
+        }
+      }
+    }
+  }
+}
