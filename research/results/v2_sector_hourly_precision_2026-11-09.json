@@ -1,0 +1,1002 @@
+{
+  "asof_max": "2026-11-06",
+  "constraints": "09:30 hourly bar is observed only at 10:30 ET; outcome uses following 10:30 hourly OPEN mark. 30bp/60bp roundtrip model, not fills. Yahoo data not Alpaca SIP/BOATS. No news timestamps, no 1m, no stop execution.",
+  "download_failures": {},
+  "sectors": {
+    "energy": {
+      "anchor": "XLE",
+      "daily_baseline": {
+        "independent_days": 246,
+        "mean_net": -0.2689,
+        "mean_net_60bp": -0.5689,
+        "n": 246,
+        "precision": 0.4228,
+        "profitable": 104,
+        "wilson_95_lower": 0.3627,
+        "worst_net": -4.9853
+      },
+      "peers": [
+        "OIH",
+        "USO"
+      ],
+      "rules": {
+        "anchor_only": {
+          "all": {
+            "independent_days": 87,
+            "mean_net": -0.3122,
+            "mean_net_60bp": -0.6122,
+            "n": 87,
+            "precision": 0.4253,
+            "profitable": 37,
+            "wilson_95_lower": 0.3267,
+            "worst_net": -4.9853
+          },
+          "earlier": {
+            "independent_days": 73,
+            "mean_net": -0.3119,
+            "mean_net_60bp": -0.6119,
+            "n": 73,
+            "precision": 0.411,
+            "profitable": 30,
+            "wilson_95_lower": 0.3053,
+            "worst_net": -4.9853
+          },
+          "last_8_dates": [
+            {
+              "day": "2026-10-01",
+              "net_pct": 0.736
+            },
+            {
+              "day": "2026-10-08",
+              "net_pct": 0.366
+            },
+            {
+              "day": "2026-10-12",
+              "net_pct": -0.032
+            },
+            {
+              "day": "2026-10-13",
+              "net_pct": 0.977
+            },
+            {
+              "day": "2026-10-16",
+              "net_pct": 1.76
+            },
+            {
+              "day": "2026-10-23",
+              "net_pct": 0.038
+            },
+            {
+              "day": "2026-10-30",
+              "net_pct": 0.238
+            },
+            {
+              "day": "2026-11-05",
+              "net_pct": -4.657
+            }
+          ],
+          "later": {
+            "independent_days": 14,
+            "mean_net": -0.3139,
+            "mean_net_60bp": -0.6139,
+            "n": 14,
+            "precision": 0.5,
+            "profitable": 7,
+            "wilson_95_lower": 0.268,
+            "worst_net": -4.6574
+          }
+        },
+        "dual": {
+          "all": {
+            "independent_days": 73,
+            "mean_net": -0.3925,
+            "mean_net_60bp": -0.6925,
+            "n": 73,
+            "precision": 0.3836,
+            "profitable": 28,
+            "wilson_95_lower": 0.2805,
+            "worst_net": -4.9853
+          },
+          "earlier": {
+            "independent_days": 61,
+            "mean_net": -0.3707,
+            "mean_net_60bp": -0.6707,
+            "n": 61,
+            "precision": 0.3607,
+            "profitable": 22,
+            "wilson_95_lower": 0.2517,
+            "worst_net": -4.9853
+          },
+          "last_8_dates": [
+            {
+              "day": "2026-09-24",
+              "net_pct": -0.533
+            },
+            {
+              "day": "2026-10-01",
+              "net_pct": 0.736
+            },
+            {
+              "day": "2026-10-08",
+              "net_pct": 0.366
+            },
+            {
+              "day": "2026-10-12",
+              "net_pct": -0.032
+            },
+            {
+              "day": "2026-10-13",
+              "net_pct": 0.977
+            },
+            {
+              "day": "2026-10-23",
+              "net_pct": 0.038
+            },
+            {
+              "day": "2026-10-30",
+              "net_pct": 0.238
+            },
+            {
+              "day": "2026-11-05",
+              "net_pct": -4.657
+            }
+          ],
+          "later": {
+            "independent_days": 12,
+            "mean_net": -0.5029,
+            "mean_net_60bp": -0.8029,
+            "n": 12,
+            "precision": 0.5,
+            "profitable": 6,
+            "wilson_95_lower": 0.2538,
+            "worst_net": -4.6574
+          }
+        },
+        "dual_breadth": {
+          "all": {
+            "independent_days": 54,
+            "mean_net": -0.2297,
+            "mean_net_60bp": -0.5297,
+            "n": 54,
+            "precision": 0.4259,
+            "profitable": 23,
+            "wilson_95_lower": 0.3033,
+            "worst_net": -4.9853
+          },
+          "earlier": {
+            "independent_days": 46,
+            "mean_net": -0.2569,
+            "mean_net_60bp": -0.5569,
+            "n": 46,
+            "precision": 0.413,
+            "profitable": 19,
+            "wilson_95_lower": 0.2829,
+            "worst_net": -4.9853
+          },
+          "last_8_dates": [
+            {
+              "day": "2026-09-08",
+              "net_pct": -1.012
+            },
+            {
+              "day": "2026-09-15",
+              "net_pct": 1.411
+            },
+            {
+              "day": "2026-09-23",
+              "net_pct": -1.061
+            },
+            {
+              "day": "2026-09-24",
+              "net_pct": -0.533
+            },
+            {
+              "day": "2026-10-08",
+              "net_pct": 0.366
+            },
+            {
+              "day": "2026-10-12",
+              "net_pct": -0.032
+            },
+            {
+              "day": "2026-10-23",
+              "net_pct": 0.038
+            },
+            {
+              "day": "2026-10-30",
+              "net_pct": 0.238
+            }
+          ],
+          "later": {
+            "independent_days": 8,
+            "mean_net": -0.0729,
+            "mean_net_60bp": -0.3729,
+            "n": 8,
+            "precision": 0.5,
+            "profitable": 4,
+            "wilson_95_lower": 0.2152,
+            "worst_net": -1.0605
+          }
+        },
+        "dual_prior5": {
+          "all": {
+            "independent_days": 46,
+            "mean_net": -0.3107,
+            "mean_net_60bp": -0.6107,
+            "n": 46,
+            "precision": 0.3696,
+            "profitable": 17,
+            "wilson_95_lower": 0.2452,
+            "worst_net": -3.1895
+          },
+          "earlier": {
+            "independent_days": 38,
+            "mean_net": -0.3624,
+            "mean_net_60bp": -0.6624,
+            "n": 38,
+            "precision": 0.3158,
+            "profitable": 12,
+            "wilson_95_lower": 0.1908,
+            "worst_net": -3.1895
+          },
+          "last_8_dates": [
+            {
+              "day": "2026-09-08",
+              "net_pct": -1.012
+            },
+            {
+              "day": "2026-09-14",
+              "net_pct": -2.508
+            },
+            {
+              "day": "2026-09-15",
+              "net_pct": 1.411
+            },
+            {
+              "day": "2026-10-08",
+              "net_pct": 0.366
+            },
+            {
+              "day": "2026-10-12",
+              "net_pct": -0.032
+            },
+            {
+              "day": "2026-10-13",
+              "net_pct": 0.977
+            },
+            {
+              "day": "2026-10-23",
+              "net_pct": 0.038
+            },
+            {
+              "day": "2026-10-30",
+              "net_pct": 0.238
+            }
+          ],
+          "later": {
+            "independent_days": 8,
+            "mean_net": -0.065,
+            "mean_net_60bp": -0.365,
+            "n": 8,
+            "precision": 0.625,
+            "profitable": 5,
+            "wilson_95_lower": 0.3057,
+            "worst_net": -2.5075
+          }
+        },
+        "target_only": {
+          "all": {
+            "independent_days": 81,
+            "mean_net": -0.4013,
+            "mean_net_60bp": -0.7013,
+            "n": 81,
+            "precision": 0.3827,
+            "profitable": 31,
+            "wilson_95_lower": 0.2845,
+            "worst_net": -4.9853
+          },
+          "earlier": {
+            "independent_days": 67,
+            "mean_net": -0.3858,
+            "mean_net_60bp": -0.6858,
+            "n": 67,
+            "precision": 0.3582,
+            "profitable": 24,
+            "wilson_95_lower": 0.254,
+            "worst_net": -4.9853
+          },
+          "last_8_dates": [
+            {
+              "day": "2026-10-01",
+              "net_pct": 0.736
+            },
+            {
+              "day": "2026-10-08",
+              "net_pct": 0.366
+            },
+            {
+              "day": "2026-10-12",
+              "net_pct": -0.032
+            },
+            {
+              "day": "2026-10-13",
+              "net_pct": 0.977
+            },
+            {
+              "day": "2026-10-23",
+              "net_pct": 0.038
+            },
+            {
+              "day": "2026-10-26",
+              "net_pct": 0.2
+            },
+            {
+              "day": "2026-10-30",
+              "net_pct": 0.238
+            },
+            {
+              "day": "2026-11-05",
+              "net_pct": -4.657
+            }
+          ],
+          "later": {
+            "independent_days": 14,
+            "mean_net": -0.4758,
+            "mean_net_60bp": -0.7758,
+            "n": 14,
+            "precision": 0.5,
+            "profitable": 7,
+            "wilson_95_lower": 0.268,
+            "worst_net": -4.6574
+          }
+        }
+      },
+      "sector_session_labels_75bp": {
+        "mixed": 71,
+        "negative": 77,
+        "positive": 98
+      },
+      "source": "Yahoo Finance public hourly ETF/equity chart proxy, 1y 60m, NOT SIP or BOATS",
+      "target": "XOP",
+      "thresholds_pct": [
+        0.6,
+        0.8
+      ]
+    },
+    "financials": {
+      "anchor": "XLF",
+      "daily_baseline": {
+        "independent_days": 246,
+        "mean_net": -0.3501,
+        "mean_net_60bp": -0.6501,
+        "n": 246,
+        "precision": 0.3049,
+        "profitable": 75,
+        "wilson_95_lower": 0.2507,
+        "worst_net": -3.4709
+      },
+      "peers": [
+        "JPM",
+        "BAC"
+      ],
+      "rules": {
+        "anchor_only": {
+          "all": {
+            "independent_days": 59,
+            "mean_net": -0.5193,
+            "mean_net_60bp": -0.8193,
+            "n": 59,
+            "precision": 0.2542,
+            "profitable": 15,
+            "wilson_95_lower": 0.1606,
+            "worst_net": -2.6923
+          },
+          "earlier": {
+            "independent_days": 52,
+            "mean_net": -0.5338,
+            "mean_net_60bp": -0.8338,
+            "n": 52,
+            "precision": 0.2308,
+            "profitable": 12,
+            "wilson_95_lower": 0.1372,
+            "worst_net": -2.6923
+          },
+          "last_8_dates": [
+            {
+              "day": "2026-08-24",
+              "net_pct": -0.951
+            },
+            {
+              "day": "2026-09-02",
+              "net_pct": 0.119
+            },
+            {
+              "day": "2026-09-03",
+              "net_pct": 0.163
+            },
+            {
+              "day": "2026-10-16",
+              "net_pct": -1.726
+            },
+            {
+              "day": "2026-10-20",
+              "net_pct": -0.807
+            },
+            {
+              "day": "2026-10-29",
+              "net_pct": -0.601
+            },
+            {
+              "day": "2026-11-02",
+              "net_pct": 0.013
+            },
+            {
+              "day": "2026-11-04",
+              "net_pct": -0.043
+            }
+          ],
+          "later": {
+            "independent_days": 7,
+            "mean_net": -0.4117,
+            "mean_net_60bp": -0.7117,
+            "n": 7,
+            "precision": 0.4286,
+            "profitable": 3,
+            "wilson_95_lower": 0.1582,
+            "worst_net": -1.7257
+          }
+        },
+        "dual": {
+          "all": {
+            "independent_days": 33,
+            "mean_net": -0.4495,
+            "mean_net_60bp": -0.7495,
+            "n": 33,
+            "precision": 0.2727,
+            "profitable": 9,
+            "wilson_95_lower": 0.1507,
+            "worst_net": -2.6923
+          },
+          "earlier": {
+            "independent_days": 27,
+            "mean_net": -0.4366,
+            "mean_net_60bp": -0.7366,
+            "n": 27,
+            "precision": 0.2593,
+            "profitable": 7,
+            "wilson_95_lower": 0.1317,
+            "worst_net": -2.6923
+          },
+          "last_8_dates": [
+            {
+              "day": "2026-08-03",
+              "net_pct": -0.098
+            },
+            {
+              "day": "2026-08-13",
+              "net_pct": -0.806
+            },
+            {
+              "day": "2026-09-02",
+              "net_pct": 0.119
+            },
+            {
+              "day": "2026-10-16",
+              "net_pct": -1.726
+            },
+            {
+              "day": "2026-10-20",
+              "net_pct": -0.807
+            },
+            {
+              "day": "2026-10-29",
+              "net_pct": -0.601
+            },
+            {
+              "day": "2026-11-02",
+              "net_pct": 0.013
+            },
+            {
+              "day": "2026-11-04",
+              "net_pct": -0.043
+            }
+          ],
+          "later": {
+            "independent_days": 6,
+            "mean_net": -0.5074,
+            "mean_net_60bp": -0.8074,
+            "n": 6,
+            "precision": 0.3333,
+            "profitable": 2,
+            "wilson_95_lower": 0.0968,
+            "worst_net": -1.7257
+          }
+        },
+        "dual_breadth": {
+          "all": {
+            "independent_days": 31,
+            "mean_net": -0.4659,
+            "mean_net_60bp": -0.7659,
+            "n": 31,
+            "precision": 0.2581,
+            "profitable": 8,
+            "wilson_95_lower": 0.137,
+            "worst_net": -2.6923
+          },
+          "earlier": {
+            "independent_days": 25,
+            "mean_net": -0.4559,
+            "mean_net_60bp": -0.7559,
+            "n": 25,
+            "precision": 0.24,
+            "profitable": 6,
+            "wilson_95_lower": 0.115,
+            "worst_net": -2.6923
+          },
+          "last_8_dates": [
+            {
+              "day": "2026-07-09",
+              "net_pct": -0.099
+            },
+            {
+              "day": "2026-08-03",
+              "net_pct": -0.098
+            },
+            {
+              "day": "2026-09-02",
+              "net_pct": 0.119
+            },
+            {
+              "day": "2026-10-16",
+              "net_pct": -1.726
+            },
+            {
+              "day": "2026-10-20",
+              "net_pct": -0.807
+            },
+            {
+              "day": "2026-10-29",
+              "net_pct": -0.601
+            },
+            {
+              "day": "2026-11-02",
+              "net_pct": 0.013
+            },
+            {
+              "day": "2026-11-04",
+              "net_pct": -0.043
+            }
+          ],
+          "later": {
+            "independent_days": 6,
+            "mean_net": -0.5074,
+            "mean_net_60bp": -0.8074,
+            "n": 6,
+            "precision": 0.3333,
+            "profitable": 2,
+            "wilson_95_lower": 0.0968,
+            "worst_net": -1.7257
+          }
+        },
+        "dual_prior5": {
+          "all": {
+            "independent_days": 17,
+            "mean_net": -0.4054,
+            "mean_net_60bp": -0.7054,
+            "n": 17,
+            "precision": 0.2353,
+            "profitable": 4,
+            "wilson_95_lower": 0.0955,
+            "worst_net": -1.7257
+          },
+          "earlier": {
+            "independent_days": 14,
+            "mean_net": -0.323,
+            "mean_net_60bp": -0.623,
+            "n": 14,
+            "precision": 0.2857,
+            "profitable": 4,
+            "wilson_95_lower": 0.1172,
+            "worst_net": -1.369
+          },
+          "last_8_dates": [
+            {
+              "day": "2026-06-12",
+              "net_pct": 0.082
+            },
+            {
+              "day": "2026-06-25",
+              "net_pct": -0.607
+            },
+            {
+              "day": "2026-07-01",
+              "net_pct": 0.44
+            },
+            {
+              "day": "2026-08-03",
+              "net_pct": -0.098
+            },
+            {
+              "day": "2026-08-13",
+              "net_pct": -0.806
+            },
+            {
+              "day": "2026-10-16",
+              "net_pct": -1.726
+            },
+            {
+              "day": "2026-10-29",
+              "net_pct": -0.601
+            },
+            {
+              "day": "2026-11-04",
+              "net_pct": -0.043
+            }
+          ],
+          "later": {
+            "independent_days": 3,
+            "mean_net": -0.7899,
+            "mean_net_60bp": -1.0899,
+            "n": 3,
+            "precision": 0.0,
+            "profitable": 0,
+            "wilson_95_lower": 0.0,
+            "worst_net": -1.7257
+          }
+        },
+        "target_only": {
+          "all": {
+            "independent_days": 55,
+            "mean_net": -0.3147,
+            "mean_net_60bp": -0.6147,
+            "n": 55,
+            "precision": 0.3091,
+            "profitable": 17,
+            "wilson_95_lower": 0.2028,
+            "worst_net": -2.6923
+          },
+          "earlier": {
+            "independent_days": 45,
+            "mean_net": -0.2839,
+            "mean_net_60bp": -0.5839,
+            "n": 45,
+            "precision": 0.3111,
+            "profitable": 14,
+            "wilson_95_lower": 0.1953,
+            "worst_net": -2.6923
+          },
+          "last_8_dates": [
+            {
+              "day": "2026-10-15",
+              "net_pct": -0.243
+            },
+            {
+              "day": "2026-10-16",
+              "net_pct": -1.726
+            },
+            {
+              "day": "2026-10-20",
+              "net_pct": -0.807
+            },
+            {
+              "day": "2026-10-22",
+              "net_pct": 0.529
+            },
+            {
+              "day": "2026-10-26",
+              "net_pct": -1.119
+            },
+            {
+              "day": "2026-10-29",
+              "net_pct": -0.601
+            },
+            {
+              "day": "2026-11-02",
+              "net_pct": 0.013
+            },
+            {
+              "day": "2026-11-04",
+              "net_pct": -0.043
+            }
+          ],
+          "later": {
+            "independent_days": 10,
+            "mean_net": -0.4536,
+            "mean_net_60bp": -0.7536,
+            "n": 10,
+            "precision": 0.3,
+            "profitable": 3,
+            "wilson_95_lower": 0.1078,
+            "worst_net": -1.7257
+          }
+        }
+      },
+      "sector_session_labels_75bp": {
+        "mixed": 120,
+        "negative": 57,
+        "positive": 69
+      },
+      "source": "Yahoo Finance public hourly ETF/equity chart proxy, 1y 60m, NOT SIP or BOATS",
+      "target": "KRE",
+      "thresholds_pct": [
+        0.6,
+        0.8
+      ]
+    },
+    "gold_miners": {
+      "anchor": "GLD",
+      "daily_baseline": {
+        "independent_days": 246,
+        "mean_net": -0.2425,
+        "mean_net_60bp": -0.5425,
+        "n": 246,
+        "precision": 0.4024,
+        "profitable": 99,
+        "wilson_95_lower": 0.3431,
+        "worst_net": -6.9223
+      },
+      "peers": [
+        "GDXJ",
+        "NEM",
+        "AEM",
+        "KGC"
+      ],
+      "rules": {
+        "anchor_only": {
+          "all": {
+            "independent_days": 114,
+            "mean_net": -0.2527,
+            "mean_net_60bp": -0.5527,
+            "n": 114,
+            "precision": 0.3947,
+            "profitable": 45,
+            "wilson_95_lower": 0.3098,
+            "worst_net": -5.8823
+          },
+          "earlier": {
+            "independent_days": 97,
+            "mean_net": -0.2769,
+            "mean_net_60bp": -0.5769,
+            "n": 97,
+            "precision": 0.4021,
+            "profitable": 39,
+            "wilson_95_lower": 0.31,
+            "worst_net": -5.8823
+          },
+          "last_8_dates": [
+            {
+              "day": "2026-10-15",
+              "net_pct": 1.977
+            },
+            {
+              "day": "2026-10-16",
+              "net_pct": -1.711
+            },
+            {
+              "day": "2026-10-20",
+              "net_pct": -2.481
+            },
+            {
+              "day": "2026-10-21",
+              "net_pct": -0.08
+            },
+            {
+              "day": "2026-10-27",
+              "net_pct": 1.189
+            },
+            {
+              "day": "2026-11-02",
+              "net_pct": -1.338
+            },
+            {
+              "day": "2026-11-04",
+              "net_pct": 2.222
+            },
+            {
+              "day": "2026-11-05",
+              "net_pct": 1.869
+            }
+          ],
+          "later": {
+            "independent_days": 17,
+            "mean_net": -0.1143,
+            "mean_net_60bp": -0.4143,
+            "n": 17,
+            "precision": 0.3529,
+            "profitable": 6,
+            "wilson_95_lower": 0.1731,
+            "worst_net": -2.4806
+          }
+        },
+        "dual": {
+          "all": {
+            "independent_days": 88,
+            "mean_net": -0.4863,
+            "mean_net_60bp": -0.7863,
+            "n": 88,
+            "precision": 0.3409,
+            "profitable": 30,
+            "wilson_95_lower": 0.2504,
+            "worst_net": -5.8823
+          },
+          "earlier": {
+            "independent_days": 74,
+            "mean_net": -0.5504,
+            "mean_net_60bp": -0.8504,
+            "n": 74,
+            "precision": 0.3378,
+            "profitable": 25,
+            "wilson_95_lower": 0.2405,
+            "worst_net": -5.8823
+          },
+          "last_8_dates": [
+            {
+              "day": "2026-10-08",
+              "net_pct": -0.265
+            },
+            {
+              "day": "2026-10-09",
+              "net_pct": 0.541
+            },
+            {
+              "day": "2026-10-15",
+              "net_pct": 1.977
+            },
+            {
+              "day": "2026-10-16",
+              "net_pct": -1.711
+            },
+            {
+              "day": "2026-10-20",
+              "net_pct": -2.481
+            },
+            {
+              "day": "2026-10-27",
+              "net_pct": 1.189
+            },
+            {
+              "day": "2026-11-02",
+              "net_pct": -1.338
+            },
+            {
+              "day": "2026-11-04",
+              "net_pct": 2.222
+            }
+          ],
+          "later": {
+            "independent_days": 14,
+            "mean_net": -0.1472,
+            "mean_net_60bp": -0.4472,
+            "n": 14,
+            "precision": 0.3571,
+            "profitable": 5,
+            "wilson_95_lower": 0.1634,
+            "worst_net": -2.4806
+          }
+        },
+        "dual_breadth": {
+          "all": {
+            "independent_days": 88,
+            "mean_net": -0.4863,
+            "mean_net_60bp": -0.7863,
+            "n": 88,
+            "precision": 0.3409,
+            "profitable": 30,
+            "wilson_95_lower": 0.2504,
+            "worst_net": -5.8823
+          },
+          "earlier": {
+            "independent_days": 74,
+            "mean_net": -0.5504,
+            "mean_net_60bp": -0.8504,
+            "n": 74,
+            "precision": 0.3378,
+            "profitable": 25,
+            "wilson_95_lower": 0.2405,
+            "worst_net": -5.8823
+          },
+          "last_8_dates": [
+            {
+              "day": "2026-10-08",
+              "net_pct": -0.265
+            },
+            {
+              "day": "2026-10-09",
+              "net_pct": 0.541
+            },
+            {
+              "day": "2026-10-15",
+              "net_pct": 1.977
+            },
+            {
+              "day": "2026-10-16",
+              "net_pct": -1.711
+            },
+            {
+              "day": "2026-10-20",
+              "net_pct": -2.481
+            },
+            {
+              "day": "2026-10-27",
+              "net_pct": 1.189
+            },
+            {
+              "day": "2026-11-02",
+              "net_pct": -1.338
+            },
+            {
+              "day": "2026-11-04",
+              "net_pct": 2.222
+            }
+          ],
+          "later": {
+            "independent_days": 14,
+            "mean_net": -0.1472,
+            "mean_net_60bp": -0.4472,
+            "n": 14,
+            "precision": 0.3571,
+            "profitable": 5,
+            "wilson_95_lower": 0.1634,
+            "worst_net": -2.4806
+          }
+        },
+        "dual_prior5": {
+          "all": {
+            "independent_days": 40,
+            "mean_net": -0.6764,
+            "mean_net_60bp": -0.9764,
+            "n": 40,
+            "precision": 0.3,
+            "profitable": 12,
+            "wilson_95_lower": 0.1807,
+            "worst_net": -5.8823
+          },
+          "earlier": {
+            "independent_days": 39,
+            "mean_net": -0.6499,
+            "mean_net_60bp": -0.9499,
+            "n": 39,
+            "precision": 0.3077,
+            "profitable": 12,
+            "wilson_95_lower": 0.1857,
+            "worst_net": -5.8823
+          },
+          "last_8_dates": [
+            {
+              "day": "2026-08-05",
+              "net_pct": -0.384
+            },
+            {
+              "day": "2026-08-07",
+              "net_pct": -0.228
+            },
+            {
+              "day": "2026-08-12",
+              "net_pct": -1.226
+            },
+            {
+              "day": "2026-08-14",
+              "net_pct": -1.148
+            },
+            {
+              "day": "2026-08-17",
+              "net_pct": -0.55
+            },
+            {
+              "day": "2026-08-21",
+              "net_pct": -0.572
+            },
+            {
+              "day": "2026-08-24",
+              "net_pct": -0.401
+            },
+            {
+              "day": "2026-10-16",
+              "net_pct": -1.711
+            }
+          ],
+          "later": {
+            "independent_days": 1,
+            "mean_net": -1.7109,
+
+[executed on device: www3.securityprepper.com (1016f4a4-5f2e-452e-8c88-0e4b9430d76e)]
