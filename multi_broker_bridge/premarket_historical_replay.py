@@ -13,10 +13,19 @@ from .auto_paper import _fetch_json,market_headers,DATA_HOST
 CT=ZoneInfo("America/Chicago")
 SIP_START=datetime(2026,11,9,3,0,tzinfo=CT)
 SIP_END=datetime(2026,11,9,13,45,tzinfo=CT)
-SYMBOLS=("AMD","MU","SNDK","NVDA","CRWD","PANW","PWR","CAT","GS","RBA")
+SYMBOLS=("AMD","MU","SNDK","NVDA","CRWD","PANW","PWR","CAT","GS","RBA",
+         "ZS","GE","BA","JPM","BAC")
 SOLD=("AMD",Decimal("466.00"),datetime(2026,11,9,7,37,tzinfo=CT))
 FDR_SOLD=("AMD",Decimal("464.52"),datetime(2026,11,9,7,30,tzinfo=CT))
 ANCHORS=("AMD","MU","SNDK")
+SECTOR_ANCHORS={
+    "AMD":("AMD","MU","SNDK"),"MU":("AMD","MU","SNDK"),
+    "SNDK":("AMD","MU","SNDK"),"NVDA":("AMD","MU","SNDK"),
+    "CRWD":("CRWD","PANW","ZS"),"PANW":("CRWD","PANW","ZS"),
+    "CAT":("CAT","GE","BA"),"GS":("JPM","BAC","GS"),
+    # Neither PWR nor RBA has a separately verified current sector anchor
+    # group approved for automatic orders. Never invent one.
+}
 
 def bars(sym):
     query=urlencode({"symbols":sym,"timeframe":"1Min",
@@ -73,7 +82,7 @@ def main():
             asof=seq[-1]["dt"]+timedelta(minutes=1)
             if asof.hour>10 or (asof.hour==10 and asof.minute>0):continue
             leader_confirmed=0
-            for a in ANCHORS:
+            for a in SECTOR_ANCHORS.get(sym,()):
                 cutoff=[b for b in data[a] if b["dt"]+timedelta(minutes=1)<=asof]
                 if len(cutoff)>=4 and rising(cutoff[-4:]):leader_confirmed+=1
             if leader_confirmed>=2:
@@ -85,6 +94,8 @@ def main():
         at_end=minute_at(rows,end)
         out[sym]={
             "historical_one_minute_bar_count":len(rows),
+            "sector_anchors_used":list(SECTOR_ANCHORS.get(sym,())),
+            "independent_sector_confirmation_available":bool(SECTOR_ANCHORS.get(sym)),
             "first_confirmed_rising_breadth_bar":(
                 {"completed_at_CT":first[0].strftime("%H:%M"),
                  "minute_close_proxy":str(first[1]),
