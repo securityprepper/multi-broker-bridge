@@ -429,6 +429,12 @@ def run(now: datetime, execute: bool = False) -> dict:
         decision.sort(key=lambda x:0 if x["action"]=="EXIT_WATCH" else 1)
         local_date=now.astimezone(NY).date().isoformat()
         placed=[]
+        # Diagnostic-only evidence for the next missed-entry review.
+        # Never log API keys, broker account ID, cash amounts or source quotes.
+        skipped_entries=[]
+        def note_skip(sym:str,reason:str):
+            if len(skipped_entries)<48:
+                skipped_entries.append({"symbol":sym,"reason":reason})
         # Retire only the strategy's old BUY orders; preserve all manual orders.
         # A cancel request is NOT proof of cancellation: on this scan, the
         # symbol remains occupied until a fresh broker readback next tick.
@@ -483,13 +489,22 @@ def run(now: datetime, execute: bool = False) -> dict:
         for row in decision:
             symbol=row["symbol"]
             prices=quotes.get(symbol)
-            if not prices or symbol in occupied:
+            if not prices:
+                if row["action"]=="BUY_WATCH":note_skip(symbol,"NO_FRESH_BID_ASK")
+                continue
+            if symbol in occupied:
+                if row["action"]=="BUY_WATCH":note_skip(symbol,"BROKER_ORDER_ALREADY_OPEN")
                 continue
             bid,ask=prices
             if row["action"]=="BUY_WATCH":
-                if not gate_ok or symbol in pos_by_symbol:
+                if not gate_ok:
+                    note_skip(symbol,"HOLIDAY_GATE_BLOCKED")
+                    continue
+                if symbol in pos_by_symbol:
+                    note_skip(symbol,"EXISTING_BROKER_POSITION")
                     continue
                 if now.astimezone(CHICAGO).time()>=__import__("datetime").time(13,15):
+                    note_skip(symbol,"AFTER_ENTRY_CUTOFF")
                     continue
                 # A second entry is exceptional: the first complete premarket
                 # sell must have BANKED >=2% and the next true ask must be
@@ -500,6 +515,7 @@ def run(now: datetime, execute: bool = False) -> dict:
                     reentry=_verified_cheaper_reentry(
                         db,now,symbol,tracked,ask,occupied,pos_by_symbol)
                     if not reentry:
+                        note_skip(symbol,"PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY")
                         continue
                 side="buy"
                 price=ask.quantize(Decimal("0.01"),rounding="ROUND_UP")
@@ -507,9 +523,11 @@ def run(now: datetime, execute: bool = False) -> dict:
                 # whole-share quantity under $2k (not an account-level cap).
                 quantity=1 if ask>=Decimal("750") else int(MAX_NOTIONAL//price)
                 if quantity<1 or quantity*price>MAX_NOTIONAL:
+                    note_skip(symbol,"PER_ORDER_NOTIONAL_CAP")
                     continue
                 available=Decimal(str(account.get("cash",0)))
                 if not available.is_finite() or available<quantity*price:
+                    note_skip(symbol,"PAPER_CASH_INSUFFICIENT")
                     continue
             else:
                 if symbol not in holdings:
@@ -577,7 +595,10 @@ def run(now: datetime, execute: bool = False) -> dict:
                 "premarket_rapid_spike_names":sorted(spike_symbols),
                 "premarket_effective_steady_names":sorted(effective_steady),
                 "gate_allows_new_entries":gate_ok,"candidate_count":len(decision),
-                "orders":placed,"tracked":len(tracked)}
+                "orders":placed,"tracked":len(tracked),
+                "buy_watch_symbols":[r["symbol"] for r in decision
+                                     if r["action"]=="BUY_WATCH"][:48],
+                "skipped_buy_reasons":skipped_entries}
     finally:
         db.close()
 
