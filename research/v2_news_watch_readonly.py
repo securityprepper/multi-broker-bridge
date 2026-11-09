@@ -22,6 +22,18 @@ POSITIVE = ("raises guidance", "beats estimates", "beats expectations", "fda app
 NEGATIVE = ("cuts guidance", "lowers guidance", "misses estimates", "misses expectations",
             "recall", "fraud", "downgrade", "profit warning", "files for bankruptcy")
 
+def holiday_allows(now: datetime) -> bool:
+    # Reuse the host's previously tested boundary-cached trusted validation.
+    # A paused/invalid holiday gate MUST block news collection entirely.
+    from holiday_gate import current_gate
+    path = Path(os.environ.get("V2_NEWS_HOLIDAY_CACHE", ""))
+    if not path.is_absolute() or not path.parent.is_dir():
+        raise ValueError("trusted holiday cache path required")
+    gate, state = current_gate(path, now)
+    if gate is None:
+        raise ValueError("unverified holiday gate")
+    return gate.get("paused") is False
+
 def parse_dt(value: str) -> datetime:
     t = datetime.fromisoformat(value.replace("Z", "+00:00"))
     if t.tzinfo is None:
@@ -150,10 +162,13 @@ def write_atomic(state_file: Path, data):
         if os.path.exists(tmp):
             os.unlink(tmp)
 
-def run(now=None, news_fetcher=get_news):
+def run(now=None, news_fetcher=get_news, holiday_checker=holiday_allows):
     now = now or datetime.now(timezone.utc)
     if now.tzinfo is None:
         raise ValueError("aware time required")
+    if not holiday_checker(now):
+        return {"status": "HOLIDAY_PAUSED_NO_NEWS_POLL", "orders_submitted": 0,
+                "broker_order_permissions": False, "market_data_requests": 0}
     creds = Path(os.environ.get("CREDENTIALS_DIRECTORY", ""))
     state = Path(os.environ.get("V2_NEWS_WATCH_STATE", ""))
     if not state.is_absolute() or not state.parent.is_dir():
