@@ -1,0 +1,324 @@
+{
+  "first_only_risk_admission": {
+    "fewer_than_three_other_risks": {
+      "all": {
+        "admitted": 60,
+        "avoided_negative_trade_proxy_pct_points": 59.7587,
+        "baseline_signal_days": 117,
+        "day_equal_net_pct": 0.2004,
+        "forgone_positive_trade_proxy_pct_points": 68.2367,
+        "retained_major_losers": 0,
+        "retained_major_winners": 27,
+        "skipped_major_losers": 8,
+        "skipped_major_winners": 11
+      },
+      "earlier": {
+        "admitted": 51,
+        "avoided_negative_trade_proxy_pct_points": 44.6528,
+        "baseline_signal_days": 97,
+        "day_equal_net_pct": 0.2318,
+        "forgone_positive_trade_proxy_pct_points": 59.0898,
+        "retained_major_losers": 0,
+        "retained_major_winners": 24,
+        "skipped_major_losers": 6,
+        "skipped_major_winners": 10
+      },
+      "later": {
+        "admitted": 9,
+        "avoided_negative_trade_proxy_pct_points": 15.106,
+        "baseline_signal_days": 20,
+        "day_equal_net_pct": 0.0482,
+        "forgone_positive_trade_proxy_pct_points": 9.147,
+        "retained_major_losers": 0,
+        "retained_major_winners": 3,
+        "skipped_major_losers": 2,
+        "skipped_major_winners": 1
+      }
+    },
+    "fewer_than_two_other_risks": {
+      "all": {
+        "admitted": 55,
+        "avoided_negative_trade_proxy_pct_points": 60.1302,
+        "baseline_signal_days": 117,
+        "day_equal_net_pct": 0.1005,
+        "forgone_positive_trade_proxy_pct_points": 80.2999,
+        "retained_major_losers": 0,
+        "retained_major_winners": 25,
+        "skipped_major_losers": 8,
+        "skipped_major_winners": 13
+      },
+      "earlier": {
+        "admitted": 47,
+        "avoided_negative_trade_proxy_pct_points": 44.6528,
+        "baseline_signal_days": 97,
+        "day_equal_net_pct": 0.1074,
+        "forgone_positive_trade_proxy_pct_points": 71.153,
+        "retained_major_losers": 0,
+        "retained_major_winners": 22,
+        "skipped_major_losers": 6,
+        "skipped_major_winners": 12
+      },
+      "later": {
+        "admitted": 8,
+        "avoided_negative_trade_proxy_pct_points": 15.4774,
+        "baseline_signal_days": 20,
+        "day_equal_net_pct": 0.0668,
+        "forgone_positive_trade_proxy_pct_points": 9.147,
+        "retained_major_losers": 0,
+        "retained_major_winners": 3,
+        "skipped_major_losers": 2,
+        "skipped_major_winners": 1
+      }
+    },
+    "first_only": {
+      "all": {
+        "admitted": 117,
+        "avoided_negative_trade_proxy_pct_points": 0,
+        "baseline_signal_days": 117,
+        "day_equal_net_pct": 0.2729,
+        "forgone_positive_trade_proxy_pct_points": 0,
+        "retained_major_losers": 8,
+        "retained_major_winners": 38,
+        "skipped_major_losers": 0,
+        "skipped_major_winners": 0
+      },
+      "earlier": {
+        "admitted": 97,
+        "avoided_negative_trade_proxy_pct_points": 0,
+        "baseline_signal_days": 97,
+        "day_equal_net_pct": 0.3806,
+        "forgone_positive_trade_proxy_pct_points": 0,
+        "retained_major_losers": 6,
+        "retained_major_winners": 34,
+        "skipped_major_losers": 0,
+        "skipped_major_winners": 0
+      },
+      "later": {
+        "admitted": 20,
+        "avoided_negative_trade_proxy_pct_points": 0,
+        "baseline_signal_days": 20,
+        "day_equal_net_pct": -0.2497,
+        "forgone_positive_trade_proxy_pct_points": 0,
+        "retained_major_losers": 2,
+        "retained_major_winners": 4,
+        "skipped_major_losers": 0,
+        "skipped_major_winners": 0
+      }
+    },
+    "own_risk_clear": {
+      "all": {
+        "admitted": 73,
+        "avoided_negative_trade_proxy_pct_points": 44.7922,
+        "baseline_signal_days": 117,
+        "day_equal_net_pct": 0.242,
+        "forgone_positive_trade_proxy_pct_points": 48.4078,
+        "retained_major_losers": 1,
+        "retained_major_winners": 34,
+        "skipped_major_losers": 7,
+        "skipped_major_winners": 4
+      },
+      "earlier": {
+        "admitted": 63,
+        "avoided_negative_trade_proxy_pct_points": 30.3643,
+        "baseline_signal_days": 97,
+        "day_equal_net_pct": 0.2502,
+        "forgone_positive_trade_proxy_pct_points": 43.0187,
+        "retained_major_losers": 1,
+        "retained_major_winners": 30,
+        "skipped_major_losers": 5,
+        "skipped_major_winners": 4
+      },
+      "later": {
+        "admitted": 10,
+        "avoided_negative_trade_proxy_pct_points": 14.4279,
+        "baseline_signal_days": 20,
+        "day_equal_net_pct": 0.2022,
+        "forgone_positive_trade_proxy_pct_points": 5.3891,
+        "retained_major_losers": 0,
+        "retained_major_winners": 4,
+        "skipped_major_losers": 2,
+        "skipped_major_winners": 0
+      }
+    },
+    "soxx_risk_clear": {
+      "all": {
+        "admitted": 72,
+        "avoided_negative_trade_proxy_pct_points": 54.3987,
+        "baseline_signal_days": 117,
+        "day_equal_net_pct": 0.2785,
+        "forgone_positive_trade_proxy_pct_points": 53.7428,
+        "retained_major_losers": 0,
+        "retained_major_winners": 33,
+        "skipped_major_losers": 8,
+        "skipped_major_winners": 5
+      },
+      "earlier": {
+        "admitted": 63,
+        "avoided_negative_trade_proxy_pct_points": 39.2927,
+        "baseline_signal_days": 97,
+        "day_equal_net_pct": 0.3259,
+        "forgone_positive_trade_proxy_pct_points": 44.5958,
+        "retained_major_losers": 0,
+        "retained_major_winners": 30,
+        "skipped_major_losers": 6,
+        "skipped_major_winners": 4
+      },
+      "later": {
+        "admitted": 9,
+        "avoided_negative_trade_proxy_pct_points": 15.106,
+        "baseline_signal_days": 20,
+        "day_equal_net_pct": 0.0482,
+        "forgone_positive_trade_proxy_pct_points": 9.147,
+        "retained_major_losers": 0,
+        "retained_major_winners": 3,
+        "skipped_major_losers": 2,
+        "skipped_major_winners": 1
+      }
+    },
+    "zero_other_risks": {
+      "all": {
+        "admitted": 48,
+        "avoided_negative_trade_proxy_pct_points": 69.0772,
+        "baseline_signal_days": 117,
+        "day_equal_net_pct": 0.1526,
+        "forgone_positive_trade_proxy_pct_points": 83.1465,
+        "retained_major_losers": 0,
+        "retained_major_winners": 23,
+        "skipped_major_losers": 8,
+        "skipped_major_winners": 15
+      },
+      "earlier": {
+        "admitted": 42,
+        "avoided_negative_trade_proxy_pct_points": 50.3493,
+        "baseline_signal_days": 97,
+        "day_equal_net_pct": 0.1422,
+        "forgone_positive_trade_proxy_pct_points": 73.4759,
+        "retained_major_losers": 0,
+        "retained_major_winners": 20,
+        "skipped_major_losers": 6,
+        "skipped_major_winners": 14
+      },
+      "later": {
+        "admitted": 6,
+        "avoided_negative_trade_proxy_pct_points": 18.7279,
+        "baseline_signal_days": 20,
+        "day_equal_net_pct": 0.2031,
+        "forgone_positive_trade_proxy_pct_points": 9.6706,
+        "retained_major_losers": 0,
+        "retained_major_winners": 3,
+        "skipped_major_losers": 2,
+        "skipped_major_winners": 1
+      }
+    }
+  },
+  "preopen_peer_confirm": {
+    "fresh30": {
+      "0": {
+        "earliest_major_at": "2025-11-13T04:20:00-05:00",
+        "major_down_hits": 155,
+        "major_down_missed": 54,
+        "major_hits_before_minus5": 121,
+        "major_hits_prior_evening": 23,
+        "major_winner_false_warnings": 22,
+        "modeled_sale_advantage_next_open_mean_pp": -0.5397,
+        "nonmajor_warnings": 519,
+        "price_scorable": 669,
+        "warnings": 674
+      },
+      "1": {
+        "earliest_major_at": "2025-11-18T09:15:00-05:00",
+        "major_down_hits": 130,
+        "major_down_missed": 79,
+        "major_hits_before_minus5": 101,
+        "major_hits_prior_evening": 18,
+        "major_winner_false_warnings": 15,
+        "modeled_sale_advantage_next_open_mean_pp": -0.5515,
+        "nonmajor_warnings": 462,
+        "price_scorable": 588,
+        "warnings": 592
+      },
+      "2": {
+        "earliest_major_at": "2025-11-18T09:15:00-05:00",
+        "major_down_hits": 103,
+        "major_down_missed": 106,
+        "major_hits_before_minus5": 79,
+        "major_hits_prior_evening": 10,
+        "major_winner_false_warnings": 10,
+        "modeled_sale_advantage_next_open_mean_pp": -0.6629,
+        "nonmajor_warnings": 393,
+        "price_scorable": 495,
+        "warnings": 496
+      },
+      "3": {
+        "earliest_major_at": "2025-11-18T09:15:00-05:00",
+        "major_down_hits": 98,
+        "major_down_missed": 111,
+        "major_hits_before_minus5": 74,
+        "major_hits_prior_evening": 10,
+        "major_winner_false_warnings": 2,
+        "modeled_sale_advantage_next_open_mean_pp": -0.396,
+        "nonmajor_warnings": 338,
+        "price_scorable": 435,
+        "warnings": 436
+      }
+    },
+    "sticky": {
+      "0": {
+        "earliest_major_at": "2025-11-13T04:20:00-05:00",
+        "major_down_hits": 155,
+        "major_down_missed": 54,
+        "major_hits_before_minus5": 121,
+        "major_hits_prior_evening": 23,
+        "major_winner_false_warnings": 22,
+        "modeled_sale_advantage_next_open_mean_pp": -0.5397,
+        "nonmajor_warnings": 519,
+        "price_scorable": 669,
+        "warnings": 674
+      },
+      "1": {
+        "earliest_major_at": "2025-11-13T06:25:00-05:00",
+        "major_down_hits": 152,
+        "major_down_missed": 57,
+        "major_hits_before_minus5": 117,
+        "major_hits_prior_evening": 19,
+        "major_winner_false_warnings": 18,
+        "modeled_sale_advantage_next_open_mean_pp": -0.54,
+        "nonmajor_warnings": 508,
+        "price_scorable": 656,
+        "warnings": 660
+      },
+      "2": {
+        "earliest_major_at": "2025-11-18T09:15:00-05:00",
+        "major_down_hits": 147,
+        "major_down_missed": 62,
+        "major_hits_before_minus5": 106,
+        "major_hits_prior_evening": 10,
+        "major_winner_false_warnings": 17,
+        "modeled_sale_advantage_next_open_mean_pp": -0.6656,
+        "nonmajor_warnings": 487,
+        "price_scorable": 633,
+        "warnings": 634
+      },
+      "3": {
+        "earliest_major_at": "2025-11-18T09:15:00-05:00",
+        "major_down_hits": 141,
+        "major_down_missed": 68,
+        "major_hits_before_minus5": 99,
+        "major_hits_prior_evening": 10,
+        "major_winner_false_warnings": 17,
+        "modeled_sale_advantage_next_open_mean_pp": -0.7541,
+        "nonmajor_warnings": 478,
+        "price_scorable": 618,
+        "warnings": 619
+      }
+    }
+  },
+  "sample": {
+    "first_only_buy_dates": 117,
+    "major_down": 209,
+    "major_up": 254,
+    "preopen_baseline_warnings": 674,
+    "sessions": 251,
+    "stockdays": 2244
+  }
+}
