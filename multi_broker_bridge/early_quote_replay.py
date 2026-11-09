@@ -14,11 +14,11 @@ from .auto_paper import _fetch_json,market_headers,DATA_HOST
 CT=ZoneInfo("America/Chicago")
 CANDIDATES=(
     ("AMD","2026-11-09 03:18"),
-    ("CAT","2026-11-09 06:50"),
-    ("CRWD","2026-11-09 08:46"),
+    ("CAT","2026-11-09 08:40"),
+    ("CRWD","2026-11-09 08:47"),
     ("PANW","2026-11-09 08:47"),
     ("PWR","2026-11-09 08:50"),
-    ("GS","2026-11-09 09:53"),
+    ("GS","2026-11-09 08:42"),
 )
 LIMIT=10000
 
