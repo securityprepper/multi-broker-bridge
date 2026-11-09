@@ -1,0 +1,486 @@
+{
+  "locked_later": {
+    "baseline_later": {
+      "day_equal_mean_pct": -0.6568,
+      "eligible_entries": 107,
+      "major_down_days_signaled": 13,
+      "major_up_days_hit": 11,
+      "mean_per_eligible_entry_pct": -0.4818,
+      "mean_per_signal_pct": -0.4818,
+      "price_eligible_early_exits": 0,
+      "profitable_entry_count": 53,
+      "signals": 107,
+      "unfilled_exit_proxies": 0,
+      "unprofitable_entry_count": 54
+    },
+    "selected_later": {
+      "day_equal_mean_pct": -0.6568,
+      "eligible_entries": 107,
+      "major_down_days_signaled": 13,
+      "major_up_days_hit": 11,
+      "mean_per_eligible_entry_pct": -0.4818,
+      "mean_per_signal_pct": -0.4818,
+      "price_eligible_early_exits": 0,
+      "profitable_entry_count": 53,
+      "signals": 107,
+      "unfilled_exit_proxies": 0,
+      "unprofitable_entry_count": 54
+    },
+    "selected_on_prior_period": "hold_1400"
+  },
+  "major_down": 209,
+  "major_down_given_buy": 40,
+  "major_up": 254,
+  "major_up_caught": 150,
+  "missed_up_examples": [
+    {
+      "day": "2025-11-10",
+      "symbol": "MU"
+    },
+    {
+      "day": "2025-11-10",
+      "symbol": "NVDA"
+    },
+    {
+      "day": "2025-11-10",
+      "symbol": "SNDK"
+    },
+    {
+      "day": "2025-11-10",
+      "symbol": "WDC"
+    },
+    {
+      "day": "2025-11-12",
+      "symbol": "AMD"
+    },
+    {
+      "day": "2025-11-28",
+      "symbol": "INTC"
+    },
+    {
+      "day": "2025-12-04",
+      "symbol": "SNDK"
+    },
+    {
+      "day": "2025-12-10",
+      "symbol": "SNDK"
+    },
+    {
+      "day": "2025-12-10",
+      "symbol": "WDC"
+    },
+    {
+      "day": "2025-12-18",
+      "symbol": "MU"
+    },
+    {
+      "day": "2025-12-18",
+      "symbol": "SNDK"
+    },
+    {
+      "day": "2025-12-18",
+      "symbol": "WDC"
+    }
+  ],
+  "policy_metrics": {
+    "fixed_1100": {
+      "all": {
+        "day_equal_mean_pct": -0.3269,
+        "eligible_entries": 688,
+        "major_down_days_signaled": 40,
+        "major_up_days_hit": 150,
+        "mean_per_eligible_entry_pct": -0.1988,
+        "mean_per_signal_pct": -0.1962,
+        "price_eligible_early_exits": 686,
+        "profitable_entry_count": 302,
+        "signals": 697,
+        "unfilled_exit_proxies": 2,
+        "unprofitable_entry_count": 386
+      },
+      "earlier": {
+        "day_equal_mean_pct": -0.2924,
+        "eligible_entries": 581,
+        "major_down_days_signaled": 27,
+        "major_up_days_hit": 139,
+        "mean_per_eligible_entry_pct": -0.1557,
+        "mean_per_signal_pct": -0.1534,
+        "price_eligible_early_exits": 579,
+        "profitable_entry_count": 256,
+        "signals": 590,
+        "unfilled_exit_proxies": 2,
+        "unprofitable_entry_count": 325
+      },
+      "later": {
+        "day_equal_mean_pct": -0.4943,
+        "eligible_entries": 107,
+        "major_down_days_signaled": 13,
+        "major_up_days_hit": 11,
+        "mean_per_eligible_entry_pct": -0.4325,
+        "mean_per_signal_pct": -0.4325,
+        "price_eligible_early_exits": 107,
+        "profitable_entry_count": 46,
+        "signals": 107,
+        "unfilled_exit_proxies": 0,
+        "unprofitable_entry_count": 61
+      }
+    },
+    "fixed_1200": {
+      "all": {
+        "day_equal_mean_pct": -0.1888,
+        "eligible_entries": 688,
+        "major_down_days_signaled": 40,
+        "major_up_days_hit": 150,
+        "mean_per_eligible_entry_pct": -0.0248,
+        "mean_per_signal_pct": -0.0245,
+        "price_eligible_early_exits": 687,
+        "profitable_entry_count": 318,
+        "signals": 697,
+        "unfilled_exit_proxies": 1,
+        "unprofitable_entry_count": 370
+      },
+      "earlier": {
+        "day_equal_mean_pct": -0.1245,
+        "eligible_entries": 581,
+        "major_down_days_signaled": 27,
+        "major_up_days_hit": 139,
+        "mean_per_eligible_entry_pct": 0.0342,
+        "mean_per_signal_pct": 0.0337,
+        "price_eligible_early_exits": 580,
+        "profitable_entry_count": 269,
+        "signals": 590,
+        "unfilled_exit_proxies": 1,
+        "unprofitable_entry_count": 312
+      },
+      "later": {
+        "day_equal_mean_pct": -0.5011,
+        "eligible_entries": 107,
+        "major_down_days_signaled": 13,
+        "major_up_days_hit": 11,
+        "mean_per_eligible_entry_pct": -0.3452,
+        "mean_per_signal_pct": -0.3452,
+        "price_eligible_early_exits": 107,
+        "profitable_entry_count": 49,
+        "signals": 107,
+        "unfilled_exit_proxies": 0,
+        "unprofitable_entry_count": 58
+      }
+    },
+    "fixed_1300": {
+      "all": {
+        "day_equal_mean_pct": -0.0968,
+        "eligible_entries": 688,
+        "major_down_days_signaled": 40,
+        "major_up_days_hit": 150,
+        "mean_per_eligible_entry_pct": 0.0991,
+        "mean_per_signal_pct": 0.0978,
+        "price_eligible_early_exits": 688,
+        "profitable_entry_count": 341,
+        "signals": 697,
+        "unfilled_exit_proxies": 0,
+        "unprofitable_entry_count": 347
+      },
+      "earlier": {
+        "day_equal_mean_pct": -0.0049,
+        "eligible_entries": 581,
+        "major_down_days_signaled": 27,
+        "major_up_days_hit": 139,
+        "mean_per_eligible_entry_pct": 0.1835,
+        "mean_per_signal_pct": 0.1807,
+        "price_eligible_early_exits": 581,
+        "profitable_entry_count": 290,
+        "signals": 590,
+        "unfilled_exit_proxies": 0,
+        "unprofitable_entry_count": 291
+      },
+      "later": {
+        "day_equal_mean_pct": -0.5429,
+        "eligible_entries": 107,
+        "major_down_days_signaled": 13,
+        "major_up_days_hit": 11,
+        "mean_per_eligible_entry_pct": -0.3592,
+        "mean_per_signal_pct": -0.3592,
+        "price_eligible_early_exits": 107,
+        "profitable_entry_count": 51,
+        "signals": 107,
+        "unfilled_exit_proxies": 0,
+        "unprofitable_entry_count": 56
+      }
+    },
+    "hold_1400": {
+      "all": {
+        "day_equal_mean_pct": -0.041,
+        "eligible_entries": 688,
+        "major_down_days_signaled": 40,
+        "major_up_days_hit": 150,
+        "mean_per_eligible_entry_pct": 0.1362,
+        "mean_per_signal_pct": 0.1344,
+        "price_eligible_early_exits": 0,
+        "profitable_entry_count": 353,
+        "signals": 697,
+        "unfilled_exit_proxies": 0,
+        "unprofitable_entry_count": 335
+      },
+      "earlier": {
+        "day_equal_mean_pct": 0.086,
+        "eligible_entries": 581,
+        "major_down_days_signaled": 27,
+        "major_up_days_hit": 139,
+        "mean_per_eligible_entry_pct": 0.25,
+        "mean_per_signal_pct": 0.2461,
+        "price_eligible_early_exits": 0,
+        "profitable_entry_count": 300,
+        "signals": 590,
+        "unfilled_exit_proxies": 0,
+        "unprofitable_entry_count": 281
+      },
+      "later": {
+        "day_equal_mean_pct": -0.6568,
+        "eligible_entries": 107,
+        "major_down_days_signaled": 13,
+        "major_up_days_hit": 11,
+        "mean_per_eligible_entry_pct": -0.4818,
+        "mean_per_signal_pct": -0.4818,
+        "price_eligible_early_exits": 0,
+        "profitable_entry_count": 53,
+        "signals": 107,
+        "unfilled_exit_proxies": 0,
+        "unprofitable_entry_count": 54
+      }
+    },
+    "sl075_only": {
+      "all": {
+        "day_equal_mean_pct": -0.213,
+        "eligible_entries": 688,
+        "major_down_days_signaled": 40,
+        "major_up_days_hit": 150,
+        "mean_per_eligible_entry_pct": -0.0672,
+        "mean_per_signal_pct": -0.0663,
+        "price_eligible_early_exits": 438,
+        "profitable_entry_count": 215,
+        "signals": 697,
+        "unfilled_exit_proxies": 2,
+        "unprofitable_entry_count": 473
+      },
+      "earlier": {
+        "day_equal_mean_pct": -0.1666,
+        "eligible_entries": 581,
+        "major_down_days_signaled": 27,
+        "major_up_days_hit": 139,
+        "mean_per_eligible_entry_pct": -0.0232,
+        "mean_per_signal_pct": -0.0228,
+        "price_eligible_early_exits": 375,
+        "profitable_entry_count": 182,
+        "signals": 590,
+        "unfilled_exit_proxies": 2,
+        "unprofitable_entry_count": 399
+      },
+      "later": {
+        "day_equal_mean_pct": -0.4379,
+        "eligible_entries": 107,
+        "major_down_days_signaled": 13,
+        "major_up_days_hit": 11,
+        "mean_per_eligible_entry_pct": -0.3064,
+        "mean_per_signal_pct": -0.3064,
+        "price_eligible_early_exits": 63,
+        "profitable_entry_count": 33,
+        "signals": 107,
+        "unfilled_exit_proxies": 0,
+        "unprofitable_entry_count": 74
+      }
+    },
+    "tp05_only": {
+      "all": {
+        "day_equal_mean_pct": -0.2175,
+        "eligible_entries": 688,
+        "major_down_days_signaled": 40,
+        "major_up_days_hit": 150,
+        "mean_per_eligible_entry_pct": -0.0758,
+        "mean_per_signal_pct": -0.0748,
+        "price_eligible_early_exits": 490,
+        "profitable_entry_count": 498,
+        "signals": 697,
+        "unfilled_exit_proxies": 3,
+        "unprofitable_entry_count": 190
+      },
+      "earlier": {
+        "day_equal_mean_pct": -0.1378,
+        "eligible_entries": 581,
+        "major_down_days_signaled": 27,
+        "major_up_days_hit": 139,
+        "mean_per_eligible_entry_pct": -0.0278,
+        "mean_per_signal_pct": -0.0273,
+        "price_eligible_early_exits": 416,
+        "profitable_entry_count": 423,
+        "signals": 590,
+        "unfilled_exit_proxies": 3,
+        "unprofitable_entry_count": 158
+      },
+      "later": {
+        "day_equal_mean_pct": -0.604,
+        "eligible_entries": 107,
+        "major_down_days_signaled": 13,
+        "major_up_days_hit": 11,
+        "mean_per_eligible_entry_pct": -0.3366,
+        "mean_per_signal_pct": -0.3366,
+        "price_eligible_early_exits": 74,
+        "profitable_entry_count": 75,
+        "signals": 107,
+        "unfilled_exit_proxies": 0,
+        "unprofitable_entry_count": 32
+      }
+    },
+    "tp05_sl075": {
+      "all": {
+        "day_equal_mean_pct": -0.3198,
+        "eligible_entries": 688,
+        "major_down_days_signaled": 40,
+        "major_up_days_hit": 150,
+        "mean_per_eligible_entry_pct": -0.1969,
+        "mean_per_signal_pct": -0.1943,
+        "price_eligible_early_exits": 674,
+        "profitable_entry_count": 363,
+        "signals": 697,
+        "unfilled_exit_proxies": 5,
+        "unprofitable_entry_count": 325
+      },
+      "earlier": {
+        "day_equal_mean_pct": -0.292,
+        "eligible_entries": 581,
+        "major_down_days_signaled": 27,
+        "major_up_days_hit": 139,
+        "mean_per_eligible_entry_pct": -0.1776,
+        "mean_per_signal_pct": -0.1749,
+        "price_eligible_early_exits": 571,
+        "profitable_entry_count": 311,
+        "signals": 590,
+        "unfilled_exit_proxies": 5,
+        "unprofitable_entry_count": 270
+      },
+      "later": {
+        "day_equal_mean_pct": -0.4544,
+        "eligible_entries": 107,
+        "major_down_days_signaled": 13,
+        "major_up_days_hit": 11,
+        "mean_per_eligible_entry_pct": -0.3016,
+        "mean_per_signal_pct": -0.3016,
+        "price_eligible_early_exits": 103,
+        "profitable_entry_count": 52,
+        "signals": 107,
+        "unfilled_exit_proxies": 0,
+        "unprofitable_entry_count": 55
+      }
+    },
+    "tp10_sl150": {
+      "all": {
+        "day_equal_mean_pct": -0.2881,
+        "eligible_entries": 688,
+        "major_down_days_signaled": 40,
+        "major_up_days_hit": 150,
+        "mean_per_eligible_entry_pct": -0.135,
+        "mean_per_signal_pct": -0.1332,
+        "price_eligible_early_exits": 575,
+        "profitable_entry_count": 375,
+        "signals": 697,
+        "unfilled_exit_proxies": 5,
+        "unprofitable_entry_count": 313
+      },
+      "earlier": {
+        "day_equal_mean_pct": -0.2736,
+        "eligible_entries": 581,
+        "major_down_days_signaled": 27,
+        "major_up_days_hit": 139,
+        "mean_per_eligible_entry_pct": -0.1224,
+        "mean_per_signal_pct": -0.1205,
+        "price_eligible_early_exits": 494,
+        "profitable_entry_count": 323,
+        "signals": 590,
+        "unfilled_exit_proxies": 5,
+        "unprofitable_entry_count": 258
+      },
+      "later": {
+        "day_equal_mean_pct": -0.3585,
+        "eligible_entries": 107,
+        "major_down_days_signaled": 13,
+        "major_up_days_hit": 11,
+        "mean_per_eligible_entry_pct": -0.2032,
+        "mean_per_signal_pct": -0.2032,
+        "price_eligible_early_exits": 81,
+        "profitable_entry_count": 52,
+        "signals": 107,
+        "unfilled_exit_proxies": 0,
+        "unprofitable_entry_count": 55
+      }
+    }
+  },
+  "rolling": {
+    "all": {
+      "baseline_mean_pct": 0.1392,
+      "day_equal_baseline_pct": -0.076,
+      "day_equal_net_pct": -0.1416,
+      "independent_days": 71,
+      "net_mean_pct": 0.089,
+      "signals": 415
+    },
+    "earlier": {
+      "baseline_mean_pct": 0.3549,
+      "day_equal_baseline_pct": 0.1517,
+      "day_equal_net_pct": 0.0399,
+      "independent_days": 51,
+      "net_mean_pct": 0.2559,
+      "signals": 308
+    },
+    "later": {
+      "baseline_mean_pct": -0.4818,
+      "day_equal_baseline_pct": -0.6568,
+      "day_equal_net_pct": -0.6045,
+      "independent_days": 20,
+      "net_mean_pct": -0.3912,
+      "signals": 107
+    },
+    "monthly_choices": [
+      {
+        "month": "2026-04",
+        "policy": "fixed_1300",
+        "signals": 55
+      },
+      {
+        "month": "2026-05",
+        "policy": "fixed_1300",
+        "signals": 67
+      },
+      {
+        "month": "2026-06",
+        "policy": "hold_1400",
+        "signals": 60
+      },
+      {
+        "month": "2026-07",
+        "policy": "hold_1400",
+        "signals": 75
+      },
+      {
+        "month": "2026-08",
+        "policy": "hold_1400",
+        "signals": 51
+      },
+      {
+        "month": "2026-09",
+        "policy": "hold_1400",
+        "signals": 41
+      },
+      {
+        "month": "2026-10",
+        "policy": "hold_1400",
+        "signals": 51
+      },
+      {
+        "month": "2026-11",
+        "policy": "fixed_1300",
+        "signals": 15
+      }
+    ]
+  },
+  "scorable_alerts": 697,
+  "training_only_best_policy": "hold_1400",
+  "universe_stockdays": 2244
+}
