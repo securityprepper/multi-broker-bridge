@@ -1,0 +1,1004 @@
+{
+  "early_buy_veto": {
+    "base_100": {
+      "earliest_veto": "2025-11-21T09:40:00-05:00",
+      "early_flip_vetoes": 142,
+      "major_declines_vetoed": 20,
+      "major_up_days_in_bullish_cohort": 198,
+      "major_up_days_vetoed": 7,
+      "other_days_vetoed": 122,
+      "preopen_bullish_major_declines": 32,
+      "preopen_bullish_stockdays": 972
+    },
+    "early_050": {
+      "earliest_veto": "2025-11-21T09:35:00-05:00",
+      "early_flip_vetoes": 246,
+      "major_declines_vetoed": 23,
+      "major_up_days_in_bullish_cohort": 198,
+      "major_up_days_vetoed": 19,
+      "other_days_vetoed": 223,
+      "preopen_bullish_major_declines": 32,
+      "preopen_bullish_stockdays": 972
+    },
+    "late_150": {
+      "earliest_veto": "2026-02-03T09:45:00-05:00",
+      "early_flip_vetoes": 77,
+      "major_declines_vetoed": 12,
+      "major_up_days_in_bullish_cohort": 198,
+      "major_up_days_vetoed": 0,
+      "other_days_vetoed": 65,
+      "preopen_bullish_major_declines": 32,
+      "preopen_bullish_stockdays": 972
+    }
+  },
+  "execution_limit": "5m SIP OHLC next-bar opening marks only; no NBBO, BOATS, bid sizes, queue or actual fill evidence",
+  "major_down": 209,
+  "major_up": 254,
+  "nov2": [
+    {
+      "at": "2026-11-02T09:35:00-05:00",
+      "close_pct": -7.6092,
+      "symbol": "AMD",
+      "variant": "early_050"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "close_pct": -7.6092,
+      "symbol": "AMD",
+      "variant": "base_100"
+    },
+    {
+      "at": "2026-11-02T09:35:00-05:00",
+      "close_pct": -8.9459,
+      "symbol": "INTC",
+      "variant": "early_050"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "close_pct": -8.9459,
+      "symbol": "INTC",
+      "variant": "base_100"
+    },
+    {
+      "at": "2026-11-02T09:35:00-05:00",
+      "close_pct": -5.8359,
+      "symbol": "MU",
+      "variant": "early_050"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "close_pct": -5.8359,
+      "symbol": "MU",
+      "variant": "base_100"
+    },
+    {
+      "at": "2026-11-02T09:35:00-05:00",
+      "close_pct": -6.4624,
+      "symbol": "SNDK",
+      "variant": "early_050"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "close_pct": -6.4624,
+      "symbol": "SNDK",
+      "variant": "base_100"
+    },
+    {
+      "at": "2026-11-02T09:35:00-05:00",
+      "close_pct": -7.4659,
+      "symbol": "WDC",
+      "variant": "early_050"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "close_pct": -7.4659,
+      "symbol": "WDC",
+      "variant": "base_100"
+    }
+  ],
+  "period": "2025-11-07 through 2026-11-06",
+  "prior5": {
+    "base_100_down": {
+      "complete_histories": 249,
+      "weak_5day": 74,
+      "weak_5day_early_mean_pp": -0.9423
+    },
+    "base_100_up": {
+      "complete_histories": 270,
+      "weak_5day": 70,
+      "weak_5day_early_mean_pp": -0.9362
+    },
+    "early_050_down": {
+      "complete_histories": 386,
+      "weak_5day": 100,
+      "weak_5day_early_mean_pp": -0.4244
+    },
+    "early_050_up": {
+      "complete_histories": 424,
+      "weak_5day": 85,
+      "weak_5day_early_mean_pp": -0.1617
+    },
+    "late_150_down": {
+      "complete_histories": 196,
+      "weak_5day": 49,
+      "weak_5day_early_mean_pp": -1.1993
+    },
+    "late_150_up": {
+      "complete_histories": 170,
+      "weak_5day": 58,
+      "weak_5day_early_mean_pp": -1.3783
+    }
+  },
+  "segments": {
+    "all": {
+      "base_100": {
+        "down": {
+          "alerts": 249,
+          "day_equal_mean_to14_pp": 0.581,
+          "earliest_major_alert": "2025-12-15T10:20:00-05:00",
+          "hits_before_5pct": 25,
+          "hits_by_0945": 20,
+          "major_days": 209,
+          "major_hits": 25,
+          "major_missed": 184,
+          "mean_to14_pp": 0.6945,
+          "mean_to_next_regular_open_pp": 1.0592,
+          "median_to14_pp": 0.2788,
+          "missed_worst": [
+            {
+              "close_pct": -28.497,
+              "day": "2026-10-30",
+              "symbol": "INTC"
+            },
+            {
+              "close_pct": -22.2474,
+              "day": "2026-11-05",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": -20.3335,
+              "day": "2025-11-20",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": -17.6459,
+              "day": "2026-11-05",
+              "symbol": "AMD"
+            },
+            {
+              "close_pct": -17.3975,
+              "day": "2026-11-05",
+              "symbol": "WDC"
+            }
+          ],
+          "negative_vs_14": 113,
+          "nextbar_price_eligible": 249,
+          "nonmajor_alerts": 224,
+          "positive_vs_14": 136,
+          "scored_nextbar": 249,
+          "stock_days": 2244
+        },
+        "up": {
+          "alerts": 270,
+          "day_equal_mean_to14_pp": -0.3724,
+          "earliest_major_alert": "2026-01-12T09:40:00-05:00",
+          "hits_before_5pct": 12,
+          "hits_by_0945": 7,
+          "major_days": 254,
+          "major_hits": 13,
+          "major_missed": 241,
+          "mean_to14_pp": -0.2204,
+          "mean_to_next_regular_open_pp": -0.2529,
+          "median_to14_pp": -0.0869,
+          "missed_worst": [
+            {
+              "close_pct": 27.5364,
+              "day": "2026-01-06",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 26.1478,
+              "day": "2026-07-30",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 23.5004,
+              "day": "2026-04-24",
+              "symbol": "INTC"
+            },
+            {
+              "close_pct": 21.6931,
+              "day": "2026-06-25",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 19.3383,
+              "day": "2026-05-26",
+              "symbol": "MU"
+            }
+          ],
+          "negative_vs_14": 143,
+          "nextbar_price_eligible": 268,
+          "nonmajor_alerts": 257,
+          "positive_vs_14": 125,
+          "scored_nextbar": 270,
+          "stock_days": 2244
+        }
+      },
+      "early_050": {
+        "down": {
+          "alerts": 392,
+          "day_equal_mean_to14_pp": 0.2648,
+          "earliest_major_alert": "2025-11-20T09:50:00-05:00",
+          "hits_before_5pct": 28,
+          "hits_by_0945": 23,
+          "major_days": 209,
+          "major_hits": 29,
+          "major_missed": 180,
+          "mean_to14_pp": 0.4058,
+          "mean_to_next_regular_open_pp": 1.0412,
+          "median_to14_pp": 0.0149,
+          "missed_worst": [
+            {
+              "close_pct": -28.497,
+              "day": "2026-10-30",
+              "symbol": "INTC"
+            },
+            {
+              "close_pct": -22.2474,
+              "day": "2026-11-05",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": -17.6459,
+              "day": "2026-11-05",
+              "symbol": "AMD"
+            },
+            {
+              "close_pct": -17.3975,
+              "day": "2026-11-05",
+              "symbol": "WDC"
+            },
+            {
+              "close_pct": -17.3185,
+              "day": "2026-02-04",
+              "symbol": "AMD"
+            }
+          ],
+          "negative_vs_14": 191,
+          "nextbar_price_eligible": 389,
+          "nonmajor_alerts": 363,
+          "positive_vs_14": 197,
+          "scored_nextbar": 392,
+          "stock_days": 2244
+        },
+        "up": {
+          "alerts": 424,
+          "day_equal_mean_to14_pp": -0.3178,
+          "earliest_major_alert": "2026-01-12T09:35:00-05:00",
+          "hits_before_5pct": 21,
+          "hits_by_0945": 16,
+          "major_days": 254,
+          "major_hits": 22,
+          "major_missed": 232,
+          "mean_to14_pp": -0.1822,
+          "mean_to_next_regular_open_pp": 0.2533,
+          "median_to14_pp": -0.1047,
+          "missed_worst": [
+            {
+              "close_pct": 27.5364,
+              "day": "2026-01-06",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 26.1478,
+              "day": "2026-07-30",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 23.5004,
+              "day": "2026-04-24",
+              "symbol": "INTC"
+            },
+            {
+              "close_pct": 21.6931,
+              "day": "2026-06-25",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 19.3383,
+              "day": "2026-05-26",
+              "symbol": "MU"
+            }
+          ],
+          "negative_vs_14": 223,
+          "nextbar_price_eligible": 421,
+          "nonmajor_alerts": 402,
+          "positive_vs_14": 198,
+          "scored_nextbar": 424,
+          "stock_days": 2244
+        }
+      },
+      "late_150": {
+        "down": {
+          "alerts": 196,
+          "day_equal_mean_to14_pp": 0.5435,
+          "earliest_major_alert": "2025-12-15T10:25:00-05:00",
+          "hits_before_5pct": 19,
+          "hits_by_0945": 12,
+          "major_days": 209,
+          "major_hits": 20,
+          "major_missed": 189,
+          "mean_to14_pp": 0.601,
+          "mean_to_next_regular_open_pp": 0.7617,
+          "median_to14_pp": 0.2887,
+          "missed_worst": [
+            {
+              "close_pct": -28.497,
+              "day": "2026-10-30",
+              "symbol": "INTC"
+            },
+            {
+              "close_pct": -22.2474,
+              "day": "2026-11-05",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": -20.3335,
+              "day": "2025-11-20",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": -17.6459,
+              "day": "2026-11-05",
+              "symbol": "AMD"
+            },
+            {
+              "close_pct": -17.3975,
+              "day": "2026-11-05",
+              "symbol": "WDC"
+            }
+          ],
+          "negative_vs_14": 87,
+          "nextbar_price_eligible": 195,
+          "nonmajor_alerts": 176,
+          "positive_vs_14": 108,
+          "scored_nextbar": 196,
+          "stock_days": 2244
+        },
+        "up": {
+          "alerts": 170,
+          "day_equal_mean_to14_pp": -0.3035,
+          "earliest_major_alert": "2026-01-20T10:00:00-05:00",
+          "hits_before_5pct": 5,
+          "hits_by_0945": 5,
+          "major_days": 254,
+          "major_hits": 9,
+          "major_missed": 245,
+          "mean_to14_pp": -0.3012,
+          "mean_to_next_regular_open_pp": -0.2375,
+          "median_to14_pp": -0.205,
+          "missed_worst": [
+            {
+              "close_pct": 27.5364,
+              "day": "2026-01-06",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 26.1478,
+              "day": "2026-07-30",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 23.5004,
+              "day": "2026-04-24",
+              "symbol": "INTC"
+            },
+            {
+              "close_pct": 21.6931,
+              "day": "2026-06-25",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 19.3383,
+              "day": "2026-05-26",
+              "symbol": "MU"
+            }
+          ],
+          "negative_vs_14": 92,
+          "nextbar_price_eligible": 170,
+          "nonmajor_alerts": 161,
+          "positive_vs_14": 78,
+          "scored_nextbar": 170,
+          "stock_days": 2244
+        }
+      }
+    },
+    "earlier": {
+      "base_100": {
+        "down": {
+          "alerts": 211,
+          "day_equal_mean_to14_pp": 0.583,
+          "earliest_major_alert": "2025-12-15T10:20:00-05:00",
+          "hits_before_5pct": 20,
+          "hits_by_0945": 15,
+          "major_days": 160,
+          "major_hits": 20,
+          "major_missed": 140,
+          "mean_to14_pp": 0.7118,
+          "mean_to_next_regular_open_pp": 0.922,
+          "median_to14_pp": 0.2788,
+          "missed_worst": [
+            {
+              "close_pct": -20.3335,
+              "day": "2025-11-20",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": -17.3185,
+              "day": "2026-02-04",
+              "symbol": "AMD"
+            },
+            {
+              "close_pct": -17.044,
+              "day": "2026-01-23",
+              "symbol": "INTC"
+            },
+            {
+              "close_pct": -15.9749,
+              "day": "2026-02-04",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": -14.7014,
+              "day": "2025-12-12",
+              "symbol": "SNDK"
+            }
+          ],
+          "negative_vs_14": 98,
+          "nextbar_price_eligible": 211,
+          "nonmajor_alerts": 191,
+          "positive_vs_14": 113,
+          "scored_nextbar": 211,
+          "stock_days": 1812
+        },
+        "up": {
+          "alerts": 230,
+          "day_equal_mean_to14_pp": -0.2753,
+          "earliest_major_alert": "2026-01-12T09:40:00-05:00",
+          "hits_before_5pct": 11,
+          "hits_by_0945": 6,
+          "major_days": 231,
+          "major_hits": 12,
+          "major_missed": 219,
+          "mean_to14_pp": -0.1343,
+          "mean_to_next_regular_open_pp": 0.0402,
+          "median_to14_pp": -0.0869,
+          "missed_worst": [
+            {
+              "close_pct": 27.5364,
+              "day": "2026-01-06",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 26.1478,
+              "day": "2026-07-30",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 23.5004,
+              "day": "2026-04-24",
+              "symbol": "INTC"
+            },
+            {
+              "close_pct": 21.6931,
+              "day": "2026-06-25",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 19.3383,
+              "day": "2026-05-26",
+              "symbol": "MU"
+            }
+          ],
+          "negative_vs_14": 122,
+          "nextbar_price_eligible": 228,
+          "nonmajor_alerts": 218,
+          "positive_vs_14": 106,
+          "scored_nextbar": 230,
+          "stock_days": 1812
+        }
+      },
+      "early_050": {
+        "down": {
+          "alerts": 320,
+          "day_equal_mean_to14_pp": 0.4153,
+          "earliest_major_alert": "2025-11-20T09:50:00-05:00",
+          "hits_before_5pct": 23,
+          "hits_by_0945": 18,
+          "major_days": 160,
+          "major_hits": 24,
+          "major_missed": 136,
+          "mean_to14_pp": 0.5604,
+          "mean_to_next_regular_open_pp": 0.9952,
+          "median_to14_pp": 0.1159,
+          "missed_worst": [
+            {
+              "close_pct": -17.3185,
+              "day": "2026-02-04",
+              "symbol": "AMD"
+            },
+            {
+              "close_pct": -17.044,
+              "day": "2026-01-23",
+              "symbol": "INTC"
+            },
+            {
+              "close_pct": -15.9749,
+              "day": "2026-02-04",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": -14.7014,
+              "day": "2025-12-12",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": -14.3332,
+              "day": "2026-07-28",
+              "symbol": "SNDK"
+            }
+          ],
+          "negative_vs_14": 149,
+          "nextbar_price_eligible": 317,
+          "nonmajor_alerts": 296,
+          "positive_vs_14": 167,
+          "scored_nextbar": 320,
+          "stock_days": 1812
+        },
+        "up": {
+          "alerts": 347,
+          "day_equal_mean_to14_pp": -0.1203,
+          "earliest_major_alert": "2026-01-12T09:35:00-05:00",
+          "hits_before_5pct": 20,
+          "hits_by_0945": 15,
+          "major_days": 231,
+          "major_hits": 21,
+          "major_missed": 210,
+          "mean_to14_pp": -0.0008,
+          "mean_to_next_regular_open_pp": 0.5907,
+          "median_to14_pp": -0.0711,
+          "missed_worst": [
+            {
+              "close_pct": 27.5364,
+              "day": "2026-01-06",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 26.1478,
+              "day": "2026-07-30",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 23.5004,
+              "day": "2026-04-24",
+              "symbol": "INTC"
+            },
+            {
+              "close_pct": 21.6931,
+              "day": "2026-06-25",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 19.3383,
+              "day": "2026-05-26",
+              "symbol": "MU"
+            }
+          ],
+          "negative_vs_14": 177,
+          "nextbar_price_eligible": 344,
+          "nonmajor_alerts": 326,
+          "positive_vs_14": 167,
+          "scored_nextbar": 347,
+          "stock_days": 1812
+        }
+      },
+      "late_150": {
+        "down": {
+          "alerts": 179,
+          "day_equal_mean_to14_pp": 0.5323,
+          "earliest_major_alert": "2025-12-15T10:25:00-05:00",
+          "hits_before_5pct": 19,
+          "hits_by_0945": 12,
+          "major_days": 160,
+          "major_hits": 20,
+          "major_missed": 140,
+          "mean_to14_pp": 0.5887,
+          "mean_to_next_regular_open_pp": 0.7172,
+          "median_to14_pp": 0.2597,
+          "missed_worst": [
+            {
+              "close_pct": -20.3335,
+              "day": "2025-11-20",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": -17.3185,
+              "day": "2026-02-04",
+              "symbol": "AMD"
+            },
+            {
+              "close_pct": -17.044,
+              "day": "2026-01-23",
+              "symbol": "INTC"
+            },
+            {
+              "close_pct": -15.9749,
+              "day": "2026-02-04",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": -14.7014,
+              "day": "2025-12-12",
+              "symbol": "SNDK"
+            }
+          ],
+          "negative_vs_14": 82,
+          "nextbar_price_eligible": 178,
+          "nonmajor_alerts": 159,
+          "positive_vs_14": 96,
+          "scored_nextbar": 179,
+          "stock_days": 1812
+        },
+        "up": {
+          "alerts": 141,
+          "day_equal_mean_to14_pp": -0.1566,
+          "earliest_major_alert": "2026-01-20T10:00:00-05:00",
+          "hits_before_5pct": 5,
+          "hits_by_0945": 4,
+          "major_days": 231,
+          "major_hits": 8,
+          "major_missed": 223,
+          "mean_to14_pp": -0.1137,
+          "mean_to_next_regular_open_pp": 0.2319,
+          "median_to14_pp": -0.108,
+          "missed_worst": [
+            {
+              "close_pct": 27.5364,
+              "day": "2026-01-06",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 26.1478,
+              "day": "2026-07-30",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 23.5004,
+              "day": "2026-04-24",
+              "symbol": "INTC"
+            },
+            {
+              "close_pct": 21.6931,
+              "day": "2026-06-25",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 19.3383,
+              "day": "2026-05-26",
+              "symbol": "MU"
+            }
+          ],
+          "negative_vs_14": 73,
+          "nextbar_price_eligible": 141,
+          "nonmajor_alerts": 133,
+          "positive_vs_14": 68,
+          "scored_nextbar": 141,
+          "stock_days": 1812
+        }
+      }
+    },
+    "later": {
+      "base_100": {
+        "down": {
+          "alerts": 38,
+          "day_equal_mean_to14_pp": 0.5696,
+          "earliest_major_alert": "2026-11-02T09:40:00-05:00",
+          "hits_before_5pct": 5,
+          "hits_by_0945": 5,
+          "major_days": 49,
+          "major_hits": 5,
+          "major_missed": 44,
+          "mean_to14_pp": 0.5985,
+          "mean_to_next_regular_open_pp": 1.9929,
+          "median_to14_pp": 0.2796,
+          "missed_worst": [
+            {
+              "close_pct": -28.497,
+              "day": "2026-10-30",
+              "symbol": "INTC"
+            },
+            {
+              "close_pct": -22.2474,
+              "day": "2026-11-05",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": -17.6459,
+              "day": "2026-11-05",
+              "symbol": "AMD"
+            },
+            {
+              "close_pct": -17.3975,
+              "day": "2026-11-05",
+              "symbol": "WDC"
+            },
+            {
+              "close_pct": -17.2239,
+              "day": "2026-11-05",
+              "symbol": "MU"
+            }
+          ],
+          "negative_vs_14": 15,
+          "nextbar_price_eligible": 38,
+          "nonmajor_alerts": 33,
+          "positive_vs_14": 23,
+          "scored_nextbar": 38,
+          "stock_days": 432
+        },
+        "up": {
+          "alerts": 40,
+          "day_equal_mean_to14_pp": -0.8904,
+          "earliest_major_alert": "2026-09-22T09:35:00-04:00",
+          "hits_before_5pct": 1,
+          "hits_by_0945": 1,
+          "major_days": 23,
+          "major_hits": 1,
+          "major_missed": 22,
+          "mean_to14_pp": -0.7156,
+          "mean_to_next_regular_open_pp": -1.9383,
+          "median_to14_pp": -0.0959,
+          "missed_worst": [
+            {
+              "close_pct": 12.1455,
+              "day": "2026-09-21",
+              "symbol": "INTC"
+            },
+            {
+              "close_pct": 11.8813,
+              "day": "2026-09-04",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 11.5575,
+              "day": "2026-11-06",
+              "symbol": "AMD"
+            },
+            {
+              "close_pct": 11.0531,
+              "day": "2026-09-18",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 9.921,
+              "day": "2026-09-21",
+              "symbol": "AMD"
+            }
+          ],
+          "negative_vs_14": 21,
+          "nextbar_price_eligible": 40,
+          "nonmajor_alerts": 39,
+          "positive_vs_14": 19,
+          "scored_nextbar": 40,
+          "stock_days": 432
+        }
+      },
+      "early_050": {
+        "down": {
+          "alerts": 72,
+          "day_equal_mean_to14_pp": -0.4123,
+          "earliest_major_alert": "2026-11-02T09:35:00-05:00",
+          "hits_before_5pct": 5,
+          "hits_by_0945": 5,
+          "major_days": 49,
+          "major_hits": 5,
+          "major_missed": 44,
+          "mean_to14_pp": -0.2811,
+          "mean_to_next_regular_open_pp": 1.2676,
+          "median_to14_pp": -0.6153,
+          "missed_worst": [
+            {
+              "close_pct": -28.497,
+              "day": "2026-10-30",
+              "symbol": "INTC"
+            },
+            {
+              "close_pct": -22.2474,
+              "day": "2026-11-05",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": -17.6459,
+              "day": "2026-11-05",
+              "symbol": "AMD"
+            },
+            {
+              "close_pct": -17.3975,
+              "day": "2026-11-05",
+              "symbol": "WDC"
+            },
+            {
+              "close_pct": -17.2239,
+              "day": "2026-11-05",
+              "symbol": "MU"
+            }
+          ],
+          "negative_vs_14": 42,
+          "nextbar_price_eligible": 72,
+          "nonmajor_alerts": 67,
+          "positive_vs_14": 30,
+          "scored_nextbar": 72,
+          "stock_days": 432
+        },
+        "up": {
+          "alerts": 77,
+          "day_equal_mean_to14_pp": -1.2065,
+          "earliest_major_alert": "2026-09-22T09:35:00-04:00",
+          "hits_before_5pct": 1,
+          "hits_by_0945": 1,
+          "major_days": 23,
+          "major_hits": 1,
+          "major_missed": 22,
+          "mean_to14_pp": -0.9997,
+          "mean_to_next_regular_open_pp": -1.267,
+          "median_to14_pp": -0.3831,
+          "missed_worst": [
+            {
+              "close_pct": 12.1455,
+              "day": "2026-09-21",
+              "symbol": "INTC"
+            },
+            {
+              "close_pct": 11.8813,
+              "day": "2026-09-04",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 11.5575,
+              "day": "2026-11-06",
+              "symbol": "AMD"
+            },
+            {
+              "close_pct": 11.0531,
+              "day": "2026-09-18",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 9.921,
+              "day": "2026-09-21",
+              "symbol": "AMD"
+            }
+          ],
+          "negative_vs_14": 46,
+          "nextbar_price_eligible": 77,
+          "nonmajor_alerts": 76,
+          "positive_vs_14": 31,
+          "scored_nextbar": 77,
+          "stock_days": 432
+        }
+      },
+      "late_150": {
+        "down": {
+          "alerts": 17,
+          "day_equal_mean_to14_pp": 0.6334,
+          "earliest_major_alert": null,
+          "hits_before_5pct": 0,
+          "hits_by_0945": 0,
+          "major_days": 49,
+          "major_hits": 0,
+          "major_missed": 49,
+          "mean_to14_pp": 0.7301,
+          "mean_to_next_regular_open_pp": 1.485,
+          "median_to14_pp": 0.4937,
+          "missed_worst": [
+            {
+              "close_pct": -28.497,
+              "day": "2026-10-30",
+              "symbol": "INTC"
+            },
+            {
+              "close_pct": -22.2474,
+              "day": "2026-11-05",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": -17.6459,
+              "day": "2026-11-05",
+              "symbol": "AMD"
+            },
+            {
+              "close_pct": -17.3975,
+              "day": "2026-11-05",
+              "symbol": "WDC"
+            },
+            {
+              "close_pct": -17.2239,
+              "day": "2026-11-05",
+              "symbol": "MU"
+            }
+          ],
+          "negative_vs_14": 5,
+          "nextbar_price_eligible": 17,
+          "nonmajor_alerts": 17,
+          "positive_vs_14": 12,
+          "scored_nextbar": 17,
+          "stock_days": 432
+        },
+        "up": {
+          "alerts": 29,
+          "day_equal_mean_to14_pp": -1.0749,
+          "earliest_major_alert": "2026-09-22T09:45:00-04:00",
+          "hits_before_5pct": 0,
+          "hits_by_0945": 1,
+          "major_days": 23,
+          "major_hits": 1,
+          "major_missed": 22,
+          "mean_to14_pp": -1.2127,
+          "mean_to_next_regular_open_pp": -2.5198,
+          "median_to14_pp": -0.3108,
+          "missed_worst": [
+            {
+              "close_pct": 12.1455,
+              "day": "2026-09-21",
+              "symbol": "INTC"
+            },
+            {
+              "close_pct": 11.8813,
+              "day": "2026-09-04",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 11.5575,
+              "day": "2026-11-06",
+              "symbol": "AMD"
+            },
+            {
+              "close_pct": 11.0531,
+              "day": "2026-09-18",
+              "symbol": "SNDK"
+            },
+            {
+              "close_pct": 9.921,
+              "day": "2026-09-21",
+              "symbol": "AMD"
+            }
+          ],
+          "negative_vs_14": 19,
+          "nextbar_price_eligible": 29,
+          "nonmajor_alerts": 28,
+          "positive_vs_14": 10,
+          "scored_nextbar": 29,
+          "stock_days": 432
+        }
+      }
+    }
+  },
+  "thresholds_soxx_stock_peer_pp": {
+    "base_100": [
+      1,
+      1,
+      0.5
+    ],
+    "early_050": [
+      0.5,
+      0.5,
+      0.25
+    ],
+    "late_150": [
+      1.5,
+      1.5,
+      0.75
+    ]
+  },
+  "universe_stock_days": 2244
+}
