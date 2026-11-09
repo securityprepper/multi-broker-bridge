@@ -23,7 +23,8 @@ from .watchlists import SECTORS
 from .trend import Bar, Holding, TrendMonitor, CHICAGO
 from .premarket_policy import (
     is_early_market,premarket_sell_decision,eligible_discount_reentry,
-    sustained_trend_shape,trading_session_day
+    sustained_trend_shape,recent_price_spike,trading_session_day,
+    quoted_return,EMERGENCY_LOSS,peak_trail_percent
 )
 from .alpaca import _http as paper_request
 
@@ -387,8 +388,42 @@ def run(now: datetime, execute: bool = False) -> dict:
                     "WHERE trading_session=?",(session_date,)).fetchall()
                 if sym in holdings
             }
+        # A sudden one-minute discontinuity outranks the persistent steady
+        # classification for the next 12 minutes, allowing profit-taking
+        # if a genuine spike reverses. Ordinary dips cannot erase the
+        # previously confirmed uptrend.
+        spike_symbols=(
+            {sym for sym in holdings if recent_price_spike(bars.get(sym,[]),now)}
+            if is_early_market(now) else set())
+        effective_steady=steady_symbols-spike_symbols
         result=engine.scan(now,holdings,executable_session=False,
-                           steady_uptrend_symbols=steady_symbols)
+                           steady_uptrend_symbols=effective_steady)
+        # A verified executable bid may cross the risk threshold before
+        # the latest completed one-minute CLOSE. Software exits should
+        # not wait for a bar if a fresh broker-data quote proves the breach.
+        if is_early_market(now):
+            for sym,position in holdings.items():
+                if sym not in quotes:
+                    continue
+                bid=quotes[sym][0]
+                distance=peak_trail_percent(
+                    steady_confirmed=sym in effective_steady)
+                falling_from_peak=(bid/position.highest_since_entry-1)
+                falling_from_entry=quoted_return(position.entry_price,bid)
+                if falling_from_entry<=EMERGENCY_LOSS:
+                    reason="premarket emergency downside exit"
+                elif falling_from_peak<=-distance:
+                    reason=("premarket steady peak trailing stop"
+                            if sym in effective_steady else
+                            "premarket standard peak trailing stop")
+                else:
+                    continue
+                if not any(r.get("symbol")==sym and r.get("action")=="EXIT_WATCH"
+                           for r in result):
+                    result.append({"symbol":sym,"action":"EXIT_WATCH",
+                                   "quantity":position.quantity,
+                                   "reason":reason,
+                                   "reference_bid":str(bid)})
         # A healthy scheduled exit is prioritized over new buys.
         decision=[r for r in result if r["action"] in ("EXIT_WATCH","BUY_WATCH")]
         decision.sort(key=lambda x:0 if x["action"]=="EXIT_WATCH" else 1)
@@ -484,7 +519,7 @@ def run(now: datetime, execute: bool = False) -> dict:
                         now,holdings[symbol].entry_price,bid,
                         str(row.get("reason","")),
                         peak=holdings[symbol].highest_since_entry,
-                        steady_confirmed=symbol in steady_symbols)
+                        steady_confirmed=symbol in effective_steady)
                     if early not in ("SUBSTANTIAL_PROFIT_TAKE",
                                      "EMERGENCY_DOWNSIDE_EXIT",
                                      "TRAILING_STOP_SOFTWARE"):
@@ -539,6 +574,8 @@ def run(now: datetime, execute: bool = False) -> dict:
                 account=paper_api("GET","/v2/account")
         return {"status":"SCAN_COMPLETE","mode":mode,"data_feed":feed,
                 "established_premarket_uptrends":sorted(steady_symbols),
+                "premarket_rapid_spike_names":sorted(spike_symbols),
+                "premarket_effective_steady_names":sorted(effective_steady),
                 "gate_allows_new_entries":gate_ok,"candidate_count":len(decision),
                 "orders":placed,"tracked":len(tracked)}
     finally:
