@@ -21,6 +21,78 @@ REENTRY_END=time(10,0)
 RTH_EXIT_OVERRIDE=time(13,40)
 MAX_REENTRIES_PER_SYMBOL_DAY=1
 MIN_REENTRY_DELAY=timedelta(minutes=2)
+# Paper-only, broker-independent software limits; only extended-hours LIMIT
+# orders are eligible on Alpaca. Neither is a native overnight stop.
+STEADY_PEAK_TRAIL=Decimal("0.025")
+DEFAULT_PEAK_TRAIL=Decimal("0.020")
+SPIKE_MIN_PROFIT=Decimal("0.020")
+SPIKE_RETRACE=Decimal("0.005")
+SPIKE_ONE_MINUTE_JUMP=Decimal("0.012")
+SUSTAINED_LOOKBACK=timedelta(minutes=45)
+SUSTAINED_MIN_BARS=25
+SUSTAINED_MIN_GAIN=Decimal("0.008")
+SUSTAINED_GREEN_FRACTION=Decimal("0.53")
+SUSTAINED_MAX_CLOSE_DRAWDOWN=Decimal("0.020")
+
+
+def sustained_trend_shape(bars, now:datetime)->bool:
+    """Recognize a distributed overnight rise, not a single jump.
+
+    Input is a sequence of valid Alpaca completed one-minute OHLC bars. Do
+    not use prospective highs or a bar whose minute has not yet completed.
+    This is a heuristic requiring additional out-of-sample validation.
+    """
+    if now.tzinfo is None:
+        return False
+    recent=sorted((b for b in bars
+                   if b.timestamp.tzinfo is not None
+                   and timedelta(0)<=now-b.timestamp-timedelta(minutes=1)
+                   <=SUSTAINED_LOOKBACK),
+                  key=lambda b:b.timestamp)
+    if len(recent)<SUSTAINED_MIN_BARS:
+        return False
+    if recent[-1].timestamp-recent[0].timestamp<timedelta(minutes=25):
+        return False
+    if now-(recent[-1].timestamp+timedelta(minutes=1))>timedelta(minutes=3):
+        return False
+    if any(recent[i].timestamp<=recent[i-1].timestamp
+           or recent[i].timestamp-recent[i-1].timestamp>timedelta(minutes=3)
+           for i in range(1,len(recent))):
+        return False
+    first,last=recent[0].close,recent[-1].close
+    if first<=0 or (last/first-1)<SUSTAINED_MIN_GAIN:
+        return False
+    green=0
+    peak=first
+    deepest=Decimal(0)
+    for prev,cur in zip(recent,recent[1:]):
+        change=cur.close/prev.close-1
+        if change>SPIKE_ONE_MINUTE_JUMP:
+            return False
+        if change>0:green+=1
+        peak=max(peak,cur.close)
+        deepest=min(deepest,cur.close/peak-1)
+    if deepest < -SUSTAINED_MAX_CLOSE_DRAWDOWN:
+        return False
+    return Decimal(green)/Decimal(len(recent)-1)>=SUSTAINED_GREEN_FRACTION
+
+
+def recent_price_spike(bars,now:datetime)->bool:
+    """Detect a recent one-minute discontinuity, not ordinary smooth gains."""
+    recent=sorted((b for b in bars
+                   if b.timestamp.tzinfo is not None
+                   and timedelta(0)<=now-b.timestamp-timedelta(minutes=1)
+                   <=timedelta(minutes=12)),key=lambda b:b.timestamp)
+    if len(recent)<2:
+        return False
+    return any((cur.close/prev.close-1)>=SPIKE_ONE_MINUTE_JUMP
+               for prev,cur in zip(recent,recent[1:])
+               if 0<=(cur.timestamp-prev.timestamp).total_seconds()<=90)
+
+
+def peak_trail_percent(*,steady_confirmed:bool)->Decimal:
+    return STEADY_PEAK_TRAIL if steady_confirmed else DEFAULT_PEAK_TRAIL
+
 
 def is_early_market(now:datetime)->bool:
     local=now.astimezone(CHICAGO)
