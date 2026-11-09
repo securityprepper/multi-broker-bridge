@@ -67,5 +67,23 @@ class AntiChurnTests(unittest.TestCase):
         b,t=bars()
         z=m.outcome(b,"AMD",1,5,"hold_1340_CT")
         self.assertAlmostEqual(z["net30_pct"],z["gross_pct"]-0.30,places=5)
+    def test_split_basis_three_to_one_normalized_asof(self):
+        b,_=bars()
+        for row in b["SOXX"].values():
+            for i in range(4):row[i]=300.
+        self.assertEqual(m.reconcile_sector_price_basis(b,100.),3)
+        self.assertAlmostEqual(b["SOXX"]["09:34"][3],100.)
+        self.assertEqual(m.sign_at_window(b,{s:100 for s in m.ALL}),0)
+    def test_split_basis_one_to_one_preserved(self):
+        b,_=bars()
+        b["SOXX"]["09:34"][3]=101.
+        self.assertEqual(m.reconcile_sector_price_basis(b,100.),1)
+        self.assertEqual(b["SOXX"]["09:34"][3],101.)
+    def test_unknown_split_basis_fails_closed(self):
+        b,_=bars()
+        b["SOXX"]["09:34"][3]=200.
+        with self.assertRaises(ValueError):
+            m.reconcile_sector_price_basis(b,100.)
+
 if __name__=="__main__":
     unittest.main()
