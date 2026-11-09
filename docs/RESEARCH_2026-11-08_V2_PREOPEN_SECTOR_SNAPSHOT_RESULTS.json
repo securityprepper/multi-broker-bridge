@@ -1,0 +1,502 @@
+{
+  "coverage": {
+    "stock_days": 2244,
+    "first": "2025-11-10",
+    "last": "2026-11-06",
+    "major_up": 254,
+    "major_down": 209
+  },
+  "definition": {
+    "checkpoints_et": [
+      "08:30",
+      "09:15"
+    ],
+    "soxx_threshold_pct": 0.5,
+    "peer_majority_threshold_pct": 0.5,
+    "own_threshold_pct": 1.0,
+    "all_peers_contemporaneous_required": true
+  },
+  "result": {
+    "all": {
+      "up": {
+        "stock_days": 2244,
+        "major_days": 254,
+        "warnings": 791,
+        "major_hits": 193,
+        "major_missed": 61,
+        "original_preopen_warnings": 253,
+        "original_preopen_major_hits": 88,
+        "original_preopen_nonmajor_warnings": 165,
+        "union_warning_count": 845,
+        "union_major_hits": 204,
+        "union_nonmajor_warnings": 641,
+        "nonmajor_warnings": 598,
+        "major_hits_before_5pct": 147,
+        "additional_major_hits_over_original_preopen": 116,
+        "additional_nonmajor_warnings_over_original_preopen": 476,
+        "major_hits_prior_to_original_signal": 5,
+        "future_price_scorable": 786,
+        "future_price_limit_eligible": 753,
+        "mean_eligible_vs_0930_pp": 0.0506,
+        "mean_bounded_all_signals_vs_close_pp": -0.284,
+        "mean_eligible_vs_close_pp": -0.2964,
+        "close_improvement_count": 323,
+        "close_adverse_count": 430,
+        "improvement_count": 394,
+        "adverse_count": 355,
+        "missed_major_examples": [
+          {
+            "symbol": "AMD",
+            "day": "2025-12-19",
+            "close_pct": 6.2345,
+            "baseline": false
+          },
+          {
+            "symbol": "AMD",
+            "day": "2026-01-13",
+            "close_pct": 6.4285,
+            "baseline": true
+          },
+          {
+            "symbol": "AMD",
+            "day": "2026-03-09",
+            "close_pct": 5.3468,
+            "baseline": false
+          },
+          {
+            "symbol": "AMD",
+            "day": "2026-04-16",
+            "close_pct": 7.8067,
+            "baseline": false
+          },
+          {
+            "symbol": "AMD",
+            "day": "2026-06-30",
+            "close_pct": 7.7029,
+            "baseline": false
+          },
+          {
+            "symbol": "AMD",
+            "day": "2026-08-14",
+            "close_pct": 6.4683,
+            "baseline": false
+          },
+          {
+            "symbol": "AVGO",
+            "day": "2026-04-07",
+            "close_pct": 6.2232,
+            "baseline": true
+          },
+          {
+            "symbol": "AVGO",
+            "day": "2026-05-14",
+            "close_pct": 5.5172,
+            "baseline": false
+          },
+          {
+            "symbol": "INTC",
+            "day": "2026-01-07",
+            "close_pct": 6.5234,
+            "baseline": false
+          },
+          {
+            "symbol": "INTC",
+            "day": "2026-01-13",
+            "close_pct": 7.3439,
+            "baseline": false
+          }
+        ]
+      },
+      "down": {
+        "stock_days": 2244,
+        "major_days": 209,
+        "warnings": 617,
+        "major_hits": 143,
+        "major_missed": 66,
+        "original_preopen_warnings": 208,
+        "original_preopen_major_hits": 81,
+        "original_preopen_nonmajor_warnings": 127,
+        "union_warning_count": 674,
+        "union_major_hits": 155,
+        "union_nonmajor_warnings": 519,
+        "nonmajor_warnings": 474,
+        "major_hits_before_5pct": 103,
+        "additional_major_hits_over_original_preopen": 74,
+        "additional_nonmajor_warnings_over_original_preopen": 392,
+        "major_hits_prior_to_original_signal": 7,
+        "future_price_scorable": 616,
+        "future_price_limit_eligible": 577,
+        "mean_eligible_vs_0930_pp": 0.1176,
+        "mean_bounded_all_signals_vs_close_pp": -0.0903,
+        "mean_eligible_vs_close_pp": -0.0964,
+        "close_improvement_count": 272,
+        "close_adverse_count": 305,
+        "improvement_count": 308,
+        "adverse_count": 267,
+        "missed_major_examples": [
+          {
+            "symbol": "AMD",
+            "day": "2025-11-20",
+            "close_pct": -7.8196,
+            "baseline": false
+          },
+          {
+            "symbol": "AMD",
+            "day": "2025-12-17",
+            "close_pct": -5.2239,
+            "baseline": false
+          },
+          {
+            "symbol": "AMD",
+            "day": "2026-02-04",
+            "close_pct": -17.3185,
+            "baseline": true
+          },
+          {
+            "symbol": "AMD",
+            "day": "2026-05-04",
+            "close_pct": -5.2864,
+            "baseline": false
+          },
+          {
+            "symbol": "AMD",
+            "day": "2026-07-27",
+            "close_pct": -5.1587,
+            "baseline": false
+          },
+          {
+            "symbol": "AMD",
+            "day": "2026-07-29",
+            "close_pct": -5.5579,
+            "baseline": false
+          },
+          {
+            "symbol": "AMD",
+            "day": "2026-11-02",
+            "close_pct": -7.6092,
+            "baseline": false
+          },
+          {
+            "symbol": "AVGO",
+            "day": "2025-12-15",
+            "close_pct": -5.571,
+            "baseline": false
+          },
+          {
+            "symbol": "AVGO",
+            "day": "2026-08-14",
+            "close_pct": -5.9235,
+            "baseline": false
+          },
+          {
+            "symbol": "INTC",
+            "day": "2025-11-13",
+            "close_pct": -5.1465,
+            "baseline": false
+          }
+        ]
+      }
+    },
+    "earlier": {
+      "up": {
+        "stock_days": 1812,
+        "major_days": 231,
+        "warnings": 642,
+        "major_hits": 173,
+        "major_missed": 58,
+        "original_preopen_warnings": 230,
+        "original_preopen_major_hits": 84,
+        "original_preopen_nonmajor_warnings": 146,
+        "union_warning_count": 691,
+        "union_major_hits": 184,
+        "union_nonmajor_warnings": 507,
+        "nonmajor_warnings": 469,
+        "major_hits_before_5pct": 131,
+        "additional_major_hits_over_original_preopen": 100,
+        "additional_nonmajor_warnings_over_original_preopen": 361,
+        "major_hits_prior_to_original_signal": 5,
+        "future_price_scorable": 637,
+        "future_price_limit_eligible": 605,
+        "mean_eligible_vs_0930_pp": 0.0632,
+        "mean_bounded_all_signals_vs_close_pp": -0.2087,
+        "mean_eligible_vs_close_pp": -0.2198,
+        "close_improvement_count": 266,
+        "close_adverse_count": 339,
+        "improvement_count": 322,
+        "adverse_count": 279,
+        "missed_major_examples": [
+          {
+            "symbol": "AMD",
+            "day": "2025-12-19",
+            "close_pct": 6.2345,
+            "baseline": false
+          },
+          {
+            "symbol": "AMD",
+            "day": "2026-01-13",
+            "close_pct": 6.4285,
+            "baseline": true
+          },
+          {
+            "symbol": "AMD",
+            "day": "2026-03-09",
+            "close_pct": 5.3468,
+            "baseline": false
+          },
+          {
+            "symbol": "AMD",
+            "day": "2026-04-16",
+            "close_pct": 7.8067,
+            "baseline": false
+          },
+          {
+            "symbol": "AMD",
+            "day": "2026-06-30",
+            "close_pct": 7.7029,
+            "baseline": false
+          },
+          {
+            "symbol": "AMD",
+            "day": "2026-08-14",
+            "close_pct": 6.4683,
+            "baseline": false
+          },
+          {
+            "symbol": "AVGO",
+            "day": "2026-04-07",
+            "close_pct": 6.2232,
+            "baseline": true
+          },
+          {
+            "symbol": "AVGO",
+            "day": "2026-05-14",
+            "close_pct": 5.5172,
+            "baseline": false
+          },
+          {
+            "symbol": "INTC",
+            "day": "2026-01-07",
+            "close_pct": 6.5234,
+            "baseline": false
+          },
+          {
+            "symbol": "INTC",
+            "day": "2026-01-13",
+            "close_pct": 7.3439,
+            "baseline": false
+          }
+        ]
+      },
+      "down": {
+        "stock_days": 1812,
+        "major_days": 160,
+        "warnings": 450,
+        "major_hits": 101,
+        "major_missed": 59,
+        "original_preopen_warnings": 171,
+        "original_preopen_major_hits": 63,
+        "original_preopen_nonmajor_warnings": 108,
+        "union_warning_count": 500,
+        "union_major_hits": 111,
+        "union_nonmajor_warnings": 389,
+        "nonmajor_warnings": 349,
+        "major_hits_before_5pct": 72,
+        "additional_major_hits_over_original_preopen": 48,
+        "additional_nonmajor_warnings_over_original_preopen": 281,
+        "major_hits_prior_to_original_signal": 6,
+        "future_price_scorable": 449,
+        "future_price_limit_eligible": 420,
+        "mean_eligible_vs_0930_pp": 0.1041,
+        "mean_bounded_all_signals_vs_close_pp": -0.3372,
+        "mean_eligible_vs_close_pp": -0.3605,
+        "close_improvement_count": 186,
+        "close_adverse_count": 234,
+        "improvement_count": 217,
+        "adverse_count": 201,
+        "missed_major_examples": [
+          {
+            "symbol": "AMD",
+            "day": "2025-11-20",
+            "close_pct": -7.8196,
+            "baseline": false
+          },
+          {
+            "symbol": "AMD",
+            "day": "2025-12-17",
+            "close_pct": -5.2239,
+            "baseline": false
+          },
+          {
+            "symbol": "AMD",
+            "day": "2026-02-04",
+            "close_pct": -17.3185,
+            "baseline": true
+          },
+          {
+            "symbol": "AMD",
+            "day": "2026-05-04",
+            "close_pct": -5.2864,
+            "baseline": false
+          },
+          {
+            "symbol": "AMD",
+            "day": "2026-07-27",
+            "close_pct": -5.1587,
+            "baseline": false
+          },
+          {
+            "symbol": "AMD",
+            "day": "2026-07-29",
+            "close_pct": -5.5579,
+            "baseline": false
+          },
+          {
+            "symbol": "AVGO",
+            "day": "2025-12-15",
+            "close_pct": -5.571,
+            "baseline": false
+          },
+          {
+            "symbol": "AVGO",
+            "day": "2026-08-14",
+            "close_pct": -5.9235,
+            "baseline": false
+          },
+          {
+            "symbol": "INTC",
+            "day": "2025-11-13",
+            "close_pct": -5.1465,
+            "baseline": false
+          },
+          {
+            "symbol": "INTC",
+            "day": "2025-12-04",
+            "close_pct": -7.4049,
+            "baseline": false
+          }
+        ]
+      }
+    },
+    "later": {
+      "up": {
+        "stock_days": 432,
+        "major_days": 23,
+        "warnings": 149,
+        "major_hits": 20,
+        "major_missed": 3,
+        "original_preopen_warnings": 23,
+        "original_preopen_major_hits": 4,
+        "original_preopen_nonmajor_warnings": 19,
+        "union_warning_count": 154,
+        "union_major_hits": 20,
+        "union_nonmajor_warnings": 134,
+        "nonmajor_warnings": 129,
+        "major_hits_before_5pct": 16,
+        "additional_major_hits_over_original_preopen": 16,
+        "additional_nonmajor_warnings_over_original_preopen": 115,
+        "major_hits_prior_to_original_signal": 0,
+        "future_price_scorable": 149,
+        "future_price_limit_eligible": 148,
+        "mean_eligible_vs_0930_pp": -0.001,
+        "mean_bounded_all_signals_vs_close_pp": -0.6056,
+        "mean_eligible_vs_close_pp": -0.6097,
+        "close_improvement_count": 57,
+        "close_adverse_count": 91,
+        "improvement_count": 72,
+        "adverse_count": 76,
+        "missed_major_examples": [
+          {
+            "symbol": "SNDK",
+            "day": "2026-09-18",
+            "close_pct": 11.0531,
+            "baseline": false
+          },
+          {
+            "symbol": "SNDK",
+            "day": "2026-09-22",
+            "close_pct": 6.793,
+            "baseline": false
+          },
+          {
+            "symbol": "WDC",
+            "day": "2026-10-05",
+            "close_pct": 6.3668,
+            "baseline": false
+          }
+        ]
+      },
+      "down": {
+        "stock_days": 432,
+        "major_days": 49,
+        "warnings": 167,
+        "major_hits": 42,
+        "major_missed": 7,
+        "original_preopen_warnings": 37,
+        "original_preopen_major_hits": 18,
+        "original_preopen_nonmajor_warnings": 19,
+        "union_warning_count": 174,
+        "union_major_hits": 44,
+        "union_nonmajor_warnings": 130,
+        "nonmajor_warnings": 125,
+        "major_hits_before_5pct": 31,
+        "additional_major_hits_over_original_preopen": 26,
+        "additional_nonmajor_warnings_over_original_preopen": 111,
+        "major_hits_prior_to_original_signal": 1,
+        "future_price_scorable": 167,
+        "future_price_limit_eligible": 157,
+        "mean_eligible_vs_0930_pp": 0.1538,
+        "mean_bounded_all_signals_vs_close_pp": 0.5736,
+        "mean_eligible_vs_close_pp": 0.6102,
+        "close_improvement_count": 86,
+        "close_adverse_count": 71,
+        "improvement_count": 91,
+        "adverse_count": 66,
+        "missed_major_examples": [
+          {
+            "symbol": "AMD",
+            "day": "2026-11-02",
+            "close_pct": -7.6092,
+            "baseline": false
+          },
+          {
+            "symbol": "INTC",
+            "day": "2026-11-02",
+            "close_pct": -8.9459,
+            "baseline": false
+          },
+          {
+            "symbol": "MU",
+            "day": "2026-11-02",
+            "close_pct": -5.8359,
+            "baseline": false
+          },
+          {
+            "symbol": "SNDK",
+            "day": "2026-11-02",
+            "close_pct": -6.4624,
+            "baseline": false
+          },
+          {
+            "symbol": "WDC",
+            "day": "2026-10-02",
+            "close_pct": -10.256,
+            "baseline": true
+          },
+          {
+            "symbol": "WDC",
+            "day": "2026-10-06",
+            "close_pct": -6.8984,
+            "baseline": true
+          },
+          {
+            "symbol": "WDC",
+            "day": "2026-11-02",
+            "close_pct": -7.4659,
+            "baseline": false
+          }
+        ]
+      }
+    }
+  },
+  "note": "SIP 5m OHLC price-mark scenarios, not NBBO/BOATS quotes or executable fills."
+}
