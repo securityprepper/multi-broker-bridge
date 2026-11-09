@@ -125,9 +125,12 @@ def main():
        100*(r["15:55"][2]/prior_price(ser[s],d)-1)<=-5}
     complete={(s,d) for s in SYMS for d,r in ser[s].items()
          if prior_price(ser[s],d) is not None and "15:55" in r}
-    baseline=json.loads(Path("/tmp/v2-run10-daily-audit.json").read_text())
-    matched={(x["sym"],x["day"]) for x in baseline}
-    majors={(x["sym"],x["day"]) for x in baseline if x["major_down"]}
+    static_cohort=Path(sys.argv[2]) if len(sys.argv)>2 else Path("research/results/v2_semis_research_cohort_2026-11-09.json")
+    if not static_cohort.exists():
+        static_cohort=Path("/tmp/v2-run15-sector-precision-work/v2_semis_research_cohort_2026-11-09.json")
+    manifest=json.loads(static_cohort.read_text())
+    matched={(sym,day) for sym,days in manifest["cohort_by_symbol"].items() for day in days}
+    majors={tuple(x) for x in manifest["major_down"]}
     complete=matched
     cases={}
     for threshold in (2.,2.5,3.):
