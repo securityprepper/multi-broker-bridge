@@ -100,6 +100,7 @@ def trend_metrics(rows:list[dict],start:datetime,end:datetime)->dict:
 def main():
     amd=bars("AMD")
     rba=bars("RBA")
+    sndk=bars("SNDK")
     checks={}
     for label,time,price in (
         ("EARLY_0318_BAR_PROXY",clock(3,18),Decimal("458.00")),
@@ -127,6 +128,18 @@ def main():
             "AMD_03_TO_OPEN":trend_metrics(amd,START,OPEN),
             "AMD_0700_TO_OPEN":trend_metrics(amd,clock(7,0),OPEN),
             "RBA_OPEN_TO_1000":trend_metrics(rba,OPEN,clock(10,0)),
+        },
+        "rolling_window_shape":{
+            "AMD_0300_0318":trend_metrics(amd,clock(3,0),clock(3,18)),
+            "AMD_0318_0345":trend_metrics(amd,clock(3,18),clock(3,45)),
+            "AMD_0630_0700":trend_metrics(amd,clock(6,30),clock(7,0)),
+            "AMD_0645_0715":trend_metrics(amd,clock(6,45),clock(7,15)),
+            "AMD_0650_0720":trend_metrics(amd,clock(6,50),clock(7,20)),
+            "AMD_0705_0735":trend_metrics(amd,clock(7,5),clock(7,35)),
+            "AMD_0710_0740":trend_metrics(amd,clock(7,10),clock(7,40)),
+            "AMD_0720_0750":trend_metrics(amd,clock(7,20),clock(7,50)),
+            "SNDK_0300_TO_OPEN":trend_metrics(sndk,START,OPEN),
+            "RBA_0830_0900":trend_metrics(rba,OPEN,clock(9,0)),
         },
         "fills_and_trails":checks,
         "all_trailing_outcomes":"Minute-low threshold crossings only; executable bid/ask, real slippage and fill timing NOT available",
