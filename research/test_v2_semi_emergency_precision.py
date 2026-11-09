@@ -20,5 +20,3 @@ class OverlapTests(unittest.TestCase):
   ser={"AMD":{"2026-01-06":{"09:45":(d,99,99),"10:00":(d,97,97)}},"SOXX":{}}
   self.assertFalse(eligible(ser,"AMD","2026-01-06","10:00",100,2.5,1,"soxx"))
 if __name__=="__main__":unittest.main()
-
-[executed on device: www3.securityprepper.com (1016f4a4-5f2e-452e-8c88-0e4b9430d76e)]
