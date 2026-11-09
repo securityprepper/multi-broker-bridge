@@ -77,10 +77,19 @@ def main():
         fills=paged_fills()
         orders=order_map()
         matched=[];unmatched=0
+        unmatched_origin_counts=Counter()
         for row in fills:
             order=orders.get(str(row.get("order_id","")))
             if not order or not str(order.get("client_order_id","")).startswith("MBB-"):
                 unmatched+=1
+                if not order:
+                    unmatched_origin_counts["ORDER_NOT_IN_HISTORY"]+=1
+                else:
+                    import re
+                    cid=str(order.get("client_order_id",""))
+                    match=re.match(r"^[A-Za-z]{2,10}",cid)
+                    unmatched_origin_counts[
+                        match.group(0).upper() if match else "UNKNOWN_PREFIX"]+=1
                 continue
             try:
                 time=datetime.fromisoformat(row["transaction_time"].replace("Z","+00:00"))
@@ -124,6 +133,7 @@ def main():
             "total_broker_fill_activities":len(fills),
             "matched_MBB_fills":len(matched),
             "unmatched_fill_activities":unmatched,
+            "unmatched_client_prefix_counts":dict(unmatched_origin_counts),
             "gross_buy_notional_usd":str(gross_buy.quantize(Decimal(".01"))),
             "gross_sell_notional_usd":str(gross_sell.quantize(Decimal(".01"))),
             "gross_realized_paper_profit_usd":str(sum(pnl.values(),Decimal("0")).quantize(Decimal(".01"))),
