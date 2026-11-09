@@ -79,9 +79,8 @@ def main():
             if leader_confirmed>=2:
                 signals.append((asof,seq[-1]["close"],leader_confirmed))
         first=signals[0] if signals else None
-        earliest_after_open=[x for x in signals if x[0].hour>=8 and x[0].minute>=30]
-        if not earliest_after_open:
-            earliest_after_open=[x for x in signals if x[0].hour>8]
+        earliest_after_open=[x for x in signals
+                             if x[0].hour*60+x[0].minute>=8*60+30]
         end=datetime(2026,11,9,13,40,tzinfo=CT)
         at_end=minute_at(rows,end)
         out[sym]={
