@@ -1,0 +1,959 @@
+{
+  "universe_days": 21,
+  "signal_counts": {
+    "UP": 9,
+    "DOWN": 9,
+    "ABSTAIN": 3
+  },
+  "two_of_three_plus_improving5m": 4,
+  "model_results": {
+    "breadth__hold": {
+      "all": {
+        "days": 17,
+        "tickets": 17,
+        "winning_days": 12,
+        "mean_net30": 1.3816,
+        "total_net30_pp": 23.487,
+        "mean_net60": 1.0816,
+        "worst_day_net30": -7.6561,
+        "worst_intratrade_mae": -7.4386,
+        "fixed_notional_max_drawdown_pp": -8.051,
+        "early_exits": 0
+      },
+      "first10_dates": {
+        "days": 8,
+        "tickets": 8,
+        "winning_days": 5,
+        "mean_net30": 0.7001,
+        "total_net30_pp": 5.601,
+        "mean_net60": 0.4001,
+        "worst_day_net30": -2.8071,
+        "worst_intratrade_mae": -3.3595,
+        "fixed_notional_max_drawdown_pp": -2.807,
+        "early_exits": 0
+      },
+      "remaining_dates": {
+        "days": 9,
+        "tickets": 9,
+        "winning_days": 7,
+        "mean_net30": 1.9873,
+        "total_net30_pp": 17.886,
+        "mean_net60": 1.6873,
+        "worst_day_net30": -7.6561,
+        "worst_intratrade_mae": -7.4386,
+        "fixed_notional_max_drawdown_pp": -8.051,
+        "early_exits": 0
+      },
+      "UP": {
+        "days": 9,
+        "tickets": 9,
+        "winning_days": 6,
+        "mean_net30": 0.5516,
+        "total_net30_pp": 4.964,
+        "mean_net60": 0.2516,
+        "worst_day_net30": -7.6561,
+        "worst_intratrade_mae": -7.4386,
+        "fixed_notional_max_drawdown_pp": -8.051,
+        "early_exits": 0
+      },
+      "DOWN": {
+        "days": 8,
+        "tickets": 8,
+        "winning_days": 6,
+        "mean_net30": 2.3153,
+        "total_net30_pp": 18.523,
+        "mean_net60": 2.0153,
+        "worst_day_net30": -2.8071,
+        "worst_intratrade_mae": -3.3595,
+        "fixed_notional_max_drawdown_pp": -2.807,
+        "early_exits": 0
+      }
+    },
+    "breadth__tight1m": {
+      "all": {
+        "days": 17,
+        "tickets": 17,
+        "winning_days": 2,
+        "mean_net30": -0.3391,
+        "total_net30_pp": -5.766,
+        "mean_net60": -0.6391,
+        "worst_day_net30": -0.7093,
+        "worst_intratrade_mae": -0.4926,
+        "fixed_notional_max_drawdown_pp": -5.765,
+        "early_exits": 17
+      },
+      "first10_dates": {
+        "days": 8,
+        "tickets": 8,
+        "winning_days": 1,
+        "mean_net30": -0.3398,
+        "total_net30_pp": -2.719,
+        "mean_net60": -0.6399,
+        "worst_day_net30": -0.5708,
+        "worst_intratrade_mae": -0.3634,
+        "fixed_notional_max_drawdown_pp": -2.719,
+        "early_exits": 8
+      },
+      "remaining_dates": {
+        "days": 9,
+        "tickets": 9,
+        "winning_days": 1,
+        "mean_net30": -0.3385,
+        "total_net30_pp": -3.047,
+        "mean_net60": -0.6385,
+        "worst_day_net30": -0.7093,
+        "worst_intratrade_mae": -0.4926,
+        "fixed_notional_max_drawdown_pp": -3.047,
+        "early_exits": 9
+      },
+      "UP": {
+        "days": 9,
+        "tickets": 9,
+        "winning_days": 1,
+        "mean_net30": -0.3724,
+        "total_net30_pp": -3.351,
+        "mean_net60": -0.6724,
+        "worst_day_net30": -0.7093,
+        "worst_intratrade_mae": -0.4926,
+        "fixed_notional_max_drawdown_pp": -3.351,
+        "early_exits": 9
+      },
+      "DOWN": {
+        "days": 8,
+        "tickets": 8,
+        "winning_days": 1,
+        "mean_net30": -0.3018,
+        "total_net30_pp": -2.414,
+        "mean_net60": -0.6018,
+        "worst_day_net30": -0.5544,
+        "worst_intratrade_mae": -0.3634,
+        "fixed_notional_max_drawdown_pp": -2.414,
+        "early_exits": 8
+      }
+    },
+    "breadth__target_stop1": {
+      "all": {
+        "days": 17,
+        "tickets": 17,
+        "winning_days": 11,
+        "mean_net30": 0.0377,
+        "total_net30_pp": 0.641,
+        "mean_net60": -0.2623,
+        "worst_day_net30": -1.5215,
+        "worst_intratrade_mae": -1.3463,
+        "fixed_notional_max_drawdown_pp": -6.749,
+        "early_exits": 17
+      },
+      "first10_dates": {
+        "days": 8,
+        "tickets": 8,
+        "winning_days": 7,
+        "mean_net30": 0.5821,
+        "total_net30_pp": 4.657,
+        "mean_net60": 0.2821,
+        "worst_day_net30": -1.4296,
+        "worst_intratrade_mae": -1.2117,
+        "fixed_notional_max_drawdown_pp": -1.43,
+        "early_exits": 8
+      },
+      "remaining_dates": {
+        "days": 9,
+        "tickets": 9,
+        "winning_days": 4,
+        "mean_net30": -0.4462,
+        "total_net30_pp": -4.016,
+        "mean_net60": -0.7462,
+        "worst_day_net30": -1.5215,
+        "worst_intratrade_mae": -1.3463,
+        "fixed_notional_max_drawdown_pp": -6.749,
+        "early_exits": 9
+      },
+      "UP": {
+        "days": 9,
+        "tickets": 9,
+        "winning_days": 5,
+        "mean_net30": -0.1465,
+        "total_net30_pp": -1.319,
+        "mean_net60": -0.4465,
+        "worst_day_net30": -1.5209,
+        "worst_intratrade_mae": -1.292,
+        "fixed_notional_max_drawdown_pp": -3.795,
+        "early_exits": 9
+      },
+      "DOWN": {
+        "days": 8,
+        "tickets": 8,
+        "winning_days": 6,
+        "mean_net30": 0.2449,
+        "total_net30_pp": 1.96,
+        "mean_net60": -0.0551,
+        "worst_day_net30": -1.5215,
+        "worst_intratrade_mae": -1.3463,
+        "fixed_notional_max_drawdown_pp": -2.955,
+        "early_exits": 8
+      }
+    },
+    "breadth__hard2p5": {
+      "all": {
+        "days": 17,
+        "tickets": 17,
+        "winning_days": 12,
+        "mean_net30": 1.5079,
+        "total_net30_pp": 25.634,
+        "mean_net60": 1.2079,
+        "worst_day_net30": -3.0123,
+        "worst_intratrade_mae": -2.7185,
+        "fixed_notional_max_drawdown_pp": -5.848,
+        "early_exits": 3
+      },
+      "first10_dates": {
+        "days": 8,
+        "tickets": 8,
+        "winning_days": 5,
+        "mean_net30": 0.6933,
+        "total_net30_pp": 5.546,
+        "mean_net60": 0.3933,
+        "worst_day_net30": -2.8621,
+        "worst_intratrade_mae": -2.5673,
+        "fixed_notional_max_drawdown_pp": -2.862,
+        "early_exits": 1
+      },
+      "remaining_dates": {
+        "days": 9,
+        "tickets": 9,
+        "winning_days": 7,
+        "mean_net30": 2.232,
+        "total_net30_pp": 20.088,
+        "mean_net60": 1.932,
+        "worst_day_net30": -3.0123,
+        "worst_intratrade_mae": -2.7185,
+        "fixed_notional_max_drawdown_pp": -5.848,
+        "early_exits": 2
+      },
+      "UP": {
+        "days": 9,
+        "tickets": 9,
+        "winning_days": 6,
+        "mean_net30": 0.7963,
+        "total_net30_pp": 7.167,
+        "mean_net60": 0.4963,
+        "worst_day_net30": -3.0123,
+        "worst_intratrade_mae": -2.7185,
+        "fixed_notional_max_drawdown_pp": -5.848,
+        "early_exits": 2
+      },
+      "DOWN": {
+        "days": 8,
+        "tickets": 8,
+        "winning_days": 6,
+        "mean_net30": 2.3085,
+        "total_net30_pp": 18.468,
+        "mean_net60": 2.0085,
+        "worst_day_net30": -2.8621,
+        "worst_intratrade_mae": -2.5673,
+        "fixed_notional_max_drawdown_pp": -2.862,
+        "early_exits": 1
+      }
+    },
+    "breadth__trend5m": {
+      "all": {
+        "days": 17,
+        "tickets": 17,
+        "winning_days": 5,
+        "mean_net30": 0.052,
+        "total_net30_pp": 0.884,
+        "mean_net60": -0.248,
+        "worst_day_net30": -0.8619,
+        "worst_intratrade_mae": -0.6989,
+        "fixed_notional_max_drawdown_pp": -4.714,
+        "early_exits": 17
+      },
+      "first10_dates": {
+        "days": 8,
+        "tickets": 8,
+        "winning_days": 3,
+        "mean_net30": -0.0404,
+        "total_net30_pp": -0.323,
+        "mean_net60": -0.3404,
+        "worst_day_net30": -0.6166,
+        "worst_intratrade_mae": -0.5438,
+        "fixed_notional_max_drawdown_pp": -1.933,
+        "early_exits": 8
+      },
+      "remaining_dates": {
+        "days": 9,
+        "tickets": 9,
+        "winning_days": 2,
+        "mean_net30": 0.1342,
+        "total_net30_pp": 1.208,
+        "mean_net60": -0.1658,
+        "worst_day_net30": -0.8619,
+        "worst_intratrade_mae": -0.6989,
+        "fixed_notional_max_drawdown_pp": -2.781,
+        "early_exits": 9
+      },
+      "UP": {
+        "days": 9,
+        "tickets": 9,
+        "winning_days": 2,
+        "mean_net30": 0.0713,
+        "total_net30_pp": 0.641,
+        "mean_net60": -0.2287,
+        "worst_day_net30": -0.8619,
+        "worst_intratrade_mae": -0.6989,
+        "fixed_notional_max_drawdown_pp": -3.347,
+        "early_exits": 9
+      },
+      "DOWN": {
+        "days": 8,
+        "tickets": 8,
+        "winning_days": 3,
+        "mean_net30": 0.0303,
+        "total_net30_pp": 0.243,
+        "mean_net60": -0.2697,
+        "worst_day_net30": -0.3861,
+        "worst_intratrade_mae": -0.5438,
+        "fixed_notional_max_drawdown_pp": -1.367,
+        "early_exits": 8
+      }
+    },
+    "breadth__trend5m_reentry": {
+      "all": {
+        "days": 17,
+        "tickets": 34,
+        "winning_days": 4,
+        "mean_net30": 0.1926,
+        "total_net30_pp": 3.274,
+        "mean_net60": -0.4074,
+        "worst_day_net30": -1.6758,
+        "worst_intratrade_mae": -0.9,
+        "fixed_notional_max_drawdown_pp": -7.796,
+        "early_exits": 34
+      },
+      "first10_dates": {
+        "days": 8,
+        "tickets": 16,
+        "winning_days": 1,
+        "mean_net30": -0.1057,
+        "total_net30_pp": -0.846,
+        "mean_net60": -0.7057,
+        "worst_day_net30": -0.8471,
+        "worst_intratrade_mae": -0.6041,
+        "fixed_notional_max_drawdown_pp": -2.586,
+        "early_exits": 16
+      },
+      "remaining_dates": {
+        "days": 9,
+        "tickets": 18,
+        "winning_days": 3,
+        "mean_net30": 0.4578,
+        "total_net30_pp": 4.12,
+        "mean_net60": -0.1422,
+        "worst_day_net30": -1.6758,
+        "worst_intratrade_mae": -0.9,
+        "fixed_notional_max_drawdown_pp": -5.21,
+        "early_exits": 18
+      },
+      "UP": {
+        "days": 9,
+        "tickets": 18,
+        "winning_days": 2,
+        "mean_net30": -0.3305,
+        "total_net30_pp": -2.975,
+        "mean_net60": -0.9305,
+        "worst_day_net30": -1.6758,
+        "worst_intratrade_mae": -0.6989,
+        "fixed_notional_max_drawdown_pp": -6.416,
+        "early_exits": 18
+      },
+      "DOWN": {
+        "days": 8,
+        "tickets": 16,
+        "winning_days": 2,
+        "mean_net30": 0.7811,
+        "total_net30_pp": 6.249,
+        "mean_net60": 0.1811,
+        "worst_day_net30": -1.3882,
+        "worst_intratrade_mae": -0.9,
+        "fixed_notional_max_drawdown_pp": -2.639,
+        "early_exits": 16
+      }
+    },
+    "breadth_plus_5m__hold": {
+      "all": {
+        "days": 4,
+        "tickets": 4,
+        "winning_days": 3,
+        "mean_net30": 3.1001,
+        "total_net30_pp": 12.401,
+        "mean_net60": 2.8001,
+        "worst_day_net30": -0.3693,
+        "worst_intratrade_mae": -2.0586,
+        "fixed_notional_max_drawdown_pp": -0.369,
+        "early_exits": 0
+      },
+      "first10_dates": {
+        "days": 2,
+        "tickets": 2,
+        "winning_days": 1,
+        "mean_net30": 1.6327,
+        "total_net30_pp": 3.265,
+        "mean_net60": 1.3327,
+        "worst_day_net30": -0.3693,
+        "worst_intratrade_mae": -0.7626,
+        "fixed_notional_max_drawdown_pp": -0.369,
+        "early_exits": 0
+      },
+      "remaining_dates": {
+        "days": 2,
+        "tickets": 2,
+        "winning_days": 2,
+        "mean_net30": 4.5676,
+        "total_net30_pp": 9.135,
+        "mean_net60": 4.2675,
+        "worst_day_net30": 0.0851,
+        "worst_intratrade_mae": -2.0586,
+        "fixed_notional_max_drawdown_pp": 0,
+        "early_exits": 0
+      },
+      "UP": {
+        "days": 1,
+        "tickets": 1,
+        "winning_days": 1,
+        "mean_net30": 9.05,
+        "total_net30_pp": 9.05,
+        "mean_net60": 8.75,
+        "worst_day_net30": 9.05,
+        "worst_intratrade_mae": -0.3748,
+        "fixed_notional_max_drawdown_pp": 0,
+        "early_exits": 0
+      },
+      "DOWN": {
+        "days": 3,
+        "tickets": 3,
+        "winning_days": 2,
+        "mean_net30": 1.1168,
+        "total_net30_pp": 3.35,
+        "mean_net60": 0.8168,
+        "worst_day_net30": -0.3693,
+        "worst_intratrade_mae": -2.0586,
+        "fixed_notional_max_drawdown_pp": -0.369,
+        "early_exits": 0
+      }
+    },
+    "breadth_plus_5m__tight1m": {
+      "all": {
+        "days": 4,
+        "tickets": 4,
+        "winning_days": 0,
+        "mean_net30": -0.2755,
+        "total_net30_pp": -1.102,
+        "mean_net60": -0.5755,
+        "worst_day_net30": -0.4466,
+        "worst_intratrade_mae": -0.3634,
+        "fixed_notional_max_drawdown_pp": -1.102,
+        "early_exits": 4
+      },
+      "first10_dates": {
+        "days": 2,
+        "tickets": 2,
+        "winning_days": 0,
+        "mean_net30": -0.2442,
+        "total_net30_pp": -0.488,
+        "mean_net60": -0.5442,
+        "worst_day_net30": -0.304,
+        "worst_intratrade_mae": -0.3634,
+        "fixed_notional_max_drawdown_pp": -0.488,
+        "early_exits": 2
+      },
+      "remaining_dates": {
+        "days": 2,
+        "tickets": 2,
+        "winning_days": 0,
+        "mean_net30": -0.3067,
+        "total_net30_pp": -0.613,
+        "mean_net60": -0.6068,
+        "worst_day_net30": -0.4466,
+        "worst_intratrade_mae": -0.1473,
+        "fixed_notional_max_drawdown_pp": -0.613,
+        "early_exits": 2
+      },
+      "UP": {
+        "days": 1,
+        "tickets": 1,
+        "winning_days": 0,
+        "mean_net30": -0.4466,
+        "total_net30_pp": -0.447,
+        "mean_net60": -0.7466,
+        "worst_day_net30": -0.4466,
+        "worst_intratrade_mae": -0.1473,
+        "fixed_notional_max_drawdown_pp": -0.447,
+        "early_exits": 1
+      },
+      "DOWN": {
+        "days": 3,
+        "tickets": 3,
+        "winning_days": 0,
+        "mean_net30": -0.2184,
+        "total_net30_pp": -0.655,
+        "mean_net60": -0.5184,
+        "worst_day_net30": -0.304,
+        "worst_intratrade_mae": -0.3634,
+        "fixed_notional_max_drawdown_pp": -0.655,
+        "early_exits": 3
+      }
+    },
+    "breadth_plus_5m__target_stop1": {
+      "all": {
+        "days": 4,
+        "tickets": 4,
+        "winning_days": 3,
+        "mean_net30": 0.3314,
+        "total_net30_pp": 1.325,
+        "mean_net60": 0.0314,
+        "worst_day_net30": -1.4331,
+        "worst_intratrade_mae": -1.2884,
+        "fixed_notional_max_drawdown_pp": -1.433,
+        "early_exits": 4
+      },
+      "first10_dates": {
+        "days": 2,
+        "tickets": 2,
+        "winning_days": 2,
+        "mean_net30": 0.7904,
+        "total_net30_pp": 1.581,
+        "mean_net60": 0.4904,
+        "worst_day_net30": 0.6978,
+        "worst_intratrade_mae": -0.3634,
+        "fixed_notional_max_drawdown_pp": 0,
+        "early_exits": 2
+      },
+      "remaining_dates": {
+        "days": 2,
+        "tickets": 2,
+        "winning_days": 1,
+        "mean_net30": -0.1277,
+        "total_net30_pp": -0.255,
+        "mean_net60": -0.4277,
+        "worst_day_net30": -1.4331,
+        "worst_intratrade_mae": -1.2884,
+        "fixed_notional_max_drawdown_pp": -1.433,
+        "early_exits": 2
+      },
+      "UP": {
+        "days": 1,
+        "tickets": 1,
+        "winning_days": 1,
+        "mean_net30": 1.1777,
+        "total_net30_pp": 1.178,
+        "mean_net60": 0.8777,
+        "worst_day_net30": 1.1777,
+        "worst_intratrade_mae": -0.3748,
+        "fixed_notional_max_drawdown_pp": 0,
+        "early_exits": 1
+      },
+      "DOWN": {
+        "days": 3,
+        "tickets": 3,
+        "winning_days": 2,
+        "mean_net30": 0.0493,
+        "total_net30_pp": 0.148,
+        "mean_net60": -0.2507,
+        "worst_day_net30": -1.4331,
+        "worst_intratrade_mae": -1.2884,
+        "fixed_notional_max_drawdown_pp": -1.433,
+        "early_exits": 3
+      }
+    },
+    "breadth_plus_5m__hard2p5": {
+      "all": {
+        "days": 4,
+        "tickets": 4,
+        "winning_days": 3,
+        "mean_net30": 3.1001,
+        "total_net30_pp": 12.401,
+        "mean_net60": 2.8001,
+        "worst_day_net30": -0.3693,
+        "worst_intratrade_mae": -2.0586,
+        "fixed_notional_max_drawdown_pp": -0.369,
+        "early_exits": 0
+      },
+      "first10_dates": {
+        "days": 2,
+        "tickets": 2,
+        "winning_days": 1,
+        "mean_net30": 1.6327,
+        "total_net30_pp": 3.265,
+        "mean_net60": 1.3327,
+        "worst_day_net30": -0.3693,
+        "worst_intratrade_mae": -0.7626,
+        "fixed_notional_max_drawdown_pp": -0.369,
+        "early_exits": 0
+      },
+      "remaining_dates": {
+        "days": 2,
+        "tickets": 2,
+        "winning_days": 2,
+        "mean_net30": 4.5676,
+        "total_net30_pp": 9.135,
+        "mean_net60": 4.2675,
+        "worst_day_net30": 0.0851,
+        "worst_intratrade_mae": -2.0586,
+        "fixed_notional_max_drawdown_pp": 0,
+        "early_exits": 0
+      },
+      "UP": {
+        "days": 1,
+        "tickets": 1,
+        "winning_days": 1,
+        "mean_net30": 9.05,
+        "total_net30_pp": 9.05,
+        "mean_net60": 8.75,
+        "worst_day_net30": 9.05,
+        "worst_intratrade_mae": -0.3748,
+        "fixed_notional_max_drawdown_pp": 0,
+        "early_exits": 0
+      },
+      "DOWN": {
+        "days": 3,
+        "tickets": 3,
+        "winning_days": 2,
+        "mean_net30": 1.1168,
+        "total_net30_pp": 3.35,
+        "mean_net60": 0.8168,
+        "worst_day_net30": -0.3693,
+        "worst_intratrade_mae": -2.0586,
+        "fixed_notional_max_drawdown_pp": -0.369,
+        "early_exits": 0
+      }
+    },
+    "breadth_plus_5m__trend5m": {
+      "all": {
+        "days": 4,
+        "tickets": 4,
+        "winning_days": 2,
+        "mean_net30": 0.9287,
+        "total_net30_pp": 3.715,
+        "mean_net60": 0.6287,
+        "worst_day_net30": -0.304,
+        "worst_intratrade_mae": -0.3748,
+        "fixed_notional_max_drawdown_pp": -0.552,
+        "early_exits": 4
+      },
+      "first10_dates": {
+        "days": 2,
+        "tickets": 2,
+        "winning_days": 1,
+        "mean_net30": -0.0126,
+        "total_net30_pp": -0.025,
+        "mean_net60": -0.3125,
+        "worst_day_net30": -0.304,
+        "worst_intratrade_mae": -0.3634,
+        "fixed_notional_max_drawdown_pp": -0.304,
+        "early_exits": 2
+      },
+      "remaining_dates": {
+        "days": 2,
+        "tickets": 2,
+        "winning_days": 1,
+        "mean_net30": 1.87,
+        "total_net30_pp": 3.74,
+        "mean_net60": 1.57,
+        "worst_day_net30": -0.2485,
+        "worst_intratrade_mae": -0.3748,
+        "fixed_notional_max_drawdown_pp": -0.248,
+        "early_exits": 2
+      },
+      "UP": {
+        "days": 1,
+        "tickets": 1,
+        "winning_days": 1,
+        "mean_net30": 3.9885,
+        "total_net30_pp": 3.989,
+        "mean_net60": 3.6885,
+        "worst_day_net30": 3.9885,
+        "worst_intratrade_mae": -0.3748,
+        "fixed_notional_max_drawdown_pp": 0,
+        "early_exits": 1
+      },
+      "DOWN": {
+        "days": 3,
+        "tickets": 3,
+        "winning_days": 1,
+        "mean_net30": -0.0912,
+        "total_net30_pp": -0.274,
+        "mean_net60": -0.3912,
+        "worst_day_net30": -0.304,
+        "worst_intratrade_mae": -0.3634,
+        "fixed_notional_max_drawdown_pp": -0.552,
+        "early_exits": 3
+      }
+    },
+    "breadth_plus_5m__trend5m_reentry": {
+      "all": {
+        "days": 4,
+        "tickets": 8,
+        "winning_days": 1,
+        "mean_net30": 0.6523,
+        "total_net30_pp": 2.609,
+        "mean_net60": 0.0523,
+        "worst_day_net30": -0.4276,
+        "worst_intratrade_mae": -0.3839,
+        "fixed_notional_max_drawdown_pp": -0.833,
+        "early_exits": 8
+      },
+      "first10_dates": {
+        "days": 2,
+        "tickets": 4,
+        "winning_days": 0,
+        "mean_net30": -0.2473,
+        "total_net30_pp": -0.495,
+        "mean_net60": -0.8474,
+        "worst_day_net30": -0.4276,
+        "worst_intratrade_mae": -0.3674,
+        "fixed_notional_max_drawdown_pp": -0.495,
+        "early_exits": 4
+      },
+      "remaining_dates": {
+        "days": 2,
+        "tickets": 4,
+        "winning_days": 1,
+        "mean_net30": 1.5519,
+        "total_net30_pp": 3.104,
+        "mean_net60": 0.9519,
+        "worst_day_net30": -0.3378,
+        "worst_intratrade_mae": -0.3839,
+        "fixed_notional_max_drawdown_pp": -0.338,
+        "early_exits": 4
+      },
+      "UP": {
+        "days": 1,
+        "tickets": 2,
+        "winning_days": 1,
+        "mean_net30": 3.4417,
+        "total_net30_pp": 3.442,
+        "mean_net60": 2.8417,
+        "worst_day_net30": 3.4417,
+        "worst_intratrade_mae": -0.3839,
+        "fixed_notional_max_drawdown_pp": 0,
+        "early_exits": 2
+      },
+      "DOWN": {
+        "days": 3,
+        "tickets": 6,
+        "winning_days": 0,
+        "mean_net30": -0.2775,
+        "total_net30_pp": -0.833,
+        "mean_net60": -0.8775,
+        "worst_day_net30": -0.4276,
+        "worst_intratrade_mae": -0.3674,
+        "fixed_notional_max_drawdown_pp": -0.833,
+        "early_exits": 6
+      }
+    }
+  },
+  "nov9_research_only_simulated_entries": {
+    "breadth__hold": [
+      [
+        {
+          "entry": "08:35",
+          "exit": "14:40",
+          "price_in": 466.95,
+          "price_out": 510.61,
+          "reason": "time_flat",
+          "gross": 9.35,
+          "net30": 9.05,
+          "net60": 8.75,
+          "intratrade_mae": -0.3748
+        }
+      ]
+    ],
+    "breadth__tight1m": [
+      [
+        {
+          "entry": "08:35",
+          "exit": "08:37",
+          "price_in": 466.95,
+          "price_out": 466.2654,
+          "reason": "tight1m",
+          "gross": -0.1466,
+          "net30": -0.4466,
+          "net60": -0.7466,
+          "intratrade_mae": -0.1473
+        }
+      ]
+    ],
+    "breadth__target_stop1": [
+      [
+        {
+          "entry": "08:35",
+          "exit": "09:28",
+          "price_in": 466.95,
+          "price_out": 473.85,
+          "reason": "target_stop1",
+          "gross": 1.4777,
+          "net30": 1.1777,
+          "net60": 0.8777,
+          "intratrade_mae": -0.3748
+        }
+      ]
+    ],
+    "breadth__hard2p5": [
+      [
+        {
+          "entry": "08:35",
+          "exit": "14:40",
+          "price_in": 466.95,
+          "price_out": 510.61,
+          "reason": "time_flat",
+          "gross": 9.35,
+          "net30": 9.05,
+          "net60": 8.75,
+          "intratrade_mae": -0.3748
+        }
+      ]
+    ],
+    "breadth__trend5m": [
+      [
+        {
+          "entry": "08:35",
+          "exit": "10:03",
+          "price_in": 466.95,
+          "price_out": 486.975,
+          "reason": "trend5m_breadth",
+          "gross": 4.2885,
+          "net30": 3.9885,
+          "net60": 3.6885,
+          "intratrade_mae": -0.3748
+        }
+      ]
+    ],
+    "breadth__trend5m_reentry": [
+      [
+        {
+          "entry": "08:35",
+          "exit": "10:03",
+          "price_in": 466.95,
+          "price_out": 486.975,
+          "reason": "trend5m_breadth",
+          "gross": 4.2885,
+          "net30": 3.9885,
+          "net60": 3.6885,
+          "intratrade_mae": -0.3748
+        },
+        {
+          "entry": "10:28",
+          "exit": "10:37",
+          "price_in": 492.36,
+          "price_out": 491.145,
+          "reason": "trend5m_breadth",
+          "gross": -0.2468,
+          "net30": -0.5468,
+          "net60": -0.8468,
+          "intratrade_mae": -0.3839
+        }
+      ]
+    ],
+    "breadth_plus_5m__hold": [
+      [
+        {
+          "entry": "08:35",
+          "exit": "14:40",
+          "price_in": 466.95,
+          "price_out": 510.61,
+          "reason": "time_flat",
+          "gross": 9.35,
+          "net30": 9.05,
+          "net60": 8.75,
+          "intratrade_mae": -0.3748
+        }
+      ]
+    ],
+    "breadth_plus_5m__tight1m": [
+      [
+        {
+          "entry": "08:35",
+          "exit": "08:37",
+          "price_in": 466.95,
+          "price_out": 466.2654,
+          "reason": "tight1m",
+          "gross": -0.1466,
+          "net30": -0.4466,
+          "net60": -0.7466,
+          "intratrade_mae": -0.1473
+        }
+      ]
+    ],
+    "breadth_plus_5m__target_stop1": [
+      [
+        {
+          "entry": "08:35",
+          "exit": "09:28",
+          "price_in": 466.95,
+          "price_out": 473.85,
+          "reason": "target_stop1",
+          "gross": 1.4777,
+          "net30": 1.1777,
+          "net60": 0.8777,
+          "intratrade_mae": -0.3748
+        }
+      ]
+    ],
+    "breadth_plus_5m__hard2p5": [
+      [
+        {
+          "entry": "08:35",
+          "exit": "14:40",
+          "price_in": 466.95,
+          "price_out": 510.61,
+          "reason": "time_flat",
+          "gross": 9.35,
+          "net30": 9.05,
+          "net60": 8.75,
+          "intratrade_mae": -0.3748
+        }
+      ]
+    ],
+    "breadth_plus_5m__trend5m": [
+      [
+        {
+          "entry": "08:35",
+          "exit": "10:03",
+          "price_in": 466.95,
+          "price_out": 486.975,
+          "reason": "trend5m_breadth",
+          "gross": 4.2885,
+          "net30": 3.9885,
+          "net60": 3.6885,
+          "intratrade_mae": -0.3748
+        }
+      ]
+    ],
+    "breadth_plus_5m__trend5m_reentry": [
+      [
+        {
+          "entry": "08:35",
+          "exit": "10:03",
+          "price_in": 466.95,
+          "price_out": 486.975,
+          "reason": "trend5m_breadth",
+          "gross": 4.2885,
+          "net30": 3.9885,
+          "net60": 3.6885,
+          "intratrade_mae": -0.3748
+        },
+        {
+          "entry": "10:28",
+          "exit": "10:37",
+          "price_in": 492.36,
+          "price_out": 491.145,
+          "reason": "trend5m_breadth",
+          "gross": -0.2468,
+          "net30": -0.5468,
+          "net60": -0.8468,
+          "intratrade_mae": -0.3839
+        }
+      ]
+    ]
+  }
+}
