@@ -1,0 +1,48 @@
+{
+  "signal_days": 194,
+  "original_entries": 526,
+  "executions": 982,
+  "reentries": 456,
+  "first_only": {
+    "trades": 526,
+    "signal_days": 194,
+    "up_trades": 304,
+    "down_trades": 222,
+    "winning_trades": 217,
+    "win_rate_after30": 41.25,
+    "avg_after30": -0.289,
+    "day_equal_avg_after30": -0.3181,
+    "avg_after60": -0.589,
+    "worst_net30": -8.4097,
+    "losses_below_minus2": 71,
+    "losses_below_minus4": 16,
+    "avg_mae": -0.8252,
+    "stop_events": 525,
+    "avg_hold_minutes": 28.4
+  },
+  "all_trade_stats": {
+    "trades": 982,
+    "signal_days": 194,
+    "up_trades": 562,
+    "down_trades": 420,
+    "winning_trades": 393,
+    "win_rate_after30": 40.02,
+    "avg_after30": -0.2571,
+    "day_equal_avg_after30": -0.361,
+    "avg_after60": -0.5571,
+    "worst_net30": -8.4097,
+    "losses_below_minus2": 93,
+    "losses_below_minus4": 17,
+    "avg_mae": -0.6784,
+    "stop_events": 976,
+    "avg_hold_minutes": 32.83
+  },
+  "per_original_position_after30": {
+    "n": 526,
+    "mean": -0.48,
+    "winning_position_count": 202,
+    "win_pct": 38.4,
+    "worst": -9.4074
+  },
+  "comparison_not_equivalent": "per-original-position sum net returns approximate equal starting dollar notional; original stop and reentry may use new cash; 5m SIP trade bars lack executable bid/ask and fill eligibility"
+}
