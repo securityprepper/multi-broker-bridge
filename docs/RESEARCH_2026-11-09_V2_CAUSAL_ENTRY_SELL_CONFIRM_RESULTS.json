@@ -1,0 +1,491 @@
+{
+  "buy_track": {
+    "baseline_signals": 697,
+    "major_down": 209,
+    "major_up": 254,
+    "overall_stockdays": 2244,
+    "policies": {
+      "baseline": {
+        "all": {
+          "independent_days": 117,
+          "major_winners_excluded_from_baseline": 0,
+          "mean_signal_pct": 0.1344,
+          "price_eligible_entries": 688,
+          "retained_major_down": 40,
+          "retained_major_up": 150,
+          "same_baseline_days_zero_if_no_trade_pct": -0.041,
+          "signals": 697
+        },
+        "earlier": {
+          "independent_days": 97,
+          "major_winners_excluded_from_baseline": 0,
+          "mean_signal_pct": 0.2461,
+          "price_eligible_entries": 581,
+          "retained_major_down": 27,
+          "retained_major_up": 139,
+          "same_baseline_days_zero_if_no_trade_pct": 0.086,
+          "signals": 590
+        },
+        "later": {
+          "independent_days": 20,
+          "major_winners_excluded_from_baseline": 0,
+          "mean_signal_pct": -0.4818,
+          "price_eligible_entries": 107,
+          "retained_major_down": 13,
+          "retained_major_up": 11,
+          "same_baseline_days_zero_if_no_trade_pct": -0.6568,
+          "signals": 107
+        }
+      },
+      "no_weak_prior5": {
+        "all": {
+          "independent_days": 117,
+          "major_winners_excluded_from_baseline": 51,
+          "mean_signal_pct": 0.1384,
+          "price_eligible_entries": 499,
+          "retained_major_down": 33,
+          "retained_major_up": 99,
+          "same_baseline_days_zero_if_no_trade_pct": -0.0388,
+          "signals": 504
+        },
+        "earlier": {
+          "independent_days": 97,
+          "major_winners_excluded_from_baseline": 47,
+          "mean_signal_pct": 0.1831,
+          "price_eligible_entries": 434,
+          "retained_major_down": 23,
+          "retained_major_up": 92,
+          "same_baseline_days_zero_if_no_trade_pct": 0.0357,
+          "signals": 439
+        },
+        "later": {
+          "independent_days": 20,
+          "major_winners_excluded_from_baseline": 4,
+          "mean_signal_pct": -0.1636,
+          "price_eligible_entries": 65,
+          "retained_major_down": 10,
+          "retained_major_up": 7,
+          "same_baseline_days_zero_if_no_trade_pct": -0.4002,
+          "signals": 65
+        }
+      },
+      "sector_5m": {
+        "all": {
+          "independent_days": 117,
+          "major_winners_excluded_from_baseline": 7,
+          "mean_signal_pct": 0.1409,
+          "price_eligible_entries": 659,
+          "retained_major_down": 38,
+          "retained_major_up": 143,
+          "same_baseline_days_zero_if_no_trade_pct": -0.0645,
+          "signals": 668
+        },
+        "earlier": {
+          "independent_days": 97,
+          "major_winners_excluded_from_baseline": 6,
+          "mean_signal_pct": 0.2627,
+          "price_eligible_entries": 559,
+          "retained_major_down": 26,
+          "retained_major_up": 133,
+          "same_baseline_days_zero_if_no_trade_pct": 0.0803,
+          "signals": 568
+        },
+        "later": {
+          "independent_days": 20,
+          "major_winners_excluded_from_baseline": 1,
+          "mean_signal_pct": -0.551,
+          "price_eligible_entries": 100,
+          "retained_major_down": 12,
+          "retained_major_up": 10,
+          "same_baseline_days_zero_if_no_trade_pct": -0.7666,
+          "signals": 100
+        }
+      },
+      "sector_5m_020": {
+        "all": {
+          "independent_days": 117,
+          "major_winners_excluded_from_baseline": 24,
+          "mean_signal_pct": 0.1286,
+          "price_eligible_entries": 593,
+          "retained_major_down": 36,
+          "retained_major_up": 126,
+          "same_baseline_days_zero_if_no_trade_pct": -0.0968,
+          "signals": 602
+        },
+        "earlier": {
+          "independent_days": 97,
+          "major_winners_excluded_from_baseline": 22,
+          "mean_signal_pct": 0.2635,
+          "price_eligible_entries": 511,
+          "retained_major_down": 24,
+          "retained_major_up": 117,
+          "same_baseline_days_zero_if_no_trade_pct": 0.0651,
+          "signals": 520
+        },
+        "later": {
+          "independent_days": 20,
+          "major_winners_excluded_from_baseline": 2,
+          "mean_signal_pct": -0.727,
+          "price_eligible_entries": 82,
+          "retained_major_down": 12,
+          "retained_major_up": 9,
+          "same_baseline_days_zero_if_no_trade_pct": -0.8823,
+          "signals": 82
+        }
+      },
+      "sector_5m_no_weak_prior5": {
+        "all": {
+          "independent_days": 117,
+          "major_winners_excluded_from_baseline": 55,
+          "mean_signal_pct": 0.1595,
+          "price_eligible_entries": 473,
+          "retained_major_down": 31,
+          "retained_major_up": 95,
+          "same_baseline_days_zero_if_no_trade_pct": -0.057,
+          "signals": 478
+        },
+        "earlier": {
+          "independent_days": 97,
+          "major_winners_excluded_from_baseline": 51,
+          "mean_signal_pct": 0.2134,
+          "price_eligible_entries": 414,
+          "retained_major_down": 22,
+          "retained_major_up": 88,
+          "same_baseline_days_zero_if_no_trade_pct": 0.0325,
+          "signals": 419
+        },
+        "later": {
+          "independent_days": 20,
+          "major_winners_excluded_from_baseline": 4,
+          "mean_signal_pct": -0.2235,
+          "price_eligible_entries": 59,
+          "retained_major_down": 9,
+          "retained_major_up": 7,
+          "same_baseline_days_zero_if_no_trade_pct": -0.4909,
+          "signals": 59
+        }
+      },
+      "stock_sector_5m": {
+        "all": {
+          "independent_days": 117,
+          "major_winners_excluded_from_baseline": 16,
+          "mean_signal_pct": 0.1041,
+          "price_eligible_entries": 642,
+          "retained_major_down": 36,
+          "retained_major_up": 134,
+          "same_baseline_days_zero_if_no_trade_pct": -0.0844,
+          "signals": 650
+        },
+        "earlier": {
+          "independent_days": 97,
+          "major_winners_excluded_from_baseline": 15,
+          "mean_signal_pct": 0.2257,
+          "price_eligible_entries": 544,
+          "retained_major_down": 24,
+          "retained_major_up": 124,
+          "same_baseline_days_zero_if_no_trade_pct": 0.0614,
+          "signals": 552
+        },
+        "later": {
+          "independent_days": 20,
+          "major_winners_excluded_from_baseline": 1,
+          "mean_signal_pct": -0.5808,
+          "price_eligible_entries": 98,
+          "retained_major_down": 12,
+          "retained_major_up": 10,
+          "same_baseline_days_zero_if_no_trade_pct": -0.7915,
+          "signals": 98
+        }
+      }
+    }
+  },
+  "limits": "SIP 5m OHLC proxy (not executable bid/ask); prior five completed only; no QQQ/futures/news/V1 fills; 15bp sell and buy friction, 30bp limit envelope",
+  "period": "2025-11-10 to 2026-11-06",
+  "sell_track": {
+    "major_down": 209,
+    "major_up": 254,
+    "overall_stockdays": 2244,
+    "rules": {
+      "base": {
+        "all": {
+          "benefit_count": 476,
+          "day_equal_with_zero_on_baseline_warn_dates_pp": -0.5135,
+          "earliest_severe": "2025-11-13T04:20:00-05:00",
+          "harm_count": 477,
+          "major_down_hits": 200,
+          "major_down_missed": 9,
+          "major_down_warn_before5": 166,
+          "major_up_warning": 37,
+          "mean_sale_vs_next_open_pp": -0.0824,
+          "nonmajor_down_warnings": 806,
+          "preceding_evening_warnings": 60,
+          "preopen_warnings": 674,
+          "price_eligible_proxy": 953,
+          "scorable_with_next_open": 995,
+          "warning_days": 175,
+          "warnings": 1006
+        },
+        "earlier": {
+          "benefit_count": 346,
+          "day_equal_with_zero_on_baseline_warn_dates_pp": -0.8396,
+          "earliest_severe": "2025-11-13T04:20:00-05:00",
+          "harm_count": 404,
+          "major_down_hits": 151,
+          "major_down_missed": 9,
+          "major_down_warn_before5": 122,
+          "major_up_warning": 34,
+          "mean_sale_vs_next_open_pp": -0.4334,
+          "nonmajor_down_warnings": 635,
+          "preceding_evening_warnings": 43,
+          "preopen_warnings": 500,
+          "price_eligible_proxy": 750,
+          "scorable_with_next_open": 783,
+          "warning_days": 140,
+          "warnings": 786
+        },
+        "later": {
+          "benefit_count": 130,
+          "day_equal_with_zero_on_baseline_warn_dates_pp": 0.7911,
+          "earliest_severe": "2026-09-10T08:30:00-04:00",
+          "harm_count": 73,
+          "major_down_hits": 49,
+          "major_down_missed": 0,
+          "major_down_warn_before5": 44,
+          "major_up_warning": 3,
+          "mean_sale_vs_next_open_pp": 1.2143,
+          "nonmajor_down_warnings": 171,
+          "preceding_evening_warnings": 17,
+          "preopen_warnings": 174,
+          "price_eligible_proxy": 203,
+          "scorable_with_next_open": 212,
+          "warning_days": 35,
+          "warnings": 220
+        }
+      },
+      "sector_down_000": {
+        "all": {
+          "benefit_count": 286,
+          "day_equal_with_zero_on_baseline_warn_dates_pp": -0.2619,
+          "earliest_severe": "2025-11-13T04:25:00-05:00",
+          "harm_count": 265,
+          "major_down_hits": 134,
+          "major_down_missed": 75,
+          "major_down_warn_before5": 109,
+          "major_up_warning": 21,
+          "mean_sale_vs_next_open_pp": 0.1205,
+          "nonmajor_down_warnings": 450,
+          "preceding_evening_warnings": 28,
+          "preopen_warnings": 398,
+          "price_eligible_proxy": 551,
+          "scorable_with_next_open": 583,
+          "warning_days": 138,
+          "warnings": 584
+        },
+        "earlier": {
+          "benefit_count": 209,
+          "day_equal_with_zero_on_baseline_warn_dates_pp": -0.543,
+          "earliest_severe": "2025-11-13T04:25:00-05:00",
+          "harm_count": 230,
+          "major_down_hits": 101,
+          "major_down_missed": 59,
+          "major_down_warn_before5": 79,
+          "major_up_warning": 21,
+          "mean_sale_vs_next_open_pp": -0.2937,
+          "nonmajor_down_warnings": 367,
+          "preceding_evening_warnings": 21,
+          "preopen_warnings": 301,
+          "price_eligible_proxy": 439,
+          "scorable_with_next_open": 467,
+          "warning_days": 118,
+          "warnings": 468
+        },
+        "later": {
+          "benefit_count": 77,
+          "day_equal_with_zero_on_baseline_warn_dates_pp": 0.8621,
+          "earliest_severe": "2026-09-10T08:35:00-04:00",
+          "harm_count": 35,
+          "major_down_hits": 33,
+          "major_down_missed": 16,
+          "major_down_warn_before5": 30,
+          "major_up_warning": 0,
+          "mean_sale_vs_next_open_pp": 1.7884,
+          "nonmajor_down_warnings": 83,
+          "preceding_evening_warnings": 7,
+          "preopen_warnings": 97,
+          "price_eligible_proxy": 112,
+          "scorable_with_next_open": 116,
+          "warning_days": 20,
+          "warnings": 116
+        }
+      },
+      "stock_down_010": {
+        "all": {
+          "benefit_count": 210,
+          "day_equal_with_zero_on_baseline_warn_dates_pp": -0.2075,
+          "earliest_severe": "2025-11-13T04:25:00-05:00",
+          "harm_count": 176,
+          "major_down_hits": 92,
+          "major_down_missed": 117,
+          "major_down_warn_before5": 73,
+          "major_up_warning": 14,
+          "mean_sale_vs_next_open_pp": 0.1874,
+          "nonmajor_down_warnings": 311,
+          "preceding_evening_warnings": 15,
+          "preopen_warnings": 241,
+          "price_eligible_proxy": 386,
+          "scorable_with_next_open": 401,
+          "warning_days": 132,
+          "warnings": 403
+        },
+        "earlier": {
+          "benefit_count": 162,
+          "day_equal_with_zero_on_baseline_warn_dates_pp": -0.4154,
+          "earliest_severe": "2025-11-13T04:25:00-05:00",
+          "harm_count": 150,
+          "major_down_hits": 73,
+          "major_down_missed": 87,
+          "major_down_warn_before5": 57,
+          "major_up_warning": 14,
+          "mean_sale_vs_next_open_pp": -0.0859,
+          "nonmajor_down_warnings": 253,
+          "preceding_evening_warnings": 11,
+          "preopen_warnings": 178,
+          "price_eligible_proxy": 312,
+          "scorable_with_next_open": 325,
+          "warning_days": 109,
+          "warnings": 326
+        },
+        "later": {
+          "benefit_count": 48,
+          "day_equal_with_zero_on_baseline_warn_dates_pp": 0.6241,
+          "earliest_severe": "2026-09-10T08:35:00-04:00",
+          "harm_count": 26,
+          "major_down_hits": 19,
+          "major_down_missed": 30,
+          "major_down_warn_before5": 16,
+          "major_up_warning": 0,
+          "mean_sale_vs_next_open_pp": 1.3564,
+          "nonmajor_down_warnings": 58,
+          "preceding_evening_warnings": 4,
+          "preopen_warnings": 63,
+          "price_eligible_proxy": 74,
+          "scorable_with_next_open": 76,
+          "warning_days": 23,
+          "warnings": 77
+        }
+      },
+      "stock_sector_down_000": {
+        "all": {
+          "benefit_count": 230,
+          "day_equal_with_zero_on_baseline_warn_dates_pp": -0.0983,
+          "earliest_severe": "2025-11-13T04:25:00-05:00",
+          "harm_count": 201,
+          "major_down_hits": 96,
+          "major_down_missed": 113,
+          "major_down_warn_before5": 80,
+          "major_up_warning": 13,
+          "mean_sale_vs_next_open_pp": 0.2757,
+          "nonmajor_down_warnings": 352,
+          "preceding_evening_warnings": 15,
+          "preopen_warnings": 296,
+          "price_eligible_proxy": 431,
+          "scorable_with_next_open": 447,
+          "warning_days": 120,
+          "warnings": 448
+        },
+        "earlier": {
+          "benefit_count": 171,
+          "day_equal_with_zero_on_baseline_warn_dates_pp": -0.3266,
+          "earliest_severe": "2025-11-13T04:25:00-05:00",
+          "harm_count": 173,
+          "major_down_hits": 76,
+          "major_down_missed": 84,
+          "major_down_warn_before5": 62,
+          "major_up_warning": 13,
+          "mean_sale_vs_next_open_pp": -0.0371,
+          "nonmajor_down_warnings": 283,
+          "preceding_evening_warnings": 11,
+          "preopen_warnings": 219,
+          "price_eligible_proxy": 344,
+          "scorable_with_next_open": 358,
+          "warning_days": 101,
+          "warnings": 359
+        },
+        "later": {
+          "benefit_count": 59,
+          "day_equal_with_zero_on_baseline_warn_dates_pp": 0.815,
+          "earliest_severe": "2026-09-10T08:35:00-04:00",
+          "harm_count": 28,
+          "major_down_hits": 20,
+          "major_down_missed": 29,
+          "major_down_warn_before5": 18,
+          "major_up_warning": 0,
+          "mean_sale_vs_next_open_pp": 1.5338,
+          "nonmajor_down_warnings": 69,
+          "preceding_evening_warnings": 4,
+          "preopen_warnings": 77,
+          "price_eligible_proxy": 87,
+          "scorable_with_next_open": 89,
+          "warning_days": 19,
+          "warnings": 89
+        }
+      },
+      "stock_sector_down_010": {
+        "all": {
+          "benefit_count": 177,
+          "day_equal_with_zero_on_baseline_warn_dates_pp": 0.1256,
+          "earliest_severe": "2025-11-13T09:45:00-05:00",
+          "harm_count": 118,
+          "major_down_hits": 75,
+          "major_down_missed": 134,
+          "major_down_warn_before5": 63,
+          "major_up_warning": 10,
+          "mean_sale_vs_next_open_pp": 0.6615,
+          "nonmajor_down_warnings": 231,
+          "preceding_evening_warnings": 9,
+          "preopen_warnings": 173,
+          "price_eligible_proxy": 295,
+          "scorable_with_next_open": 306,
+          "warning_days": 94,
+          "warnings": 306
+        },
+        "earlier": {
+          "benefit_count": 133,
+          "day_equal_with_zero_on_baseline_warn_dates_pp": -0.0766,
+          "earliest_severe": "2025-11-13T09:45:00-05:00",
+          "harm_count": 99,
+          "major_down_hits": 58,
+          "major_down_missed": 102,
+          "major_down_warn_before5": 47,
+          "major_up_warning": 10,
+          "mean_sale_vs_next_open_pp": 0.3465,
+          "nonmajor_down_warnings": 183,
+          "preceding_evening_warnings": 6,
+          "preopen_warnings": 120,
+          "price_eligible_proxy": 232,
+          "scorable_with_next_open": 241,
+          "warning_days": 77,
+          "warnings": 241
+        },
+        "later": {
+          "benefit_count": 44,
+          "day_equal_with_zero_on_baseline_warn_dates_pp": 0.9342,
+          "earliest_severe": "2026-09-10T08:35:00-04:00",
+          "harm_count": 19,
+          "major_down_hits": 17,
+          "major_down_missed": 32,
+          "major_down_warn_before5": 16,
+          "major_up_warning": 0,
+          "mean_sale_vs_next_open_pp": 1.8293,
+          "nonmajor_down_warnings": 48,
+          "preceding_evening_warnings": 3,
+          "preopen_warnings": 53,
+          "price_eligible_proxy": 63,
+          "scorable_with_next_open": 65,
+          "warning_days": 17,
+          "warnings": 65
+        }
+      }
+    }
+  }
+}
