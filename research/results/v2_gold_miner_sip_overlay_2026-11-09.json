@@ -1,0 +1,231 @@
+{
+  "sector_def": "GDX sign and majority sign among GDX/GDXJ/NEM/AEM/KGC at RTH close; mixed otherwise",
+  "gold_miner_sector": {
+    "negative": 114,
+    "positive": 132,
+    "mixed": 6
+  },
+  "eligible_sector_sessions": 252,
+  "unconditional_0935_long_to14": {
+    "earlier": {
+      "entries": 1000,
+      "independent_days": 200,
+      "profitable_frac": 0.41,
+      "mean_net30_pct": -0.3805
+    },
+    "later": {
+      "entries": 240,
+      "independent_days": 48,
+      "profitable_frac": 0.425,
+      "mean_net30_pct": -0.2939
+    }
+  },
+  "next_open": {
+    "gold_only_down_earlier": {
+      "n": 331,
+      "independent_days": 67,
+      "next_open_win_frac": 0.3897,
+      "mean_net_next_open_pct": -0.385,
+      "on_major_days": 120,
+      "major_warned_before_minus3": 62,
+      "major_already_gap_down": 59
+    },
+    "gold_only_down_later": {
+      "n": 80,
+      "independent_days": 16,
+      "next_open_win_frac": 0.275,
+      "mean_net_next_open_pct": -0.4403,
+      "on_major_days": 40,
+      "major_warned_before_minus3": 10,
+      "major_already_gap_down": 30
+    },
+    "gold_only_up_earlier": {
+      "n": 467,
+      "independent_days": 94,
+      "next_open_win_frac": 0.4176,
+      "mean_net_next_open_pct": -0.5451,
+      "on_major_days": 146,
+      "major_warned_before_minus3": null,
+      "major_already_gap_down": null
+    },
+    "gold_only_up_later": {
+      "n": 110,
+      "independent_days": 22,
+      "next_open_win_frac": 0.4091,
+      "mean_net_next_open_pct": -0.8944,
+      "on_major_days": 23,
+      "major_warned_before_minus3": null,
+      "major_already_gap_down": null
+    },
+    "gold_breadth_down_earlier": {
+      "n": 295,
+      "independent_days": 59,
+      "next_open_win_frac": 0.3797,
+      "mean_net_next_open_pct": -0.3248,
+      "on_major_days": 119,
+      "major_warned_before_minus3": 61,
+      "major_already_gap_down": 59
+    },
+    "gold_breadth_down_later": {
+      "n": 70,
+      "independent_days": 14,
+      "next_open_win_frac": 0.2857,
+      "mean_net_next_open_pct": -0.4068,
+      "on_major_days": 40,
+      "major_warned_before_minus3": 10,
+      "major_already_gap_down": 30
+    },
+    "gold_breadth_up_earlier": {
+      "n": 395,
+      "independent_days": 79,
+      "next_open_win_frac": 0.4,
+      "mean_net_next_open_pct": -0.6457,
+      "on_major_days": 134,
+      "major_warned_before_minus3": null,
+      "major_already_gap_down": null
+    },
+    "gold_breadth_up_later": {
+      "n": 85,
+      "independent_days": 17,
+      "next_open_win_frac": 0.3529,
+      "mean_net_next_open_pct": -0.8889,
+      "on_major_days": 22,
+      "major_warned_before_minus3": null,
+      "major_already_gap_down": null
+    }
+  },
+  "misses": {
+    "down": {
+      "miss_count": 68,
+      "largest_misses": [
+        {
+          "day": "2026-09-24",
+          "symbol": "KGC",
+          "close_pct": -11.586,
+          "rth_pct": -6.9,
+          "gold_met": false,
+          "gdx_met": true,
+          "miner_breadth_met": true,
+          "gold_at_0925": -0.196
+        },
+        {
+          "day": "2025-11-20",
+          "symbol": "NEM",
+          "close_pct": -6.199,
+          "rth_pct": -6.477,
+          "gold_met": false,
+          "gdx_met": false,
+          "miner_breadth_met": false,
+          "gold_at_0925": 0.167
+        },
+        {
+          "day": "2026-03-13",
+          "symbol": "GDX",
+          "close_pct": -6.081,
+          "rth_pct": -5.213,
+          "gold_met": false,
+          "gdx_met": true,
+          "miner_breadth_met": true,
+          "gold_at_0925": 0.597
+        },
+        {
+          "day": "2026-03-13",
+          "symbol": "KGC",
+          "close_pct": -6.027,
+          "rth_pct": -4.768,
+          "gold_met": false,
+          "gdx_met": true,
+          "miner_breadth_met": true,
+          "gold_at_0925": 0.597
+        },
+        {
+          "day": "2026-03-13",
+          "symbol": "GDXJ",
+          "close_pct": -5.814,
+          "rth_pct": -5.721,
+          "gold_met": false,
+          "gdx_met": true,
+          "miner_breadth_met": true,
+          "gold_at_0925": 0.597
+        },
+        {
+          "day": "2025-11-20",
+          "symbol": "AEM",
+          "close_pct": -5.409,
+          "rth_pct": -5.987,
+          "gold_met": false,
+          "gdx_met": false,
+          "miner_breadth_met": false,
+          "gold_at_0925": 0.167
+        }
+      ]
+    },
+    "up": {
+      "miss_count": 98,
+      "largest_misses": [
+        {
+          "day": "2026-04-24",
+          "symbol": "NEM",
+          "close_pct": 8.653,
+          "rth_pct": 4.921,
+          "gold_met": false,
+          "gdx_met": true,
+          "miner_breadth_met": true,
+          "gold_at_0925": 0.035
+        },
+        {
+          "day": "2026-06-11",
+          "symbol": "GDXJ",
+          "close_pct": 6.724,
+          "rth_pct": 5.879,
+          "gold_met": false,
+          "gdx_met": false,
+          "miner_breadth_met": false,
+          "gold_at_0925": -0.176
+        },
+        {
+          "day": "2025-11-24",
+          "symbol": "KGC",
+          "close_pct": 6.499,
+          "rth_pct": 5.977,
+          "gold_met": false,
+          "gdx_met": true,
+          "miner_breadth_met": false,
+          "gold_at_0925": 0.168
+        },
+        {
+          "day": "2025-11-24",
+          "symbol": "GDXJ",
+          "close_pct": 6.245,
+          "rth_pct": 5.493,
+          "gold_met": false,
+          "gdx_met": true,
+          "miner_breadth_met": false,
+          "gold_at_0925": 0.168
+        },
+        {
+          "day": "2025-11-24",
+          "symbol": "GDX",
+          "close_pct": 5.776,
+          "rth_pct": 5.162,
+          "gold_met": false,
+          "gdx_met": true,
+          "miner_breadth_met": false,
+          "gold_at_0925": 0.168
+        },
+        {
+          "day": "2025-12-09",
+          "symbol": "NEM",
+          "close_pct": 5.706,
+          "rth_pct": 4.59,
+          "gold_met": false,
+          "gdx_met": false,
+          "miner_breadth_met": false,
+          "gold_at_0925": -0.005
+        }
+      ]
+    }
+  }
+}
+
+[executed on device: www3.securityprepper.com (1016f4a4-5f2e-452e-8c88-0e4b9430d76e)]
