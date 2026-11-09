@@ -1,0 +1,129 @@
+{
+  "17:00": {
+    "base_stockdays": 2244,
+    "evening_bar_observed": 2140,
+    "down": {
+      "strict_overlap_signals": 4,
+      "strict_overlap_severe_down_hits": 1,
+      "strict_overlap_nonmajor_warnings": 3,
+      "severe_gaps": 87,
+      "severe_gaps_with_evening_data": 86,
+      "hit": 14,
+      "missed": 73,
+      "nonsevere_warnings": 26,
+      "all_warnings": 40,
+      "hit_before_already_5pct_evening": 8,
+      "first_severe_warning": "2026-01-22T17:00:00-05:00 INTC",
+      "mean_selling_or_buying_advantage_vs_next_open_pp_proxy": -0.2927,
+      "nextbar_proxy_scorable": 40,
+      "earlier": {
+        "signals": 24,
+        "mean_proxy_pp": -1.6757,
+        "severe_gap_hits": 8
+      },
+      "later": {
+        "signals": 16,
+        "mean_proxy_pp": 1.7817,
+        "severe_gap_hits": 6
+      }
+    },
+    "up": {
+      "strict_overlap_signals": 0,
+      "strict_overlap_severe_down_hits": 0,
+      "strict_overlap_nonmajor_warnings": 0,
+      "severe_gaps": 94,
+      "severe_gaps_with_evening_data": 92,
+      "hit": 22,
+      "missed": 72,
+      "nonsevere_warnings": 41,
+      "all_warnings": 63,
+      "hit_before_already_5pct_evening": 15,
+      "first_severe_warning": "2025-11-11T17:00:00-05:00 AMD",
+      "mean_selling_or_buying_advantage_vs_next_open_pp_proxy": 0.1364,
+      "nextbar_proxy_scorable": 63,
+      "earlier": {
+        "signals": 46,
+        "mean_proxy_pp": 0.0985,
+        "severe_gap_hits": 18
+      },
+      "later": {
+        "signals": 17,
+        "mean_proxy_pp": 0.239,
+        "severe_gap_hits": 4
+      }
+    }
+  },
+  "19:00": {
+    "base_stockdays": 2244,
+    "evening_bar_observed": 2067,
+    "down": {
+      "strict_overlap_signals": 6,
+      "strict_overlap_severe_down_hits": 1,
+      "strict_overlap_nonmajor_warnings": 5,
+      "severe_gaps": 87,
+      "severe_gaps_with_evening_data": 84,
+      "hit": 25,
+      "missed": 62,
+      "nonsevere_warnings": 47,
+      "all_warnings": 72,
+      "hit_before_already_5pct_evening": 15,
+      "first_severe_warning": "2025-12-11T19:00:00-05:00 AVGO",
+      "mean_selling_or_buying_advantage_vs_next_open_pp_proxy": -0.4584,
+      "nextbar_proxy_scorable": 72,
+      "earlier": {
+        "signals": 49,
+        "mean_proxy_pp": -1.235,
+        "severe_gap_hits": 16
+      },
+      "later": {
+        "signals": 23,
+        "mean_proxy_pp": 1.196,
+        "severe_gap_hits": 9
+      }
+    },
+    "up": {
+      "strict_overlap_signals": 0,
+      "strict_overlap_severe_down_hits": 0,
+      "strict_overlap_nonmajor_warnings": 0,
+      "severe_gaps": 94,
+      "severe_gaps_with_evening_data": 93,
+      "hit": 33,
+      "missed": 61,
+      "nonsevere_warnings": 72,
+      "all_warnings": 105,
+      "hit_before_already_5pct_evening": 22,
+      "first_severe_warning": "2025-11-11T19:00:00-05:00 AMD",
+      "mean_selling_or_buying_advantage_vs_next_open_pp_proxy": 0.4561,
+      "nextbar_proxy_scorable": 104,
+      "earlier": {
+        "signals": 96,
+        "mean_proxy_pp": 0.5637,
+        "severe_gap_hits": 33
+      },
+      "later": {
+        "signals": 9,
+        "mean_proxy_pp": -0.679,
+        "severe_gap_hits": 0
+      }
+    }
+  },
+  "either_17_or_19": {
+    "down": {
+      "severe_gaps": 87,
+      "hits": 25,
+      "missed": 62,
+      "nonmajor_warnings": 54,
+      "warnings": 79,
+      "first_true_warning": "2025-12-11T19:00:00-05:00 AVGO"
+    },
+    "up": {
+      "severe_gaps": 94,
+      "hits": 37,
+      "missed": 57,
+      "nonmajor_warnings": 86,
+      "warnings": 123,
+      "first_true_warning": "2025-11-11T17:00:00-05:00 AMD"
+    }
+  },
+  "previous_five_available_stockdays": 2232
+}
