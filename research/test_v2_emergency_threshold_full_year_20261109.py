@@ -23,7 +23,7 @@ class TestSectorThresholds(unittest.TestCase):
         self.assertEqual(x["day_touched"],{"up":1,"down":1,"either":1,"both":1})
         self.assertEqual(x["day_closed_beyond"]["either"],0)
     def test_night_uses_previous_close(self):
-        d={"2026-11-03":session(100,101,102,99,
+        d={"2026-11-03":session(100,101,101.5,99,
             post=[("t",(101,105,101,104,500))]),
            "2026-11-04":session(101,101,101,100)}
         x=summarize("semiconductors",d)
