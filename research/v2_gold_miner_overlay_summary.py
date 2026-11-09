@@ -108,5 +108,3 @@ if __name__=="__main__":
     q=p.parse_args()
     output=compile_report(q.result)
     print(json.dumps(output,indent=2))
-
-[executed on device: www3.securityprepper.com (1016f4a4-5f2e-452e-8c88-0e4b9430d76e)]
