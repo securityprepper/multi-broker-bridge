@@ -1,0 +1,697 @@
+{
+  "definition": "Initial SOXX+peer postopen flip, optionally confirmed at each same completed bar by SOXS and optionally SOXL opposite moves of 2, 4, or 6 pp since 09:15 ET. Recheck all checkpoints, never only first unconfirmed alert.",
+  "limitations": "Only SIP 5m OHLC, NOT actual NBBO, BOATS, fills or realized P&L. Leveraged ETFs are correlated, not independent causal evidence.",
+  "major_down": 209,
+  "major_up": 254,
+  "nov2_2026": [
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -7.6092,
+      "event_vs_close_pct": 0.0564,
+      "side": "down",
+      "symbol": "AMD",
+      "variant": "initial"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -7.6092,
+      "event_vs_close_pct": 0.0564,
+      "side": "down",
+      "symbol": "AMD",
+      "variant": "soxs_2"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -7.6092,
+      "event_vs_close_pct": 0.0564,
+      "side": "down",
+      "symbol": "AMD",
+      "variant": "both_2"
+    },
+    {
+      "at": "2026-11-02T09:55:00-05:00",
+      "closing_day_pct": -7.6092,
+      "event_vs_close_pct": -0.2751,
+      "side": "down",
+      "symbol": "AMD",
+      "variant": "both_4"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -1.1558,
+      "event_vs_close_pct": -0.161,
+      "side": "down",
+      "symbol": "AVGO",
+      "variant": "initial"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -1.1558,
+      "event_vs_close_pct": -0.161,
+      "side": "down",
+      "symbol": "AVGO",
+      "variant": "soxs_2"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -1.1558,
+      "event_vs_close_pct": -0.161,
+      "side": "down",
+      "symbol": "AVGO",
+      "variant": "both_2"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -8.9459,
+      "event_vs_close_pct": -1.9593,
+      "side": "down",
+      "symbol": "INTC",
+      "variant": "initial"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -8.9459,
+      "event_vs_close_pct": -1.9593,
+      "side": "down",
+      "symbol": "INTC",
+      "variant": "soxs_2"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -8.9459,
+      "event_vs_close_pct": -1.9593,
+      "side": "down",
+      "symbol": "INTC",
+      "variant": "both_2"
+    },
+    {
+      "at": "2026-11-02T09:55:00-05:00",
+      "closing_day_pct": -8.9459,
+      "event_vs_close_pct": -2.1567,
+      "side": "down",
+      "symbol": "INTC",
+      "variant": "both_4"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -5.8359,
+      "event_vs_close_pct": -0.2899,
+      "side": "down",
+      "symbol": "MU",
+      "variant": "initial"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -5.8359,
+      "event_vs_close_pct": -0.2899,
+      "side": "down",
+      "symbol": "MU",
+      "variant": "soxs_2"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -5.8359,
+      "event_vs_close_pct": -0.2899,
+      "side": "down",
+      "symbol": "MU",
+      "variant": "both_2"
+    },
+    {
+      "at": "2026-11-02T09:55:00-05:00",
+      "closing_day_pct": -5.8359,
+      "event_vs_close_pct": -1.2844,
+      "side": "down",
+      "symbol": "MU",
+      "variant": "both_4"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -6.4624,
+      "event_vs_close_pct": -1.3635,
+      "side": "down",
+      "symbol": "SNDK",
+      "variant": "initial"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -6.4624,
+      "event_vs_close_pct": -1.3635,
+      "side": "down",
+      "symbol": "SNDK",
+      "variant": "soxs_2"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -6.4624,
+      "event_vs_close_pct": -1.3635,
+      "side": "down",
+      "symbol": "SNDK",
+      "variant": "both_2"
+    },
+    {
+      "at": "2026-11-02T09:55:00-05:00",
+      "closing_day_pct": -6.4624,
+      "event_vs_close_pct": -1.9134,
+      "side": "down",
+      "symbol": "SNDK",
+      "variant": "both_4"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -3.8041,
+      "event_vs_close_pct": 0.3562,
+      "side": "down",
+      "symbol": "SOXX",
+      "variant": "initial"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -3.8041,
+      "event_vs_close_pct": 0.3562,
+      "side": "down",
+      "symbol": "SOXX",
+      "variant": "soxs_2"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -3.8041,
+      "event_vs_close_pct": 0.3562,
+      "side": "down",
+      "symbol": "SOXX",
+      "variant": "both_2"
+    },
+    {
+      "at": "2026-11-02T09:55:00-05:00",
+      "closing_day_pct": -3.8041,
+      "event_vs_close_pct": -0.0064,
+      "side": "down",
+      "symbol": "SOXX",
+      "variant": "both_4"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -1.8451,
+      "event_vs_close_pct": 0.436,
+      "side": "down",
+      "symbol": "TSM",
+      "variant": "initial"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -1.8451,
+      "event_vs_close_pct": 0.436,
+      "side": "down",
+      "symbol": "TSM",
+      "variant": "soxs_2"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -1.8451,
+      "event_vs_close_pct": 0.436,
+      "side": "down",
+      "symbol": "TSM",
+      "variant": "both_2"
+    },
+    {
+      "at": "2026-11-02T09:55:00-05:00",
+      "closing_day_pct": -1.8451,
+      "event_vs_close_pct": -0.4878,
+      "side": "down",
+      "symbol": "TSM",
+      "variant": "both_4"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -7.4659,
+      "event_vs_close_pct": -1.1683,
+      "side": "down",
+      "symbol": "WDC",
+      "variant": "initial"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -7.4659,
+      "event_vs_close_pct": -1.1683,
+      "side": "down",
+      "symbol": "WDC",
+      "variant": "soxs_2"
+    },
+    {
+      "at": "2026-11-02T09:40:00-05:00",
+      "closing_day_pct": -7.4659,
+      "event_vs_close_pct": -1.1683,
+      "side": "down",
+      "symbol": "WDC",
+      "variant": "both_2"
+    },
+    {
+      "at": "2026-11-02T09:55:00-05:00",
+      "closing_day_pct": -7.4659,
+      "event_vs_close_pct": -3.8177,
+      "side": "down",
+      "symbol": "WDC",
+      "variant": "both_4"
+    }
+  ],
+  "periods": {
+    "all": {
+      "down": {
+        "both_2": {
+          "adverse_to14_count": 113,
+          "delay_vs_first_flip_mean_minutes": 0.0,
+          "delayed_vs_first_flip_count": 0,
+          "favorable_to14_count": 136,
+          "limit_price_eligible_marks": 249,
+          "major_early_before_5pct": 25,
+          "major_hits": 25,
+          "mean_bounded_to14_pp": 0.6945,
+          "mean_bounded_to_nextopen_pp": 1.0592,
+          "nonmajor_warnings": 224,
+          "scorable_nextbar_marks": 249,
+          "warnings": 249
+        },
+        "both_4": {
+          "adverse_to14_count": 93,
+          "delay_vs_first_flip_mean_minutes": 5.09,
+          "delayed_vs_first_flip_count": 83,
+          "favorable_to14_count": 125,
+          "limit_price_eligible_marks": 218,
+          "major_early_before_5pct": 24,
+          "major_hits": 25,
+          "mean_bounded_to14_pp": 0.713,
+          "mean_bounded_to_nextopen_pp": 0.89,
+          "nonmajor_warnings": 194,
+          "scorable_nextbar_marks": 219,
+          "warnings": 219
+        },
+        "both_6": {
+          "adverse_to14_count": 60,
+          "delay_vs_first_flip_mean_minutes": 11.84,
+          "delayed_vs_first_flip_count": 111,
+          "favorable_to14_count": 95,
+          "limit_price_eligible_marks": 155,
+          "major_early_before_5pct": 16,
+          "major_hits": 19,
+          "mean_bounded_to14_pp": 0.7678,
+          "mean_bounded_to_nextopen_pp": 1.7509,
+          "nonmajor_warnings": 136,
+          "scorable_nextbar_marks": 155,
+          "warnings": 155
+        },
+        "initial": {
+          "adverse_to14_count": 113,
+          "delay_vs_first_flip_mean_minutes": 0.0,
+          "delayed_vs_first_flip_count": 0,
+          "favorable_to14_count": 136,
+          "limit_price_eligible_marks": 249,
+          "major_early_before_5pct": 25,
+          "major_hits": 25,
+          "mean_bounded_to14_pp": 0.6945,
+          "mean_bounded_to_nextopen_pp": 1.0592,
+          "nonmajor_warnings": 224,
+          "scorable_nextbar_marks": 249,
+          "warnings": 249
+        },
+        "soxs_2": {
+          "adverse_to14_count": 113,
+          "delay_vs_first_flip_mean_minutes": 0.0,
+          "delayed_vs_first_flip_count": 0,
+          "favorable_to14_count": 136,
+          "limit_price_eligible_marks": 249,
+          "major_early_before_5pct": 25,
+          "major_hits": 25,
+          "mean_bounded_to14_pp": 0.6945,
+          "mean_bounded_to_nextopen_pp": 1.0592,
+          "nonmajor_warnings": 224,
+          "scorable_nextbar_marks": 249,
+          "warnings": 249
+        }
+      },
+      "up": {
+        "both_2": {
+          "adverse_to14_count": 143,
+          "delay_vs_first_flip_mean_minutes": 0.0,
+          "delayed_vs_first_flip_count": 0,
+          "favorable_to14_count": 125,
+          "limit_price_eligible_marks": 268,
+          "major_early_before_5pct": 12,
+          "major_hits": 13,
+          "mean_bounded_to14_pp": -0.2204,
+          "mean_bounded_to_nextopen_pp": -0.2529,
+          "nonmajor_warnings": 257,
+          "scorable_nextbar_marks": 270,
+          "warnings": 270
+        },
+        "both_4": {
+          "adverse_to14_count": 105,
+          "delay_vs_first_flip_mean_minutes": 4.46,
+          "delayed_vs_first_flip_count": 81,
+          "favorable_to14_count": 100,
+          "limit_price_eligible_marks": 205,
+          "major_early_before_5pct": 8,
+          "major_hits": 12,
+          "mean_bounded_to14_pp": -0.1986,
+          "mean_bounded_to_nextopen_pp": -0.226,
+          "nonmajor_warnings": 193,
+          "scorable_nextbar_marks": 205,
+          "warnings": 205
+        },
+        "both_6": {
+          "adverse_to14_count": 62,
+          "delay_vs_first_flip_mean_minutes": 9.41,
+          "delayed_vs_first_flip_count": 87,
+          "favorable_to14_count": 49,
+          "limit_price_eligible_marks": 111,
+          "major_early_before_5pct": 3,
+          "major_hits": 5,
+          "mean_bounded_to14_pp": -0.2781,
+          "mean_bounded_to_nextopen_pp": 0.1898,
+          "nonmajor_warnings": 106,
+          "scorable_nextbar_marks": 111,
+          "warnings": 111
+        },
+        "initial": {
+          "adverse_to14_count": 143,
+          "delay_vs_first_flip_mean_minutes": 0.0,
+          "delayed_vs_first_flip_count": 0,
+          "favorable_to14_count": 125,
+          "limit_price_eligible_marks": 268,
+          "major_early_before_5pct": 12,
+          "major_hits": 13,
+          "mean_bounded_to14_pp": -0.2204,
+          "mean_bounded_to_nextopen_pp": -0.2529,
+          "nonmajor_warnings": 257,
+          "scorable_nextbar_marks": 270,
+          "warnings": 270
+        },
+        "soxs_2": {
+          "adverse_to14_count": 143,
+          "delay_vs_first_flip_mean_minutes": 0.0,
+          "delayed_vs_first_flip_count": 0,
+          "favorable_to14_count": 125,
+          "limit_price_eligible_marks": 268,
+          "major_early_before_5pct": 12,
+          "major_hits": 13,
+          "mean_bounded_to14_pp": -0.2204,
+          "mean_bounded_to_nextopen_pp": -0.2529,
+          "nonmajor_warnings": 257,
+          "scorable_nextbar_marks": 270,
+          "warnings": 270
+        }
+      }
+    },
+    "earlier": {
+      "down": {
+        "both_2": {
+          "adverse_to14_count": 98,
+          "delay_vs_first_flip_mean_minutes": 0.0,
+          "delayed_vs_first_flip_count": 0,
+          "favorable_to14_count": 113,
+          "limit_price_eligible_marks": 211,
+          "major_early_before_5pct": 20,
+          "major_hits": 20,
+          "mean_bounded_to14_pp": 0.7118,
+          "mean_bounded_to_nextopen_pp": 0.922,
+          "nonmajor_warnings": 191,
+          "scorable_nextbar_marks": 211,
+          "warnings": 211
+        },
+        "both_4": {
+          "adverse_to14_count": 87,
+          "delay_vs_first_flip_mean_minutes": 5.32,
+          "delayed_vs_first_flip_count": 76,
+          "favorable_to14_count": 102,
+          "limit_price_eligible_marks": 189,
+          "major_early_before_5pct": 19,
+          "major_hits": 20,
+          "mean_bounded_to14_pp": 0.6556,
+          "mean_bounded_to_nextopen_pp": 0.7848,
+          "nonmajor_warnings": 170,
+          "scorable_nextbar_marks": 190,
+          "warnings": 190
+        },
+        "both_6": {
+          "adverse_to14_count": 56,
+          "delay_vs_first_flip_mean_minutes": 10.5,
+          "delayed_vs_first_flip_count": 97,
+          "favorable_to14_count": 84,
+          "limit_price_eligible_marks": 140,
+          "major_early_before_5pct": 16,
+          "major_hits": 19,
+          "mean_bounded_to14_pp": 0.7982,
+          "mean_bounded_to_nextopen_pp": 1.7435,
+          "nonmajor_warnings": 121,
+          "scorable_nextbar_marks": 140,
+          "warnings": 140
+        },
+        "initial": {
+          "adverse_to14_count": 98,
+          "delay_vs_first_flip_mean_minutes": 0.0,
+          "delayed_vs_first_flip_count": 0,
+          "favorable_to14_count": 113,
+          "limit_price_eligible_marks": 211,
+          "major_early_before_5pct": 20,
+          "major_hits": 20,
+          "mean_bounded_to14_pp": 0.7118,
+          "mean_bounded_to_nextopen_pp": 0.922,
+          "nonmajor_warnings": 191,
+          "scorable_nextbar_marks": 211,
+          "warnings": 211
+        },
+        "soxs_2": {
+          "adverse_to14_count": 98,
+          "delay_vs_first_flip_mean_minutes": 0.0,
+          "delayed_vs_first_flip_count": 0,
+          "favorable_to14_count": 113,
+          "limit_price_eligible_marks": 211,
+          "major_early_before_5pct": 20,
+          "major_hits": 20,
+          "mean_bounded_to14_pp": 0.7118,
+          "mean_bounded_to_nextopen_pp": 0.922,
+          "nonmajor_warnings": 191,
+          "scorable_nextbar_marks": 211,
+          "warnings": 211
+        }
+      },
+      "up": {
+        "both_2": {
+          "adverse_to14_count": 122,
+          "delay_vs_first_flip_mean_minutes": 0.0,
+          "delayed_vs_first_flip_count": 0,
+          "favorable_to14_count": 106,
+          "limit_price_eligible_marks": 228,
+          "major_early_before_5pct": 11,
+          "major_hits": 12,
+          "mean_bounded_to14_pp": -0.1343,
+          "mean_bounded_to_nextopen_pp": 0.0402,
+          "nonmajor_warnings": 218,
+          "scorable_nextbar_marks": 230,
+          "warnings": 230
+        },
+        "both_4": {
+          "adverse_to14_count": 88,
+          "delay_vs_first_flip_mean_minutes": 4.68,
+          "delayed_vs_first_flip_count": 67,
+          "favorable_to14_count": 86,
+          "limit_price_eligible_marks": 174,
+          "major_early_before_5pct": 8,
+          "major_hits": 11,
+          "mean_bounded_to14_pp": -0.0517,
+          "mean_bounded_to_nextopen_pp": 0.1629,
+          "nonmajor_warnings": 163,
+          "scorable_nextbar_marks": 174,
+          "warnings": 174
+        },
+        "both_6": {
+          "adverse_to14_count": 47,
+          "delay_vs_first_flip_mean_minutes": 7.19,
+          "delayed_vs_first_flip_count": 65,
+          "favorable_to14_count": 42,
+          "limit_price_eligible_marks": 89,
+          "major_early_before_5pct": 3,
+          "major_hits": 4,
+          "mean_bounded_to14_pp": -0.215,
+          "mean_bounded_to_nextopen_pp": 0.3847,
+          "nonmajor_warnings": 85,
+          "scorable_nextbar_marks": 89,
+          "warnings": 89
+        },
+        "initial": {
+          "adverse_to14_count": 122,
+          "delay_vs_first_flip_mean_minutes": 0.0,
+          "delayed_vs_first_flip_count": 0,
+          "favorable_to14_count": 106,
+          "limit_price_eligible_marks": 228,
+          "major_early_before_5pct": 11,
+          "major_hits": 12,
+          "mean_bounded_to14_pp": -0.1343,
+          "mean_bounded_to_nextopen_pp": 0.0402,
+          "nonmajor_warnings": 218,
+          "scorable_nextbar_marks": 230,
+          "warnings": 230
+        },
+        "soxs_2": {
+          "adverse_to14_count": 122,
+          "delay_vs_first_flip_mean_minutes": 0.0,
+          "delayed_vs_first_flip_count": 0,
+          "favorable_to14_count": 106,
+          "limit_price_eligible_marks": 228,
+          "major_early_before_5pct": 11,
+          "major_hits": 12,
+          "mean_bounded_to14_pp": -0.1343,
+          "mean_bounded_to_nextopen_pp": 0.0402,
+          "nonmajor_warnings": 218,
+          "scorable_nextbar_marks": 230,
+          "warnings": 230
+        }
+      }
+    },
+    "later": {
+      "down": {
+        "both_2": {
+          "adverse_to14_count": 15,
+          "delay_vs_first_flip_mean_minutes": 0.0,
+          "delayed_vs_first_flip_count": 0,
+          "favorable_to14_count": 23,
+          "limit_price_eligible_marks": 38,
+          "major_early_before_5pct": 5,
+          "major_hits": 5,
+          "mean_bounded_to14_pp": 0.5985,
+          "mean_bounded_to_nextopen_pp": 1.9929,
+          "nonmajor_warnings": 33,
+          "scorable_nextbar_marks": 38,
+          "warnings": 38
+        },
+        "both_4": {
+          "adverse_to14_count": 6,
+          "delay_vs_first_flip_mean_minutes": 3.62,
+          "delayed_vs_first_flip_count": 7,
+          "favorable_to14_count": 23,
+          "limit_price_eligible_marks": 29,
+          "major_early_before_5pct": 5,
+          "major_hits": 5,
+          "mean_bounded_to14_pp": 1.0891,
+          "mean_bounded_to_nextopen_pp": 1.7986,
+          "nonmajor_warnings": 24,
+          "scorable_nextbar_marks": 29,
+          "warnings": 29
+        },
+        "both_6": {
+          "adverse_to14_count": 4,
+          "delay_vs_first_flip_mean_minutes": 24.33,
+          "delayed_vs_first_flip_count": 14,
+          "favorable_to14_count": 11,
+          "limit_price_eligible_marks": 15,
+          "major_early_before_5pct": 0,
+          "major_hits": 0,
+          "mean_bounded_to14_pp": 0.4847,
+          "mean_bounded_to_nextopen_pp": 1.8668,
+          "nonmajor_warnings": 15,
+          "scorable_nextbar_marks": 15,
+          "warnings": 15
+        },
+        "initial": {
+          "adverse_to14_count": 15,
+          "delay_vs_first_flip_mean_minutes": 0.0,
+          "delayed_vs_first_flip_count": 0,
+          "favorable_to14_count": 23,
+          "limit_price_eligible_marks": 38,
+          "major_early_before_5pct": 5,
+          "major_hits": 5,
+          "mean_bounded_to14_pp": 0.5985,
+          "mean_bounded_to_nextopen_pp": 1.9929,
+          "nonmajor_warnings": 33,
+          "scorable_nextbar_marks": 38,
+          "warnings": 38
+        },
+        "soxs_2": {
+          "adverse_to14_count": 15,
+          "delay_vs_first_flip_mean_minutes": 0.0,
+          "delayed_vs_first_flip_count": 0,
+          "favorable_to14_count": 23,
+          "limit_price_eligible_marks": 38,
+          "major_early_before_5pct": 5,
+          "major_hits": 5,
+          "mean_bounded_to14_pp": 0.5985,
+          "mean_bounded_to_nextopen_pp": 1.9929,
+          "nonmajor_warnings": 33,
+          "scorable_nextbar_marks": 38,
+          "warnings": 38
+        }
+      },
+      "up": {
+        "both_2": {
+          "adverse_to14_count": 21,
+          "delay_vs_first_flip_mean_minutes": 0.0,
+          "delayed_vs_first_flip_count": 0,
+          "favorable_to14_count": 19,
+          "limit_price_eligible_marks": 40,
+          "major_early_before_5pct": 1,
+          "major_hits": 1,
+          "mean_bounded_to14_pp": -0.7156,
+          "mean_bounded_to_nextopen_pp": -1.9383,
+          "nonmajor_warnings": 39,
+          "scorable_nextbar_marks": 40,
+          "warnings": 40
+        },
+        "both_4": {
+          "adverse_to14_count": 17,
+          "delay_vs_first_flip_mean_minutes": 3.23,
+          "delayed_vs_first_flip_count": 14,
+          "favorable_to14_count": 14,
+          "limit_price_eligible_marks": 31,
+          "major_early_before_5pct": 0,
+          "major_hits": 1,
+          "mean_bounded_to14_pp": -1.0228,
+          "mean_bounded_to_nextopen_pp": -2.4089,
+          "nonmajor_warnings": 30,
+          "scorable_nextbar_marks": 31,
+          "warnings": 31
+        },
+        "both_6": {
+          "adverse_to14_count": 15,
+          "delay_vs_first_flip_mean_minutes": 18.41,
+          "delayed_vs_first_flip_count": 22,
+          "favorable_to14_count": 7,
+          "limit_price_eligible_marks": 22,
+          "major_early_before_5pct": 0,
+          "major_hits": 1,
+          "mean_bounded_to14_pp": -0.5334,
+          "mean_bounded_to_nextopen_pp": -0.5983,
+          "nonmajor_warnings": 21,
+          "scorable_nextbar_marks": 22,
+          "warnings": 22
+        },
+        "initial": {
+          "adverse_to14_count": 21,
+          "delay_vs_first_flip_mean_minutes": 0.0,
+          "delayed_vs_first_flip_count": 0,
+          "favorable_to14_count": 19,
+          "limit_price_eligible_marks": 40,
+          "major_early_before_5pct": 1,
+          "major_hits": 1,
+          "mean_bounded_to14_pp": -0.7156,
+          "mean_bounded_to_nextopen_pp": -1.9383,
+          "nonmajor_warnings": 39,
+          "scorable_nextbar_marks": 40,
+          "warnings": 40
+        },
+        "soxs_2": {
+          "adverse_to14_count": 21,
+          "delay_vs_first_flip_mean_minutes": 0.0,
+          "delayed_vs_first_flip_count": 0,
+          "favorable_to14_count": 19,
+          "limit_price_eligible_marks": 40,
+          "major_early_before_5pct": 1,
+          "major_hits": 1,
+          "mean_bounded_to14_pp": -0.7156,
+          "mean_bounded_to_nextopen_pp": -1.9383,
+          "nonmajor_warnings": 39,
+          "scorable_nextbar_marks": 40,
+          "warnings": 40
+        }
+      }
+    }
+  },
+  "stock_days": 2244
+}
