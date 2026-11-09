@@ -1,3 +1,20 @@
+## Corrected own-sector historical confirmation and quotes — November 9, 2026
+
+A second no-lookahead replay replaced an exploratory **semiconductor-anchor-only** comparator with each stock's proper sector leaders. This supersedes the earlier exploratory times listed below. The new completed-minute signal and contemporaneous historical SIP quote at the next minute's `:40` decision point were:
+
+| Stock | Correct own-sector positive signal (CT) | Historical ask at :40 | SIP spread | Auto-buy eligibility |
+|---|---|---:|---:|---|
+| AMD | **03:18** | **$457.95** | 0.197% | Semis AMD/MU/SNDK, eligible for review; historical fill **not** demonstrated |
+| CAT | **08:40** | $582.63 | 0.074% | XLI CAT/GE/BA confirmed in research; CAT not in current MBB auto-buy list |
+| GS | **08:42** | $890.43 | 0.129% | Financial JPM/BAC/GS confirmed in research; GS not in MBB list |
+| CRWD | **08:47** | $220.05 | 0.241% | Cybersecurity CRWD/PANW/ZS 3/3 anchors; current MBB later filled $223.856 |
+| PANW | **08:47** | $318.79 | 0.097% | Cybersecurity CRWD/PANW/ZS 3/3 anchors; MBB later filled $326.630 |
+| PWR | No approved independent anchor group | $570.69 observed at 08:50 | 0.175% | No automatic buy without separate validated electrical-infrastructure rule |
+| RBA | No approved independent anchor group | not tested | — | No automatic buy without earnings/catalyst and independent controls |
+
+Quotes are non-executable historical observations of displayed SIP best asks, **not guaranteed fills, order-book depth, or proof of gain after the decision**. The actual verified MBB AMD fill was $466.700 at 07:35:42 CT. A 03:18:40 historical ask of $457.95 is $8.75 below that later execution, but entry viability depends on fresh bid/ask, positive-volume trades, market session eligibility, account cash and risk gates; the 1-minute replay is not a prospectively validated profitable strategy. FDR remains a distinct paper strategy with new entries paused.
+
+---
 # PAPER premarket timing upgrade — installed November 9, 2026
 
 ## Read-only historical executable-quote plausibility — November 9
