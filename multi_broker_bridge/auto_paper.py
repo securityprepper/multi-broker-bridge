@@ -21,6 +21,9 @@ from zoneinfo import ZoneInfo
 from .models import LimitOrder, OrderRejected, UnknownSubmission
 from .watchlists import SECTORS
 from .trend import Bar, Holding, TrendMonitor, CHICAGO
+from .premarket_policy import (
+    is_early_market,premarket_sell_decision,eligible_discount_reentry
+)
 from .alpaca import _http as paper_request
 
 DATA_HOST = "https://data.alpaca.markets"
@@ -217,6 +220,72 @@ def _active_orders(rows):
     return {x.get("symbol") for x in rows if isinstance(x,dict) and
             x.get("status") not in ("filled","canceled","expired","rejected","done_for_day")}
 
+def _verified_cheaper_reentry(
+    db,now:datetime,symbol:str,tracked:dict,
+    next_ask:Decimal,occupied:set,positions:dict
+)->bool:
+    """Broker-verified filled profitable premarket exit, then cheaper new ask.
+
+    One controlled subsequent attempt, only after a new independent
+    rising-sector BUY_WATCH. Caller must independently validate its
+    holiday gate, quote freshness, available CASH and per-order exposure.
+    """
+    if (symbol not in tracked or symbol in positions or symbol in occupied
+        or now.astimezone(CHICAGO).time() >=
+           __import__("datetime").time(10,0)):
+        return False
+    entry_ref,_,_,initial_qty=tracked[symbol]
+    d=now.astimezone(NY).date()
+    date_candidates=(d.isoformat(),(d-timedelta(days=1)).isoformat())
+    matches=list(db.execute(
+        "SELECT trade_date,client_id FROM attempts WHERE symbol=? "
+        "AND side='sell' AND trade_date IN (?,?) ORDER BY trade_date DESC",
+        (symbol,*date_candidates)
+    ))
+    if not matches:return False
+    reentries=db.execute(
+        "SELECT COUNT(*) FROM attempts WHERE symbol=? AND side='reentry' "
+        "AND trade_date IN (?,?)", (symbol,*date_candidates)
+    ).fetchone()[0]
+    if reentries:
+        return False
+    from urllib.parse import quote
+    for date,client_id in matches:
+        if not str(client_id).startswith("MBB-"):
+            continue
+        try:
+            sell=paper_api("GET","/v2/orders:by_client_order_id?client_order_id="+
+                           quote(client_id,safe=""))
+            prior=paper_api("GET","/v2/orders:by_client_order_id?client_order_id="+
+                           quote(entry_ref,safe=""))
+            if (not isinstance(sell,dict) or not isinstance(prior,dict)
+                or sell.get("client_order_id")!=client_id
+                or prior.get("client_order_id")!=entry_ref
+                or sell.get("symbol")!=symbol or prior.get("symbol")!=symbol
+                or sell.get("side")!="sell" or prior.get("side")!="buy"
+                or sell.get("status")!="filled" or prior.get("status")!="filled"
+                or not sell.get("filled_at")):
+                continue
+            sell_qty=Decimal(str(sell["filled_qty"]))
+            buy_qty=Decimal(str(prior["filled_qty"]))
+            if not (sell_qty==buy_qty==Decimal(initial_qty)):
+                continue
+            sale=Decimal(str(sell["filled_avg_price"]))
+            buy=Decimal(str(prior["filled_avg_price"]))
+            sold_at=datetime.fromisoformat(sell["filled_at"].replace("Z","+00:00"))
+            if eligible_discount_reentry(
+                now,sell_filled_at=sold_at,sell_filled_price=sale,
+                entry_filled_price=buy,next_verified_ask=next_ask,
+                fully_filled=True,actual_rising_breadth=True,
+                positions_absent=True,pending_orders_absent=True,
+                already_reentered=False):
+                return True
+        except (OrderRejected,UnknownSubmission,ValueError,TypeError,KeyError,
+                ArithmeticError):
+            continue
+    return False
+
+
 def run(now: datetime, execute: bool = False) -> dict:
     mode = "PAPER_EXECUTION" if execute else "SIMULATION"
     feed = trading_feed(now)
@@ -357,10 +426,20 @@ def run(now: datetime, execute: bool = False) -> dict:
                 continue
             bid,ask=prices
             if row["action"]=="BUY_WATCH":
-                if not gate_ok or symbol in pos_by_symbol or symbol in tracked:
+                if not gate_ok or symbol in pos_by_symbol:
                     continue
                 if now.astimezone(CHICAGO).time()>=__import__("datetime").time(13,15):
                     continue
+                # A second entry is exceptional: the first complete premarket
+                # sell must have BANKED >=2% and the next true ask must be
+                # at least 0.25% lower, plus a FRESH BUY_WATCH.
+                # No uncontrolled re-buy at a higher price on AMD-like days.
+                reentry=False
+                if symbol in tracked:
+                    reentry=_verified_cheaper_reentry(
+                        db,now,symbol,tracked,ask,occupied,pos_by_symbol)
+                    if not reentry:
+                        continue
                 side="buy"
                 price=ask.quantize(Decimal("0.01"),rounding="ROUND_UP")
                 # One high-priced share, up to the buying-power-supported
@@ -374,6 +453,17 @@ def run(now: datetime, execute: bool = False) -> dict:
             else:
                 if symbol not in holdings:
                     continue
+                if is_early_market(now):
+                    early= premarket_sell_decision(
+                        now,holdings[symbol].entry_price,bid,
+                        str(row.get("reason","")))
+                    if early=="HOLD_FOR_TREND":
+                        continue
+                    # Emergency exception remains explicit, profitable
+                    # discretion needs >=2% at the actual current bid.
+                    if early not in ("SUBSTANTIAL_PROFIT_TAKE",
+                                     "EMERGENCY_DOWNSIDE_EXIT"):
+                        continue
                 side="sell"
                 price=bid.quantize(Decimal("0.01"),rounding=ROUND_DOWN)
                 quantity=holdings[symbol].quantity
@@ -381,7 +471,8 @@ def run(now: datetime, execute: bool = False) -> dict:
                 now.astimezone(CHICAGO).time()>=__import__("datetime").time(13,55)
                 and now.astimezone(CHICAGO).time()<__import__("datetime").time(15,0)
                 and now.astimezone(CHICAGO).weekday()<5)
-            reservation_side="flatten" if urgent_flatten else side
+            reservation_side=("flatten" if urgent_flatten else
+                              "reentry" if side=="buy" and reentry else side)
             ref=_unique_id(local_date,reservation_side,symbol)
             request=LimitOrder.make("alpaca",symbol,side,quantity,str(price),ref)
             # Exits of tracked PAPER positions could have appreciated above
