@@ -1,0 +1,254 @@
+{
+  "semiconductors": {
+    "sector": "semiconductors",
+    "etf": "SOXX",
+    "day_threshold_pct": 2.0,
+    "night_threshold_pct": 3.0,
+    "complete_rth_days": 253,
+    "overnight_intervals": 252,
+    "day_touched": {
+      "up": 73,
+      "down": 77,
+      "either": 145,
+      "both": 5
+    },
+    "day_closed_beyond": {
+      "up": 36,
+      "down": 38,
+      "either": 74,
+      "both": 0
+    },
+    "night_sip_observed_or_gap_touched": {
+      "up": 34,
+      "down": 33,
+      "either": 66,
+      "both": 1
+    },
+    "night_gap_at_open": {
+      "up": 21,
+      "down": 19,
+      "either": 40,
+      "both": 0
+    },
+    "night_with_any_ext_sip_bars": 252,
+    "night_with_both_pre_post_sip": 252,
+    "first_day": "2025-11-03",
+    "last_day": "2026-11-06"
+  },
+  "gold_miners": {
+    "sector": "gold_miners",
+    "etf": "GDX",
+    "day_threshold_pct": 2.0,
+    "night_threshold_pct": 2.0,
+    "complete_rth_days": 255,
+    "overnight_intervals": 254,
+    "day_touched": {
+      "up": 73,
+      "down": 83,
+      "either": 149,
+      "both": 7
+    },
+    "day_closed_beyond": {
+      "up": 41,
+      "down": 34,
+      "either": 75,
+      "both": 0
+    },
+    "night_sip_observed_or_gap_touched": {
+      "up": 72,
+      "down": 64,
+      "either": 134,
+      "both": 2
+    },
+    "night_gap_at_open": {
+      "up": 49,
+      "down": 41,
+      "either": 90,
+      "both": 0
+    },
+    "night_with_any_ext_sip_bars": 254,
+    "night_with_both_pre_post_sip": 254,
+    "first_day": "2025-11-03",
+    "last_day": "2026-11-06"
+  },
+  "energy": {
+    "sector": "energy",
+    "etf": "XLE",
+    "day_threshold_pct": 3.0,
+    "night_threshold_pct": 3.0,
+    "complete_rth_days": 253,
+    "overnight_intervals": 252,
+    "day_touched": {
+      "up": 4,
+      "down": 6,
+      "either": 10,
+      "both": 0
+    },
+    "day_closed_beyond": {
+      "up": 1,
+      "down": 2,
+      "either": 3,
+      "both": 0
+    },
+    "night_sip_observed_or_gap_touched": {
+      "up": 6,
+      "down": 4,
+      "either": 10,
+      "both": 0
+    },
+    "night_gap_at_open": {
+      "up": 2,
+      "down": 4,
+      "either": 6,
+      "both": 0
+    },
+    "night_with_any_ext_sip_bars": 252,
+    "night_with_both_pre_post_sip": 252,
+    "first_day": "2025-11-03",
+    "last_day": "2026-11-06"
+  },
+  "financials": {
+    "sector": "financials",
+    "etf": "XLF",
+    "day_threshold_pct": 3.0,
+    "night_threshold_pct": 3.0,
+    "complete_rth_days": 253,
+    "overnight_intervals": 252,
+    "day_touched": {
+      "up": 1,
+      "down": 2,
+      "either": 3,
+      "both": 0
+    },
+    "day_closed_beyond": {
+      "up": 0,
+      "down": 1,
+      "either": 1,
+      "both": 0
+    },
+    "night_sip_observed_or_gap_touched": {
+      "up": 0,
+      "down": 0,
+      "either": 0,
+      "both": 0
+    },
+    "night_gap_at_open": {
+      "up": 0,
+      "down": 0,
+      "either": 0,
+      "both": 0
+    },
+    "night_with_any_ext_sip_bars": 252,
+    "night_with_both_pre_post_sip": 252,
+    "first_day": "2025-11-03",
+    "last_day": "2026-11-06"
+  },
+  "industrials": {
+    "sector": "industrials",
+    "etf": "XLI",
+    "day_threshold_pct": 3.0,
+    "night_threshold_pct": 3.0,
+    "complete_rth_days": 253,
+    "overnight_intervals": 252,
+    "day_touched": {
+      "up": 0,
+      "down": 2,
+      "either": 2,
+      "both": 0
+    },
+    "day_closed_beyond": {
+      "up": 0,
+      "down": 1,
+      "either": 1,
+      "both": 0
+    },
+    "night_sip_observed_or_gap_touched": {
+      "up": 1,
+      "down": 0,
+      "either": 1,
+      "both": 0
+    },
+    "night_gap_at_open": {
+      "up": 1,
+      "down": 0,
+      "either": 1,
+      "both": 0
+    },
+    "night_with_any_ext_sip_bars": 252,
+    "night_with_both_pre_post_sip": 251,
+    "first_day": "2025-11-03",
+    "last_day": "2026-11-06"
+  },
+  "healthcare": {
+    "sector": "healthcare",
+    "etf": "XLV",
+    "day_threshold_pct": 3.0,
+    "night_threshold_pct": 3.0,
+    "complete_rth_days": 253,
+    "overnight_intervals": 252,
+    "day_touched": {
+      "up": 0,
+      "down": 1,
+      "either": 1,
+      "both": 0
+    },
+    "day_closed_beyond": {
+      "up": 0,
+      "down": 1,
+      "either": 1,
+      "both": 0
+    },
+    "night_sip_observed_or_gap_touched": {
+      "up": 0,
+      "down": 0,
+      "either": 0,
+      "both": 0
+    },
+    "night_gap_at_open": {
+      "up": 0,
+      "down": 0,
+      "either": 0,
+      "both": 0
+    },
+    "night_with_any_ext_sip_bars": 252,
+    "night_with_both_pre_post_sip": 252,
+    "first_day": "2025-11-03",
+    "last_day": "2026-11-06"
+  },
+  "software": {
+    "sector": "software",
+    "etf": "IGV",
+    "day_threshold_pct": 3.0,
+    "night_threshold_pct": 3.0,
+    "complete_rth_days": 253,
+    "overnight_intervals": 252,
+    "day_touched": {
+      "up": 17,
+      "down": 22,
+      "either": 39,
+      "both": 0
+    },
+    "day_closed_beyond": {
+      "up": 9,
+      "down": 11,
+      "either": 20,
+      "both": 0
+    },
+    "night_sip_observed_or_gap_touched": {
+      "up": 6,
+      "down": 7,
+      "either": 13,
+      "both": 0
+    },
+    "night_gap_at_open": {
+      "up": 2,
+      "down": 3,
+      "either": 5,
+      "both": 0
+    },
+    "night_with_any_ext_sip_bars": 252,
+    "night_with_both_pre_post_sip": 252,
+    "first_day": "2025-11-03",
+    "last_day": "2026-11-06"
+  }
+}
