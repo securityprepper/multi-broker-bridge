@@ -22,7 +22,8 @@ from .models import LimitOrder, OrderRejected, UnknownSubmission
 from .watchlists import SECTORS
 from .trend import Bar, Holding, TrendMonitor, CHICAGO
 from .premarket_policy import (
-    is_early_market,premarket_sell_decision,eligible_discount_reentry
+    is_early_market,premarket_sell_decision,eligible_discount_reentry,
+    sustained_trend_shape,trading_session_day
 )
 from .alpaca import _http as paper_request
 
@@ -39,7 +40,10 @@ STATE_SCHEMA = """CREATE TABLE IF NOT EXISTS attempts(
 CREATE TABLE IF NOT EXISTS tracked(
     symbol TEXT PRIMARY KEY, entry_ref TEXT NOT NULL,
     highest TEXT NOT NULL, entry_time TEXT NOT NULL,
-    entry_qty INTEGER NOT NULL);"""
+    entry_qty INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS premarket_steady_flags(
+    trading_session TEXT NOT NULL, symbol TEXT NOT NULL,
+    confirmed_at TEXT NOT NULL, PRIMARY KEY(trading_session,symbol));"""
 
 def _credentials() -> tuple[str, str]:
     base = os.getenv("CREDENTIALS_DIRECTORY")
@@ -109,7 +113,7 @@ def fetch_bars_and_quotes(now: datetime, symbols: list[str], feed: str):
     if feed not in ("sip", "boats"):
         raise ValueError("unsupported feed")
     end = now - timedelta(seconds=30)
-    start = end - timedelta(minutes=12)
+    start = end - timedelta(minutes=47)  # allow 45m distribution/spike comparison
     headers = market_headers()
     bars = {}
     quotes = {}
@@ -127,7 +131,9 @@ def fetch_bars_and_quotes(now: datetime, symbols: list[str], feed: str):
             for obj in rows:
                 try:
                     ts = datetime.fromisoformat(obj["t"].replace("Z", "+00:00"))
-                    if ts.tzinfo is None or not timedelta(0) <= now-ts <= timedelta(minutes=13):
+                    if (ts.tzinfo is None or ts+timedelta(minutes=1)>now
+                        or not timedelta(0)<=now-ts<=timedelta(minutes=48)
+                        or int(obj["v"])<=0):
                         continue
                     parsed.append(Bar(symbol, ts, Decimal(str(obj["h"])),
                                       Decimal(str(obj["l"])), Decimal(str(obj["c"]))))
@@ -362,7 +368,27 @@ def run(now: datetime, execute: bool = False) -> dict:
                                (str(updated_peak),symbol))
                     db.commit()
                 holdings[symbol]=Holding(symbol,min(int(qty),entry_qty),entry,updated_peak)
-        result=engine.scan(now,holdings,executable_session=False)
+        steady_symbols=set()
+        if is_early_market(now):
+            # Persist a confirmed distributed-rise *once* so a 20-minute
+            # routine shakeout does not suddenly narrow a 2.5% trailing
+            # threshold to 2%. Never infer from an incomplete minute.
+            session_date=trading_session_day(now).isoformat()
+            for symbol in holdings:
+                if sustained_trend_shape(bars.get(symbol,[]),now):
+                    db.execute(
+                        "INSERT OR IGNORE INTO premarket_steady_flags "
+                        "(trading_session,symbol,confirmed_at) VALUES(?,?,?)",
+                        (session_date,symbol,now.isoformat()))
+            db.commit()
+            steady_symbols={
+                sym for (sym,) in db.execute(
+                    "SELECT symbol FROM premarket_steady_flags "
+                    "WHERE trading_session=?",(session_date,)).fetchall()
+                if sym in holdings
+            }
+        result=engine.scan(now,holdings,executable_session=False,
+                           steady_uptrend_symbols=steady_symbols)
         # A healthy scheduled exit is prioritized over new buys.
         decision=[r for r in result if r["action"] in ("EXIT_WATCH","BUY_WATCH")]
         decision.sort(key=lambda x:0 if x["action"]=="EXIT_WATCH" else 1)
@@ -454,15 +480,14 @@ def run(now: datetime, execute: bool = False) -> dict:
                 if symbol not in holdings:
                     continue
                 if is_early_market(now):
-                    early= premarket_sell_decision(
+                    early=premarket_sell_decision(
                         now,holdings[symbol].entry_price,bid,
-                        str(row.get("reason","")))
-                    if early=="HOLD_FOR_TREND":
-                        continue
-                    # Emergency exception remains explicit, profitable
-                    # discretion needs >=2% at the actual current bid.
+                        str(row.get("reason","")),
+                        peak=holdings[symbol].highest_since_entry,
+                        steady_confirmed=symbol in steady_symbols)
                     if early not in ("SUBSTANTIAL_PROFIT_TAKE",
-                                     "EMERGENCY_DOWNSIDE_EXIT"):
+                                     "EMERGENCY_DOWNSIDE_EXIT",
+                                     "TRAILING_STOP_SOFTWARE"):
                         continue
                 side="sell"
                 price=bid.quantize(Decimal("0.01"),rounding=ROUND_DOWN)
@@ -513,6 +538,7 @@ def run(now: datetime, execute: bool = False) -> dict:
             if side=="buy":
                 account=paper_api("GET","/v2/account")
         return {"status":"SCAN_COMPLETE","mode":mode,"data_feed":feed,
+                "established_premarket_uptrends":sorted(steady_symbols),
                 "gate_allows_new_entries":gate_ok,"candidate_count":len(decision),
                 "orders":placed,"tracked":len(tracked)}
     finally:
