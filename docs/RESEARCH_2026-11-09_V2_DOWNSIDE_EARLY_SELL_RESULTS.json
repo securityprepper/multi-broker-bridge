@@ -1,0 +1,615 @@
+{
+  "limitations": "OHLC next-open price-mark-only, no NBBO, BOATS fills, futures or V1 execution evidence",
+  "major_gains": 254,
+  "major_losses": 209,
+  "major_up_days_preopen_sell_veto_examples": [
+    {
+      "alert": "2026-03-09T08:30:00-04:00",
+      "close_pct": 5.3468,
+      "day": "2026-03-09",
+      "symbol": "AMD"
+    },
+    {
+      "alert": "2026-03-09T08:30:00-04:00",
+      "close_pct": 5.0086,
+      "day": "2026-03-09",
+      "symbol": "INTC"
+    },
+    {
+      "alert": "2026-05-01T08:30:00-04:00",
+      "close_pct": 5.4709,
+      "day": "2026-05-01",
+      "symbol": "INTC"
+    },
+    {
+      "alert": "2026-07-29T17:15:00-04:00",
+      "close_pct": 11.5281,
+      "day": "2026-07-30",
+      "symbol": "INTC"
+    },
+    {
+      "alert": "2026-11-05T18:20:00-05:00",
+      "close_pct": 8.0215,
+      "day": "2026-11-06",
+      "symbol": "INTC"
+    },
+    {
+      "alert": "2026-02-02T08:15:00-05:00",
+      "close_pct": 5.5699,
+      "day": "2026-02-02",
+      "symbol": "MU"
+    },
+    {
+      "alert": "2026-03-09T09:15:00-04:00",
+      "close_pct": 5.1124,
+      "day": "2026-03-09",
+      "symbol": "MU"
+    },
+    {
+      "alert": "2026-07-29T17:00:00-04:00",
+      "close_pct": 18.4774,
+      "day": "2026-07-30",
+      "symbol": "MU"
+    },
+    {
+      "alert": "2025-12-03T17:45:00-05:00",
+      "close_pct": 9.8297,
+      "day": "2025-12-04",
+      "symbol": "SNDK"
+    },
+    {
+      "alert": "2026-01-20T04:20:00-05:00",
+      "close_pct": 9.603,
+      "day": "2026-01-20",
+      "symbol": "SNDK"
+    },
+    {
+      "alert": "2026-03-30T19:50:00-04:00",
+      "close_pct": 10.9658,
+      "day": "2026-03-31",
+      "symbol": "SNDK"
+    },
+    {
+      "alert": "2026-04-30T16:10:00-04:00",
+      "close_pct": 8.3564,
+      "day": "2026-05-01",
+      "symbol": "SNDK"
+    }
+  ],
+  "missed_crashes_no_early_union": [
+    {
+      "close_pct": -8.912,
+      "day": "2025-11-20",
+      "morning_gap_pct": 5.541,
+      "symbol": "WDC"
+    },
+    {
+      "close_pct": -7.8196,
+      "day": "2025-11-20",
+      "morning_gap_pct": 4.04,
+      "symbol": "AMD"
+    },
+    {
+      "close_pct": -6.1565,
+      "day": "2026-06-16",
+      "morning_gap_pct": 1.096,
+      "symbol": "MU"
+    },
+    {
+      "close_pct": -5.938,
+      "day": "2026-06-16",
+      "morning_gap_pct": -0.564,
+      "symbol": "SOXX"
+    },
+    {
+      "close_pct": -5.5024,
+      "day": "2026-06-16",
+      "morning_gap_pct": 1.243,
+      "symbol": "SNDK"
+    },
+    {
+      "close_pct": -5.3589,
+      "day": "2026-08-05",
+      "morning_gap_pct": -0.672,
+      "symbol": "WDC"
+    },
+    {
+      "close_pct": -5.3568,
+      "day": "2026-03-05",
+      "morning_gap_pct": -0.537,
+      "symbol": "SNDK"
+    },
+    {
+      "close_pct": -5.2239,
+      "day": "2025-12-17",
+      "morning_gap_pct": 0.512,
+      "symbol": "AMD"
+    },
+    {
+      "close_pct": -5.115,
+      "day": "2026-05-29",
+      "morning_gap_pct": 2.508,
+      "symbol": "INTC"
+    }
+  ],
+  "missed_crashes_no_preopen": [
+    {
+      "close_pct": -20.3335,
+      "day": "2025-11-20",
+      "morning_gap_pct": 2.4,
+      "symbol": "SNDK"
+    },
+    {
+      "close_pct": -14.3228,
+      "day": "2026-07-02",
+      "morning_gap_pct": 0.429,
+      "symbol": "SNDK"
+    },
+    {
+      "close_pct": -10.8681,
+      "day": "2025-11-20",
+      "morning_gap_pct": 1.819,
+      "symbol": "MU"
+    },
+    {
+      "close_pct": -10.8491,
+      "day": "2026-07-27",
+      "morning_gap_pct": 1.96,
+      "symbol": "SNDK"
+    },
+    {
+      "close_pct": -9.9457,
+      "day": "2026-03-30",
+      "morning_gap_pct": 1.455,
+      "symbol": "MU"
+    },
+    {
+      "close_pct": -9.5833,
+      "day": "2026-02-04",
+      "morning_gap_pct": -2.168,
+      "symbol": "MU"
+    },
+    {
+      "close_pct": -8.9459,
+      "day": "2026-11-02",
+      "morning_gap_pct": -0.683,
+      "symbol": "INTC"
+    },
+    {
+      "close_pct": -8.912,
+      "day": "2025-11-20",
+      "morning_gap_pct": 5.541,
+      "symbol": "WDC"
+    },
+    {
+      "close_pct": -8.8848,
+      "day": "2026-07-15",
+      "morning_gap_pct": -0.172,
+      "symbol": "WDC"
+    },
+    {
+      "close_pct": -8.6439,
+      "day": "2026-03-30",
+      "morning_gap_pct": 2.521,
+      "symbol": "WDC"
+    },
+    {
+      "close_pct": -8.1561,
+      "day": "2026-02-10",
+      "morning_gap_pct": -2.06,
+      "symbol": "WDC"
+    },
+    {
+      "close_pct": -8.1253,
+      "day": "2026-07-15",
+      "morning_gap_pct": -2.265,
+      "symbol": "SNDK"
+    }
+  ],
+  "nov2": [
+    {
+      "any": {
+        "asof": "2026-11-02T09:40:00-05:00",
+        "next_bar_open": 505.47,
+        "signal_price": 505.465,
+        "source": "opening_flip",
+        "total_pct": 0.0564
+      },
+      "close_pct": -7.6092,
+      "preopen": null,
+      "severe": true,
+      "symbol": "AMD"
+    },
+    {
+      "any": {
+        "asof": "2026-11-02T09:35:00-05:00",
+        "next_bar_open": 64.1623,
+        "signal_price": 64.1716,
+        "source": "strict_rth_open_hour",
+        "total_pct": -2.534
+      },
+      "close_pct": -8.9459,
+      "preopen": null,
+      "severe": true,
+      "symbol": "INTC"
+    },
+    {
+      "any": {
+        "asof": "2026-11-02T09:40:00-05:00",
+        "next_bar_open": 882.19,
+        "signal_price": 882.125,
+        "source": "opening_flip",
+        "total_pct": -0.2899
+      },
+      "close_pct": -5.8359,
+      "preopen": null,
+      "severe": true,
+      "symbol": "MU"
+    },
+    {
+      "any": {
+        "asof": "2026-11-02T09:40:00-05:00",
+        "next_bar_open": 1133.37,
+        "signal_price": 1133.6,
+        "source": "opening_flip",
+        "total_pct": -1.3635
+      },
+      "close_pct": -6.4624,
+      "preopen": null,
+      "severe": true,
+      "symbol": "SNDK"
+    },
+    {
+      "any": {
+        "asof": "2026-11-02T09:40:00-05:00",
+        "next_bar_open": 361.3,
+        "signal_price": 361.655,
+        "source": "opening_flip",
+        "total_pct": -1.1683
+      },
+      "close_pct": -7.4659,
+      "preopen": null,
+      "severe": true,
+      "symbol": "WDC"
+    }
+  ],
+  "reports": {
+    "all": {
+      "all_union": {
+        "beneficial_early_sale_count": 476,
+        "beneficial_nonmajor_early_sale_count": 318,
+        "earliest_severe_warning": "2025-11-13T04:20:00-05:00",
+        "gap5_with_preopen_warning": 87,
+        "harmful_early_sale_count": 477,
+        "harmful_nonmajor_early_sale_count": 445,
+        "hypothetical_sale_price_scorable": 995,
+        "major_down_days": 209,
+        "major_up_days": 254,
+        "major_up_sold_early_risk": 37,
+        "mean_advantage_next_open_pp": -0.0824,
+        "mean_advantage_same_morning_open_pp": 0.0023,
+        "nonmajor_down_warnings": 806,
+        "price_eligible_not_actual_fills": 953,
+        "same_day_gap5_count": 87,
+        "severe_down_hit": 200,
+        "severe_down_missed": 9,
+        "severe_hit_before_already_down5": 166,
+        "stockdays": 2244,
+        "warnings": 1006
+      },
+      "breadth": {
+        "beneficial_early_sale_count": 261,
+        "beneficial_nonmajor_early_sale_count": 159,
+        "earliest_severe_warning": "2025-11-18T09:15:00-05:00",
+        "gap5_with_preopen_warning": 81,
+        "harmful_early_sale_count": 316,
+        "harmful_nonmajor_early_sale_count": 287,
+        "hypothetical_sale_price_scorable": 616,
+        "major_down_days": 209,
+        "major_up_days": 254,
+        "major_up_sold_early_risk": 11,
+        "mean_advantage_next_open_pp": -0.4701,
+        "mean_advantage_same_morning_open_pp": 0.1102,
+        "nonmajor_down_warnings": 474,
+        "price_eligible_not_actual_fills": 577,
+        "same_day_gap5_count": 87,
+        "severe_down_hit": 143,
+        "severe_down_missed": 66,
+        "severe_hit_before_already_down5": 103,
+        "stockdays": 2244,
+        "warnings": 617
+      },
+      "opening_flip": {
+        "beneficial_early_sale_count": 148,
+        "beneficial_nonmajor_early_sale_count": 123,
+        "earliest_severe_warning": "2025-12-15T10:20:00-05:00",
+        "gap5_with_preopen_warning": 0,
+        "harmful_early_sale_count": 94,
+        "harmful_nonmajor_early_sale_count": 94,
+        "hypothetical_sale_price_scorable": 242,
+        "major_down_days": 209,
+        "major_up_days": 254,
+        "major_up_sold_early_risk": 16,
+        "mean_advantage_next_open_pp": 1.0592,
+        "mean_advantage_same_morning_open_pp": null,
+        "nonmajor_down_warnings": 224,
+        "price_eligible_not_actual_fills": 242,
+        "same_day_gap5_count": 87,
+        "severe_down_hit": 25,
+        "severe_down_missed": 184,
+        "severe_hit_before_already_down5": 25,
+        "stockdays": 2244,
+        "warnings": 249
+      },
+      "preopen_union": {
+        "beneficial_early_sale_count": 286,
+        "beneficial_nonmajor_early_sale_count": 169,
+        "earliest_severe_warning": "2025-11-13T04:20:00-05:00",
+        "gap5_with_preopen_warning": 87,
+        "harmful_early_sale_count": 343,
+        "harmful_nonmajor_early_sale_count": 314,
+        "hypothetical_sale_price_scorable": 669,
+        "major_down_days": 209,
+        "major_up_days": 254,
+        "major_up_sold_early_risk": 22,
+        "mean_advantage_next_open_pp": -0.5397,
+        "mean_advantage_same_morning_open_pp": 0.0023,
+        "nonmajor_down_warnings": 519,
+        "price_eligible_not_actual_fills": 629,
+        "same_day_gap5_count": 87,
+        "severe_down_hit": 155,
+        "severe_down_missed": 54,
+        "severe_hit_before_already_down5": 121,
+        "stockdays": 2244,
+        "warnings": 674
+      },
+      "strict": {
+        "beneficial_early_sale_count": 243,
+        "beneficial_nonmajor_early_sale_count": 103,
+        "earliest_severe_warning": "2025-11-13T04:20:00-05:00",
+        "gap5_with_preopen_warning": 71,
+        "harmful_early_sale_count": 285,
+        "harmful_nonmajor_early_sale_count": 248,
+        "hypothetical_sale_price_scorable": 546,
+        "major_down_days": 209,
+        "major_up_days": 254,
+        "major_up_sold_early_risk": 18,
+        "mean_advantage_next_open_pp": -0.5514,
+        "mean_advantage_same_morning_open_pp": -0.0975,
+        "nonmajor_down_warnings": 370,
+        "price_eligible_not_actual_fills": 528,
+        "same_day_gap5_count": 87,
+        "severe_down_hit": 180,
+        "severe_down_missed": 29,
+        "severe_hit_before_already_down5": 129,
+        "stockdays": 2244,
+        "warnings": 550
+      }
+    },
+    "earlier": {
+      "all_union": {
+        "beneficial_early_sale_count": 346,
+        "beneficial_nonmajor_early_sale_count": 228,
+        "earliest_severe_warning": "2025-11-13T04:20:00-05:00",
+        "gap5_with_preopen_warning": 62,
+        "harmful_early_sale_count": 404,
+        "harmful_nonmajor_early_sale_count": 378,
+        "hypothetical_sale_price_scorable": 783,
+        "major_down_days": 160,
+        "major_up_days": 231,
+        "major_up_sold_early_risk": 34,
+        "mean_advantage_next_open_pp": -0.4334,
+        "mean_advantage_same_morning_open_pp": -0.0936,
+        "nonmajor_down_warnings": 635,
+        "price_eligible_not_actual_fills": 750,
+        "same_day_gap5_count": 62,
+        "severe_down_hit": 151,
+        "severe_down_missed": 9,
+        "severe_hit_before_already_down5": 122,
+        "stockdays": 1812,
+        "warnings": 786
+      },
+      "breadth": {
+        "beneficial_early_sale_count": 168,
+        "beneficial_nonmajor_early_sale_count": 97,
+        "earliest_severe_warning": "2025-11-18T09:15:00-05:00",
+        "gap5_with_preopen_warning": 57,
+        "harmful_early_sale_count": 252,
+        "harmful_nonmajor_early_sale_count": 231,
+        "hypothetical_sale_price_scorable": 449,
+        "major_down_days": 160,
+        "major_up_days": 231,
+        "major_up_sold_early_risk": 11,
+        "mean_advantage_next_open_pp": -1.0234,
+        "mean_advantage_same_morning_open_pp": 0.0974,
+        "nonmajor_down_warnings": 349,
+        "price_eligible_not_actual_fills": 420,
+        "same_day_gap5_count": 62,
+        "severe_down_hit": 101,
+        "severe_down_missed": 59,
+        "severe_hit_before_already_down5": 72,
+        "stockdays": 1812,
+        "warnings": 450
+      },
+      "opening_flip": {
+        "beneficial_early_sale_count": 121,
+        "beneficial_nonmajor_early_sale_count": 101,
+        "earliest_severe_warning": "2025-12-15T10:20:00-05:00",
+        "gap5_with_preopen_warning": 0,
+        "harmful_early_sale_count": 90,
+        "harmful_nonmajor_early_sale_count": 90,
+        "hypothetical_sale_price_scorable": 211,
+        "major_down_days": 160,
+        "major_up_days": 231,
+        "major_up_sold_early_risk": 14,
+        "mean_advantage_next_open_pp": 0.922,
+        "mean_advantage_same_morning_open_pp": null,
+        "nonmajor_down_warnings": 191,
+        "price_eligible_not_actual_fills": 211,
+        "same_day_gap5_count": 62,
+        "severe_down_hit": 20,
+        "severe_down_missed": 140,
+        "severe_hit_before_already_down5": 20,
+        "stockdays": 1812,
+        "warnings": 211
+      },
+      "preopen_union": {
+        "beneficial_early_sale_count": 187,
+        "beneficial_nonmajor_early_sale_count": 105,
+        "earliest_severe_warning": "2025-11-13T04:20:00-05:00",
+        "gap5_with_preopen_warning": 62,
+        "harmful_early_sale_count": 279,
+        "harmful_nonmajor_early_sale_count": 256,
+        "hypothetical_sale_price_scorable": 497,
+        "major_down_days": 160,
+        "major_up_days": 231,
+        "major_up_sold_early_risk": 21,
+        "mean_advantage_next_open_pp": -1.1237,
+        "mean_advantage_same_morning_open_pp": -0.0936,
+        "nonmajor_down_warnings": 389,
+        "price_eligible_not_actual_fills": 466,
+        "same_day_gap5_count": 62,
+        "severe_down_hit": 111,
+        "severe_down_missed": 49,
+        "severe_hit_before_already_down5": 82,
+        "stockdays": 1812,
+        "warnings": 500
+      },
+      "strict": {
+        "beneficial_early_sale_count": 192,
+        "beneficial_nonmajor_early_sale_count": 82,
+        "earliest_severe_warning": "2025-11-13T04:20:00-05:00",
+        "gap5_with_preopen_warning": 53,
+        "harmful_early_sale_count": 244,
+        "harmful_nonmajor_early_sale_count": 215,
+        "hypothetical_sale_price_scorable": 452,
+        "major_down_days": 160,
+        "major_up_days": 231,
+        "major_up_sold_early_risk": 17,
+        "mean_advantage_next_open_pp": -0.9153,
+        "mean_advantage_same_morning_open_pp": -0.333,
+        "nonmajor_down_warnings": 313,
+        "price_eligible_not_actual_fills": 436,
+        "same_day_gap5_count": 62,
+        "severe_down_hit": 141,
+        "severe_down_missed": 19,
+        "severe_hit_before_already_down5": 98,
+        "stockdays": 1812,
+        "warnings": 454
+      }
+    },
+    "later": {
+      "all_union": {
+        "beneficial_early_sale_count": 130,
+        "beneficial_nonmajor_early_sale_count": 90,
+        "earliest_severe_warning": "2026-09-10T08:30:00-04:00",
+        "gap5_with_preopen_warning": 25,
+        "harmful_early_sale_count": 73,
+        "harmful_nonmajor_early_sale_count": 67,
+        "hypothetical_sale_price_scorable": 212,
+        "major_down_days": 49,
+        "major_up_days": 23,
+        "major_up_sold_early_risk": 3,
+        "mean_advantage_next_open_pp": 1.2143,
+        "mean_advantage_same_morning_open_pp": 0.2792,
+        "nonmajor_down_warnings": 171,
+        "price_eligible_not_actual_fills": 203,
+        "same_day_gap5_count": 25,
+        "severe_down_hit": 49,
+        "severe_down_missed": 0,
+        "severe_hit_before_already_down5": 44,
+        "stockdays": 432,
+        "warnings": 220
+      },
+      "breadth": {
+        "beneficial_early_sale_count": 93,
+        "beneficial_nonmajor_early_sale_count": 62,
+        "earliest_severe_warning": "2026-09-10T08:30:00-04:00",
+        "gap5_with_preopen_warning": 24,
+        "harmful_early_sale_count": 64,
+        "harmful_nonmajor_early_sale_count": 56,
+        "hypothetical_sale_price_scorable": 167,
+        "major_down_days": 49,
+        "major_up_days": 23,
+        "major_up_sold_early_risk": 0,
+        "mean_advantage_next_open_pp": 1.0175,
+        "mean_advantage_same_morning_open_pp": 0.1446,
+        "nonmajor_down_warnings": 125,
+        "price_eligible_not_actual_fills": 157,
+        "same_day_gap5_count": 25,
+        "severe_down_hit": 42,
+        "severe_down_missed": 7,
+        "severe_hit_before_already_down5": 31,
+        "stockdays": 432,
+        "warnings": 167
+      },
+      "opening_flip": {
+        "beneficial_early_sale_count": 27,
+        "beneficial_nonmajor_early_sale_count": 22,
+        "earliest_severe_warning": "2026-11-02T09:40:00-05:00",
+        "gap5_with_preopen_warning": 0,
+        "harmful_early_sale_count": 4,
+        "harmful_nonmajor_early_sale_count": 4,
+        "hypothetical_sale_price_scorable": 31,
+        "major_down_days": 49,
+        "major_up_days": 23,
+        "major_up_sold_early_risk": 2,
+        "mean_advantage_next_open_pp": 1.9929,
+        "mean_advantage_same_morning_open_pp": null,
+        "nonmajor_down_warnings": 33,
+        "price_eligible_not_actual_fills": 31,
+        "same_day_gap5_count": 25,
+        "severe_down_hit": 5,
+        "severe_down_missed": 44,
+        "severe_hit_before_already_down5": 5,
+        "stockdays": 432,
+        "warnings": 38
+      },
+      "preopen_union": {
+        "beneficial_early_sale_count": 99,
+        "beneficial_nonmajor_early_sale_count": 64,
+        "earliest_severe_warning": "2026-09-10T08:30:00-04:00",
+        "gap5_with_preopen_warning": 25,
+        "harmful_early_sale_count": 64,
+        "harmful_nonmajor_early_sale_count": 58,
+        "hypothetical_sale_price_scorable": 172,
+        "major_down_days": 49,
+        "major_up_days": 23,
+        "major_up_sold_early_risk": 1,
+        "mean_advantage_next_open_pp": 1.1478,
+        "mean_advantage_same_morning_open_pp": 0.2792,
+        "nonmajor_down_warnings": 130,
+        "price_eligible_not_actual_fills": 163,
+        "same_day_gap5_count": 25,
+        "severe_down_hit": 44,
+        "severe_down_missed": 5,
+        "severe_hit_before_already_down5": 39,
+        "stockdays": 432,
+        "warnings": 174
+      },
+      "strict": {
+        "beneficial_early_sale_count": 51,
+        "beneficial_nonmajor_early_sale_count": 21,
+        "earliest_severe_warning": "2026-09-10T09:55:00-04:00",
+        "gap5_with_preopen_warning": 18,
+        "harmful_early_sale_count": 41,
+        "harmful_nonmajor_early_sale_count": 33,
+        "hypothetical_sale_price_scorable": 94,
+        "major_down_days": 49,
+        "major_up_days": 23,
+        "major_up_sold_early_risk": 1,
+        "mean_advantage_next_open_pp": 1.1981,
+        "mean_advantage_same_morning_open_pp": 1.0396,
+        "nonmajor_down_warnings": 57,
+        "price_eligible_not_actual_fills": 92,
+        "same_day_gap5_count": 25,
+        "severe_down_hit": 39,
+        "severe_down_missed": 10,
+        "severe_hit_before_already_down5": 31,
+        "stockdays": 432,
+        "warnings": 96
+      }
+    }
+  },
+  "universe": 2244
+}
