@@ -43,6 +43,11 @@ def plan(catalyst:Catalyst,quote:Quote,account:PaperAccount,now:datetime,
     if now.tzinfo is None or any(t.tzinfo is None for t in
          (catalyst.published_at,catalyst.first_seen_at,quote.observed_at,account.broker_verified_at)):
         return bad("naive timestamp")
+    if any(t > now for t in (catalyst.published_at, catalyst.first_seen_at,
+                             quote.observed_at, account.broker_verified_at)):
+        return bad("future observation forbidden")
+    if catalyst.first_seen_at < catalyst.published_at:
+        return bad("publication after first observation")
     if account.broker_environment != "PAPER":
         return bad("account is not broker-confirmed PAPER")
     if (now-account.broker_verified_at).total_seconds()>120 or (
