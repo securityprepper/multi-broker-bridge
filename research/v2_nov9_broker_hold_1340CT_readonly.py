@@ -1,4 +1,4 @@
-"""Read-only broker order fill-average vs hypothetical mark at 13:40 ET.
+"""Read-only broker order fill-average vs hypothetical mark at 13:40 CHICAGO (14:40 ET).
 No network; all inputs are read-only snapshots. No broker actions.
 """
 import json,collections
@@ -13,7 +13,7 @@ t1340=datetime(2026,11,9,14,40,tzinfo=ET)
 tstart=datetime(2026,11,9,9,30,tzinfo=ET)
 def tm(s):return datetime.fromisoformat(s.replace('Z','+00:00')).astimezone(ET)
 def pre1340_mark(sym):
-    # require exact fully completed 13:39-13:40 ET trade minute
+    # require exact fully completed 14:39-14:40 ET trade minute
     arr=[a for a in market.get(sym,[]) if tm(a[0]).strftime('%H:%M')=='14:39']
     return D(str(arr[0][4])) if len(arr)==1 else None
 orders=collections.defaultdict(list)
