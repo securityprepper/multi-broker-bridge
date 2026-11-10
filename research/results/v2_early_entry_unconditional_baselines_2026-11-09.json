@@ -1,0 +1,65 @@
+{
+  "semiconductors": {
+    "direction": "DOWN",
+    "unconditional_0945_n": 75,
+    "unconditional_0945_after30bp_win_n": 24,
+    "unconditional_0945_after30bp_mean_pct": -0.1407,
+    "selected_later_n": 9,
+    "selected_later_wins": 6,
+    "selected_later_mean_pct": 0.8568
+  },
+  "gold_miners": {
+    "direction": "DOWN",
+    "unconditional_0945_n": 75,
+    "unconditional_0945_after30bp_win_n": 25,
+    "unconditional_0945_after30bp_mean_pct": -0.3586,
+    "selected_later_n": 21,
+    "selected_later_wins": 8,
+    "selected_later_mean_pct": -0.2968
+  },
+  "energy": {
+    "direction": "UP",
+    "unconditional_0945_n": 75,
+    "unconditional_0945_after30bp_win_n": 20,
+    "unconditional_0945_after30bp_mean_pct": -0.3611,
+    "selected_later_n": 15,
+    "selected_later_wins": 5,
+    "selected_later_mean_pct": -0.2926
+  },
+  "financials": {
+    "direction": "UP",
+    "unconditional_0945_n": 75,
+    "unconditional_0945_after30bp_win_n": 9,
+    "unconditional_0945_after30bp_mean_pct": -0.3374,
+    "selected_later_n": 15,
+    "selected_later_wins": 4,
+    "selected_later_mean_pct": -0.2581
+  },
+  "industrials": {
+    "direction": "UP",
+    "unconditional_0945_n": 75,
+    "unconditional_0945_after30bp_win_n": 16,
+    "unconditional_0945_after30bp_mean_pct": -0.3698,
+    "selected_later_n": 15,
+    "selected_later_wins": 2,
+    "selected_later_mean_pct": -0.5381
+  },
+  "healthcare": {
+    "direction": "UP",
+    "unconditional_0945_n": 75,
+    "unconditional_0945_after30bp_win_n": 16,
+    "unconditional_0945_after30bp_mean_pct": -0.3572,
+    "selected_later_n": 16,
+    "selected_later_wins": 6,
+    "selected_later_mean_pct": -0.0813
+  },
+  "software": {
+    "direction": "DOWN",
+    "unconditional_0945_n": 75,
+    "unconditional_0945_after30bp_win_n": 30,
+    "unconditional_0945_after30bp_mean_pct": -0.3105,
+    "selected_later_n": 7,
+    "selected_later_wins": 3,
+    "selected_later_mean_pct": -0.3424
+  }
+}
