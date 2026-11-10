@@ -1,0 +1,10 @@
+[Unit]
+Description=Read-only PAPER recommendation fill reconciliation each minute
+[Timer]
+OnCalendar=Mon..Fri *-*-* *:*:52
+AccuracySec=1s
+RandomizedDelaySec=0
+Persistent=false
+Unit=securityprepper-recommendation-paper-reconcile.service
+[Install]
+WantedBy=timers.target
