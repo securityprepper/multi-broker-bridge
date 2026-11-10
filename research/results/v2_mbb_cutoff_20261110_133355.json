@@ -1,0 +1,38 @@
+{
+  "asof_utc": "2026-11-10T19:33:55.568840+00:00",
+  "broker_verified": true,
+  "recent_orders_complete": true,
+  "matched_lots": 11,
+  "winning_lots": 3,
+  "losing_lots": 8,
+  "filled_buys": 13,
+  "filled_sells": 11,
+  "gross_realized_paper_usd": "-44.98",
+  "after_fee_pnl_known": false,
+  "open_broker_orders": 0,
+  "broker_positions": {
+    "COP": "14",
+    "NET": "6"
+  },
+  "buy_submissions_after_1315_CT": [],
+  "unmatched_sells": [],
+  "scans_1230_to_1333": {
+    "before_1315": {
+      "scans": 53,
+      "buy_watch_appearances": 123,
+      "quote_skips": 102,
+      "cross_session_reentry_skips": 19,
+      "buy_order_reports": 2
+    },
+    "after_1315": {
+      "scans": 23,
+      "buy_watch_appearances": 0,
+      "buy_order_reports": 0,
+      "candidate_appearances": 5
+    }
+  },
+  "cutoff_control": "entry cutoff separate from holiday gate; gate_allows_new_entries is holiday status, NOT time cutoff",
+  "no_orders_by_research": true,
+  "prospective_forecast_success_unscored": true,
+  "final_1340_flatten_and_1400_verification": "PENDING_AT_FREEZE_TIME"
+}
