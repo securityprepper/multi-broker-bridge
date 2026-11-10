@@ -5,6 +5,7 @@ Any unclear ownership/leg status remains unverified and blocks GO.
 """
 from __future__ import annotations
 from decimal import Decimal,InvalidOperation
+from hashlib import sha256
 from urllib.parse import quote
 from .bridge import Unsafe,SubmissionUnknown,BrokerRejected,EVENT_TABLE,INTENT_TABLE,event,db_connect,http
 import json
@@ -24,12 +25,12 @@ def check_parent(row,parent):
         or str(parent.get("limit_price"))!=str(row["limit_price"])):
         raise Unsafe("PAPER parent identity or bracket parameters mismatch")
 
-def assess(row,parent,activities):
+def assess(row,parent,activities,extra_exit_ids=()):
     """No fabricated fee/net P&L. Requires activity UUIDs and order UUIDs."""
     check_parent(row,parent)
     legs=parent.get("legs") or []
     if not isinstance(legs,list): raise Unsafe("malformed bracket legs")
-    allowed={parent["id"]}
+    allowed={parent["id"]}|set(extra_exit_ids)
     targets=[];stops=[]
     for leg in legs:
         if not isinstance(leg,dict) or not leg.get("id") or leg.get("symbol")!=row["symbol"]:
@@ -108,10 +109,21 @@ def reconcile_one(row,httpfn=http):
     check_parent(row,parent)
     children=parent.get("legs") or []
     ids=[oid]+[x.get("id") for x in children]
+    extra=[]
+    flat_order_id=row.get("flatten_order_id")
+    if flat_order_id:
+        flat=httpfn("GET","/v2/orders/"+quote(flat_order_id,safe=""))
+        expected="TO-F-"+sha256((row["recommendation_id"]+"|PAPER|FLATTEN|v1").encode()).hexdigest()[:40]
+        if (not isinstance(flat,dict) or flat.get("id")!=flat_order_id or
+            flat.get("client_order_id")!=expected or flat.get("side")!="sell" or
+            flat.get("symbol")!=row["symbol"]):
+            raise Unsafe("forced-exit broker order origin mismatch")
+        ids.append(flat_order_id)
+        extra.append(flat_order_id)
     acts=[]
     for order_id in ids:
         acts.extend(fetch_all_activities(order_id,httpfn))
-    return assess(row,parent,acts)
+    return assess(row,parent,acts,extra_exit_ids=extra)
 
 def reconcile_once(connect=db_connect,httpfn=http):
     # Separate GET-only reconciliation, even for uncertain previous attempts.
@@ -125,9 +137,11 @@ def reconcile_once(connect=db_connect,httpfn=http):
     output=[]
     try:
         cur=conn.cursor(dictionary=True)
-        cur.execute("SELECT * FROM "+INTENT_TABLE+
-            " WHERE status IN ('BROKER_ACCEPTED','RESERVED_UNKNOWN','PARTIAL_UNPROTECTED',"+
-            "'OPEN_WITH_BRACKET','CLOSED_NEEDS_FEE_RECON') ORDER BY issued_at_utc LIMIT 50")
+        cur.execute("SELECT i.*,f.paper_broker_order_id AS flatten_order_id "+
+            "FROM "+INTENT_TABLE+" i LEFT JOIN securityprepper_trading.sp_paper_rec_flatten_intents f "+
+            "ON f.recommendation_id=i.recommendation_id"+
+            " WHERE i.status IN ('BROKER_ACCEPTED','RESERVED_UNKNOWN','PARTIAL_UNPROTECTED',"+
+            "'OPEN_WITH_BRACKET','CLOSED_NEEDS_FEE_RECON') ORDER BY i.issued_at_utc LIMIT 50")
         rows=cur.fetchall()
         conn.commit()
         for row in rows:
