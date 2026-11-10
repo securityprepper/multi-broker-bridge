@@ -35,6 +35,20 @@ A central negative case was **November 2**, when early 3/3 breadth subsequently 
 
 The analysis identifies a **signal-definition mismatch** explaining why a retrospective earliest sector net-breadth timestamp cannot be equated with an executable MBB BUY_WATCH, but does **not** solve the specific 03:18 AMD skip. Do not conflate source candle price with contemporaneous executable ask, possible broker position, order inventory or cash eligibility.
 
+
+## Additional true post-signal 15- and 60-minute forward outcomes
+
+A separate replay uses the AMD **last completed one-minute CLOSE available at the :40 scan** as its starting mark, then the latest *completed* SIP close available exactly +15 or +60 minutes later, with stale/missing marks abstained. No past move from previous close is credited, and the 30bp hurdle is hypothetical (not actual ask/bid execution cost).
+
+| First causal signal | Qualified dates | +15m >30bp favorable | +60m >30bp favorable | Mean +15m after 30bp | Mean +60m after 30bp |
+|---|---:|---:|---:|---:|---:|
+| 3/3 own-sector net breadth | **10** | **3 / 10** | **2 / 10** | **−0.1197%** | **−0.3031%** |
+| MBB four-bar AMD rising shape | **12** | **3 / 12** | **4 / 12** | **−0.3231%** | **−0.2140%** |
+
+The stricter pattern does not establish better future edge, and the earlier 3/3 signal does not attain 80% after-cost precision; +60m is 20% for the 3/3 variant at the 30bp threshold. The longer to-13:40 CT nominal hold-win rate 7/10 for 3/3 **must not** be substituted for this actual post-signal 60-minute result. Data are repeatedly researched, not untouched holdout. A severe Nov2 intraday reversal demonstrates why false bullish alerts and protective exits need their own testing.
+
+New code `research/v2_mbb_shape_forward_15m_60m_20261109.py`, 6 additional no-lookahead tests and full JSON under `research/results/v2_mbb_shape_forward_15m_60m_20261109.json`. Total of **26 targeted offline tests passed** (12+8+6).
+
 ## Diagnostic solution committed for a future eligible session, no broker/API connections
 
 `research/v2_mbb_next_session_skip_diagnostic_20261109.py` accepts already-collected `journalctl -o short-iso` lines and emits only sanitized symbol/decision codes (no quote, cash, account ID, token or order UUID). It separates:
@@ -44,7 +58,7 @@ The analysis identifies a **signal-definition mismatch** explaining why a retros
 - `BUY_WATCH_WITHOUT_SKIP_OR_ORDER_CHECK_RESERVATION_AND_BROKER`: inspect atomic reservation state and independently read broker;
 - `BUY_ORDER_REQUEST_RECORDED_BROKER_FILL_NOT_PROVEN`: follow with broker fill confirmation, never treat pending_new as filled.
 
-Run read-only on a future eligible date **after** that session's journal exists; verify fresh quotes, broker positions/open orders and account/sector status independently via authorized read-only broker tools. This research task does NOT activate collection or change V1. 20 offline tests (12 as-of/no-lookahead shape/outcome + 8 sanitized diagnostic) passed on www3.
+Run read-only on a future eligible date **after** that session's journal exists; verify fresh quotes, broker positions/open orders and account/sector status independently via authorized read-only broker tools. This research task does NOT activate collection or change V1. 26 offline tests (12 as-of/no-lookahead shape/outcome + 8 sanitized diagnostic + 6 strict post-signal horizons) passed on www3.
 
 ## Limitations and next test
 
