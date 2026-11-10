@@ -1,0 +1,35 @@
+[Unit]
+Description=SecurityPrepper isolated recommendation-to-Alpaca PAPER bridge
+Wants=network-online.target
+After=network-online.target
+ConditionPathExists=/etc/securityprepper/recommendation-paper-bridge/COMMISSIONED
+
+[Service]
+Type=oneshot
+User=alpacafeed
+Group=sectorread
+WorkingDirectory=/opt/securityprepper/recommendation-paper-bridge
+Environment=PYTHONPATH=/opt/securityprepper/recommendation-paper-bridge:/opt/securityprepper/multi-broker-bridge
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=PAPER_BRIDGE_COMMISSIONED=0
+Environment=PAPER_BRIDGE_SHARED_LOCK_ATTESTED=0
+Environment=PAPER_BRIDGE_EXIT_GUARD_ATTESTED=0
+Environment=PAPER_BRIDGE_ROUTER_CNF=/etc/securityprepper/recommendation-paper-bridge/router.cnf
+Environment=PAPER_BRIDGE_HOLIDAY_CACHE=/var/lib/securityprepper-recommendation-paper-bridge/holiday_gate.json
+LoadCredential=alpaca_data_key_id:/etc/securityprepper/alpaca-feed/private/alpaca_data_key_id
+LoadCredential=alpaca_data_secret:/etc/securityprepper/alpaca-feed/private/alpaca_data_secret
+StateDirectory=securityprepper-recommendation-paper-bridge
+StateDirectoryMode=0700
+TimeoutStartSec=75
+UMask=0077
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectHome=yes
+ProtectSystem=strict
+CapabilityBoundingSet=
+AmbientCapabilities=
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictSUIDSGID=yes
+RestrictRealtime=yes
+ExecStart=/usr/bin/python3 -B -m recommendation_paper_bridge.bridge run-once
