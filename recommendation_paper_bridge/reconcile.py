@@ -154,3 +154,11 @@ def reconcile_once(connect=db_connect,httpfn=http):
                                "state":"UNKNOWN_READBACK","reason":type(exc).__name__})
         return output
     finally:conn.close()
+
+def main():
+    import argparse
+    p=argparse.ArgumentParser()
+    p.add_argument("--once",action="store_true",required=True)
+    p.parse_args()
+    print(json.dumps(reconcile_once(),sort_keys=True))
+if __name__=="__main__":main()
