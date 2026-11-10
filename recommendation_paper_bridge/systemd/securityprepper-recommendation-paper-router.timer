@@ -1,0 +1,10 @@
+[Unit]
+Description=Isolated recommendation-to-Alpaca PAPER bracket router each minute
+[Timer]
+OnCalendar=Mon..Fri *-*-* *:*:50
+AccuracySec=1s
+RandomizedDelaySec=0
+Persistent=false
+Unit=securityprepper-recommendation-paper-router.service
+[Install]
+WantedBy=timers.target
