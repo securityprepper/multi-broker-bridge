@@ -146,6 +146,10 @@ def capture(news_path, holiday_path, state_dir, now=None):
     articles = feed.get("recent")
     if not isinstance(articles, list) or len(articles) > 1000:
         raise EvidenceError("invalid bounded feed")
+    # Normalize all stories before any writes, sorting by first-observed time.
+    # A source can repeat one ID with changed latency/first-seen metadata.
+    prepared = [canonical_article(raw, asof) for raw in articles]
+    prepared.sort(key=lambda x: (x["observed_at_utc"], x["news_id"]))
     state_dir = Path(state_dir)
     state_dir.mkdir(mode=0o750, parents=True, exist_ok=True)
     marker = state_dir / "activation.json"
@@ -154,9 +158,8 @@ def capture(news_path, holiday_path, state_dir, now=None):
                   "content_digest":"activation"}
     write_once(marker, activation)
     activated = timestamp(json.loads(marker.read_text(encoding="utf8"))["activated_at_utc"])
-    created = existing = prospective = 0
-    for raw in articles:
-        src = canonical_article(raw, asof)
+    created = existing = prospective = revisions = 0
+    for src in prepared:
         observed = timestamp(src["observed_at_utc"])
         published = timestamp(src["published_at_utc"])
         digest = content_digest(src)
@@ -173,14 +176,28 @@ def capture(news_path, holiday_path, state_dir, now=None):
                   "issuer_verified":False,"guidance_change_verified":False,
                   "trade_authorized":False,"orders_submitted":0,
                   "provenance":"LOCAL_GET_ONLY_NEWS_OBSERVER"}
-        if write_once(path, record):
+        try:
+            initial_created = write_once(path, record)
+        except EvidenceError:
+            # ID already sealed with changed metadata: never overwrite or
+            # count a second catalyst. Preserve a separate immutable revision.
+            revision = dict(record, prospective_archive=False,
+                            revision_only=True, first_news_id=src["news_id"])
+            revision_path = path.with_name(
+                path.stem + ".rev." + digest[:16] + ".json")
+            if write_once(revision_path, revision):
+                revisions += 1
+            else:
+                existing += 1
+            continue
+        if initial_created:
             created += 1
             prospective += bool(future_eligible)
         else:
             existing += 1
     return {"status":"ARCHIVED_RESEARCH_ONLY","created":created,
-            "existing":existing,"prospective_new":prospective,
-            "sample_count":len(articles)}
+            "revision_created":revisions, "existing":existing,
+            "prospective_new":prospective,"sample_count":len(articles)}
 
 def main():
     parser = argparse.ArgumentParser()
