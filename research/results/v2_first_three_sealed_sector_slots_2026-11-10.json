@@ -1,0 +1,265 @@
+{
+  "brokers_queried": false,
+  "caution": "Feature-only seals do not establish forward prediction hit rate; mark changes are descriptive and not executable fills.",
+  "not_a_trading_recommendation": true,
+  "orders_submitted": 0,
+  "research_only": true,
+  "seals": [
+    {
+      "classifications": {
+        "DOWN": 0,
+        "OTHER": 0,
+        "UP": 0
+      },
+      "etf_marks": {
+        "energy": {
+          "bar_end": "2026-11-10T09:35:00-05:00",
+          "etf": "XLE",
+          "mark": 60.57
+        },
+        "financials": {
+          "bar_end": "2026-11-10T09:35:00-05:00",
+          "etf": "XLF",
+          "mark": 58.165
+        },
+        "healthcare": {
+          "bar_end": "2026-11-10T09:35:00-05:00",
+          "etf": "XLV",
+          "mark": 188.005
+        },
+        "industrials": {
+          "bar_end": "2026-11-10T09:35:00-05:00",
+          "etf": "XLI",
+          "mark": 168.065
+        },
+        "semiconductors": {
+          "bar_end": "2026-11-10T09:35:00-05:00",
+          "etf": "SOXX",
+          "mark": 144.3
+        }
+      },
+      "feature_counts": {
+        "ABSTAIN_MISSING_ASOF_DATA": 2,
+        "ASOF_FEATURES": 5
+      },
+      "observation_et": "2026-11-10T09:35:25.240489-05:00",
+      "slot": "09:35"
+    },
+    {
+      "classifications": {
+        "DOWN": 0,
+        "OTHER": 0,
+        "UP": 0
+      },
+      "etf_marks": {
+        "energy": {
+          "bar_end": "2026-11-10T09:45:00-05:00",
+          "etf": "XLE",
+          "mark": 61.105
+        },
+        "financials": {
+          "bar_end": "2026-11-10T09:45:00-05:00",
+          "etf": "XLF",
+          "mark": 58.095
+        },
+        "gold_miners": {
+          "bar_end": "2026-11-10T09:45:00-05:00",
+          "etf": "GDX",
+          "mark": 87.27
+        },
+        "healthcare": {
+          "bar_end": "2026-11-10T09:45:00-05:00",
+          "etf": "XLV",
+          "mark": 187.75
+        },
+        "industrials": {
+          "bar_end": "2026-11-10T09:45:00-05:00",
+          "etf": "XLI",
+          "mark": 167.64
+        },
+        "semiconductors": {
+          "bar_end": "2026-11-10T09:45:00-05:00",
+          "etf": "SOXX",
+          "mark": 146.235
+        },
+        "software": {
+          "bar_end": "2026-11-10T09:45:00-05:00",
+          "etf": "IGV",
+          "mark": 100.58
+        }
+      },
+      "feature_counts": {
+        "ABSTAIN_MISSING_ASOF_DATA": 0,
+        "ASOF_FEATURES": 7
+      },
+      "observation_et": "2026-11-10T09:45:25.279756-05:00",
+      "slot": "09:45"
+    },
+    {
+      "classifications": {
+        "DOWN": 0,
+        "OTHER": 0,
+        "UP": 0
+      },
+      "etf_marks": {
+        "energy": {
+          "bar_end": "2026-11-10T10:05:00-05:00",
+          "etf": "XLE",
+          "mark": 61.845
+        },
+        "financials": {
+          "bar_end": "2026-11-10T10:05:00-05:00",
+          "etf": "XLF",
+          "mark": 58.0558
+        },
+        "gold_miners": {
+          "bar_end": "2026-11-10T10:05:00-05:00",
+          "etf": "GDX",
+          "mark": 88.09
+        },
+        "healthcare": {
+          "bar_end": "2026-11-10T10:05:00-05:00",
+          "etf": "XLV",
+          "mark": 187.53
+        },
+        "industrials": {
+          "bar_end": "2026-11-10T10:05:00-05:00",
+          "etf": "XLI",
+          "mark": 167.87
+        },
+        "semiconductors": {
+          "bar_end": "2026-11-10T10:05:00-05:00",
+          "etf": "SOXX",
+          "mark": 149.075
+        },
+        "software": {
+          "bar_end": "2026-11-10T10:05:00-05:00",
+          "etf": "IGV",
+          "mark": 100.95
+        }
+      },
+      "feature_counts": {
+        "ABSTAIN_MISSING_ASOF_DATA": 0,
+        "ASOF_FEATURES": 7
+      },
+      "observation_et": "2026-11-10T10:05:25.238120-05:00",
+      "slot": "10:05"
+    }
+  ],
+  "sectors": {
+    "energy": {
+      "first_to_last": {
+        "end_mark": 61.845,
+        "forward_change_pct": 2.105,
+        "start_mark": 60.57,
+        "status": "DESCRIPTIVE_MOVE_NOT_PREDICTION"
+      },
+      "forecast_score_first": {
+        "status": "NO_PRECOMMITTED_DIRECTION_NOT_SCORABLE"
+      },
+      "second_to_last": {
+        "end_mark": 61.845,
+        "forward_change_pct": 1.21103,
+        "start_mark": 61.105,
+        "status": "DESCRIPTIVE_MOVE_NOT_PREDICTION"
+      }
+    },
+    "financials": {
+      "first_to_last": {
+        "end_mark": 58.0558,
+        "forward_change_pct": -0.18774,
+        "start_mark": 58.165,
+        "status": "DESCRIPTIVE_MOVE_NOT_PREDICTION"
+      },
+      "forecast_score_first": {
+        "status": "NO_PRECOMMITTED_DIRECTION_NOT_SCORABLE"
+      },
+      "second_to_last": {
+        "end_mark": 58.0558,
+        "forward_change_pct": -0.06748,
+        "start_mark": 58.095,
+        "status": "DESCRIPTIVE_MOVE_NOT_PREDICTION"
+      }
+    },
+    "gold_miners": {
+      "first_to_last": {
+        "status": "MISSING_MARK_ABSTAIN"
+      },
+      "forecast_score_first": {
+        "status": "NO_PRECOMMITTED_DIRECTION_NOT_SCORABLE"
+      },
+      "second_to_last": {
+        "end_mark": 88.09,
+        "forward_change_pct": 0.93961,
+        "start_mark": 87.27,
+        "status": "DESCRIPTIVE_MOVE_NOT_PREDICTION"
+      }
+    },
+    "healthcare": {
+      "first_to_last": {
+        "end_mark": 187.53,
+        "forward_change_pct": -0.25265,
+        "start_mark": 188.005,
+        "status": "DESCRIPTIVE_MOVE_NOT_PREDICTION"
+      },
+      "forecast_score_first": {
+        "status": "NO_PRECOMMITTED_DIRECTION_NOT_SCORABLE"
+      },
+      "second_to_last": {
+        "end_mark": 187.53,
+        "forward_change_pct": -0.11718,
+        "start_mark": 187.75,
+        "status": "DESCRIPTIVE_MOVE_NOT_PREDICTION"
+      }
+    },
+    "industrials": {
+      "first_to_last": {
+        "end_mark": 167.87,
+        "forward_change_pct": -0.11603,
+        "start_mark": 168.065,
+        "status": "DESCRIPTIVE_MOVE_NOT_PREDICTION"
+      },
+      "forecast_score_first": {
+        "status": "NO_PRECOMMITTED_DIRECTION_NOT_SCORABLE"
+      },
+      "second_to_last": {
+        "end_mark": 167.87,
+        "forward_change_pct": 0.1372,
+        "start_mark": 167.64,
+        "status": "DESCRIPTIVE_MOVE_NOT_PREDICTION"
+      }
+    },
+    "semiconductors": {
+      "first_to_last": {
+        "end_mark": 149.075,
+        "forward_change_pct": 3.30908,
+        "start_mark": 144.3,
+        "status": "DESCRIPTIVE_MOVE_NOT_PREDICTION"
+      },
+      "forecast_score_first": {
+        "status": "NO_PRECOMMITTED_DIRECTION_NOT_SCORABLE"
+      },
+      "second_to_last": {
+        "end_mark": 149.075,
+        "forward_change_pct": 1.94208,
+        "start_mark": 146.235,
+        "status": "DESCRIPTIVE_MOVE_NOT_PREDICTION"
+      }
+    },
+    "software": {
+      "first_to_last": {
+        "status": "MISSING_MARK_ABSTAIN"
+      },
+      "forecast_score_first": {
+        "status": "NO_PRECOMMITTED_DIRECTION_NOT_SCORABLE"
+      },
+      "second_to_last": {
+        "end_mark": 100.95,
+        "forward_change_pct": 0.36787,
+        "start_mark": 100.58,
+        "status": "DESCRIPTIVE_MOVE_NOT_PREDICTION"
+      }
+    }
+  }
+}
+
