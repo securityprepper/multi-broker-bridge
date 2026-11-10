@@ -118,7 +118,7 @@ def event(cur, rec_id, kind, payload):
     cur.execute("INSERT INTO "+EVENT_TABLE+"(recommendation_id,event_type,evidence_json) VALUES(%s,%s,%s)",
                 (rec_id,kind,json.dumps(payload,sort_keys=True,separators=(",",":"))))
 
-def ingest(r, now=None, connect=db_connect):
+def ingest(r, now=None, connect=db_connect, test_rollback=False):
     s=validate_recommendation(r,now)
     conn=connect("PAPER_BRIDGE_INTAKE_CNF")
     try:
@@ -159,8 +159,23 @@ def ingest(r, now=None, connect=db_connect):
              as_db_time(s["quote"]),"limit "+str(s["limit"]),
              "target "+str(s["target"])+"; stop "+str(s["stop"]),
              "NO LIVE; order receipt mandatory; 13:40 CT flat",as_db_time(s["expiry"]),s["rationale"]))
-        conn.commit()
-        return {"recommendation_id":s["id"],"status":s["status"],
+        if test_rollback:
+            # Verify both new and canonical legacy ledger rows within the
+            # same transaction, then leave absolutely no persistent test data.
+            cur.execute("SELECT COUNT(*) FROM "+INTENT_TABLE+
+                        " WHERE recommendation_id=%s",(s["id"],))
+            a=cur.fetchone()[0]
+            cur.execute("SELECT COUNT(*) FROM "+DB_NAME+
+                        ".sp_live_recommendation_ledger WHERE f_recommendation_id=%s",(s["id"],))
+            b=cur.fetchone()[0]
+            cur.execute("SELECT COUNT(*) FROM "+DB_NAME+
+                        ".sp_notes_recommendations WHERE f_recommendation_id=%s",(s["id"],))
+            c=cur.fetchone()[0]
+            if (a,b,c)!=(1,1,1): raise Unsafe("atomic dual-ledger readback failed")
+            conn.rollback()
+        else:
+            conn.commit()
+        return {"recommendation_id":s["id"],"status":"ROLLBACK_VERIFIED" if test_rollback else s["status"],
                 "client_order_id":s["client_id"],"intended_qty":s["qty"],
                 "order_submitted":False}
     except Exception:
@@ -352,11 +367,12 @@ def process_once(now=None, connect=db_connect, httpfn=http):
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("mode",choices=("intake","run-once","status"))
+    p.add_argument("--test-rollback",action="store_true")
     args=p.parse_args()
     if args.mode=="intake":
         import sys
         r=json.load(sys.stdin)
-        print(json.dumps(ingest(r),sort_keys=True))
+        print(json.dumps(ingest(r,test_rollback=args.test_rollback),sort_keys=True))
     elif args.mode=="run-once":
         print(json.dumps(process_once(),sort_keys=True))
     else:
