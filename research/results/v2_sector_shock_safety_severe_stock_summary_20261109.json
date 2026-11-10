@@ -1,0 +1,723 @@
+{
+  "asof": "2026-11-09",
+  "period": "2025-11-03 to 2026-11-06 completed daily/5m adjusted Alpaca SIP trade bars",
+  "unit": "16 own-sector constituent tickers x 248 strictly prior-five-eligible completed sessions = 3968 stock-days",
+  "definition_major": "either prior RTH close-to-same-day RTH close or current RTH open-to-close >=+5% or <=-5% (separate two-sided labels)",
+  "signals": "day ETF RTH first open vs TWO consecutive completed five-minute closes, >=2/3 or both of two peers threshold/4 same sign, same-timestamp. Stock risk -2.5% TOTAL incl >=1pp past15m from prev RTH close.",
+  "dates_are_historically_researched": true,
+  "observed_shock_alone_is_NOT_trade_or_position_risk_prediction": true,
+  "sectors": {
+    "semiconductors": {
+      "symbols": [
+        "AMD",
+        "MU",
+        "NVDA"
+      ],
+      "days": 248,
+      "major_down": 66,
+      "major_up": 92,
+      "new_sector_down": {
+        "alerted_stockdays": 36,
+        "detected_major": 19,
+        "missed_major": 47,
+        "nonmajor_warned": 17,
+        "major_warned_before_minus_5": 4,
+        "major_warned_when_already_minus_5": 15,
+        "alert_selling_would_avoid_0p3pp_to_close": 12
+      },
+      "old_sector_down": {
+        "alerted_stockdays": 177,
+        "detected_major": 53,
+        "missed_major": 13,
+        "nonmajor_warned": 124,
+        "major_warned_before_minus_5": 23,
+        "major_warned_when_already_minus_5": 30,
+        "alert_selling_would_avoid_0p3pp_to_close": 75
+      },
+      "new_sector_up": {
+        "alerted_stockdays": 6,
+        "detected_major": 4,
+        "missed_major": 88,
+        "nonmajor_warned": 2
+      },
+      "old_sector_up": {
+        "alerted_stockdays": 168,
+        "detected_major": 43,
+        "missed_major": 49,
+        "nonmajor_warned": 125
+      },
+      "strict_stock_down": {
+        "alerted_stockdays": 173,
+        "detected_major": 58,
+        "missed_major": 8,
+        "nonmajor_warned": 115
+      },
+      "strict_60m_earlier": {
+        "alerts": 132,
+        "scorable_60m": 129,
+        "forward_decline_at_least_0p3pct": 56,
+        "forward_decline_any": 63,
+        "forward_rebound_at_least_2pct": 13,
+        "mean_signed_sell_vs_hold_60m_before_cost_pct": -0.02854,
+        "after_30bp_mean_pct": -0.32854
+      },
+      "strict_60m_later": {
+        "alerts": 41,
+        "scorable_60m": 41,
+        "forward_decline_at_least_0p3pct": 20,
+        "forward_decline_any": 21,
+        "forward_rebound_at_least_2pct": 2,
+        "mean_signed_sell_vs_hold_60m_before_cost_pct": 0.65378,
+        "after_30bp_mean_pct": 0.35378
+      },
+      "strict_major_down_missed": [
+        {
+          "date": "2026-01-30",
+          "symbol": "AMD",
+          "close_close_pct": -6.07323,
+          "rth_open_close_pct": -0.06753,
+          "opening_gap_pct": -6.0098,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        },
+        {
+          "date": "2026-06-05",
+          "symbol": "NVDA",
+          "close_close_pct": -6.22042,
+          "rth_open_close_pct": -4.37762,
+          "opening_gap_pct": -1.9272,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": true
+        },
+        {
+          "date": "2026-06-23",
+          "symbol": "AMD",
+          "close_close_pct": -5.73894,
+          "rth_open_close_pct": 2.14701,
+          "opening_gap_pct": -7.7202,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        },
+        {
+          "date": "2026-07-31",
+          "symbol": "AMD",
+          "close_close_pct": -1.87295,
+          "rth_open_close_pct": -6.66993,
+          "opening_gap_pct": 5.1398,
+          "reached_total_2p5": false,
+          "new_sector_shock_before_close": false
+        },
+        {
+          "date": "2026-09-14",
+          "symbol": "MU",
+          "close_close_pct": -5.19519,
+          "rth_open_close_pct": 2.04016,
+          "opening_gap_pct": -7.0907,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        },
+        {
+          "date": "2026-10-14",
+          "symbol": "AMD",
+          "close_close_pct": -5.74217,
+          "rth_open_close_pct": -3.19216,
+          "opening_gap_pct": -2.6341,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        },
+        {
+          "date": "2026-10-30",
+          "symbol": "AMD",
+          "close_close_pct": -10.81806,
+          "rth_open_close_pct": -0.75049,
+          "opening_gap_pct": -10.1437,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        },
+        {
+          "date": "2026-11-02",
+          "symbol": "MU",
+          "close_close_pct": -5.83594,
+          "rth_open_close_pct": -6.45399,
+          "opening_gap_pct": 0.6607,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        }
+      ]
+    },
+    "gold_miners": {
+      "symbols": [
+        "NEM",
+        "AEM",
+        "KGC"
+      ],
+      "days": 248,
+      "major_down": 46,
+      "major_up": 50,
+      "new_sector_down": {
+        "alerted_stockdays": 24,
+        "detected_major": 12,
+        "missed_major": 34,
+        "nonmajor_warned": 12,
+        "major_warned_before_minus_5": 4,
+        "major_warned_when_already_minus_5": 8,
+        "alert_selling_would_avoid_0p3pp_to_close": 7
+      },
+      "old_sector_down": {
+        "alerted_stockdays": 201,
+        "detected_major": 35,
+        "missed_major": 11,
+        "nonmajor_warned": 166,
+        "major_warned_before_minus_5": 16,
+        "major_warned_when_already_minus_5": 19,
+        "alert_selling_would_avoid_0p3pp_to_close": 59
+      },
+      "new_sector_up": {
+        "alerted_stockdays": 6,
+        "detected_major": 2,
+        "missed_major": 48,
+        "nonmajor_warned": 4
+      },
+      "old_sector_up": {
+        "alerted_stockdays": 189,
+        "detected_major": 36,
+        "missed_major": 14,
+        "nonmajor_warned": 153
+      },
+      "strict_stock_down": {
+        "alerted_stockdays": 128,
+        "detected_major": 37,
+        "missed_major": 9,
+        "nonmajor_warned": 91
+      },
+      "strict_60m_earlier": {
+        "alerts": 107,
+        "scorable_60m": 105,
+        "forward_decline_at_least_0p3pct": 49,
+        "forward_decline_any": 56,
+        "forward_rebound_at_least_2pct": 7,
+        "mean_signed_sell_vs_hold_60m_before_cost_pct": 0.06509,
+        "after_30bp_mean_pct": -0.23491
+      },
+      "strict_60m_later": {
+        "alerts": 21,
+        "scorable_60m": 20,
+        "forward_decline_at_least_0p3pct": 7,
+        "forward_decline_any": 8,
+        "forward_rebound_at_least_2pct": 1,
+        "mean_signed_sell_vs_hold_60m_before_cost_pct": -0.48422,
+        "after_30bp_mean_pct": -0.78422
+      },
+      "strict_major_down_missed": [
+        {
+          "date": "2026-03-18",
+          "symbol": "AEM",
+          "close_close_pct": -6.46809,
+          "rth_open_close_pct": -3.17256,
+          "opening_gap_pct": -3.4035,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        },
+        {
+          "date": "2026-03-18",
+          "symbol": "KGC",
+          "close_close_pct": -6.66129,
+          "rth_open_close_pct": -3.25978,
+          "opening_gap_pct": -3.5161,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        },
+        {
+          "date": "2026-04-15",
+          "symbol": "NEM",
+          "close_close_pct": -5.23889,
+          "rth_open_close_pct": -3.70528,
+          "opening_gap_pct": -1.5926,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        },
+        {
+          "date": "2026-05-15",
+          "symbol": "NEM",
+          "close_close_pct": -6.28277,
+          "rth_open_close_pct": -2.84238,
+          "opening_gap_pct": -3.541,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        },
+        {
+          "date": "2026-05-15",
+          "symbol": "AEM",
+          "close_close_pct": -6.39348,
+          "rth_open_close_pct": -2.57838,
+          "opening_gap_pct": -3.9161,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        },
+        {
+          "date": "2026-06-10",
+          "symbol": "NEM",
+          "close_close_pct": -5.83697,
+          "rth_open_close_pct": -1.7477,
+          "opening_gap_pct": -4.162,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        },
+        {
+          "date": "2026-09-28",
+          "symbol": "AEM",
+          "close_close_pct": -5.19708,
+          "rth_open_close_pct": 0.43611,
+          "opening_gap_pct": -5.6087,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        },
+        {
+          "date": "2026-10-22",
+          "symbol": "AEM",
+          "close_close_pct": -6.0522,
+          "rth_open_close_pct": -2.71898,
+          "opening_gap_pct": -3.4264,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        },
+        {
+          "date": "2026-10-29",
+          "symbol": "KGC",
+          "close_close_pct": -6.00522,
+          "rth_open_close_pct": 0.6993,
+          "opening_gap_pct": -6.658,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        }
+      ]
+    },
+    "energy": {
+      "symbols": [
+        "XOM",
+        "CVX"
+      ],
+      "days": 248,
+      "major_down": 2,
+      "major_up": 1,
+      "new_sector_down": {
+        "alerted_stockdays": 6,
+        "detected_major": 0,
+        "missed_major": 2,
+        "nonmajor_warned": 6,
+        "major_warned_before_minus_5": 0,
+        "major_warned_when_already_minus_5": 0,
+        "alert_selling_would_avoid_0p3pp_to_close": 4
+      },
+      "old_sector_down": {
+        "alerted_stockdays": 6,
+        "detected_major": 0,
+        "missed_major": 2,
+        "nonmajor_warned": 6,
+        "major_warned_before_minus_5": 0,
+        "major_warned_when_already_minus_5": 0,
+        "alert_selling_would_avoid_0p3pp_to_close": 4
+      },
+      "new_sector_up": {
+        "alerted_stockdays": 6,
+        "detected_major": 0,
+        "missed_major": 1,
+        "nonmajor_warned": 6
+      },
+      "old_sector_up": {
+        "alerted_stockdays": 6,
+        "detected_major": 0,
+        "missed_major": 1,
+        "nonmajor_warned": 6
+      },
+      "strict_stock_down": {
+        "alerted_stockdays": 5,
+        "detected_major": 1,
+        "missed_major": 1,
+        "nonmajor_warned": 4
+      },
+      "strict_60m_earlier": {
+        "alerts": 5,
+        "scorable_60m": 5,
+        "forward_decline_at_least_0p3pct": 3,
+        "forward_decline_any": 3,
+        "forward_rebound_at_least_2pct": 0,
+        "mean_signed_sell_vs_hold_60m_before_cost_pct": 0.38227,
+        "after_30bp_mean_pct": 0.08227
+      },
+      "strict_60m_later": {
+        "alerts": 0,
+        "scorable_60m": 0,
+        "forward_decline_at_least_0p3pct": 0,
+        "forward_decline_any": 0,
+        "forward_rebound_at_least_2pct": 0,
+        "mean_signed_sell_vs_hold_60m_before_cost_pct": null,
+        "after_30bp_mean_pct": null
+      },
+      "strict_major_down_missed": [
+        {
+          "date": "2026-01-06",
+          "symbol": "CVX",
+          "close_close_pct": -4.46635,
+          "rth_open_close_pct": -5.04003,
+          "opening_gap_pct": 0.6041,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        }
+      ]
+    },
+    "financials": {
+      "symbols": [
+        "JPM",
+        "BAC"
+      ],
+      "days": 248,
+      "major_down": 3,
+      "major_up": 0,
+      "new_sector_down": {
+        "alerted_stockdays": 2,
+        "detected_major": 2,
+        "missed_major": 1,
+        "nonmajor_warned": 0,
+        "major_warned_before_minus_5": 2,
+        "major_warned_when_already_minus_5": 0,
+        "alert_selling_would_avoid_0p3pp_to_close": 2
+      },
+      "old_sector_down": {
+        "alerted_stockdays": 2,
+        "detected_major": 2,
+        "missed_major": 1,
+        "nonmajor_warned": 0,
+        "major_warned_before_minus_5": 2,
+        "major_warned_when_already_minus_5": 0,
+        "alert_selling_would_avoid_0p3pp_to_close": 2
+      },
+      "new_sector_up": {
+        "alerted_stockdays": 2,
+        "detected_major": 0,
+        "missed_major": 0,
+        "nonmajor_warned": 2
+      },
+      "old_sector_up": {
+        "alerted_stockdays": 2,
+        "detected_major": 0,
+        "missed_major": 0,
+        "nonmajor_warned": 2
+      },
+      "strict_stock_down": {
+        "alerted_stockdays": 17,
+        "detected_major": 2,
+        "missed_major": 1,
+        "nonmajor_warned": 15
+      },
+      "strict_60m_earlier": {
+        "alerts": 14,
+        "scorable_60m": 14,
+        "forward_decline_at_least_0p3pct": 5,
+        "forward_decline_any": 6,
+        "forward_rebound_at_least_2pct": 0,
+        "mean_signed_sell_vs_hold_60m_before_cost_pct": 0.1447,
+        "after_30bp_mean_pct": -0.1553
+      },
+      "strict_60m_later": {
+        "alerts": 3,
+        "scorable_60m": 3,
+        "forward_decline_at_least_0p3pct": 2,
+        "forward_decline_any": 3,
+        "forward_rebound_at_least_2pct": 0,
+        "mean_signed_sell_vs_hold_60m_before_cost_pct": 1.09092,
+        "after_30bp_mean_pct": 0.79092
+      },
+      "strict_major_down_missed": [
+        {
+          "date": "2026-11-05",
+          "symbol": "BAC",
+          "close_close_pct": -3.56451,
+          "rth_open_close_pct": -5.45109,
+          "opening_gap_pct": 1.9954,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": true
+        }
+      ]
+    },
+    "industrials": {
+      "symbols": [
+        "CAT",
+        "GE"
+      ],
+      "days": 248,
+      "major_down": 12,
+      "major_up": 12,
+      "new_sector_down": {
+        "alerted_stockdays": 2,
+        "detected_major": 1,
+        "missed_major": 11,
+        "nonmajor_warned": 1,
+        "major_warned_before_minus_5": 1,
+        "major_warned_when_already_minus_5": 0,
+        "alert_selling_would_avoid_0p3pp_to_close": 1
+      },
+      "old_sector_down": {
+        "alerted_stockdays": 2,
+        "detected_major": 1,
+        "missed_major": 11,
+        "nonmajor_warned": 1,
+        "major_warned_before_minus_5": 1,
+        "major_warned_when_already_minus_5": 0,
+        "alert_selling_would_avoid_0p3pp_to_close": 1
+      },
+      "new_sector_up": {
+        "alerted_stockdays": 0,
+        "detected_major": 0,
+        "missed_major": 12,
+        "nonmajor_warned": 0
+      },
+      "old_sector_up": {
+        "alerted_stockdays": 0,
+        "detected_major": 0,
+        "missed_major": 12,
+        "nonmajor_warned": 0
+      },
+      "strict_stock_down": {
+        "alerted_stockdays": 44,
+        "detected_major": 8,
+        "missed_major": 4,
+        "nonmajor_warned": 36
+      },
+      "strict_60m_earlier": {
+        "alerts": 29,
+        "scorable_60m": 29,
+        "forward_decline_at_least_0p3pct": 10,
+        "forward_decline_any": 14,
+        "forward_rebound_at_least_2pct": 2,
+        "mean_signed_sell_vs_hold_60m_before_cost_pct": -0.01898,
+        "after_30bp_mean_pct": -0.31898
+      },
+      "strict_60m_later": {
+        "alerts": 15,
+        "scorable_60m": 15,
+        "forward_decline_at_least_0p3pct": 9,
+        "forward_decline_any": 10,
+        "forward_rebound_at_least_2pct": 1,
+        "mean_signed_sell_vs_hold_60m_before_cost_pct": 0.37785,
+        "after_30bp_mean_pct": 0.07785
+      },
+      "strict_major_down_missed": [
+        {
+          "date": "2026-06-26",
+          "symbol": "CAT",
+          "close_close_pct": -5.68955,
+          "rth_open_close_pct": -3.40456,
+          "opening_gap_pct": -2.3655,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        },
+        {
+          "date": "2026-08-19",
+          "symbol": "GE",
+          "close_close_pct": -5.04558,
+          "rth_open_close_pct": -4.62358,
+          "opening_gap_pct": -0.4425,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        },
+        {
+          "date": "2026-10-29",
+          "symbol": "CAT",
+          "close_close_pct": -9.468,
+          "rth_open_close_pct": 1.73023,
+          "opening_gap_pct": -11.0078,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        },
+        {
+          "date": "2026-11-04",
+          "symbol": "CAT",
+          "close_close_pct": -5.21912,
+          "rth_open_close_pct": -2.9781,
+          "opening_gap_pct": -2.3098,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": false
+        }
+      ]
+    },
+    "healthcare": {
+      "symbols": [
+        "UNH",
+        "LLY"
+      ],
+      "days": 248,
+      "major_down": 5,
+      "major_up": 7,
+      "new_sector_down": {
+        "alerted_stockdays": 2,
+        "detected_major": 0,
+        "missed_major": 5,
+        "nonmajor_warned": 2,
+        "major_warned_before_minus_5": 0,
+        "major_warned_when_already_minus_5": 0,
+        "alert_selling_would_avoid_0p3pp_to_close": 1
+      },
+      "old_sector_down": {
+        "alerted_stockdays": 2,
+        "detected_major": 0,
+        "missed_major": 5,
+        "nonmajor_warned": 2,
+        "major_warned_before_minus_5": 0,
+        "major_warned_when_already_minus_5": 0,
+        "alert_selling_would_avoid_0p3pp_to_close": 1
+      },
+      "new_sector_up": {
+        "alerted_stockdays": 0,
+        "detected_major": 0,
+        "missed_major": 7,
+        "nonmajor_warned": 0
+      },
+      "old_sector_up": {
+        "alerted_stockdays": 0,
+        "detected_major": 0,
+        "missed_major": 7,
+        "nonmajor_warned": 0
+      },
+      "strict_stock_down": {
+        "alerted_stockdays": 19,
+        "detected_major": 3,
+        "missed_major": 2,
+        "nonmajor_warned": 16
+      },
+      "strict_60m_earlier": {
+        "alerts": 13,
+        "scorable_60m": 13,
+        "forward_decline_at_least_0p3pct": 7,
+        "forward_decline_any": 8,
+        "forward_rebound_at_least_2pct": 0,
+        "mean_signed_sell_vs_hold_60m_before_cost_pct": 0.17027,
+        "after_30bp_mean_pct": -0.12973
+      },
+      "strict_60m_later": {
+        "alerts": 6,
+        "scorable_60m": 6,
+        "forward_decline_at_least_0p3pct": 1,
+        "forward_decline_any": 1,
+        "forward_rebound_at_least_2pct": 1,
+        "mean_signed_sell_vs_hold_60m_before_cost_pct": -0.89642,
+        "after_30bp_mean_pct": -1.19642
+      },
+      "strict_major_down_missed": [
+        {
+          "date": "2026-07-16",
+          "symbol": "UNH",
+          "close_close_pct": 1.18254,
+          "rth_open_close_pct": -5.75224,
+          "opening_gap_pct": 7.358,
+          "reached_total_2p5": false,
+          "new_sector_shock_before_close": false
+        },
+        {
+          "date": "2026-10-13",
+          "symbol": "UNH",
+          "close_close_pct": -0.11768,
+          "rth_open_close_pct": -5.00975,
+          "opening_gap_pct": 5.1501,
+          "reached_total_2p5": false,
+          "new_sector_shock_before_close": false
+        }
+      ]
+    },
+    "software": {
+      "symbols": [
+        "MSFT",
+        "CRM"
+      ],
+      "days": 248,
+      "major_down": 8,
+      "major_up": 11,
+      "new_sector_down": {
+        "alerted_stockdays": 18,
+        "detected_major": 2,
+        "missed_major": 6,
+        "nonmajor_warned": 16,
+        "major_warned_before_minus_5": 1,
+        "major_warned_when_already_minus_5": 1,
+        "alert_selling_would_avoid_0p3pp_to_close": 6
+      },
+      "old_sector_down": {
+        "alerted_stockdays": 42,
+        "detected_major": 7,
+        "missed_major": 1,
+        "nonmajor_warned": 35,
+        "major_warned_before_minus_5": 3,
+        "major_warned_when_already_minus_5": 4,
+        "alert_selling_would_avoid_0p3pp_to_close": 15
+      },
+      "new_sector_up": {
+        "alerted_stockdays": 12,
+        "detected_major": 3,
+        "missed_major": 8,
+        "nonmajor_warned": 9
+      },
+      "old_sector_up": {
+        "alerted_stockdays": 28,
+        "detected_major": 5,
+        "missed_major": 6,
+        "nonmajor_warned": 23
+      },
+      "strict_stock_down": {
+        "alerted_stockdays": 34,
+        "detected_major": 7,
+        "missed_major": 1,
+        "nonmajor_warned": 27
+      },
+      "strict_60m_earlier": {
+        "alerts": 24,
+        "scorable_60m": 22,
+        "forward_decline_at_least_0p3pct": 12,
+        "forward_decline_any": 14,
+        "forward_rebound_at_least_2pct": 0,
+        "mean_signed_sell_vs_hold_60m_before_cost_pct": 0.47321,
+        "after_30bp_mean_pct": 0.17321
+      },
+      "strict_60m_later": {
+        "alerts": 10,
+        "scorable_60m": 10,
+        "forward_decline_at_least_0p3pct": 0,
+        "forward_decline_any": 2,
+        "forward_rebound_at_least_2pct": 1,
+        "mean_signed_sell_vs_hold_60m_before_cost_pct": -0.72014,
+        "after_30bp_mean_pct": -1.02014
+      },
+      "strict_major_down_missed": [
+        {
+          "date": "2026-02-03",
+          "symbol": "CRM",
+          "close_close_pct": -6.84093,
+          "rth_open_close_pct": -4.20976,
+          "opening_gap_pct": -2.7468,
+          "reached_total_2p5": true,
+          "new_sector_shock_before_close": true
+        }
+      ]
+    }
+  },
+  "totals": {
+    "stock_days": 3968,
+    "major_down": 142,
+    "major_up": 173,
+    "new_sector_confirmed_major_down": 36,
+    "old_sector_confirmed_major_down": 98,
+    "strict_stock_warning_major_down": 116,
+    "new_sector_confirmed_major_up": 9,
+    "old_sector_confirmed_major_up": 84,
+    "new_sector_nonmajor_down_stockday_mentions": 54,
+    "old_sector_nonmajor_down_stockday_mentions": 334,
+    "strict_stock_nonmajor_down_stockday_mentions": 304,
+    "strict_60m_later_confirmed_down_over_30bp": 39,
+    "strict_60m_later_scorable": 95
+  },
+  "strict_non_trigger_major_day_reasons": {
+    "opening_gap_down_5pct_or_more": 7,
+    "total_minus_2p5_reached_but_no_one_pp_in_15m": 16,
+    "total_minus_2p5_not_reached_despite_open_to_close_crash": 3
+  },
+  "not_covered": "nighttime BOATS, full NBBO, real-execution estimates, held-position inventory, new untouched prospective days"
+}
