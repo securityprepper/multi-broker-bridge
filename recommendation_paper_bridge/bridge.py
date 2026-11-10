@@ -338,8 +338,19 @@ def process_once(now=None, connect=db_connect, httpfn=http):
                 response=httpfn("POST","/v2/orders",bracket_payload(row))
                 if (response.get("client_order_id")!=row["client_order_id"] or not response.get("id") or
                     response.get("order_class")!="bracket" or response.get("side")!="buy" or
-                    response.get("symbol")!=row["symbol"]):
-                    raise SubmissionUnknown("order identity/readback missing")
+                    response.get("symbol")!=row["symbol"] or response.get("type")!="limit" or
+                    response.get("time_in_force")!="day" or response.get("extended_hours") is not False or
+                    Decimal(str(response.get("limit_price","0")))!=Decimal(str(row["limit_price"])) or
+                    Decimal(str(response.get("qty","0")))!=Decimal(str(row["intended_qty"]))):
+                    raise SubmissionUnknown("PAPER bracket parent receipt mismatch")
+                # A broker acknowledgement is not sufficient; read the same
+                # parent ID back independently before claiming receipt success.
+                readback=httpfn("GET","/v2/orders/"+parse.quote(response["id"],safe="")+"?nested=true")
+                if (not isinstance(readback,dict) or readback.get("id")!=response["id"] or
+                    readback.get("client_order_id")!=row["client_order_id"] or
+                    readback.get("order_class")!="bracket" or readback.get("symbol")!=row["symbol"] or
+                    readback.get("side")!="buy"):
+                    raise SubmissionUnknown("PAPER bracket broker readback missing/mismatched")
                 cur.execute("UPDATE "+INTENT_TABLE+
                     " SET status='BROKER_ACCEPTED',broker_order_id=%s,broker_status=%s,"+
                     "broker_receipt_json=%s,last_checked_utc=UTC_TIMESTAMP(6)"+
