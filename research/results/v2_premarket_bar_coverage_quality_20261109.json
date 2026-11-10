@@ -1,0 +1,194 @@
+{
+  "coverage_proxy_not_trade_precision": true,
+  "days": 7,
+  "decisions_only_after_bar_completion_plus_15s": true,
+  "mean_joint_coverage_pct": 80.91,
+  "rows": [
+    {
+      "all_four_bounds": {
+        "first_bar_start_et": "04:00",
+        "last_bar_start_et": "09:29"
+      },
+      "amd_mu_sndk_3of3_present": 178,
+      "day": "2026-10-29",
+      "executable_nbbo_or_fill_verified": false,
+      "imputed_missing_bars": 0,
+      "minutes_possible": 330,
+      "per_symbol_present": {
+        "AMD": 207,
+        "MU": 316,
+        "SNDK": 272,
+        "SOXX": 263
+      },
+      "required_exact_simultaneous_1m_bars": [
+        "SOXX",
+        "AMD",
+        "MU",
+        "SNDK"
+      ],
+      "session": "04:00-09:30 America/New_York",
+      "soxx_allpeers_exact_minute_coverage_pct": 45.45,
+      "soxx_and_all_three_peers_present": 150
+    },
+    {
+      "all_four_bounds": {
+        "first_bar_start_et": "04:00",
+        "last_bar_start_et": "09:29"
+      },
+      "amd_mu_sndk_3of3_present": 267,
+      "day": "2026-10-30",
+      "executable_nbbo_or_fill_verified": false,
+      "imputed_missing_bars": 0,
+      "minutes_possible": 330,
+      "per_symbol_present": {
+        "AMD": 277,
+        "MU": 325,
+        "SNDK": 320,
+        "SOXX": 306
+      },
+      "required_exact_simultaneous_1m_bars": [
+        "SOXX",
+        "AMD",
+        "MU",
+        "SNDK"
+      ],
+      "session": "04:00-09:30 America/New_York",
+      "soxx_allpeers_exact_minute_coverage_pct": 76.97,
+      "soxx_and_all_three_peers_present": 254
+    },
+    {
+      "all_four_bounds": {
+        "first_bar_start_et": "04:00",
+        "last_bar_start_et": "09:28"
+      },
+      "amd_mu_sndk_3of3_present": 298,
+      "day": "2026-11-02",
+      "executable_nbbo_or_fill_verified": false,
+      "imputed_missing_bars": 0,
+      "minutes_possible": 330,
+      "per_symbol_present": {
+        "AMD": 303,
+        "MU": 327,
+        "SNDK": 328,
+        "SOXX": 230
+      },
+      "required_exact_simultaneous_1m_bars": [
+        "SOXX",
+        "AMD",
+        "MU",
+        "SNDK"
+      ],
+      "session": "04:00-09:30 America/New_York",
+      "soxx_allpeers_exact_minute_coverage_pct": 65.45,
+      "soxx_and_all_three_peers_present": 216
+    },
+    {
+      "all_four_bounds": {
+        "first_bar_start_et": "04:00",
+        "last_bar_start_et": "09:29"
+      },
+      "amd_mu_sndk_3of3_present": 311,
+      "day": "2026-11-03",
+      "executable_nbbo_or_fill_verified": false,
+      "imputed_missing_bars": 0,
+      "minutes_possible": 330,
+      "per_symbol_present": {
+        "AMD": 312,
+        "MU": 330,
+        "SNDK": 329,
+        "SOXX": 292
+      },
+      "required_exact_simultaneous_1m_bars": [
+        "SOXX",
+        "AMD",
+        "MU",
+        "SNDK"
+      ],
+      "session": "04:00-09:30 America/New_York",
+      "soxx_allpeers_exact_minute_coverage_pct": 83.94,
+      "soxx_and_all_three_peers_present": 277
+    },
+    {
+      "all_four_bounds": {
+        "first_bar_start_et": "04:00",
+        "last_bar_start_et": "09:29"
+      },
+      "amd_mu_sndk_3of3_present": 330,
+      "day": "2026-11-04",
+      "executable_nbbo_or_fill_verified": false,
+      "imputed_missing_bars": 0,
+      "minutes_possible": 330,
+      "per_symbol_present": {
+        "AMD": 330,
+        "MU": 330,
+        "SNDK": 330,
+        "SOXX": 318
+      },
+      "required_exact_simultaneous_1m_bars": [
+        "SOXX",
+        "AMD",
+        "MU",
+        "SNDK"
+      ],
+      "session": "04:00-09:30 America/New_York",
+      "soxx_allpeers_exact_minute_coverage_pct": 96.36,
+      "soxx_and_all_three_peers_present": 318
+    },
+    {
+      "all_four_bounds": {
+        "first_bar_start_et": "04:00",
+        "last_bar_start_et": "09:29"
+      },
+      "amd_mu_sndk_3of3_present": 326,
+      "day": "2026-11-05",
+      "executable_nbbo_or_fill_verified": false,
+      "imputed_missing_bars": 0,
+      "minutes_possible": 330,
+      "per_symbol_present": {
+        "AMD": 326,
+        "MU": 330,
+        "SNDK": 330,
+        "SOXX": 328
+      },
+      "required_exact_simultaneous_1m_bars": [
+        "SOXX",
+        "AMD",
+        "MU",
+        "SNDK"
+      ],
+      "session": "04:00-09:30 America/New_York",
+      "soxx_allpeers_exact_minute_coverage_pct": 98.18,
+      "soxx_and_all_three_peers_present": 324
+    },
+    {
+      "all_four_bounds": {
+        "first_bar_start_et": "04:00",
+        "last_bar_start_et": "09:29"
+      },
+      "amd_mu_sndk_3of3_present": 330,
+      "day": "2026-11-06",
+      "executable_nbbo_or_fill_verified": false,
+      "imputed_missing_bars": 0,
+      "minutes_possible": 330,
+      "per_symbol_present": {
+        "AMD": 330,
+        "MU": 330,
+        "SNDK": 330,
+        "SOXX": 330
+      },
+      "required_exact_simultaneous_1m_bars": [
+        "SOXX",
+        "AMD",
+        "MU",
+        "SNDK"
+      ],
+      "session": "04:00-09:30 America/New_York",
+      "soxx_allpeers_exact_minute_coverage_pct": 100.0,
+      "soxx_and_all_three_peers_present": 330
+    }
+  ],
+  "scope": "7-session historical coverage, NOT an independent performance holdout",
+  "source": "Alpaca historical SIP 1Min trade bars in existing read-only host cache",
+  "total_full_joint_minute_bars": 1869,
+  "total_possible_minutes": 2310
+}
