@@ -1,0 +1,45 @@
+{
+  "manual_exceeds_prior_quantity": {
+    "fake_sell_count": 0,
+    "fake_sell_order_types": [],
+    "fake_sell_quantities": [],
+    "status": "OrderRejected",
+    "warning": "Synthetic replacement-position provenance is not proven by broker aggregate symbol/quantity alone. No actual order was sent."
+  },
+  "scenario": "SOURCE_LOGIC_ONLY_NO_BROKER_ACTIONS",
+  "session_key": {
+    "legacy_both_reservations_accepted": true,
+    "note": "Second acceptance is a reservation-only demonstration. Existing tracked-row logic normally provides an additional guard; a terminal zero-fill cleanup or other tracking reconciliation could expose this gap.",
+    "same_trading_session": "2026-11-10",
+    "session_key_only_first_accepted": true,
+    "wall_date_keys": [
+      "2026-11-09",
+      "2026-11-10"
+    ]
+  },
+  "stale_row_no_position": {
+    "fake_sell_count": 0,
+    "fake_sell_order_types": [],
+    "fake_sell_quantities": [],
+    "status": "FLAT_IN_BROKER_SNAPSHOT",
+    "warning": "Synthetic replacement-position provenance is not proven by broker aggregate symbol/quantity alone. No actual order was sent."
+  },
+  "stale_row_other_strategy_same_symbol": {
+    "fake_sell_count": 1,
+    "fake_sell_order_types": [
+      "market"
+    ],
+    "fake_sell_quantities": [
+      "2"
+    ],
+    "status": "FLATTEN_IN_PROGRESS",
+    "warning": "Synthetic replacement-position provenance is not proven by broker aggregate symbol/quantity alone. No actual order was sent."
+  },
+  "unmanaged_open_order": {
+    "fake_sell_count": 0,
+    "fake_sell_order_types": [],
+    "fake_sell_quantities": [],
+    "status": "UNMANAGED_ORDER_BLOCKED",
+    "warning": "Synthetic replacement-position provenance is not proven by broker aggregate symbol/quantity alone. No actual order was sent."
+  }
+}
