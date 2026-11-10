@@ -187,7 +187,7 @@ def http(method,path,body=None,data=False):
     if data:
         if method!="GET" or not path.startswith("/v2/stocks/"):
             raise Unsafe("data GET only")
-    elif not (path.startswith("/v2/orders") or path in ("/v2/account","/v2/positions")):
+    elif not (path.startswith("/v2/orders") or path.startswith("/v2/account/activities?") or path in ("/v2/account","/v2/positions")):
         raise Unsafe("broker path forbidden")
     url=(DATA_HOST if data else PAPER_HOST)+path
     raw=None if body is None else json.dumps(body,separators=(",",":")).encode()
