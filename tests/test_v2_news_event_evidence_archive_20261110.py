@@ -45,17 +45,37 @@ class Tests(unittest.TestCase):
    fixture(d,later,news)
    r=capture(feed,gate,out,later)
    self.assertEqual(r["prospective_new"],1)
+ def test_duplicate_id_with_changed_observation_keeps_earliest(self):
+  with tempfile.TemporaryDirectory() as d:
+   feed,gate,out=fixture(d)
+   later=dict(A,observed_at_utc="2026-11-10T22:38:26+00:00",
+     latency_seconds=11,realtime_fresh=False)
+   raw=json.loads(feed.read_text())
+   raw["recent"]=[later,dict(A)]
+   feed.write_text(json.dumps(raw))
+   result=capture(feed,gate,out,NOW)
+   self.assertEqual(result["created"],1)
+   self.assertEqual(result["revision_created"],1)
+   main=[p for p in out.glob("20*/*.json") if ".rev." not in p.name][0]
+   self.assertEqual(json.loads(main.read_text())["article"]["observed_at_utc"],
+                    "2026-11-10T22:38:24+00:00")
  def test_replay_idempotent(self):
   with tempfile.TemporaryDirectory() as d:
    feed,gate,out=fixture(d)
    capture(feed,gate,out,NOW)
    r=capture(feed,gate,out,NOW)
    self.assertEqual((r["created"],r["existing"]),(0,1))
- def test_conflicting_id_blocks(self):
+ def test_conflicting_id_seals_revision_without_overwrite(self):
   with tempfile.TemporaryDirectory() as d:
    feed,gate,out=fixture(d);capture(feed,gate,out,NOW)
+   first=list(out.glob("20*/*.json"))[0]
+   original=first.read_bytes()
    fixture(d,NOW,dict(A,headline="CONFLICT"))
-   with self.assertRaises(EvidenceError): capture(feed,gate,out,NOW)
+   result=capture(feed,gate,out,NOW)
+   self.assertEqual(result["revision_created"],1)
+   self.assertEqual(first.read_bytes(),original)
+   revision=list(out.glob("20*/*.rev.*.json"))[0]
+   self.assertFalse(json.loads(revision.read_text())["prospective_archive"])
  def test_future_article_rejected(self):
   with self.assertRaises(EvidenceError):
    canonical_article(dict(A,observed_at_utc="2026-11-11T00:00:00Z"),NOW)
