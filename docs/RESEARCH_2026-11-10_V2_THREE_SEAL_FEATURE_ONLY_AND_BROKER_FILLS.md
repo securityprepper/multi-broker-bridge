@@ -31,3 +31,7 @@ Keep the low-noise V2 notification standard: no BUY/SHORT based on SOXX/XLE's al
 
 No V1 files, timers, broker orders, host production code or LIVE permissions were changed.
 
+
+## 09:37 CST broker verification update (separate, later snapshot)
+
+A second independent GET-only PAPER readback at **2026-11-10 09:37:38 CST** confirmed **13/13 MBB-tagged broker orders FILLED** (seven buys, six sells), **zero open broker orders**, and **COP 14 shares as the only remaining account position**. BKR 41 shares had fully sold at 09:33:47–09:33:49 CST for $47.99, after buying 41 at $48.07: **-$3.28 additional gross PAPER loss**. Thus all six completed MBB round trips were losers as of this snapshot, and the cumulative observed gross realized PAPER result increased from **-$60.18** (09:29) to **-$63.46** (09:37), before trading frictions and data costs. The source of the BKR exit rule is not proven by this readback. The open COP position's unrealized result and a final full-day result are not established. No orders were submitted by the research.
