@@ -1,0 +1,10 @@
+[Unit]
+Description=Independent PAPER recommendation protection and 13:40 flat guard each minute
+[Timer]
+OnCalendar=Mon..Fri *-*-* *:*:54
+AccuracySec=1s
+RandomizedDelaySec=0
+Persistent=false
+Unit=securityprepper-recommendation-paper-exit.service
+[Install]
+WantedBy=timers.target
