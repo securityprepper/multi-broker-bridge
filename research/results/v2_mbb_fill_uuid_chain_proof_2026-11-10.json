@@ -1,0 +1,28 @@
+{
+  "study": "MBB fill UUID chain proof",
+  "asof_chicago": "2026-11-10T05:25:00-06:00",
+  "data_basis": "read-only executor completed JSON journal; not full broker readback",
+  "scans": 390,
+  "buy_watch_scans": 10,
+  "candidate_appearances": 31,
+  "distinct_symbols": [
+    "AMD",
+    "INTC",
+    "MU",
+    "NVDA",
+    "SNDK"
+  ],
+  "skip_reasons": {
+    "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY": 26,
+    "NO_FRESH_BID_ASK": 5
+  },
+  "orders_reported_by_scans": 0,
+  "tracked_last_scan": 31,
+  "validation": {
+    "synthetic_tests_passed": 28,
+    "quote_fill_validation": "not performed",
+    "real_broker_order_activity_uuid_replay": "not performed",
+    "production_go": false
+  },
+  "change_scope": "new research-only scripts/tests/report; no broker or V1 changes"
+}

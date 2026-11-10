@@ -1,0 +1,23 @@
+# November 10, 2026 — V2 MBB authoritative order/fill UUID reconciliation (RESEARCH ONLY)
+
+**No PAPER/LIVE or broker changes; no execution authorization.** This is an offline, deterministic second-stage verifier intended to be reviewed before any safe new-session rearm/13:40 ownership correction. It does not access APIs, SQL, host credentials, positions, cash or live orders.
+
+## New bounded evidence (November 10, 00:00–05:25 CST)
+
+Read-only analysis of the existing `trading-sector-paper-executor.service` completed JSON journal found **390 scans**. Ten scans contained BUY_WATCH candidates, totaling **31 repeated scan-level appearances** among AMD, INTC, MU, NVDA, SNDK, not 31 unique orders. **26** appearances were blocked as `PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY`, **five** as `NO_FRESH_BID_ASK`, **zero** orders were reported by those scans, and `tracked=31` remained in the last scan. The 04:40–05:25 increment alone was 54 scans / 4 appearances (two cross-session blocks and two missing quotes). This journal evidence does not establish actual broker order completeness or candidate profitability; the independently read broker flat/no-open-orders snapshot from 03:33 is not a current broker readback.
+
+## Precise additional safety gap closed in offline research
+
+The previous `research/v2_mbb_session_ownership_gate.py` accepts attributed activity rows as inputs. Such rows alone do not prove that a fill belongs to a specific broker order and writer. The new `research/v2_mbb_broker_uuid_chain.py` requires a **verified flat anchor**, complete broker order/history/position coverage, independently attested writer registration, every fill activity UUID mapped to one unique broker order UUID, matching symbol/side/timestamps, and exact broker `filled_quantity` reconciliation (including partial fills). It fails closed on duplicate or unknown UUIDs, incomplete or nonterminal orders, missing partial fills, inconsistent strategy-vs-broker share inventories, and missing writer proof.
+
+**New edge case:** final net-zero quantities can hide a writer selling shares it did not yet own and then buying replacements. Therefore the verifier also checks **chronological cumulative holdings by writer from the flat anchor**, rejects negative interim balances, and rejects opposite-side activities with indistinguishable timestamps. A matching final account quantity alone must not excuse inter-writer sales. The tests prove both the reject and valid out-of-input-order chronological cases. An MBB-looking client ID is not independently verified ownership.
+
+The resulting rows integrate with the existing V2 session/ownership classifier in synthetic tests. A complete prior-day buy+sell chain with independently verified flat broker inventory may become `NEW_SESSION_FIRST_ENTRY_ELIGIBLE_FOR_NORMAL_GATES`; it is **not an order instruction**. An existing position remains `BLOCK_AND_ESCALATE_OWNERSHIP` unless independently confirmed exclusive lease evidence covers the full holding interval. A later FDR-owned replacement cannot be sold through an old MBB ledger entry even if both strategies have traded that ticker.
+
+## Validation and release blockers
+
+**28 offline tests passed** (23 UUID reconciliation and 5 integration), using fabricated broker messages only. No replay from live broker fill/order UUIDs occurred in this run, and no actual PAPER fill-rate or P&L improvement is asserted. The verifier accepts only *complete whole-share long* evidence; fractional shares, ambiguous broker timestamps, short/borrow semantics, `done_for_day` orders, incomplete writer registry, or any UNKNOWN submission fail closed. It is not a production fix.
+
+Before operational PAPER change: obtain independently sourced complete Alpaca PAPER order/fill UUID history from a broker-verified flat anchor; reconcile FDR and all other writer origins plus attempted/UNKNOWN reservations and open orders; attest exclusive strategy ownership for held positions, or use segregated symbol/account ownership. Then independently review and authorize an isolated PAPER-only candidate, verify broker readbacks and mandatory 13:40 CT flatten, preserve 13:15 cutoff, 14:00 verification, holiday gate and zero LIVE permission. Do not clear yesterday's tracked rows blindly, do not break emergency exits, and do not restart IBKR Gateway.
+
+The November 9 03:18 CST AMD skip remains **unknown**, because the historical scan lacked the new diagnostic fields. The 30+ untouched forward-day strategy validation and actual spread/fees/quotes are also outstanding. The research task has no execution permission; all predictive price-only alerts remain quiet.
