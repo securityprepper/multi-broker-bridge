@@ -1,0 +1,38 @@
+{
+  "day_chicago": "2026-11-10",
+  "snapshot_asof_chicago": "2026-11-10T14:33:55-06:00",
+  "broker_verified": true,
+  "paper_only": true,
+  "recent_orders_complete": true,
+  "mbb_filled_buys": 13,
+  "mbb_filled_sells": 13,
+  "winners": 5,
+  "losers": 8,
+  "gross_realized_paper_usd": "-31.89",
+  "fee_adjusted_pnl_verified": false,
+  "flatten_accepted_not_filled_at": "13:40:30 CST",
+  "flatten_fills": [
+    {
+      "symbol": "COP",
+      "qty": 14,
+      "time": "13:40:31 CST",
+      "gross_usd": "8.68"
+    },
+    {
+      "symbol": "NET",
+      "qty": 6,
+      "time": "13:40:34 CST",
+      "gross_usd": "4.41"
+    }
+  ],
+  "first_flat_guard": "13:40:40 CST",
+  "post_1400_guard": "14:00:29 CST",
+  "independent_flat_readback": "14:03:56 CST",
+  "positions_after_flat": 0,
+  "working_orders_after_flat": 0,
+  "late_buy_submissions": 0,
+  "exclusive_ownership_proven": false,
+  "forecast_accuracy_established": false,
+  "research_submitted_orders": 0,
+  "offline_tests_passed": 16
+}
