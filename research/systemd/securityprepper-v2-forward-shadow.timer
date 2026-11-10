@@ -1,0 +1,13 @@
+[Unit]
+Description=V2 forward-only market research snapshots after 09:35,09:45,10:05 ET completed bars
+
+[Timer]
+OnCalendar=Mon..Fri *-*-* 09:35:25 America/New_York
+OnCalendar=Mon..Fri *-*-* 09:45:25 America/New_York
+OnCalendar=Mon..Fri *-*-* 10:05:25 America/New_York
+AccuracySec=3s
+Persistent=false
+Unit=securityprepper-v2-forward-shadow.service
+
+[Install]
+WantedBy=timers.target
