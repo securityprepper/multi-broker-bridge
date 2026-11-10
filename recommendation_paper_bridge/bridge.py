@@ -364,9 +364,39 @@ def process_once(now=None, connect=db_connect, httpfn=http):
         return {"status":"SCAN_COMPLETE","results":outputs}
     finally: conn.close()
 
+def expire_unsubmitted(now=None,connect=db_connect):
+    """Persist no-order outcome; no broker calls, even without commissioning."""
+    now=now or datetime.now(timezone.utc)
+    conn=connect("PAPER_BRIDGE_ROUTER_CNF")
+    try:
+        cur=conn.cursor(dictionary=True)
+        cur.execute("SELECT recommendation_id,client_order_id FROM "+INTENT_TABLE+
+                    " WHERE status='PENDING' AND (expires_at_utc<=%s OR issued_at_utc<%s)"+
+                    " ORDER BY issued_at_utc LIMIT 250",
+                    (as_db_time(now),as_db_time(now-timedelta(minutes=5))))
+        rows=cur.fetchall()
+        conn.commit()
+        for row in rows:
+            cur.execute("UPDATE "+INTENT_TABLE+
+                " SET status='NO_ORDER_EXPIRED',failure_code='STALE_OR_ENTRY_CUTOFF',"+
+                " last_checked_utc=UTC_TIMESTAMP(6)"+
+                " WHERE recommendation_id=%s AND status='PENDING'",(row["recommendation_id"],))
+            if cur.rowcount!=1:
+                conn.rollback()
+                continue
+            event(cur,row["recommendation_id"],"PAPER_INTENT_EXPIRED_NO_ORDER",
+                  {"reason":"stale recommendation or owner entry cutoff",
+                   "client_order_id":row["client_order_id"],"broker_order_id":None})
+            conn.commit()
+        return {"expired_without_order":len(rows)}
+    except Exception:
+        conn.rollback()
+        raise
+    finally:conn.close()
+
 def main():
     p=argparse.ArgumentParser()
-    p.add_argument("mode",choices=("intake","run-once","status"))
+    p.add_argument("mode",choices=("intake","run-once","expire-only","status"))
     p.add_argument("--test-rollback",action="store_true")
     args=p.parse_args()
     if args.mode=="intake":
@@ -375,6 +405,8 @@ def main():
         print(json.dumps(ingest(r,test_rollback=args.test_rollback),sort_keys=True))
     elif args.mode=="run-once":
         print(json.dumps(process_once(),sort_keys=True))
+    elif args.mode=="expire-only":
+        print(json.dumps(expire_unsubmitted(),sort_keys=True))
     else:
         print(json.dumps({"router_commissioned":os.getenv("PAPER_BRIDGE_COMMISSIONED")=="1",
                           "active_broker_network":False,
