@@ -1,0 +1,21 @@
+# November 9, 2026 — premarket one-minute breadth data coverage and next-session blind spot (V2 research only)
+
+## New finding: early premarket coverage is NOT established by the existing RTH recorder
+
+The independent GET-only `securityprepper-v2-forward-shadow.timer` is enabled and active on www3, but it records only **09:35:25, 09:45:25, and 10:05:25 ET**. It does **not** capture premarket signals or quotes. The November 9 earliest historical AMD/MU/SNDK completed breadth qualification at **03:18 Chicago = 04:18 New York** is approximately **five hours and 17 minutes before its first snapshot**. This is an instrumentation coverage gap, **not** proof of a missed valid executable order; MBB's actual candle pattern, account/order state and ask/spread gates are different and AMD's exact 03:18 skip reason remains unknown.
+
+I used the **existing authorized host cache** `/tmp/amd_mu_sndk_soxx_7session_alpaca_1m.json`, containing seven historical Alpaca SIP trade-bar dates October 29–November 6, 2026. For every 04:00–09:30 ET minute, the new offline script counts **actual present, exact-minute** one-minute bars without forward-filling. Requiring SOXX, AMD, MU and SNDK all present produces **1,869 / 2,310 possible minutes = 80.91% coverage**. Coverage varies sharply: **150/330 = 45.45% October 29**, **254/330 = 76.97% October 30**, **216/330 = 65.45% November 2**, **277/330 = 83.94% November 3**, **318/330 = 96.36% November 4**, **324/330 = 98.18% November 5**, and **330/330 = 100% November 6**. Thus a missing ETF bar must not be fabricated from a simultaneous peer move or treated as a neutral 0% return. These are coverage fractions, **not trade wins, predictive recall or executable liquidity**, and the sample was previously examined: not a fresh holdout.
+
+AMD/MU/SNDK-only joint data existed for 178, 267, 298, 311, 330, 326 and 330 minutes respectively on those seven days; requiring SOXX materially changes the as-of coverage. The current installed RTH shadow uses AMD/MU/NVDA as semiconductor peers, whereas the owner's early-November-9 breadth study used AMD/MU/SNDK; these are **different proposed anchor universes**, neither automatically substitutes for the other, and the mismatch must be recorded before comparing historical signal counts.
+
+## Causal availability and execution limitations
+
+SIP minute bars are keyed by **start** timestamp. A 04:18 ET *starting* one-minute bar must not be considered completed until 04:19 ET; this offline audit applies an additional illustrative 15-second publication delay, so it is usable no earlier than 04:19:15. The 04:17–04:18 completed bar would have a conservative 04:18:15 availability. A trade mark at the start of a bar is not available to a strategy reacting to its closing value.
+
+These records contain trade OHLCV, **not matched timestamped NBBO bid/ask or proof of an Alpaca executable fill**. Observations before 04:00 ET, including earlier overnight MBB fills, require independently verified BOATS/overnight data and broker session eligibility; do not interpolate a continuous SIP signal through 20:00–04:00 ET. Historical November 9 $457.95 SIP ask is a point-in-time observation, not a guaranteed filled order. No quote-level, latency or after-fee early-entry improvement is claimed.
+
+## Validation and scope
+
+New isolated `research/v2_premarket_bar_coverage_quality_20261109.py`, tests and seven-date JSON report; **10 of 10 synthetic tests passed** on www3, and the script completed the seven-date real-data count without credentials, network access or broker API. Tests enforce timezone/DST, completed-bar +15-second as-of boundaries, exact minute matching, missing-bar abstention, invalid prices, no previous-day or RTH leakage. The results require premarket source-freshness/quote validation and 30+ genuinely prospective sessions before any early-entry strategy GO.
+
+The active V1 PAPER/LIVE monitors, all broker orders, the commissioned GET-only RTH recorder, holiday boundary, 13:15 entry cutoff, 13:40 flat and 14:00 verification were **not changed**. No new PAPER strategy, notification, or separate premarket timer was activated. The previously validated holiday revision-2 unpaused cache remains conditional on no edit and strictly before Nov 13, 2026 16:13 Chicago.
