@@ -1,0 +1,24 @@
+# 2026-11-09 — independently auditing prospective sector shadow sealing (V2 RESEARCH ONLY)
+
+**New integrity control:** the commissioned GET-only seven-sector recorder begins an observation at 09:35:25, 09:45:25 or 10:05:25 ET, but its `time_of_observation_utc` reflects process startup, **before** its two Alpaca data requests and the final file write. An early self-reported observation timestamp does not itself prove that a forecast was committed before future results became visible. Earlier research also detected a 25-second discrepancy between the claimed earliest delayed entry and the historical five-minute opening-price proxy.
+
+I verified on the authorized www3 on **Nov 9 at 22:30 CST** that `securityprepper-v2-forward-shadow.timer` is **enabled and active**, with its **first scheduled Tuesday Nov 10 wake at 08:35:25 CST**; no market-day snapshot had yet been written. The host cached holiday gate reports **unpaused, revision 2**, next check **Nov 13 at 16:13 CST**, with sufficient calendar coverage; this remains conditional on no calendar edit. Host production `/opt/securityprepper/multi-broker-bridge` still has unrelated uncommitted changes and was not modified. Neither V1 broker services nor the independent read-only recorder was restarted, edited or altered.
+
+## New isolated as-of provenance auditor
+
+`research/v2_audit_forward_shadow_seal_20261109.py` is an **offline read-only** validator to run on a recorded `/var/lib/securityprepper-v2-forward-shadow/YYYY-MM-DD/HHMM.json` only after it exists. It rejects:
+
+* Absent/invalid date, time zone or slot, an incorrect UTC–ET translation, a delayed-entry timestamp other than observation +5m, or a path date/slot mismatch.
+* A file whose filesystem modification timestamp predates the stated observation or falls **after** the earliest claimed entry. The file SHA-256 is emitted for later reconciliation without changing file contents.
+* An incomplete/incorrect seven-sector universe, bogus sector symbols, missing/stale/future five-minute bars, nonfinite prices, an unsupported bearish semiconductor classification, or a claimed signal attached to an abstention.
+* Nonzero order permissions, missing research-only/no-future-outcome declaration, or unexpected data source; symlinks and oversized/non-JSON files fail closed.
+
+The resulting audit intentionally reports **`cryptographically_immutable=false`**. Filesystem mtime and a calculated checksum are not a trusted external timestamp or cryptographic append-only journal. Cross-check with service start/finish journal timestamps and restrict write access; if a strong legal/financial attestation is needed, add a separately reviewed cryptographic witness. A passed audit is **not** a verified current quote, an Alpaca or IBKR fill, a borrow check, or confirmation that the holiday gate was valid at the historical instant. Those require independent evidence. This auditor has **no credential loads, web calls, notifications or broker endpoints**, does not connect to live service, and does not promote any policy.
+
+`research/test_v2_audit_forward_shadow_seal_20261109.py` covers valid and rejected causal timestamps, future/stale candles, path/slot mismatch, missing breadth peer, legal abstention, unsupported bearish label, nontrading permission flags, symlinks, and read-only file access. **13 targeted offline tests passed** on a local research copy; the published GitHub tests are not yet independently executed on www3. The initial Nov 10 collector result remains unknown until the first prospective session.
+
+## Next honest validation
+
+After Nov 10's three snapshot windows, inspect each saved observation and the corresponding systemd journal **read only**; run this auditor before any post-outcome scorer. Do not fabricate outcomes for missing or late-sealed observations. Score 15m, 60m and 13:40 CT moves only after those times, using the **signal observed price**, not the earlier close-to-close move; price-only sector shocks remain internal, and there are currently **zero new untouched forward trading outcomes**. Historical 80–100% day-sign results are not prospective accuracy.
+
+Collect at least **30 independent never-before-seen days per sector/side**, with executable SIP/BOATS NBBO and real fees/short eligibility before seeking separately approved PAPER-only GO. Keep V1 PAPER/LIVE, broker orders, 13:15 entry cutoff, 13:40 mandatory flat, 14:00 verification, low-noise alert rules, holiday gate and schedules unchanged. The Nov 9 03:18 AMD skip cause remains indeterminate until the later MBB `buy_watch_symbols`/`skipped_buy_reasons` records can be reconciled against quote/position/account/sector evidence; do not assign a speculative reason.
