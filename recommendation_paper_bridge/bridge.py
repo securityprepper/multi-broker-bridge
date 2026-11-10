@@ -197,8 +197,10 @@ def creds():
             "Content-Type":"application/json"}
 
 def http(method,path,body=None,data=False):
-    if method not in ("GET","POST") or not path.startswith("/") or ".." in path or "://" in path:
+    if method not in ("GET","POST","DELETE") or not path.startswith("/") or ".." in path or "://" in path:
         raise Unsafe("restricted HTTP operation")
+    if method=="DELETE" and not re.fullmatch(r"/v2/orders/[a-fA-F0-9-]{36}",path):
+        raise Unsafe("delete restricted to exact PAPER order UUID")
     if data:
         if method!="GET" or not path.startswith("/v2/stocks/"):
             raise Unsafe("data GET only")
@@ -210,7 +212,7 @@ def http(method,path,body=None,data=False):
         resp=request.build_opener(NoRedirect()).open(
             request.Request(url,data=raw,headers=creds(),method=method),timeout=9)
         with resp:
-            if resp.status not in (200,201): raise SubmissionUnknown("broker HTTP uncertainty")
+            if resp.status not in (200,201,204): raise SubmissionUnknown("broker HTTP uncertainty")
             blob=resp.read(600001)
     except error.HTTPError as e:
         if e.code in (400,401,403,404,422): raise BrokerRejected("HTTP "+str(e.code))
@@ -218,6 +220,7 @@ def http(method,path,body=None,data=False):
     except (error.URLError,TimeoutError,OSError) as e:
         raise SubmissionUnknown("transport uncertainty: requires readback") from e
     if len(blob)>600000: raise SubmissionUnknown("oversized broker response")
+    if not blob: return {}
     try: return json.loads(blob)
     except (ValueError,UnicodeError): raise SubmissionUnknown("non-JSON broker response")
 
