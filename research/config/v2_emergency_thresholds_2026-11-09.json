@@ -1,19 +1,19 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "effective_date": "2026-11-09",
-  "owner_thresholds": "explicit Nov 9 2026 directive",
+  "owner_thresholds": "Latest owner Nov 9 2026: prioritize low false-positive user-facing alerts; supersedes earlier 2%/3% observed-only thresholds. These are rare factual shock screening levels, NOT validated trading forecasts.",
   "scope": "V2 research and high-signal alert qualification only; no V1, PAPER/LIVE order or safety-gate edits",
   "price_basis": {
-    "regular_session": "ETF movement from 09:30 America/New_York first regular-session open to latest completed five-minute bar close, 09:35-16:00 ET",
-    "extended_session": "ETF movement from preceding completed 15:55-16:00 ET regular-session closing bar to latest completed SIP or BOATS extended-hours bar close, or next opening gap",
+    "regular_session": "Regular RTH ETF change from 09:30 ET opening trade to latest fully COMPLETED 5min bar close; require two consecutive 5m closes beyond threshold for qualification; never intrabar highs/lows as notification.",
+    "extended_session": "Observed 16:00-20:00 ET SIP and 04:00-09:30 ET SIP; latest two consecutive completed same-session 5m closes vs previous completed RTH close. 20:00-04:00 BOATS historical quote coverage missing: no unsupported certainty.",
     "crossover": "Regular-session 09:30 bar begins new daytime reference; extended-hours uses previous RTH close",
     "missing_data": "fail closed; do not conflate unobserved 20:00-04:00 BOATS with zero movement"
   },
   "thresholds_pct": {
     "semiconductors": {
       "etf": "SOXX",
-      "day": 2,
-      "night": 3,
+      "day": 5,
+      "night": 5.5,
       "peers": [
         "AMD",
         "MU",
@@ -22,8 +22,8 @@
     },
     "gold_miners": {
       "etf": "GDX",
-      "day": 2,
-      "night": 2,
+      "day": 5,
+      "night": 7,
       "peers": [
         "NEM",
         "AEM",
@@ -33,7 +33,7 @@
     "energy": {
       "etf": "XLE",
       "day": 3,
-      "night": 3,
+      "night": 3.5,
       "peers": [
         "XOM",
         "CVX"
@@ -68,8 +68,8 @@
     },
     "software": {
       "etf": "IGV",
-      "day": 3,
-      "night": 3,
+      "day": 4,
+      "night": 4,
       "peers": [
         "MSFT",
         "CRM"
@@ -77,14 +77,48 @@
     }
   },
   "event_policy": {
-    "raw_touch": "research observation only, no Pushover and no order",
-    "qualified_alert": "requires at least 2 consecutive COMPLETED five-minute ETF closes on same directional side of the threshold, fresh two-of-three peer breadth where three peers available or both peers in two-peer sectors, verified holiday/session/quote freshness; do not claim predictive emergency without independently validated post-signal continuation",
+    "raw_touch": "internal research/log-only, NO user push, NO buy/close action",
+    "qualified_alert": "at least TWO consecutive completed 5m ETF closes beyond sector cutoff in same sign; same-timestamp peer breadth >=2/3 for 3 peers, both peers for 2-peer sectors, fresh verified quote + holiday/session; dedupe once per sector direction per session. A crossing is a factual observed shock, NOT a forecast of further price movement.",
     "existing_stock_emergency": "2.5% total drop from preceding completed regular close INCLUDING at least 1.0 percentage point in preceding 15 minutes; maintain independent factual warning",
     "automatic_order_permissions": false,
     "live_order_permissions": false,
     "paper_order_permissions": false,
-    "protect_operational_order_exit_data_errors": true
+    "protect_operational_order_exit_data_errors": true,
+    "predictive_emergency_notifications_enabled": false,
+    "message_exception": "Preserve urgent factual position/stop failures and critical data/broker risk alerts independently of the configured sector-future-prediction mute; do not suppress V1.",
+    "release_condition": "Before enabling any new predictive user alert or broker response, require proven out-of-sample after-signal directional precision, positive after-cost edge with quote-level fills and independent source; a threshold alone cannot establish this."
   },
   "histogram_source": "Alpaca SIP five-minute trade-bar 52-week split adjusted, completed history through Nov6 2026; not full BOATS during 20:00-04:00",
-  "status": "DECLARATIVE V2 POLICY, pending separately commissioned all-sector observer and broker-safe release; ChatGPT tasks may use this threshold for filtering, not for self-execution"
+  "status": "V2 restrictive low-noise screening thresholds installed for research and prompt filtering. Standalone predictive Pushover and order actions NOT commissioned; existing factual safety alerts preserved.",
+  "backtest_summary": {
+    "day_eligible_sessions_per_sector": 248,
+    "daytime_qualified_dedup_day_count": {
+      "semiconductors": 11,
+      "gold_miners": 4,
+      "energy": 2,
+      "financials": 1,
+      "industrials": 1,
+      "healthcare": 0,
+      "software": 7
+    },
+    "night_qualified_dedup_day_count_approx_SIP_only": {
+      "semiconductors": 7,
+      "gold_miners": 4,
+      "energy": 6,
+      "financials": 0,
+      "industrials": 1,
+      "healthcare": 0,
+      "software": 3
+    },
+    "daytime_forward_60min_move_at_least_plus_0_5pct_numerator": {
+      "semiconductors": 2,
+      "gold_miners": 0,
+      "energy": 1,
+      "financials": 0,
+      "industrials": 0,
+      "healthcare": 0,
+      "software": 0
+    },
+    "notes": "Historical backtest already researched; nightly SIP-only missing BOATS; daytime count first qualified sector-day with 2 bars + breadth, 60m prospective outcome 0.5% is NOT a guaranteed fill or profit. Rare events are mostly unprofitable continuation candidates; push/order must stay off."
+  }
 }
