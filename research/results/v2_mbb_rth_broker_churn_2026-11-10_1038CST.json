@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "audit_type": "broker_verified_readonly_order_snapshot_rth_churn",
+  "session_chicago": "2026-11-10",
+  "asof_utc": "2026-11-10T16:38:46.165270+00:00",
+  "snapshot_source": "/var/lib/securityprepper-paper-inventory/current.json (read-only at asof)",
+  "broker_verified_snapshot": true,
+  "complete_recent_order_window": true,
+  "owner_prefix_classification": "MBB",
+  "orders_today_total": 18,
+  "other_writer_orders_today": 0,
+  "owner_filled_buys": 10,
+  "owner_filled_sells": 8,
+  "owner_closed_winners": 1,
+  "owner_closed_losers": 7,
+  "owner_closed_flat": 0,
+  "gross_realized_usd_before_fees": -74.45,
+  "open_positions_by_symbol": {
+    "COP": 14,
+    "TXN": 6
+  },
+  "broker_open_orders": 0,
+  "closed_lots": [
+    {
+      "symbol": "ZS",
+      "filled_qty": 10,
+      "gross_pnl_usd": -5.3,
+      "holding_minutes": 3.998
+    },
+    {
+      "symbol": "RPD",
+      "filled_qty": 136,
+      "gross_pnl_usd": -20.4,
+      "holding_minutes": 5.942
+    },
+    {
+      "symbol": "MPC",
+      "filled_qty": 5,
+      "gross_pnl_usd": -6.25,
+      "holding_minutes": 20.021
+    },
+    {
+      "symbol": "WMB",
+      "filled_qty": 29,
+      "gross_pnl_usd": -8.7,
+      "holding_minutes": 5.117
+    },
+    {
+      "symbol": "PSX",
+      "filled_qty": 7,
+      "gross_pnl_usd": -19.53,
+      "holding_minutes": 36.036
+    },
+    {
+      "symbol": "BKR",
+      "filled_qty": 41,
+      "gross_pnl_usd": -3.28,
+      "holding_minutes": 35.026
+    },
+    {
+      "symbol": "TENB",
+      "filled_qty": 47,
+      "gross_pnl_usd": -18.47,
+      "holding_minutes": 3.983
+    },
+    {
+      "symbol": "FANG",
+      "filled_qty": 11,
+      "gross_pnl_usd": 7.48,
+      "holding_minutes": 22.057
+    }
+  ],
+  "subsequent_market_outcomes_not_scored": true,
+  "after_fees_pnl_verified": false,
+  "fill_uuid_origin_chain_verified": false,
+  "exact_exit_reasons_verified": false,
+  "end_of_day_broker_flat_verified": false,
+  "orders_sent_by_research": 0,
+  "notes": "Frozen interim broker-derived snapshot; not the final daily P&L. MBB-tagged order average prices; individual FILL activity UUID chain has not been revalidated in this run. Matching final position quantities alone does not independently prove share ownership."
+}
