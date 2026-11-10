@@ -1,0 +1,584 @@
+{
+  "asof": "2026-11-09",
+  "source": "Alpaca split-adjusted SIP 1m trade-bar marks reused 20 days Oct12-Nov6",
+  "signal_time": "First completed-candle 04:00-08:35 ET as-of 1m scan at :40",
+  "future_time": "as-of signal timestamp +15m or +60m using latest completed 1m bar available",
+  "baseline": "ONLY the AMD close of the last fully completed bar available at signal time, never previous close",
+  "tradeability": "30bps illustrative price-motion hurdle only, not NBBO spreads, fills, stop outcomes or profit",
+  "summary": {
+    "net_breadth_3of3": {
+      "signal_days": 10,
+      "abstain_days": 10,
+      "h15": {
+        "full": {
+          "valid_signals": 10,
+          "positive_over_30bps": 3,
+          "up_direction_over_5bps": 4,
+          "mean_signed_gross_pct": 0.18034,
+          "mean_signed_net30_pct": -0.11966,
+          "worst_gross_pct": -0.6185
+        },
+        "first10": {
+          "valid_signals": 3,
+          "positive_over_30bps": 1,
+          "up_direction_over_5bps": 1,
+          "mean_signed_gross_pct": 0.06296,
+          "mean_signed_net30_pct": -0.23704,
+          "worst_gross_pct": -0.24308
+        },
+        "last10": {
+          "valid_signals": 7,
+          "positive_over_30bps": 2,
+          "up_direction_over_5bps": 3,
+          "mean_signed_gross_pct": 0.23064,
+          "mean_signed_net30_pct": -0.06936,
+          "worst_gross_pct": -0.6185
+        }
+      },
+      "h60": {
+        "full": {
+          "valid_signals": 10,
+          "positive_over_30bps": 2,
+          "up_direction_over_5bps": 3,
+          "mean_signed_gross_pct": -0.00307,
+          "mean_signed_net30_pct": -0.30307,
+          "worst_gross_pct": -1.19052
+        },
+        "first10": {
+          "valid_signals": 3,
+          "positive_over_30bps": 0,
+          "up_direction_over_5bps": 1,
+          "mean_signed_gross_pct": -0.39063,
+          "mean_signed_net30_pct": -0.69063,
+          "worst_gross_pct": -1.19052
+        },
+        "last10": {
+          "valid_signals": 7,
+          "positive_over_30bps": 2,
+          "up_direction_over_5bps": 2,
+          "mean_signed_gross_pct": 0.16302,
+          "mean_signed_net30_pct": -0.13698,
+          "worst_gross_pct": -0.57803
+        }
+      }
+    },
+    "MBB_eligible_AMD_shape": {
+      "signal_days": 12,
+      "abstain_days": 8,
+      "h15": {
+        "full": {
+          "valid_signals": 12,
+          "positive_over_30bps": 3,
+          "up_direction_over_5bps": 6,
+          "mean_signed_gross_pct": -0.02312,
+          "mean_signed_net30_pct": -0.32312,
+          "worst_gross_pct": -0.60456
+        },
+        "first10": {
+          "valid_signals": 5,
+          "positive_over_30bps": 0,
+          "up_direction_over_5bps": 1,
+          "mean_signed_gross_pct": -0.13461,
+          "mean_signed_net30_pct": -0.43461,
+          "worst_gross_pct": -0.27655
+        },
+        "last10": {
+          "valid_signals": 7,
+          "positive_over_30bps": 3,
+          "up_direction_over_5bps": 5,
+          "mean_signed_gross_pct": 0.05652,
+          "mean_signed_net30_pct": -0.24348,
+          "worst_gross_pct": -0.60456
+        }
+      },
+      "h60": {
+        "full": {
+          "valid_signals": 12,
+          "positive_over_30bps": 4,
+          "up_direction_over_5bps": 7,
+          "mean_signed_gross_pct": 0.08604,
+          "mean_signed_net30_pct": -0.21396,
+          "worst_gross_pct": -0.85735
+        },
+        "first10": {
+          "valid_signals": 5,
+          "positive_over_30bps": 2,
+          "up_direction_over_5bps": 4,
+          "mean_signed_gross_pct": 0.29773,
+          "mean_signed_net30_pct": -0.00227,
+          "worst_gross_pct": -0.22907
+        },
+        "last10": {
+          "valid_signals": 7,
+          "positive_over_30bps": 2,
+          "up_direction_over_5bps": 3,
+          "mean_signed_gross_pct": -0.06516,
+          "mean_signed_net30_pct": -0.36516,
+          "worst_gross_pct": -0.85735
+        }
+      }
+    }
+  },
+  "daily": [
+    {
+      "date": "2026-10-12",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": null,
+      "signal_amd_close": null
+    },
+    {
+      "date": "2026-10-12",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": null,
+      "signal_amd_close": null
+    },
+    {
+      "date": "2026-10-13",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": null,
+      "signal_amd_close": null
+    },
+    {
+      "date": "2026-10-13",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": "2026-10-13T04:44:40-04:00",
+      "signal_amd_close": 589.35,
+      "h15_end_timestamp": "2026-10-13T08:57:00+00:00",
+      "h15_end_amd_close": 588.2,
+      "h15_forward_pct": -0.19513,
+      "h15_positive_over_30bps": false,
+      "h15_direction_up": false,
+      "h60_end_timestamp": "2026-10-13T09:44:00+00:00",
+      "h60_end_amd_close": 588.0,
+      "h60_forward_pct": -0.229066,
+      "h60_positive_over_30bps": false,
+      "h60_direction_up": false
+    },
+    {
+      "date": "2026-10-14",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": null,
+      "signal_amd_close": null
+    },
+    {
+      "date": "2026-10-14",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": "2026-10-14T07:15:40-04:00",
+      "signal_amd_close": 598.8979,
+      "h15_end_timestamp": "2026-10-14T11:30:00+00:00",
+      "h15_end_amd_close": 597.25,
+      "h15_forward_pct": -0.275155,
+      "h15_positive_over_30bps": false,
+      "h15_direction_up": false,
+      "h60_end_timestamp": "2026-10-14T12:15:00+00:00",
+      "h60_end_amd_close": 601.27,
+      "h60_forward_pct": 0.396078,
+      "h60_positive_over_30bps": true,
+      "h60_direction_up": true
+    },
+    {
+      "date": "2026-10-15",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": null,
+      "signal_amd_close": null
+    },
+    {
+      "date": "2026-10-15",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": "2026-10-15T04:14:40-04:00",
+      "signal_amd_close": 551.7258,
+      "h15_end_timestamp": "2026-10-15T08:29:00+00:00",
+      "h15_end_amd_close": 550.2,
+      "h15_forward_pct": -0.27655,
+      "h15_positive_over_30bps": false,
+      "h15_direction_up": false,
+      "h60_end_timestamp": "2026-10-15T09:14:00+00:00",
+      "h60_end_amd_close": 558.1,
+      "h60_forward_pct": 1.15532,
+      "h60_positive_over_30bps": true,
+      "h60_direction_up": true
+    },
+    {
+      "date": "2026-10-16",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": null,
+      "signal_amd_close": null
+    },
+    {
+      "date": "2026-10-16",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": null,
+      "signal_amd_close": null
+    },
+    {
+      "date": "2026-10-19",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": "2026-10-19T04:01:40-04:00",
+      "signal_amd_close": 543.04,
+      "h15_end_timestamp": "2026-10-19T08:16:00+00:00",
+      "h15_end_amd_close": 541.72,
+      "h15_forward_pct": -0.243076,
+      "h15_positive_over_30bps": false,
+      "h15_direction_up": false,
+      "h60_end_timestamp": "2026-10-19T08:59:00+00:00",
+      "h60_end_amd_close": 541.89,
+      "h60_forward_pct": -0.211771,
+      "h60_positive_over_30bps": false,
+      "h60_direction_up": false
+    },
+    {
+      "date": "2026-10-19",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": "2026-10-19T08:05:40-04:00",
+      "signal_amd_close": 547.5,
+      "h15_end_timestamp": "2026-10-19T12:19:00+00:00",
+      "h15_end_amd_close": 547.51,
+      "h15_forward_pct": 0.001826,
+      "h15_positive_over_30bps": false,
+      "h15_direction_up": false,
+      "h60_end_timestamp": "2026-10-19T13:05:00+00:00",
+      "h60_end_amd_close": 548.0051,
+      "h60_forward_pct": 0.092256,
+      "h60_positive_over_30bps": false,
+      "h60_direction_up": true
+    },
+    {
+      "date": "2026-10-20",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": null,
+      "signal_amd_close": null
+    },
+    {
+      "date": "2026-10-20",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": "2026-10-20T07:38:40-04:00",
+      "signal_amd_close": 528.0,
+      "h15_end_timestamp": "2026-10-20T11:53:00+00:00",
+      "h15_end_amd_close": 528.38,
+      "h15_forward_pct": 0.07197,
+      "h15_positive_over_30bps": false,
+      "h15_direction_up": true,
+      "h60_end_timestamp": "2026-10-20T12:38:00+00:00",
+      "h60_end_amd_close": 528.3911,
+      "h60_forward_pct": 0.074072,
+      "h60_positive_over_30bps": false,
+      "h60_direction_up": true
+    },
+    {
+      "date": "2026-10-21",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": "2026-10-21T04:01:40-04:00",
+      "signal_amd_close": 548.5,
+      "h15_end_timestamp": "2026-10-21T08:16:00+00:00",
+      "h15_end_amd_close": 547.8,
+      "h15_forward_pct": -0.127621,
+      "h15_positive_over_30bps": false,
+      "h15_direction_up": false,
+      "h60_end_timestamp": "2026-10-21T09:01:00+00:00",
+      "h60_end_amd_close": 541.97,
+      "h60_forward_pct": -1.19052,
+      "h60_positive_over_30bps": false,
+      "h60_direction_up": false
+    },
+    {
+      "date": "2026-10-21",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": null,
+      "signal_amd_close": null
+    },
+    {
+      "date": "2026-10-22",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": null,
+      "signal_amd_close": null
+    },
+    {
+      "date": "2026-10-22",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": null,
+      "signal_amd_close": null
+    },
+    {
+      "date": "2026-10-23",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": "2026-10-23T04:01:40-04:00",
+      "signal_amd_close": 516.47,
+      "h15_end_timestamp": "2026-10-23T08:16:00+00:00",
+      "h15_end_amd_close": 519.36,
+      "h15_forward_pct": 0.559568,
+      "h15_positive_over_30bps": true,
+      "h15_direction_up": true,
+      "h60_end_timestamp": "2026-10-23T09:01:00+00:00",
+      "h60_end_amd_close": 517.66,
+      "h60_forward_pct": 0.23041,
+      "h60_positive_over_30bps": false,
+      "h60_direction_up": true
+    },
+    {
+      "date": "2026-10-23",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": null,
+      "signal_amd_close": null
+    },
+    {
+      "date": "2026-10-26",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": "2026-10-26T05:26:40-04:00",
+      "signal_amd_close": 517.93,
+      "h15_end_timestamp": "2026-10-26T09:41:00+00:00",
+      "h15_end_amd_close": 518.32,
+      "h15_forward_pct": 0.0753,
+      "h15_positive_over_30bps": false,
+      "h15_direction_up": true,
+      "h60_end_timestamp": "2026-10-26T10:26:00+00:00",
+      "h60_end_amd_close": 516.1,
+      "h60_forward_pct": -0.35333,
+      "h60_positive_over_30bps": false,
+      "h60_direction_up": false
+    },
+    {
+      "date": "2026-10-26",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": "2026-10-26T07:41:40-04:00",
+      "signal_amd_close": 519.45,
+      "h15_end_timestamp": "2026-10-26T11:56:00+00:00",
+      "h15_end_amd_close": 521.3522,
+      "h15_forward_pct": 0.366195,
+      "h15_positive_over_30bps": true,
+      "h15_direction_up": true,
+      "h60_end_timestamp": "2026-10-26T12:41:00+00:00",
+      "h60_end_amd_close": 522.6,
+      "h60_forward_pct": 0.606411,
+      "h60_positive_over_30bps": true,
+      "h60_direction_up": true
+    },
+    {
+      "date": "2026-10-27",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": "2026-10-27T05:13:40-04:00",
+      "signal_amd_close": 533.0,
+      "h15_end_timestamp": "2026-10-27T09:27:00+00:00",
+      "h15_end_amd_close": 532.0,
+      "h15_forward_pct": -0.187617,
+      "h15_positive_over_30bps": false,
+      "h15_direction_up": false,
+      "h60_end_timestamp": "2026-10-27T10:11:00+00:00",
+      "h60_end_amd_close": 533.0,
+      "h60_forward_pct": 0.0,
+      "h60_positive_over_30bps": false,
+      "h60_direction_up": false
+    },
+    {
+      "date": "2026-10-27",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": null,
+      "signal_amd_close": null
+    },
+    {
+      "date": "2026-10-28",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": "2026-10-28T04:01:40-04:00",
+      "signal_amd_close": 570.44,
+      "h15_end_timestamp": "2026-10-28T08:16:00+00:00",
+      "h15_end_amd_close": 569.34,
+      "h15_forward_pct": -0.192834,
+      "h15_positive_over_30bps": false,
+      "h15_direction_up": false,
+      "h60_end_timestamp": "2026-10-28T09:01:00+00:00",
+      "h60_end_amd_close": 568.05,
+      "h60_forward_pct": -0.418975,
+      "h60_positive_over_30bps": false,
+      "h60_direction_up": false
+    },
+    {
+      "date": "2026-10-28",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": null,
+      "signal_amd_close": null
+    },
+    {
+      "date": "2026-10-29",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": null,
+      "signal_amd_close": null
+    },
+    {
+      "date": "2026-10-29",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": "2026-10-29T08:26:40-04:00",
+      "signal_amd_close": 565.7,
+      "h15_end_timestamp": "2026-10-29T12:41:00+00:00",
+      "h15_end_amd_close": 562.28,
+      "h15_forward_pct": -0.604561,
+      "h15_positive_over_30bps": false,
+      "h15_direction_up": false,
+      "h60_end_timestamp": "2026-10-29T13:26:00+00:00",
+      "h60_end_amd_close": 560.85,
+      "h60_forward_pct": -0.857345,
+      "h60_positive_over_30bps": false,
+      "h60_direction_up": false
+    },
+    {
+      "date": "2026-10-30",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": null,
+      "signal_amd_close": null
+    },
+    {
+      "date": "2026-10-30",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": null,
+      "signal_amd_close": null
+    },
+    {
+      "date": "2026-11-02",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": "2026-11-02T04:01:40-05:00",
+      "signal_amd_close": 515.906,
+      "h15_end_timestamp": "2026-11-02T09:16:00+00:00",
+      "h15_end_amd_close": 516.15,
+      "h15_forward_pct": 0.047295,
+      "h15_positive_over_30bps": false,
+      "h15_direction_up": false,
+      "h60_end_timestamp": "2026-11-02T10:01:00+00:00",
+      "h60_end_amd_close": 514.93,
+      "h60_forward_pct": -0.189182,
+      "h60_positive_over_30bps": false,
+      "h60_direction_up": false
+    },
+    {
+      "date": "2026-11-02",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": "2026-11-02T07:10:40-05:00",
+      "signal_amd_close": 513.64,
+      "h15_end_timestamp": "2026-11-02T12:25:00+00:00",
+      "h15_end_amd_close": 514.55,
+      "h15_forward_pct": 0.177167,
+      "h15_positive_over_30bps": false,
+      "h15_direction_up": true,
+      "h60_end_timestamp": "2026-11-02T13:10:00+00:00",
+      "h60_end_amd_close": 511.45,
+      "h60_forward_pct": -0.426369,
+      "h60_positive_over_30bps": false,
+      "h60_direction_up": false
+    },
+    {
+      "date": "2026-11-03",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": "2026-11-03T04:01:40-05:00",
+      "signal_amd_close": 473.4,
+      "h15_end_timestamp": "2026-11-03T09:16:00+00:00",
+      "h15_end_amd_close": 478.19,
+      "h15_forward_pct": 1.011829,
+      "h15_positive_over_30bps": true,
+      "h15_direction_up": true,
+      "h60_end_timestamp": "2026-11-03T10:01:00+00:00",
+      "h60_end_amd_close": 479.7,
+      "h60_forward_pct": 1.330798,
+      "h60_positive_over_30bps": true,
+      "h60_direction_up": true
+    },
+    {
+      "date": "2026-11-03",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": "2026-11-03T04:05:40-05:00",
+      "signal_amd_close": 476.8042,
+      "h15_end_timestamp": "2026-11-03T09:20:00+00:00",
+      "h15_end_amd_close": 478.9,
+      "h15_forward_pct": 0.439551,
+      "h15_positive_over_30bps": true,
+      "h15_direction_up": true,
+      "h60_end_timestamp": "2026-11-03T10:05:00+00:00",
+      "h60_end_amd_close": 479.8102,
+      "h60_forward_pct": 0.630447,
+      "h60_positive_over_30bps": true,
+      "h60_direction_up": true
+    },
+    {
+      "date": "2026-11-04",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": "2026-11-04T04:01:40-05:00",
+      "signal_amd_close": 519.0,
+      "h15_end_timestamp": "2026-11-04T09:16:00+00:00",
+      "h15_end_amd_close": 515.79,
+      "h15_forward_pct": -0.618497,
+      "h15_positive_over_30bps": false,
+      "h15_direction_up": false,
+      "h60_end_timestamp": "2026-11-04T10:01:00+00:00",
+      "h60_end_amd_close": 516.0,
+      "h60_forward_pct": -0.578035,
+      "h60_positive_over_30bps": false,
+      "h60_direction_up": false
+    },
+    {
+      "date": "2026-11-04",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": "2026-11-04T04:28:40-05:00",
+      "signal_amd_close": 518.01,
+      "h15_end_timestamp": "2026-11-04T09:43:00+00:00",
+      "h15_end_amd_close": 516.0,
+      "h15_forward_pct": -0.388023,
+      "h15_positive_over_30bps": false,
+      "h15_direction_up": false,
+      "h60_end_timestamp": "2026-11-04T10:28:00+00:00",
+      "h60_end_amd_close": 519.1,
+      "h60_forward_pct": 0.210421,
+      "h60_positive_over_30bps": false,
+      "h60_direction_up": true
+    },
+    {
+      "date": "2026-11-05",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": null,
+      "signal_amd_close": null
+    },
+    {
+      "date": "2026-11-05",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": "2026-11-05T05:24:40-05:00",
+      "signal_amd_close": 475.94,
+      "h15_end_timestamp": "2026-11-05T10:39:00+00:00",
+      "h15_end_amd_close": 476.38,
+      "h15_forward_pct": 0.092449,
+      "h15_positive_over_30bps": false,
+      "h15_direction_up": true,
+      "h60_end_timestamp": "2026-11-05T11:24:00+00:00",
+      "h60_end_amd_close": 473.1,
+      "h60_forward_pct": -0.596714,
+      "h60_positive_over_30bps": false,
+      "h60_direction_up": false
+    },
+    {
+      "date": "2026-11-06",
+      "policy": "net_breadth_3of3",
+      "signal_available_at": "2026-11-06T04:01:40-05:00",
+      "signal_amd_close": 425.96,
+      "h15_end_timestamp": "2026-11-06T09:16:00+00:00",
+      "h15_end_amd_close": 432.26,
+      "h15_forward_pct": 1.479012,
+      "h15_positive_over_30bps": true,
+      "h15_direction_up": true,
+      "h60_end_timestamp": "2026-11-06T10:01:00+00:00",
+      "h60_end_amd_close": 431.71,
+      "h60_forward_pct": 1.349892,
+      "h60_positive_over_30bps": true,
+      "h60_direction_up": true
+    },
+    {
+      "date": "2026-11-06",
+      "policy": "MBB_eligible_AMD_shape",
+      "signal_available_at": "2026-11-06T04:20:40-05:00",
+      "signal_amd_close": 434.7,
+      "h15_end_timestamp": "2026-11-06T09:35:00+00:00",
+      "h15_end_amd_close": 436.06,
+      "h15_forward_pct": 0.312859,
+      "h15_positive_over_30bps": true,
+      "h15_direction_up": true,
+      "h60_end_timestamp": "2026-11-06T10:20:00+00:00",
+      "h60_end_amd_close": 434.6,
+      "h60_forward_pct": -0.023004,
+      "h60_positive_over_30bps": false,
+      "h60_direction_up": false
+    }
+  ]
+}
