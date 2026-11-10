@@ -1,0 +1,821 @@
+{
+  "metadata": {
+    "input": "/tmp/sector_complete_20session_alpaca_mixed.json",
+    "date_range": [
+      "2026-10-12",
+      "2026-11-06"
+    ],
+    "signal_cutoff": "08:35:40 ET",
+    "SIP_only": true,
+    "asof_rule": "at minute :40 source endpoint end=now-30 seconds, only completed candles, no future",
+    "quote_and_broker_constraints_tested": false,
+    "candidate_count_is_buy_plus_exit": true,
+    "sample_status": "20 dates ALREADY researched, exploratory NOT independent prospective",
+    "broad_net_threshold_pct": 0.2,
+    "MBB_rule": "AMD 4 completed 1m bars three successive higher highs and lows, max +2.5% per bar, sector >=2 fresh matching anchors"
+  },
+  "summary": {
+    "dates": 20,
+    "valid_dates": 20,
+    "date_first_counts": {
+      "MBB_eligible_AMD_shape": 12,
+      "net_breadth_2of3": 10,
+      "net_breadth_3of3": 10
+    },
+    "date_breadth_without_MBB": {
+      "net2": 4,
+      "net3": 4
+    },
+    "minute_candidate_counts": {
+      "MBB_eligible_AMD_shape": 39,
+      "net_breadth_2of3": 2353,
+      "net_breadth_3of3": 2337,
+      "net2_while_not_MBB": 2327,
+      "net3_while_not_MBB": 2311
+    }
+  },
+  "days": [
+    {
+      "day": "2026-10-12",
+      "eligible": true,
+      "counters": {},
+      "first": {}
+    },
+    {
+      "day": "2026-10-13",
+      "eligible": true,
+      "counters": {
+        "MBB_eligible_AMD_shape": 1
+      },
+      "first": {
+        "MBB_eligible_AMD_shape": {
+          "bar_completed_by": "2026-10-13T04:44:40-04:00",
+          "amd_bar_timestamp": "2026-10-13T08:43:00+00:00",
+          "anchor_shapes": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          }
+        }
+      }
+    },
+    {
+      "day": "2026-10-14",
+      "eligible": true,
+      "counters": {
+        "MBB_eligible_AMD_shape": 2
+      },
+      "first": {
+        "MBB_eligible_AMD_shape": {
+          "bar_completed_by": "2026-10-14T07:15:40-04:00",
+          "amd_bar_timestamp": "2026-10-14T11:14:00+00:00",
+          "anchor_shapes": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          }
+        }
+      }
+    },
+    {
+      "day": "2026-10-15",
+      "eligible": true,
+      "counters": {
+        "MBB_eligible_AMD_shape": 2
+      },
+      "first": {
+        "MBB_eligible_AMD_shape": {
+          "bar_completed_by": "2026-10-15T04:14:40-04:00",
+          "amd_bar_timestamp": "2026-10-15T08:13:00+00:00",
+          "anchor_shapes": {
+            "AMD": true,
+            "MU": false,
+            "SNDK": true
+          },
+          "anchor_net": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          }
+        }
+      }
+    },
+    {
+      "day": "2026-10-16",
+      "eligible": true,
+      "counters": {},
+      "first": {}
+    },
+    {
+      "day": "2026-10-19",
+      "eligible": true,
+      "counters": {
+        "net_breadth_2of3": 275,
+        "net_breadth_3of3": 275,
+        "net3_while_not_MBB": 274,
+        "net2_while_not_MBB": 274,
+        "MBB_eligible_AMD_shape": 1
+      },
+      "first": {
+        "net_breadth_2of3": {
+          "bar_completed_by": "2026-10-19T04:01:40-04:00",
+          "amd_bar_timestamp": "2026-10-19T08:00:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "net_breadth_3of3": {
+          "bar_completed_by": "2026-10-19T04:01:40-04:00",
+          "amd_bar_timestamp": "2026-10-19T08:00:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "first_net3_MBB_disagreement": {
+          "available_at": "2026-10-19T04:01:40-04:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_fresh": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "MBB_eligible_AMD_shape": {
+          "bar_completed_by": "2026-10-19T08:05:40-04:00",
+          "amd_bar_timestamp": "2026-10-19T12:04:00+00:00",
+          "anchor_shapes": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        }
+      }
+    },
+    {
+      "day": "2026-10-20",
+      "eligible": true,
+      "counters": {
+        "MBB_eligible_AMD_shape": 2
+      },
+      "first": {
+        "MBB_eligible_AMD_shape": {
+          "bar_completed_by": "2026-10-20T07:38:40-04:00",
+          "amd_bar_timestamp": "2026-10-20T11:37:00+00:00",
+          "anchor_shapes": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          }
+        }
+      }
+    },
+    {
+      "day": "2026-10-21",
+      "eligible": true,
+      "counters": {
+        "net_breadth_2of3": 273,
+        "net_breadth_3of3": 273,
+        "net3_while_not_MBB": 273,
+        "net2_while_not_MBB": 273
+      },
+      "first": {
+        "net_breadth_2of3": {
+          "bar_completed_by": "2026-10-21T04:01:40-04:00",
+          "amd_bar_timestamp": "2026-10-21T08:00:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "net_breadth_3of3": {
+          "bar_completed_by": "2026-10-21T04:01:40-04:00",
+          "amd_bar_timestamp": "2026-10-21T08:00:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "first_net3_MBB_disagreement": {
+          "available_at": "2026-10-21T04:01:40-04:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_fresh": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        }
+      }
+    },
+    {
+      "day": "2026-10-22",
+      "eligible": true,
+      "counters": {},
+      "first": {}
+    },
+    {
+      "day": "2026-10-23",
+      "eligible": true,
+      "counters": {
+        "net_breadth_2of3": 275,
+        "net_breadth_3of3": 275,
+        "net3_while_not_MBB": 275,
+        "net2_while_not_MBB": 275
+      },
+      "first": {
+        "net_breadth_2of3": {
+          "bar_completed_by": "2026-10-23T04:01:40-04:00",
+          "amd_bar_timestamp": "2026-10-23T08:00:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "net_breadth_3of3": {
+          "bar_completed_by": "2026-10-23T04:01:40-04:00",
+          "amd_bar_timestamp": "2026-10-23T08:00:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "first_net3_MBB_disagreement": {
+          "available_at": "2026-10-23T04:01:40-04:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_fresh": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        }
+      }
+    },
+    {
+      "day": "2026-10-26",
+      "eligible": true,
+      "counters": {
+        "net_breadth_2of3": 85,
+        "net_breadth_3of3": 85,
+        "net3_while_not_MBB": 81,
+        "net2_while_not_MBB": 81,
+        "MBB_eligible_AMD_shape": 4
+      },
+      "first": {
+        "net_breadth_2of3": {
+          "bar_completed_by": "2026-10-26T05:26:40-04:00",
+          "amd_bar_timestamp": "2026-10-26T09:25:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "net_breadth_3of3": {
+          "bar_completed_by": "2026-10-26T05:26:40-04:00",
+          "amd_bar_timestamp": "2026-10-26T09:25:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "first_net3_MBB_disagreement": {
+          "available_at": "2026-10-26T05:26:40-04:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_fresh": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "MBB_eligible_AMD_shape": {
+          "bar_completed_by": "2026-10-26T07:41:40-04:00",
+          "amd_bar_timestamp": "2026-10-26T11:40:00+00:00",
+          "anchor_shapes": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        }
+      }
+    },
+    {
+      "day": "2026-10-27",
+      "eligible": true,
+      "counters": {
+        "net_breadth_2of3": 171,
+        "net_breadth_3of3": 171,
+        "net3_while_not_MBB": 171,
+        "net2_while_not_MBB": 171
+      },
+      "first": {
+        "net_breadth_2of3": {
+          "bar_completed_by": "2026-10-27T05:13:40-04:00",
+          "amd_bar_timestamp": "2026-10-27T09:12:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "net_breadth_3of3": {
+          "bar_completed_by": "2026-10-27T05:13:40-04:00",
+          "amd_bar_timestamp": "2026-10-27T09:12:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "first_net3_MBB_disagreement": {
+          "available_at": "2026-10-27T05:13:40-04:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_fresh": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        }
+      }
+    },
+    {
+      "day": "2026-10-28",
+      "eligible": true,
+      "counters": {
+        "net_breadth_2of3": 275,
+        "net_breadth_3of3": 275,
+        "net3_while_not_MBB": 275,
+        "net2_while_not_MBB": 275
+      },
+      "first": {
+        "net_breadth_2of3": {
+          "bar_completed_by": "2026-10-28T04:01:40-04:00",
+          "amd_bar_timestamp": "2026-10-28T08:00:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "net_breadth_3of3": {
+          "bar_completed_by": "2026-10-28T04:01:40-04:00",
+          "amd_bar_timestamp": "2026-10-28T08:00:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "first_net3_MBB_disagreement": {
+          "available_at": "2026-10-28T04:01:40-04:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_fresh": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        }
+      }
+    },
+    {
+      "day": "2026-10-29",
+      "eligible": true,
+      "counters": {
+        "MBB_eligible_AMD_shape": 1
+      },
+      "first": {
+        "MBB_eligible_AMD_shape": {
+          "bar_completed_by": "2026-10-29T08:26:40-04:00",
+          "amd_bar_timestamp": "2026-10-29T12:25:00+00:00",
+          "anchor_shapes": {
+            "AMD": true,
+            "MU": false,
+            "SNDK": true
+          },
+          "anchor_net": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          }
+        }
+      }
+    },
+    {
+      "day": "2026-10-30",
+      "eligible": true,
+      "counters": {},
+      "first": {}
+    },
+    {
+      "day": "2026-11-02",
+      "eligible": true,
+      "counters": {
+        "net_breadth_2of3": 275,
+        "net_breadth_3of3": 275,
+        "net3_while_not_MBB": 272,
+        "net2_while_not_MBB": 272,
+        "MBB_eligible_AMD_shape": 3
+      },
+      "first": {
+        "net_breadth_2of3": {
+          "bar_completed_by": "2026-11-02T04:01:40-05:00",
+          "amd_bar_timestamp": "2026-11-02T09:00:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "net_breadth_3of3": {
+          "bar_completed_by": "2026-11-02T04:01:40-05:00",
+          "amd_bar_timestamp": "2026-11-02T09:00:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "first_net3_MBB_disagreement": {
+          "available_at": "2026-11-02T04:01:40-05:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_fresh": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "MBB_eligible_AMD_shape": {
+          "bar_completed_by": "2026-11-02T07:10:40-05:00",
+          "amd_bar_timestamp": "2026-11-02T12:09:00+00:00",
+          "anchor_shapes": {
+            "AMD": true,
+            "MU": false,
+            "SNDK": true
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        }
+      }
+    },
+    {
+      "day": "2026-11-03",
+      "eligible": true,
+      "counters": {
+        "net_breadth_2of3": 275,
+        "net_breadth_3of3": 275,
+        "net3_while_not_MBB": 269,
+        "net2_while_not_MBB": 269,
+        "MBB_eligible_AMD_shape": 6
+      },
+      "first": {
+        "net_breadth_2of3": {
+          "bar_completed_by": "2026-11-03T04:01:40-05:00",
+          "amd_bar_timestamp": "2026-11-03T09:00:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "net_breadth_3of3": {
+          "bar_completed_by": "2026-11-03T04:01:40-05:00",
+          "amd_bar_timestamp": "2026-11-03T09:00:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "first_net3_MBB_disagreement": {
+          "available_at": "2026-11-03T04:01:40-05:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_fresh": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "MBB_eligible_AMD_shape": {
+          "bar_completed_by": "2026-11-03T04:05:40-05:00",
+          "amd_bar_timestamp": "2026-11-03T09:04:00+00:00",
+          "anchor_shapes": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        }
+      }
+    },
+    {
+      "day": "2026-11-04",
+      "eligible": true,
+      "counters": {
+        "net_breadth_2of3": 174,
+        "net_breadth_3of3": 158,
+        "net3_while_not_MBB": 156,
+        "net2_while_not_MBB": 172,
+        "MBB_eligible_AMD_shape": 4
+      },
+      "first": {
+        "net_breadth_2of3": {
+          "bar_completed_by": "2026-11-04T04:01:40-05:00",
+          "amd_bar_timestamp": "2026-11-04T09:00:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "net_breadth_3of3": {
+          "bar_completed_by": "2026-11-04T04:01:40-05:00",
+          "amd_bar_timestamp": "2026-11-04T09:00:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "first_net3_MBB_disagreement": {
+          "available_at": "2026-11-04T04:01:40-05:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_fresh": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "MBB_eligible_AMD_shape": {
+          "bar_completed_by": "2026-11-04T04:28:40-05:00",
+          "amd_bar_timestamp": "2026-11-04T09:27:00+00:00",
+          "anchor_shapes": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        }
+      }
+    },
+    {
+      "day": "2026-11-05",
+      "eligible": true,
+      "counters": {
+        "MBB_eligible_AMD_shape": 3
+      },
+      "first": {
+        "MBB_eligible_AMD_shape": {
+          "bar_completed_by": "2026-11-05T05:24:40-05:00",
+          "amd_bar_timestamp": "2026-11-05T10:23:00+00:00",
+          "anchor_shapes": {
+            "AMD": true,
+            "MU": false,
+            "SNDK": true
+          },
+          "anchor_net": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          }
+        }
+      }
+    },
+    {
+      "day": "2026-11-06",
+      "eligible": true,
+      "counters": {
+        "net_breadth_2of3": 275,
+        "net_breadth_3of3": 275,
+        "net3_while_not_MBB": 265,
+        "net2_while_not_MBB": 265,
+        "MBB_eligible_AMD_shape": 10
+      },
+      "first": {
+        "net_breadth_2of3": {
+          "bar_completed_by": "2026-11-06T04:01:40-05:00",
+          "amd_bar_timestamp": "2026-11-06T09:00:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "net_breadth_3of3": {
+          "bar_completed_by": "2026-11-06T04:01:40-05:00",
+          "amd_bar_timestamp": "2026-11-06T09:00:00+00:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "first_net3_MBB_disagreement": {
+          "available_at": "2026-11-06T04:01:40-05:00",
+          "anchor_shapes": {
+            "AMD": false,
+            "MU": false,
+            "SNDK": false
+          },
+          "anchor_fresh": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        },
+        "MBB_eligible_AMD_shape": {
+          "bar_completed_by": "2026-11-06T04:20:40-05:00",
+          "amd_bar_timestamp": "2026-11-06T09:19:00+00:00",
+          "anchor_shapes": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": false
+          },
+          "anchor_net": {
+            "AMD": true,
+            "MU": true,
+            "SNDK": true
+          }
+        }
+      }
+    }
+  ]
+}
