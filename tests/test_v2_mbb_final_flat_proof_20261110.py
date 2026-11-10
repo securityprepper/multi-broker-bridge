@@ -1,6 +1,6 @@
 import copy, unittest, datetime, json
 from zoneinfo import ZoneInfo
-from v2_mbb_final_flat_proof_20261110 import audit,parse_journal
+from research.v2_mbb_final_flat_proof_20261110 import audit,parse_journal
 CT=ZoneInfo("America/Chicago")
 def t(h,m,s=0):return datetime.datetime(2026,11,10,h,m,s,tzinfo=CT)
 def inv():
