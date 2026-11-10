@@ -1,0 +1,100 @@
+{
+  "study": "V2 forward-only directional confidence and session-independence gate",
+  "created_date": "2026-11-10",
+  "status": "RESEARCH_ONLY_NO_TRADING_PERMISSION",
+  "familywise_confidence": {
+    "illustrative_preespecified_hypotheses": 42,
+    "alpha": 0.05,
+    "confidence_level": 0.95,
+    "precision_target": 0.8,
+    "minimum_days_per_sector_direction": 30,
+    "perfect_30_lower": 0.740648,
+    "perfect_43_lower": 0.803662,
+    "minimum_perfect_days_to_clear_bound": 43,
+    "adjustment_scope": "7 sectors x 3 precommitted slots x 2 directions; not a correction for 1620 previously explored policies"
+  },
+  "earlier_reused_direction_audit": [
+    {
+      "sector": "energy",
+      "hits": 18,
+      "n": 48,
+      "forward_hit_fraction": 0.375,
+      "bonferroni_wilson_lower": 0.191
+    },
+    {
+      "sector": "financials",
+      "hits": 23,
+      "n": 44,
+      "forward_hit_fraction": 0.523,
+      "bonferroni_wilson_lower": 0.299
+    },
+    {
+      "sector": "gold_miners",
+      "hits": 28,
+      "n": 47,
+      "forward_hit_fraction": 0.596,
+      "bonferroni_wilson_lower": 0.368
+    },
+    {
+      "sector": "healthcare",
+      "hits": 19,
+      "n": 48,
+      "forward_hit_fraction": 0.396,
+      "bonferroni_wilson_lower": 0.206
+    },
+    {
+      "sector": "industrials",
+      "hits": 21,
+      "n": 48,
+      "forward_hit_fraction": 0.438,
+      "bonferroni_wilson_lower": 0.238
+    },
+    {
+      "sector": "semiconductors",
+      "hits": 22,
+      "n": 48,
+      "forward_hit_fraction": 0.458,
+      "bonferroni_wilson_lower": 0.255
+    },
+    {
+      "sector": "software",
+      "hits": 24,
+      "n": 48,
+      "forward_hit_fraction": 0.5,
+      "bonferroni_wilson_lower": 0.288
+    }
+  ],
+  "fresh_read_only": {
+    "chicago_window": "2026-11-10 06:30:00 to 07:29:59",
+    "executor_scans": 72,
+    "watch_scans": 2,
+    "candidate_appearances": 8,
+    "distinct_symbols": [
+      "MU",
+      "SNDK",
+      "AVGO",
+      "INTC",
+      "ASML",
+      "MRVL"
+    ],
+    "rejected_stale_previous_session": 5,
+    "missing_fresh_bid_ask": 3,
+    "reported_orders": 0,
+    "retained_tracking_rows": 31,
+    "broker_inventory_asof_utc": "2026-11-10T13:28:43.369020+00:00",
+    "broker_verified": true,
+    "recent_orders_complete": true,
+    "positions_count": 0,
+    "open_orders_count": 0,
+    "recent_orders_count": 84,
+    "filled_recent_orders": 80,
+    "canceled_recent_orders": 4,
+    "broker_orders_created_nov10_in_snapshot": 0
+  },
+  "test_result": {
+    "targeted_tests": 13,
+    "passed": 13,
+    "ran_offline_on": "www3 isolated /tmp/v2-research-run11-stats"
+  },
+  "safety": "No V1 PAPER/LIVE, no broker orders, no production SQL, timers, holidays or release gates modified. This gate never authorizes PAPER."
+}
