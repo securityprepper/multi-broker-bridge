@@ -156,5 +156,41 @@ def flatten_once(row,now=None,connect=db_connect,httpfn=http):
     order=httpfn("POST","/v2/orders",payload)
     if order.get("client_order_id")!=flat_id(rec) or not order.get("id"):
         raise SubmissionUnknown("flatten response unknown; do not retry")
+    conn=connect("PAPER_BRIDGE_ROUTER_CNF")
+    try:
+        cur=conn.cursor()
+        cur.execute("UPDATE "+FLAT_TABLE+
+            " SET status='FLATTEN_BROKER_ACK',paper_broker_order_id=%s,"+
+            "checked_at_utc=UTC_TIMESTAMP(6) WHERE recommendation_id=%s"+
+            " AND status='FLATTEN_UNKNOWN_RESERVED'",(order["id"],rec))
+        if cur.rowcount!=1: raise Unsafe("flatten acknowledgement reservation missing")
+        event(cur,rec,"FLATTEN_BROKER_ACK",{"client_order_id":flat_id(rec),
+            "broker_order_id":order["id"],"broker_status":order.get("status")})
+        conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
+    finally: conn.close()
     return {"action":"FLATTEN_SUBMITTED_VERIFY_FILL","client_order_id":flat_id(rec),
             "broker_order_id":order["id"],"quantity":str(remaining)}
+
+def readback_flatten(recommendation_id, client_order_id, quantity, httpfn=http):
+    """No second SELL. Read broker status only; report unresolved after 14:00."""
+    if client_order_id!=flat_id(recommendation_id):
+        raise Unsafe("noncanonical flatten client order ID")
+    a=authenticated_account(httpfn)
+    order=httpfn("GET","/v2/orders:by_client_order_id?client_order_id="+quote(client_order_id,safe=""))
+    if not isinstance(order,dict) or order.get("client_order_id")!=client_order_id:
+        raise SubmissionUnknown("flatten order identity unknown")
+    n=Decimal(str(order.get("filled_qty","0")))
+    if n<0 or n>Decimal(str(quantity)):
+        raise Unsafe("flatten quantity mismatch")
+    if n==Decimal(str(quantity)) and order.get("status")=="filled":
+        return {"status":"FLATTEN_FILLED","broker_order_id":order["id"],
+                "filled_qty":str(n)}
+    if order.get("status") in ("canceled","expired","rejected"):
+        return {"status":"CRITICAL_FLATTEN_FAILED","broker_order_id":order.get("id"),
+                "filled_qty":str(n)}
+    return {"status":"FLATTEN_UNCONFIRMED","broker_order_id":order.get("id"),
+            "filled_qty":str(n)}
+
