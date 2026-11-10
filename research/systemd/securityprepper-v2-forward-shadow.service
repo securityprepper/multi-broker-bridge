@@ -1,0 +1,35 @@
+[Unit]
+Description=V2 research-only timestamped sector shadow recorder (NO trades or notifications)
+Wants=network-online.target
+After=network-online.target
+ConditionPathExists=/etc/securityprepper/alpaca-feed/private/alpaca_data_key_id
+
+[Service]
+Type=oneshot
+User=alpacafeed
+Group=sectorread
+WorkingDirectory=/opt/securityprepper/v2-forward-shadow
+Environment=PYTHONPATH=/opt/securityprepper/v2-forward-shadow:/opt/securityprepper/sector-monitor
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=V2_SHADOW_STATE_ROOT=/var/lib/securityprepper-v2-forward-shadow
+Environment=V2_SHADOW_HOLIDAY_GATE=/var/lib/securityprepper-v2-forward-shadow/holiday_gate.json
+LoadCredential=alpaca_data_key_id:/etc/securityprepper/alpaca-feed/private/alpaca_data_key_id
+LoadCredential=alpaca_data_secret:/etc/securityprepper/alpaca-feed/private/alpaca_data_secret
+ExecStart=/usr/bin/python3 -B -m research.v2_forward_only_sector_shadow_20261109
+StateDirectory=securityprepper-v2-forward-shadow
+StateDirectoryMode=0750
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+CapabilityBoundingSet=
+LockPersonality=true
+MemoryDenyWriteExecute=true
+RestrictRealtime=true
+TimeoutStartSec=35
