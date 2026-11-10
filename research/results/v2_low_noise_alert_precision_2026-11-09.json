@@ -1,0 +1,351 @@
+{
+  "asof": "2026-11-09",
+  "dataset": "Alpaca adjusted SIP five-minute completed historical bars through 2026-11-06; prior five completed RTH sessions; no future OHLC data in trigger",
+  "forecast_target": "additional same-direction 0.5 percentage-point sector ETF movement in 60 minutes AFTER 2-bar threshold and peer breadth signal; NOT broker fills",
+  "selection_method": "conservative event-rate cap selected after viewing same full historical sample, NOT an independent forecast accuracy proof",
+  "by_sector": {
+    "semiconductors": {
+      "threshold": 5,
+      "earlier": {
+        "events": 9,
+        "up": 0,
+        "down": 9,
+        "forward_positive": 3,
+        "forward_plus_50bp": 2,
+        "false_for_halfpct": 7,
+        "unscored_future_data": 0,
+        "mean_future_signed_pct": -0.2352,
+        "median_future_signed_pct": -0.2861,
+        "worst_future_signed_pct": -2.7722,
+        "earliest_signal": [
+          "2025-11-20",
+          "12:25"
+        ],
+        "event_days": 9
+      },
+      "later": {
+        "events": 2,
+        "up": 0,
+        "down": 2,
+        "forward_positive": 1,
+        "forward_plus_50bp": 0,
+        "false_for_halfpct": 2,
+        "unscored_future_data": 0,
+        "mean_future_signed_pct": -0.1652,
+        "median_future_signed_pct": -0.1652,
+        "worst_future_signed_pct": -0.5987,
+        "earliest_signal": [
+          "2026-07-27",
+          "10:40"
+        ],
+        "event_days": 2
+      },
+      "all": {
+        "events": 11,
+        "up": 0,
+        "down": 11,
+        "forward_positive": 4,
+        "forward_plus_50bp": 2,
+        "false_for_halfpct": 9,
+        "unscored_future_data": 0,
+        "mean_future_signed_pct": -0.2224,
+        "median_future_signed_pct": -0.2861,
+        "worst_future_signed_pct": -2.7722,
+        "earliest_signal": [
+          "2025-11-20",
+          "12:25"
+        ],
+        "event_days": 11
+      },
+      "eligible_days": 250,
+      "later_days": 75
+    },
+    "gold_miners": {
+      "threshold": 5,
+      "earlier": {
+        "events": 4,
+        "up": 1,
+        "down": 3,
+        "forward_positive": 1,
+        "forward_plus_50bp": 0,
+        "false_for_halfpct": 4,
+        "unscored_future_data": 0,
+        "mean_future_signed_pct": -0.624,
+        "median_future_signed_pct": -0.4751,
+        "worst_future_signed_pct": -1.8069,
+        "earliest_signal": [
+          "2026-01-29",
+          "10:35"
+        ],
+        "event_days": 4
+      },
+      "later": {
+        "events": 0,
+        "up": 0,
+        "down": 0,
+        "forward_positive": 0,
+        "forward_plus_50bp": 0,
+        "false_for_halfpct": 0,
+        "mean_future_signed_pct": null,
+        "event_days": 0
+      },
+      "all": {
+        "events": 4,
+        "up": 1,
+        "down": 3,
+        "forward_positive": 1,
+        "forward_plus_50bp": 0,
+        "false_for_halfpct": 4,
+        "unscored_future_data": 0,
+        "mean_future_signed_pct": -0.624,
+        "median_future_signed_pct": -0.4751,
+        "worst_future_signed_pct": -1.8069,
+        "earliest_signal": [
+          "2026-01-29",
+          "10:35"
+        ],
+        "event_days": 4
+      },
+      "eligible_days": 250,
+      "later_days": 75
+    },
+    "energy": {
+      "threshold": 3,
+      "earlier": {
+        "events": 0,
+        "up": 0,
+        "down": 0,
+        "forward_positive": 0,
+        "forward_plus_50bp": 0,
+        "false_for_halfpct": 0,
+        "mean_future_signed_pct": null,
+        "event_days": 0
+      },
+      "later": {
+        "events": 2,
+        "up": 0,
+        "down": 2,
+        "forward_positive": 1,
+        "forward_plus_50bp": 1,
+        "false_for_halfpct": 1,
+        "unscored_future_data": 0,
+        "mean_future_signed_pct": 0.218,
+        "median_future_signed_pct": 0.218,
+        "worst_future_signed_pct": -0.775,
+        "earliest_signal": [
+          "2026-10-22",
+          "11:30"
+        ],
+        "event_days": 2
+      },
+      "all": {
+        "events": 2,
+        "up": 0,
+        "down": 2,
+        "forward_positive": 1,
+        "forward_plus_50bp": 1,
+        "false_for_halfpct": 1,
+        "unscored_future_data": 0,
+        "mean_future_signed_pct": 0.218,
+        "median_future_signed_pct": 0.218,
+        "worst_future_signed_pct": -0.775,
+        "earliest_signal": [
+          "2026-10-22",
+          "11:30"
+        ],
+        "event_days": 2
+      },
+      "eligible_days": 250,
+      "later_days": 75
+    },
+    "financials": {
+      "threshold": 3,
+      "earlier": {
+        "events": 0,
+        "up": 0,
+        "down": 0,
+        "forward_positive": 0,
+        "forward_plus_50bp": 0,
+        "false_for_halfpct": 0,
+        "mean_future_signed_pct": null,
+        "event_days": 0
+      },
+      "later": {
+        "events": 1,
+        "up": 0,
+        "down": 1,
+        "forward_positive": 1,
+        "forward_plus_50bp": 0,
+        "false_for_halfpct": 1,
+        "unscored_future_data": 0,
+        "mean_future_signed_pct": 0.2926,
+        "median_future_signed_pct": 0.2926,
+        "worst_future_signed_pct": 0.2926,
+        "earliest_signal": [
+          "2026-11-05",
+          "11:10"
+        ],
+        "event_days": 1
+      },
+      "all": {
+        "events": 1,
+        "up": 0,
+        "down": 1,
+        "forward_positive": 1,
+        "forward_plus_50bp": 0,
+        "false_for_halfpct": 1,
+        "unscored_future_data": 0,
+        "mean_future_signed_pct": 0.2926,
+        "median_future_signed_pct": 0.2926,
+        "worst_future_signed_pct": 0.2926,
+        "earliest_signal": [
+          "2026-11-05",
+          "11:10"
+        ],
+        "event_days": 1
+      },
+      "eligible_days": 250,
+      "later_days": 75
+    },
+    "industrials": {
+      "threshold": 3,
+      "earlier": {
+        "events": 0,
+        "up": 0,
+        "down": 0,
+        "forward_positive": 0,
+        "forward_plus_50bp": 0,
+        "false_for_halfpct": 0,
+        "mean_future_signed_pct": null,
+        "event_days": 0
+      },
+      "later": {
+        "events": 1,
+        "up": 0,
+        "down": 1,
+        "forward_positive": 1,
+        "forward_plus_50bp": 0,
+        "false_for_halfpct": 1,
+        "unscored_future_data": 0,
+        "mean_future_signed_pct": 0.1473,
+        "median_future_signed_pct": 0.1473,
+        "worst_future_signed_pct": 0.1473,
+        "earliest_signal": [
+          "2026-11-05",
+          "13:10"
+        ],
+        "event_days": 1
+      },
+      "all": {
+        "events": 1,
+        "up": 0,
+        "down": 1,
+        "forward_positive": 1,
+        "forward_plus_50bp": 0,
+        "false_for_halfpct": 1,
+        "unscored_future_data": 0,
+        "mean_future_signed_pct": 0.1473,
+        "median_future_signed_pct": 0.1473,
+        "worst_future_signed_pct": 0.1473,
+        "earliest_signal": [
+          "2026-11-05",
+          "13:10"
+        ],
+        "event_days": 1
+      },
+      "eligible_days": 250,
+      "later_days": 75
+    },
+    "healthcare": {
+      "threshold": 3,
+      "earlier": {
+        "events": 0,
+        "up": 0,
+        "down": 0,
+        "forward_positive": 0,
+        "forward_plus_50bp": 0,
+        "false_for_halfpct": 0,
+        "mean_future_signed_pct": null,
+        "event_days": 0
+      },
+      "later": {
+        "events": 0,
+        "up": 0,
+        "down": 0,
+        "forward_positive": 0,
+        "forward_plus_50bp": 0,
+        "false_for_halfpct": 0,
+        "mean_future_signed_pct": null,
+        "event_days": 0
+      },
+      "all": {
+        "events": 0,
+        "up": 0,
+        "down": 0,
+        "forward_positive": 0,
+        "forward_plus_50bp": 0,
+        "false_for_halfpct": 0,
+        "mean_future_signed_pct": null,
+        "event_days": 0
+      },
+      "eligible_days": 250,
+      "later_days": 75
+    },
+    "software": {
+      "threshold": 4,
+      "earlier": {
+        "events": 5,
+        "up": 3,
+        "down": 2,
+        "forward_positive": 3,
+        "forward_plus_50bp": 0,
+        "false_for_halfpct": 5,
+        "unscored_future_data": 0,
+        "mean_future_signed_pct": -0.067,
+        "median_future_signed_pct": 0.2108,
+        "worst_future_signed_pct": -0.9602,
+        "earliest_signal": [
+          "2026-02-03",
+          "11:25"
+        ],
+        "event_days": 5
+      },
+      "later": {
+        "events": 2,
+        "up": 0,
+        "down": 2,
+        "forward_positive": 1,
+        "forward_plus_50bp": 0,
+        "false_for_halfpct": 2,
+        "unscored_future_data": 0,
+        "mean_future_signed_pct": 0.0824,
+        "median_future_signed_pct": 0.0824,
+        "worst_future_signed_pct": -0.182,
+        "earliest_signal": [
+          "2026-10-16",
+          "11:15"
+        ],
+        "event_days": 2
+      },
+      "all": {
+        "events": 7,
+        "up": 3,
+        "down": 4,
+        "forward_positive": 4,
+        "forward_plus_50bp": 0,
+        "false_for_halfpct": 7,
+        "unscored_future_data": 0,
+        "mean_future_signed_pct": -0.0243,
+        "median_future_signed_pct": 0.2108,
+        "worst_future_signed_pct": -0.9602,
+        "earliest_signal": [
+          "2026-02-03",
+          "11:25"
+        ],
+        "event_days": 7
+      },
+      "eligible_days": 250,
+      "later_days": 75
+    }
+  }
+}
