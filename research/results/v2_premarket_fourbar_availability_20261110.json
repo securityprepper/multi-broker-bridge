@@ -1,0 +1,113 @@
+{
+  "buy_watch_predicate_verified": false,
+  "counts": {
+    "fourbar_allfour": 1433,
+    "fourbar_amd": 1786,
+    "fourbar_amd_and_one_other_peer": 1785,
+    "fourbar_amd_plus_one_and_soxx_current": 1671,
+    "fourbar_own_three": 1731,
+    "onebar_allfour": 1869,
+    "onebar_own_three": 2040
+  },
+  "data_source": "existing seven-session split-adjusted Alpaca SIP 1Min trade OHLC cache",
+  "decision_timestamp": "minute HH:MM:40 ET",
+  "executable_quotes_or_fills": false,
+  "fourbar_allfour_pct": 62.8,
+  "fourbar_amd_plus_one_pct": 78.22,
+  "fourbar_denominator": 2282,
+  "fourbar_lookback": "HH:MM-4 through HH:MM-1 inclusive",
+  "holiday_or_broker_orders_changed": false,
+  "independent_forward_holdout": false,
+  "minimum_publication_lag_seconds": 15,
+  "n_days": 7,
+  "onebar_allfour_pct": 80.91,
+  "onebar_denominator": 2310,
+  "rows": [
+    {
+      "date": "2026-10-29",
+      "fourbar_allfour": 59,
+      "fourbar_amd": 112,
+      "fourbar_amd_and_one_other_peer": 112,
+      "fourbar_amd_plus_one_and_soxx_current": 99,
+      "fourbar_denominator": 326,
+      "fourbar_own_three": 92,
+      "onebar_allfour": 150,
+      "onebar_denominator": 330,
+      "onebar_own_three": 178
+    },
+    {
+      "date": "2026-10-30",
+      "fourbar_allfour": 146,
+      "fourbar_amd": 189,
+      "fourbar_amd_and_one_other_peer": 188,
+      "fourbar_amd_plus_one_and_soxx_current": 179,
+      "fourbar_denominator": 326,
+      "fourbar_own_three": 174,
+      "onebar_allfour": 254,
+      "onebar_denominator": 330,
+      "onebar_own_three": 267
+    },
+    {
+      "date": "2026-11-02",
+      "fourbar_allfour": 117,
+      "fourbar_amd": 253,
+      "fourbar_amd_and_one_other_peer": 253,
+      "fourbar_amd_plus_one_and_soxx_current": 194,
+      "fourbar_denominator": 326,
+      "fourbar_own_three": 235,
+      "onebar_allfour": 216,
+      "onebar_denominator": 330,
+      "onebar_own_three": 298
+    },
+    {
+      "date": "2026-11-03",
+      "fourbar_allfour": 198,
+      "fourbar_amd": 270,
+      "fourbar_amd_and_one_other_peer": 270,
+      "fourbar_amd_plus_one_and_soxx_current": 250,
+      "fourbar_denominator": 326,
+      "fourbar_own_three": 268,
+      "onebar_allfour": 277,
+      "onebar_denominator": 330,
+      "onebar_own_three": 311
+    },
+    {
+      "date": "2026-11-04",
+      "fourbar_allfour": 281,
+      "fourbar_amd": 326,
+      "fourbar_amd_and_one_other_peer": 326,
+      "fourbar_amd_plus_one_and_soxx_current": 314,
+      "fourbar_denominator": 326,
+      "fourbar_own_three": 326,
+      "onebar_allfour": 318,
+      "onebar_denominator": 330,
+      "onebar_own_three": 330
+    },
+    {
+      "date": "2026-11-05",
+      "fourbar_allfour": 306,
+      "fourbar_amd": 310,
+      "fourbar_amd_and_one_other_peer": 310,
+      "fourbar_amd_plus_one_and_soxx_current": 309,
+      "fourbar_denominator": 326,
+      "fourbar_own_three": 310,
+      "onebar_allfour": 324,
+      "onebar_denominator": 330,
+      "onebar_own_three": 326
+    },
+    {
+      "date": "2026-11-06",
+      "fourbar_allfour": 326,
+      "fourbar_amd": 326,
+      "fourbar_amd_and_one_other_peer": 326,
+      "fourbar_amd_plus_one_and_soxx_current": 326,
+      "fourbar_denominator": 326,
+      "fourbar_own_three": 326,
+      "onebar_allfour": 330,
+      "onebar_denominator": 330,
+      "onebar_own_three": 330
+    }
+  ],
+  "source_candle_timestamp": "bar START in America/New_York",
+  "study": "historical premarket four-completed-candle data availability only"
+}
