@@ -1,0 +1,32 @@
+# November 10, 2026 — first-seen news catalyst evidence archive (V2 research only)
+
+**No trading recommendation or automatic order resulted from this work.** This is a new causal data collection capability for the *different* official guidance/corporate news catalyst strategy. Previously failed price-only continuation, gold lead-lag, automatic reentry and one-minute shakeout research families remain retired; no V1 safety/order behavior was altered.
+
+## Verified limitation and corrective result
+
+The existing GET-only Alpaca news collector maintained **3,905 seen article IDs** at the Nov10 16:33 CT snapshot but only **300 recent full records**, with earliest observed record about 15:34 CT and latest around 16:33 CT. A list of IDs cannot recreate the original published/received timestamp, headline, ticker tags or issuer-verification state. Therefore historical 20+ day prospective earnings/news scoring could not safely be derived from the rolling file alone.
+
+The 300 recent records included **297 unique IDs**, of which **3 IDs appeared twice with changed observed_at_utc, latency_seconds and realtime_fresh**. An initial archive attempt (16:38:49 CT) failed closed on one conflicting ID after sealing 295 baseline records. Crucially it did not overwrite any earlier evidence. Research was corrected to normalize before writing and append each changed ID as a distinct immutable **revision**, not a second catalyst/new trading signal. **15 independent offline tests passed** on authorized www3, including stale feed rejection, trusted holiday fail closed, broker-isolation, no future bars, immutable idempotence, conflicting article revisions, earliest observed duplicate handling, and no orders.
+
+## Independent collector deployed
+
+- Isolated source: `research/v2_news_event_evidence_archive_20261110.py`. Tests: `tests/test_v2_news_event_evidence_archive_20261110.py` on V2 branch `research/rebound-v2-conditional-exits`.
+- Separate **nonroot** `securityprepper-v2-news-evidence.service` runs as `alpacafeed:sectorread`, with `PrivateNetwork=true`, no credentials loaded, no network or broker imports, no notification facility, and restrictive filesystem permissions. It only consumes the existing local news observer's read-only `current.json` and its trusted holiday cache. No changes to the existing news collector or V1 trading service.
+- New independent `securityprepper-v2-news-evidence.timer` enabled/active, runs each minute at :50, after the existing GET-only news observer's :25. This is NOT a V1 timer and does not touch IBKR Gateway. If cached holiday validation is paused, untrusted or past its future boundary, the archive makes **zero writes** and fails closed. Existing validated cache unpaused revision 2 strictly until **Nov 13 2026 16:13 CST**, absent calendar edit.
+- Each article is stored once with a stable per-article hash, first-observed provider metadata, actual archival timestamp, and immutable source classification. Changed metadata is a separately sealed revision. A newly sealed item is *prospective* only if its recorded source observation follows the actual activation time and archive receipt occurs promptly. Earlier captured headlines remain historical baseline, not forward predictions. All remain `issuer_verified=false`, `guidance_change_verified=false`, `trade_authorized=false`, `orders_submitted=0`.
+
+## Brokerless readback
+
+The corrected service exited successfully at **16:41:15 CST** and the first scheduled timer iteration at **16:41:50 CST** also exited successfully. Verified afterward: timer **enabled and active**, service `Result=success`, **313 sealed records** total (**308 primary records plus 5 revisions**), **7 prospective primary records**, full event files mode `0600`, root-owned code matching passing host scratch SHA-256. The 7 newly prospective primary records were **4 OTHER_NEWS** and **3 unverified earnings-schedule mentions**, **zero issuer-verified guidance upgrades**, and all were observed well after the **13:15 CST entry cutoff**. These are NOT trading candidates and have no after-cost P&L outcome to report.
+
+## Separate recommendation-audit blocker confirmed independently
+
+Read-only Percona snapshot on Nov10 16:32–16:33 CST: `securityprepper_trading.sp_live_recommendation_ledger` contains **96 records**, oldest November 2 and latest November 6; **zero recommendations dated November 8 or later**. The installed writer remains **review-only**, so new Trading Opportunities recommendation-to-Alpaca PAPER routing is **not commissioned**. No closed position can safely be attributed to those new recommendation IDs; Recommendation Audit should issue no invented closed-position reports.
+
+## Next new strategy investigation
+
+1. From future prospectively sealed **true** earnings releases, verify legal listed issuer against official company filings/IR or SEC 8-K *as observed at decision time*, comparing actual prior guidance and a new material upward revision against consensus available before publication. Do not assume a ticker in third-party news is issuer identity. SEC publishes an official `data.sec.gov` API for filings; acceptance timestamps alone are not necessarily the market's first receipt. Record independent retrieval/verification time.
+2. Reconstruct fresh SIP bid/ask **after** the accepted time and first actual archived article observation (never place price marks prior to the signal). Alpaca historical stock quotes endpoints can provide bid/ask snapshots but **cannot prove executable fills**. Record time-to-quote, spread, volume, missing/late quotes and limit fill eligibility. The existing `early_quote_replay.py` is a reference, not evidence of this event strategy's profitability.
+3. Compare first orderly post-guidance pullback, immediate reaction entry, delayed 15/30m entry, and cash/no-trade, all respecting 13:15 CST new-entry cutoff and 13:40 CST flatten, realistic spread/commission and both upside/downside outcomes. Require a causal earlier-only training period, fixed validation policy, 20+ untouched prospective eligible event sessions, day-cluster confidence and downside tail. If failed, retire it rather than tune on reused cases.
+
+**Current status:** No verified positive after-fee expectancy and no PAPER release authorized from this new event family. Data/archive improvement only; all active V1 PAPER/LIVE and broker orders and stop/flatten/holiday safeguards preserved.
