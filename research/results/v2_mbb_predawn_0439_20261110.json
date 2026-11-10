@@ -1,0 +1,251 @@
+{
+  "candidate_occurrences": {
+    "AMD": 5,
+    "INTC": 2,
+    "MU": 8,
+    "NVDA": 6,
+    "SNDK": 6
+  },
+  "candidate_scan_events": [
+    {
+      "chicago_time": "2026-11-10T00:20:24.657693-06:00",
+      "reported_order_count": 0,
+      "skipped": [
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "NVDA"
+        },
+        {
+          "reason": "NO_FRESH_BID_ASK",
+          "symbol": "MU"
+        },
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "SNDK"
+        }
+      ],
+      "watch": [
+        "MU",
+        "NVDA",
+        "SNDK"
+      ]
+    },
+    {
+      "chicago_time": "2026-11-10T00:20:42.882193-06:00",
+      "reported_order_count": 0,
+      "skipped": [
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "NVDA"
+        },
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "MU"
+        },
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "SNDK"
+        }
+      ],
+      "watch": [
+        "MU",
+        "NVDA",
+        "SNDK"
+      ]
+    },
+    {
+      "chicago_time": "2026-11-10T01:43:42.847281-06:00",
+      "reported_order_count": 0,
+      "skipped": [
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "AMD"
+        },
+        {
+          "reason": "NO_FRESH_BID_ASK",
+          "symbol": "MU"
+        },
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "INTC"
+        }
+      ],
+      "watch": [
+        "AMD",
+        "INTC",
+        "MU"
+      ]
+    },
+    {
+      "chicago_time": "2026-11-10T01:44:42.855119-06:00",
+      "reported_order_count": 0,
+      "skipped": [
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "AMD"
+        },
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "MU"
+        },
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "INTC"
+        }
+      ],
+      "watch": [
+        "AMD",
+        "INTC",
+        "MU"
+      ]
+    },
+    {
+      "chicago_time": "2026-11-10T03:29:43.243555-06:00",
+      "reported_order_count": 0,
+      "skipped": [
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "NVDA"
+        },
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "MU"
+        },
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "SNDK"
+        }
+      ],
+      "watch": [
+        "MU",
+        "NVDA",
+        "SNDK"
+      ]
+    },
+    {
+      "chicago_time": "2026-11-10T03:46:43.108742-06:00",
+      "reported_order_count": 0,
+      "skipped": [
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "AMD"
+        },
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "NVDA"
+        },
+        {
+          "reason": "NO_FRESH_BID_ASK",
+          "symbol": "MU"
+        },
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "SNDK"
+        }
+      ],
+      "watch": [
+        "AMD",
+        "MU",
+        "NVDA",
+        "SNDK"
+      ]
+    },
+    {
+      "chicago_time": "2026-11-10T03:47:43.337486-06:00",
+      "reported_order_count": 0,
+      "skipped": [
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "AMD"
+        },
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "NVDA"
+        },
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "MU"
+        },
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "SNDK"
+        }
+      ],
+      "watch": [
+        "AMD",
+        "MU",
+        "NVDA",
+        "SNDK"
+      ]
+    },
+    {
+      "chicago_time": "2026-11-10T03:48:43.251708-06:00",
+      "reported_order_count": 0,
+      "skipped": [
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "AMD"
+        },
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "NVDA"
+        },
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "MU"
+        },
+        {
+          "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+          "symbol": "SNDK"
+        }
+      ],
+      "watch": [
+        "AMD",
+        "MU",
+        "NVDA",
+        "SNDK"
+      ]
+    }
+  ],
+  "candidate_symbol_count": 5,
+  "evidence_scope": "journald summary; no independent broker fill or execution verification",
+  "local_day": "2026-11-10",
+  "reported_orders_not_verified_fills": 0,
+  "scan_records": 335,
+  "scans_with_candidates": 8,
+  "skipped_reason_occurrences": [
+    {
+      "count": 5,
+      "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+      "symbol": "AMD"
+    },
+    {
+      "count": 2,
+      "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+      "symbol": "INTC"
+    },
+    {
+      "count": 3,
+      "reason": "NO_FRESH_BID_ASK",
+      "symbol": "MU"
+    },
+    {
+      "count": 5,
+      "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+      "symbol": "MU"
+    },
+    {
+      "count": 6,
+      "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+      "symbol": "NVDA"
+    },
+    {
+      "count": 6,
+      "reason": "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY",
+      "symbol": "SNDK"
+    }
+  ],
+  "tracked_counts": {
+    "31": 335
+  }
+}
