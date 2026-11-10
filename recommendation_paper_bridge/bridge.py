@@ -318,7 +318,9 @@ def process_once(now=None, connect=db_connect, httpfn=http):
             # Unknown submission leaves RESERVED_UNKNOWN; never auto-retry.
             try:
                 response=httpfn("POST","/v2/orders",bracket_payload(row))
-                if (response.get("client_order_id")!=row["client_order_id"] or not response.get("id") or\n                    response.get("order_class")!="bracket" or response.get("side")!="buy" or\n                    response.get("symbol")!=row["symbol"]):
+                if (response.get("client_order_id")!=row["client_order_id"] or not response.get("id") or
+                    response.get("order_class")!="bracket" or response.get("side")!="buy" or
+                    response.get("symbol")!=row["symbol"]):
                     raise SubmissionUnknown("order identity/readback missing")
                 cur.execute("UPDATE "+INTENT_TABLE+
                     " SET status='BROKER_ACCEPTED',broker_order_id=%s,broker_status=%s,"+
