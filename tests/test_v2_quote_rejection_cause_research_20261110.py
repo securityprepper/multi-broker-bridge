@@ -1,7 +1,10 @@
 """Synthetic tests only; no market feed, paper account or broker connection."""
 import unittest
 from datetime import datetime, timedelta, timezone
-from v2_quote_rejection_cause_research import classify_quote, attribute_batch
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "research"))
+from v2_quote_rejection_cause_research_20261110 import classify_quote, attribute_batch
 
 NOW = datetime(2026, 11, 10, 17, 0, tzinfo=timezone.utc)
 
