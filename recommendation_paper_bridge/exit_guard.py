@@ -194,3 +194,68 @@ def readback_flatten(recommendation_id, client_order_id, quantity, httpfn=http):
     return {"status":"FLATTEN_UNCONFIRMED","broker_order_id":order.get("id"),
             "filled_qty":str(n)}
 
+
+def run_guard_once(now=None,connect=db_connect,httpfn=http):
+    """Continuous PAPER protection/cutoff watch; no automatic unknown retries."""
+    now=now or datetime.now(timezone.utc)
+    require_commissioned()
+    authenticated_account(httpfn)
+    conn=connect("PAPER_BRIDGE_ROUTER_CNF")
+    try:
+        cur=conn.cursor(dictionary=True)
+        cur.execute("SELECT * FROM securityprepper_trading.sp_paper_rec_intents "+
+            "WHERE broker_order_id IS NOT NULL AND status IN "+
+            "('BROKER_ACCEPTED','OPEN_WITH_BRACKET','PARTIAL_UNPROTECTED',"+
+            "'UNFILLED','RESERVED_UNKNOWN','UNFILLED_TERMINAL') "+
+            "ORDER BY issued_at_utc LIMIT 75")
+        rows=cur.fetchall()
+        conn.commit()
+        results=[]
+        for row in rows:
+            rec=row["recommendation_id"]
+            cur.execute("SELECT * FROM "+FLAT_TABLE+" WHERE recommendation_id=%s",(rec,))
+            existing=cur.fetchone()
+            conn.commit()
+            if existing:
+                # A prior submission may have been uncertain. Read it back,
+                # but NEVER issue another sell with this recommendation key.
+                try:
+                    x=readback_flatten(rec,existing["client_order_id"],
+                                      existing["quantity"],httpfn)
+                    cur.execute("UPDATE "+FLAT_TABLE+
+                        " SET status=%s,checked_at_utc=UTC_TIMESTAMP(6),"+
+                        "paper_broker_order_id=COALESCE(%s,paper_broker_order_id)"+
+                        " WHERE recommendation_id=%s",
+                        (x["status"],x["broker_order_id"],rec))
+                    event(cur,rec,"FLATTEN_READBACK",x)
+                    conn.commit()
+                    results.append({"recommendation_id":rec,**x})
+                except (Unsafe,SubmissionUnknown,BrokerRejected) as e:
+                    conn.rollback()
+                    results.append({"recommendation_id":rec,
+                                    "status":"CRITICAL_FLATTEN_READBACK_UNKNOWN",
+                                    "reason":type(e).__name__})
+                continue
+            try:
+                x=flatten_once(row,now,connect,httpfn)
+                if x.get("action")=="UNFILLED_CANCEL_VERIFIED":
+                    cur.execute("UPDATE securityprepper_trading.sp_paper_rec_intents"+
+                        " SET status='UNFILLED_CANCELED',last_checked_utc=UTC_TIMESTAMP(6)"+
+                        " WHERE recommendation_id=%s",(rec,))
+                    event(cur,rec,"UNFILLED_CANCELED_AT_CUTOFF",{"broker_order_id":row["broker_order_id"]})
+                    conn.commit()
+                results.append({"recommendation_id":rec,**x})
+            except (Unsafe,SubmissionUnknown,BrokerRejected) as e:
+                conn.rollback()
+                results.append({"recommendation_id":rec,"status":"CRITICAL_EXIT_GUARD_UNKNOWN",
+                                "reason":type(e).__name__})
+        return {"checked":len(rows),"outcomes":results}
+    finally:conn.close()
+
+def main():
+    import argparse
+    p=argparse.ArgumentParser()
+    p.add_argument("--once",action="store_true",required=True)
+    x=p.parse_args()
+    print(json.dumps(run_guard_once(),sort_keys=True))
+if __name__=="__main__":main()
