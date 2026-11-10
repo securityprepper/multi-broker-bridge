@@ -207,9 +207,13 @@ def run_guard_once(now=None,connect=db_connect,httpfn=http):
             "WHERE broker_order_id IS NOT NULL AND status IN "+
             "('BROKER_ACCEPTED','OPEN_WITH_BRACKET','PARTIAL_UNPROTECTED',"+
             "'UNFILLED','RESERVED_UNKNOWN','UNFILLED_TERMINAL') "+
-            "ORDER BY issued_at_utc LIMIT 75")
+            "ORDER BY CASE WHEN status='PARTIAL_UNPROTECTED' THEN 0 "+
+            "WHEN status IN ('BROKER_ACCEPTED','OPEN_WITH_BRACKET') THEN 1 ELSE 2 END, "+
+            "issued_at_utc LIMIT 76")
         rows=cur.fetchall()
         conn.commit()
+        if len(rows)>75:
+            raise Unsafe("PAPER exit-guard backlog exceeds 75; no silent uncovered positions")
         results=[]
         for row in rows:
             rec=row["recommendation_id"]

@@ -22,7 +22,7 @@ def check_parent(row,parent):
         or parent.get("client_order_id")!=row["client_order_id"]
         or parent.get("symbol")!=row["symbol"] or parent.get("side")!="buy"
         or parent.get("order_class")!="bracket" or parent.get("type")!="limit"
-        or str(parent.get("limit_price"))!=str(row["limit_price"])):
+        or qty(parent.get("limit_price"))!=qty(row["limit_price"])):
         raise Unsafe("PAPER parent identity or bracket parameters mismatch")
 
 def assess(row,parent,activities,extra_exit_ids=()):
@@ -141,9 +141,14 @@ def reconcile_once(connect=db_connect,httpfn=http):
             "FROM "+INTENT_TABLE+" i LEFT JOIN securityprepper_trading.sp_paper_rec_flatten_intents f "+
             "ON f.recommendation_id=i.recommendation_id"+
             " WHERE i.status IN ('BROKER_ACCEPTED','RESERVED_UNKNOWN','PARTIAL_UNPROTECTED',"+
-            "'OPEN_WITH_BRACKET','CLOSED_NEEDS_FEE_RECON') ORDER BY i.issued_at_utc LIMIT 50")
+            "'OPEN_WITH_BRACKET','UNFILLED') "+
+            "ORDER BY CASE WHEN i.status='PARTIAL_UNPROTECTED' THEN 0 "+
+            "WHEN i.status='OPEN_WITH_BRACKET' THEN 1 ELSE 2 END, i.issued_at_utc "+
+            "LIMIT 51")
         rows=cur.fetchall()
         conn.commit()
+        if len(rows)>50:
+            raise Unsafe("PAPER reconciliation active backlog exceeds 50; no silent starvation")
         for row in rows:
             try:
                 if row["status"]=="RESERVED_UNKNOWN" and not row.get("broker_order_id"):
