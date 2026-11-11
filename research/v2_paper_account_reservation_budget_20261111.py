@@ -69,7 +69,10 @@ def evaluate_with_reservations(*, account, positions, orders, monitor, inventory
                         and r.get("order_id_broker_verified") is True):
                     # Remaining size already in the fresh broker order snapshot.
                     continue
-                additional+=decimal(r["committed_notional"])
+                commitment=decimal(r["committed_notional"])
+                if commitment<=0:
+                    return deny("INVALID_RESERVATION_AMOUNT")
+                additional+=commitment
             elif state=="PROVEN_NO_POST":
                 if r.get("post_started") is not False or r.get("exclusive_no_post_proof") is not True:
                     return deny("UNPROVEN_RESERVATION_RELEASE")
