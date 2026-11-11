@@ -40,7 +40,7 @@ def validate_post_get_quote(quote: dict, *, scan_started_at: datetime,
     start, receipt = _utc(scan_started_at), _utc(received_at)
     if receipt < start:
         raise InvalidQuote("receipt predates scan start")
-    if not timedelta(0) < max_age <= timedelta(minutes=5):
+    if not timedelta(0) < max_age <= RECEIVING_BROKER_QUOTE_MAX_AGE:
         raise InvalidQuote("unsupported quote age bound")
     if not Decimal("0") <= max_spread <= Decimal("0.01"):
         raise InvalidQuote("spread limit must not weaken receiving broker policy")
