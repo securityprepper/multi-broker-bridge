@@ -49,8 +49,8 @@ class EndToEndShadowTests(unittest.TestCase):
             future={}
             for sector,(etf,_) in f.SECTORS.items():
                 future[etf]={
-                    "2026-11-12 10:30":{
-                        "close":101.0,"bar_available_after_ET":"2026-11-12T10:35:00-05:00"
+                    "2026-11-12 10:35":{
+                        "close":101.0,"bar_available_after_ET":"2026-11-12T10:40:00-05:00"
                     },
                     "2026-11-12 14:35":{
                         "close":99.8,"bar_available_after_ET":"2026-11-12T14:40:00-05:00"
