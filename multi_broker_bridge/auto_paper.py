@@ -134,13 +134,18 @@ def fetch_bars_and_quotes(now: datetime, symbols: list[str], feed: str):
         qparams = urlencode({"symbols": ",".join(batch), "feed": feed})
         quoted = _fetch_json(DATA_HOST + "/v2/stocks/quotes/latest?" + qparams,
                              headers=headers)
+        # This snapshot is fetched AFTER broker readbacks and long bar
+        # retrieval. A liquid quote newer than the original scan timestamp
+        # is not a future quote if it existed when this GET completed.
+        # Capture receipt clock once per batch, not once at scan start.
+        quote_received_at = datetime.now(timezone.utc)
         for symbol, quote in quoted.get("quotes", {}).items():
             if symbol not in batch or not isinstance(quote, dict):
                 raise ValueError("unexpected quote")
             try:
                 quote_time = datetime.fromisoformat(quote["t"].replace("Z", "+00:00"))
                 bid, ask = Decimal(str(quote["bp"])), Decimal(str(quote["ap"]))
-                if quote_time.tzinfo is None or not timedelta(0) <= now-quote_time <= MAX_QUOTE_AGE:
+                if quote_time.tzinfo is None or not timedelta(0) <= quote_received_at-quote_time <= MAX_QUOTE_AGE:
                     continue
                 if min(bid,ask) <= 0 or not bid.is_finite() or not ask.is_finite() or bid>ask:
                     continue
