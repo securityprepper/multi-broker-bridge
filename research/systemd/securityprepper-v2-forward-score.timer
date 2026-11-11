@@ -1,0 +1,9 @@
+[Unit]
+Description=V2 research-only future outcome scoring AFTER 13:40 CT flat
+[Timer]
+OnCalendar=Mon..Fri *-*-* 14:50:25 America/New_York
+AccuracySec=3s
+Persistent=false
+Unit=securityprepper-v2-forward-score.service
+[Install]
+WantedBy=timers.target
