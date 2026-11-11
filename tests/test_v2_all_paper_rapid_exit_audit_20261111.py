@@ -1,8 +1,7 @@
-import sys,unittest
+import unittest
 from datetime import datetime,timezone,timedelta
 from decimal import Decimal
-sys.path.insert(0,"/tmp")
-from v2_all_paper_rapid_exit_audit_20261111 import audit,session_day,source_for
+from research.v2_all_paper_rapid_exit_audit_20261111 import audit,session_day,source_for
 
 def order(cid,sym,side,minute,qty,price,status="filled"):
  return {"client_order_id":cid,"symbol":sym,"side":side,"filled_at":"2026-11-11T"+minute+":00Z",
