@@ -1,0 +1,28 @@
+{
+  "counts_are_symbol_appearances_not_independent_trades": true,
+  "days": {
+    "2026-11-10": {
+      "buy_watch_symbol_appearances": 577,
+      "decision_candidates": 687,
+      "reported_order_objects_not_fills": 24,
+      "scans": 1622,
+      "scans_with_quote_skip": 72,
+      "scans_with_skips": 80,
+      "skip_reason_NO_FRESH_BID_ASK": 456,
+      "skip_reason_PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY": 108,
+      "skip_reason_appearances": 564
+    },
+    "2026-11-11": {
+      "buy_watch_symbol_appearances": 551,
+      "decision_candidates": 557,
+      "reported_order_objects_not_fills": 14,
+      "scans": 896,
+      "scans_with_skips": 98,
+      "skip_reason_PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY": 536,
+      "skip_reason_appearances": 536
+    }
+  },
+  "kind": "read_only_journal_decision_diagnostics",
+  "orders_are_report_objects_not_broker_verified_fills": true,
+  "source_is_host_journal_not_quote_response_archive": true
+}
