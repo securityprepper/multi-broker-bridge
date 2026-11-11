@@ -1,0 +1,132 @@
+{
+  "alert_published": false,
+  "cutoff_at_utc": "2026-11-11T13:40:00+00:00",
+  "executed_broker_requests": 0,
+  "forms_with_xml_parsed": 45,
+  "full_qualified_trading_signals": 0,
+  "historical_after_fee_pnl_tested": false,
+  "issuer_sample_count": 17,
+  "public_issuer_readbacks": {
+    "ACN": {
+      "errors": [],
+      "form4_in_recent_submission_array": 805,
+      "strict_qualified_without_first_seen": 0,
+      "xml_parsed": 3
+    },
+    "AMD": {
+      "errors": [],
+      "form4_in_recent_submission_array": 609,
+      "strict_qualified_without_first_seen": 0,
+      "xml_parsed": 3
+    },
+    "BAC": {
+      "errors": [],
+      "form4_in_recent_submission_array": 140,
+      "strict_qualified_without_first_seen": 0,
+      "xml_parsed": 3
+    },
+    "CAT": {
+      "errors": [],
+      "form4_in_recent_submission_array": 644,
+      "strict_qualified_without_first_seen": 1,
+      "xml_parsed": 3
+    },
+    "CRWD": {
+      "errors": [],
+      "form4_in_recent_submission_array": 681,
+      "strict_qualified_without_first_seen": 0,
+      "xml_parsed": 3
+    },
+    "CVX": {
+      "errors": [],
+      "form4_in_recent_submission_array": 515,
+      "strict_qualified_without_first_seen": 0,
+      "xml_parsed": 3
+    },
+    "GS": {
+      "errors": [],
+      "form4_in_recent_submission_array": 73,
+      "strict_qualified_without_first_seen": 0,
+      "xml_parsed": 3
+    },
+    "JPM": {
+      "errors": [
+        "ISSUER_GET_FAILED_JSONDecodeError"
+      ],
+      "form4_in_recent_submission_array": 0,
+      "strict_qualified_without_first_seen": 0,
+      "xml_parsed": 0
+    },
+    "LLY": {
+      "errors": [],
+      "form4_in_recent_submission_array": 690,
+      "strict_qualified_without_first_seen": 0,
+      "xml_parsed": 3
+    },
+    "MSFT": {
+      "errors": [],
+      "form4_in_recent_submission_array": 737,
+      "strict_qualified_without_first_seen": 0,
+      "xml_parsed": 3
+    },
+    "MU": {
+      "errors": [],
+      "form4_in_recent_submission_array": 591,
+      "strict_qualified_without_first_seen": 0,
+      "xml_parsed": 3
+    },
+    "NVDA": {
+      "errors": [],
+      "form4_in_recent_submission_array": 558,
+      "strict_qualified_without_first_seen": 0,
+      "xml_parsed": 3
+    },
+    "PANW": {
+      "errors": [],
+      "form4_in_recent_submission_array": 590,
+      "strict_qualified_without_first_seen": 0,
+      "xml_parsed": 3
+    },
+    "PEP": {
+      "errors": [],
+      "form4_in_recent_submission_array": 490,
+      "strict_qualified_without_first_seen": 0,
+      "xml_parsed": 3
+    },
+    "SBUX": {
+      "errors": [],
+      "form4_in_recent_submission_array": 497,
+      "strict_qualified_without_first_seen": 0,
+      "xml_parsed": 3
+    },
+    "UNH": {
+      "errors": [],
+      "form4_in_recent_submission_array": 769,
+      "strict_qualified_without_first_seen": 0,
+      "xml_parsed": 3
+    },
+    "XOM": {
+      "errors": [],
+      "form4_in_recent_submission_array": 0,
+      "strict_qualified_without_first_seen": 0,
+      "xml_parsed": 0
+    }
+  },
+  "raw_submissions_rows": 8389,
+  "raw_submissions_rows_not_period_bounded": true,
+  "rejection_or_review_reason_counts": {
+    "AFFIRMED_10B5_1_PLAN": 17,
+    "DERIVATIVE_TRANSACTION_PRESENT": 10,
+    "ISSUER_CIK_MISMATCH": 2,
+    "ISSUER_SYMBOL_MISMATCH": 2,
+    "MISSING_ORIGINAL_FIRST_SEEN": 45,
+    "NOT_ELIGIBLE_COMMON_STOCK": 1,
+    "NO_CONFIRMED_OFFICER_OR_DIRECTOR": 2,
+    "NO_QUALIFIED_LARGE_DIRECT_P_TRANSACTION": 44,
+    "SAME_FORM_COMPENSATION_OR_WITHHOLDING_MIXED": 10,
+    "SAME_FORM_SALE_MIXED": 19
+  },
+  "research_only": true,
+  "scope": "Most recent 3 original Form 4 documents per selected issuer, no original first-seen, no backtest",
+  "strict_preliminary_without_original_firstseen": 1
+}
