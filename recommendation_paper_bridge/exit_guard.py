@@ -174,20 +174,50 @@ def flatten_once(row,now=None,connect=db_connect,httpfn=http):
     return {"action":"FLATTEN_SUBMITTED_VERIFY_FILL","client_order_id":flat_id(rec),
             "broker_order_id":order["id"],"quantity":str(remaining)}
 
-def readback_flatten(recommendation_id, client_order_id, quantity, httpfn=http):
-    """No second SELL. Read broker status only; report unresolved after 14:00."""
-    if client_order_id!=flat_id(recommendation_id):
-        raise Unsafe("noncanonical flatten client order ID")
-    a=authenticated_account(httpfn)
+def readback_flatten(recommendation_id, client_order_id, quantity, symbol, httpfn=http):
+    """Independent PAPER readbacks. Never infer account-flat from a filled SELL.
+
+    An unlocked broker snapshot cannot certify continued flatness; only
+    separately commissioned same-account shared-lock ownership can do that.
+    No branch in this function submits, retries or cancels a broker order.
+    """
+    if client_order_id!=flat_id(recommendation_id) or not isinstance(symbol,str) or not symbol:
+        raise Unsafe("noncanonical flatten identity or symbol")
+    authenticated_account(httpfn)
     order=httpfn("GET","/v2/orders:by_client_order_id?client_order_id="+quote(client_order_id,safe=""))
-    if not isinstance(order,dict) or order.get("client_order_id")!=client_order_id:
-        raise SubmissionUnknown("flatten order identity unknown")
-    n=Decimal(str(order.get("filled_qty","0")))
-    if n<0 or n>Decimal(str(quantity)):
+    if (not isinstance(order,dict) or order.get("client_order_id")!=client_order_id
+            or order.get("symbol")!=symbol or order.get("side")!="sell"
+            or not order.get("id")):
+        raise SubmissionUnknown("flatten order identity or symbol unknown")
+    try:
+        n=Decimal(str(order.get("filled_qty","0")))
+        intended=Decimal(str(quantity))
+        broker_qty=Decimal(str(order.get("qty","0")))
+    except (ValueError,TypeError,ArithmeticError) as exc:
+        raise Unsafe("invalid flatten broker quantity") from exc
+    if not all(x.is_finite() for x in (n,intended,broker_qty)):
+        raise Unsafe("nonfinite broker quantity")
+    if intended<=0 or n<0 or n>intended or broker_qty!=intended:
         raise Unsafe("flatten quantity mismatch")
-    if n==Decimal(str(quantity)) and order.get("status")=="filled":
-        return {"status":"FLATTEN_FILLED","broker_order_id":order["id"],
-                "filled_qty":str(n)}
+    if n==intended and order.get("status")=="filled":
+        positions=httpfn("GET","/v2/positions")
+        working=httpfn("GET","/v2/orders?status=open&limit=500")
+        if not isinstance(positions,list) or not isinstance(working,list) or len(working)>=500:
+            raise SubmissionUnknown("post-flatten PAPER inventory incomplete")
+        if any(not isinstance(p,dict) or not p.get("symbol") or p.get("qty") is None for p in positions):
+            raise SubmissionUnknown("post-flatten positions malformed")
+        if any(not isinstance(o,dict) or not o.get("symbol") or not o.get("id") for o in working):
+            raise SubmissionUnknown("post-flatten working orders malformed")
+        if any(p["symbol"]==symbol for p in positions):
+            return {"status":"CRITICAL_FLATTEN_RESIDUAL_POSITION",
+                    "broker_order_id":order["id"],"filled_qty":str(n)}
+        if any(o["symbol"]==symbol for o in working):
+            return {"status":"CRITICAL_FLATTEN_WORKING_ORDER",
+                    "broker_order_id":order["id"],"filled_qty":str(n)}
+        # Account inventory was read after the order fill, but an unrelated
+        # same-broker writer might enter a new order while the lock is absent.
+        return {"status":"FLATTEN_SELL_FILLED_FLAT_SNAPSHOT_UNLOCKED",
+                "broker_order_id":order["id"],"filled_qty":str(n)}
     if order.get("status") in ("canceled","expired","rejected"):
         return {"status":"CRITICAL_FLATTEN_FAILED","broker_order_id":order.get("id"),
                 "filled_qty":str(n)}
@@ -225,7 +255,7 @@ def run_guard_once(now=None,connect=db_connect,httpfn=http):
                 # but NEVER issue another sell with this recommendation key.
                 try:
                     x=readback_flatten(rec,existing["client_order_id"],
-                                      existing["quantity"],httpfn)
+                                      existing["quantity"],row["symbol"],httpfn)
                     cur.execute("UPDATE "+FLAT_TABLE+
                         " SET status=%s,checked_at_utc=UTC_TIMESTAMP(6),"+
                         "paper_broker_order_id=COALESCE(%s,paper_broker_order_id)"+
