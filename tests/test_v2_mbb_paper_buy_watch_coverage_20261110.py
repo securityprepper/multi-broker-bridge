@@ -4,7 +4,9 @@ import json
 import unittest
 from pathlib import Path
 
-spec = importlib.util.spec_from_file_location(\n    "v2_mbb_coverage", str(Path(__file__).resolve().parents[1] / "research" /\n                           "v2_mbb_paper_buy_watch_coverage_20261110.py"))
+spec = importlib.util.spec_from_file_location(
+    "v2_mbb_coverage", str(Path(__file__).resolve().parents[1] / "research" /
+                           "v2_mbb_paper_buy_watch_coverage_20261110.py"))
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 
