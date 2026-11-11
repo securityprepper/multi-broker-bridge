@@ -1,0 +1,16 @@
+{
+  "LIVE_orders_allowed": false,
+  "PAPER_orders_allowed": false,
+  "actual_after_fee_verified_trades": 0,
+  "broker_orders_submitted": 0,
+  "first_seen_missing_do_not_score_as_live_signal": true,
+  "item105_matching_recent_rows": 6,
+  "original_strategy_firstseen_observations": 0,
+  "source": "Official SEC submissions recent metadata, GET-only; NOT a complete US issuer universe",
+  "source_cik_requests": 5,
+  "status_counts": {
+    "AMENDMENT_NOT_NEW_ORIGINAL_EVENT": 2,
+    "NO_ORIGINAL_FIRST_OBSERVED": 4
+  },
+  "successful_requests": 5
+}
