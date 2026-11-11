@@ -1,10 +1,12 @@
 """Fail-closed offline regression for future-date quote false rejection."""
 import unittest
 from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 from decimal import Decimal
 
 from research.v2_recommendation_router_quote_receipt_clock_20261111 import (
-    InvalidQuote, validate_post_get_quote, old_rule_would_reject,
+    InvalidQuote, EntryWindowClosed, validate_post_get_quote,
+    old_rule_would_reject, validate_immediately_before_post,
 )
 
 START = datetime(2026, 11, 11, 15, 20, tzinfo=timezone.utc)
@@ -76,6 +78,62 @@ class RecommendationRouterQuoteReceiptTests(unittest.TestCase):
     def test_missing_quote_rejected(self):
         with self.assertRaises(InvalidQuote):
             self.validate(None)
+
+
+class LastMomentOwnerCutoffTests(unittest.TestCase):
+    def at_ct(self, hour, minute, second):
+        return datetime(2026, 11, 11, hour, minute, second,
+                        tzinfo=ZoneInfo("America/Chicago")).astimezone(timezone.utc)
+
+    def test_preflight_began_before_cutoff_but_post_after_is_blocked(self):
+        start = self.at_ct(13, 14, 56)
+        post = self.at_ct(13, 15, 3)
+        quote = self.at_ct(13, 14, 59)  # still fresh but entry is forbidden
+        with self.assertRaisesRegex(EntryWindowClosed, "window closed"):
+            validate_immediately_before_post(initial_scan_at=start,
+                 broker_post_at=post, quote_at=quote)
+
+    def test_exact_cutoff_boundary_is_blocked(self):
+        with self.assertRaises(EntryWindowClosed):
+            validate_immediately_before_post(initial_scan_at=self.at_ct(13, 14, 50),
+                 broker_post_at=self.at_ct(13, 15, 0),
+                 quote_at=self.at_ct(13, 14, 59))
+
+    def test_final_validation_before_cutoff_is_only_evidence_not_authorization(self):
+        result = validate_immediately_before_post(
+            initial_scan_at=self.at_ct(13, 14, 45),
+            broker_post_at=self.at_ct(13, 14, 59),
+            quote_at=self.at_ct(13, 14, 58))
+        self.assertTrue(result["entry_window_open_at_last_check"])
+        self.assertFalse(result["broker_post_performed"])
+        self.assertFalse(result["order_authorized"])
+
+    def test_old_valid_quote_can_go_stale_during_reservation(self):
+        with self.assertRaisesRegex(EntryWindowClosed, "no longer fresh"):
+            validate_immediately_before_post(initial_scan_at=self.at_ct(12, 59, 0),
+                broker_post_at=self.at_ct(13, 0, 0), quote_at=self.at_ct(12, 59, 10))
+
+    def test_early_premarket_is_not_rth(self):
+        with self.assertRaises(EntryWindowClosed):
+            validate_immediately_before_post(initial_scan_at=self.at_ct(8, 20, 0),
+                broker_post_at=self.at_ct(8, 29, 59), quote_at=self.at_ct(8, 29, 58))
+
+    def test_weekend_is_not_entry_window(self):
+        start = datetime(2026, 11, 14, 15, 0, tzinfo=timezone.utc)
+        with self.assertRaises(EntryWindowClosed):
+            validate_immediately_before_post(initial_scan_at=start,
+                broker_post_at=start+timedelta(seconds=3), quote_at=start)
+
+    def test_submission_quote_future_is_blocked(self):
+        with self.assertRaisesRegex(EntryWindowClosed, "no longer fresh"):
+            validate_immediately_before_post(initial_scan_at=self.at_ct(12, 59, 0),
+                broker_post_at=self.at_ct(13, 0, 0), quote_at=self.at_ct(13, 0, 1))
+
+    def test_cannot_relax_quote_age_at_post(self):
+        with self.assertRaises(EntryWindowClosed):
+            validate_immediately_before_post(initial_scan_at=self.at_ct(12, 59, 0),
+                broker_post_at=self.at_ct(13, 0, 0), quote_at=self.at_ct(12, 59, 59),
+                max_quote_age=timedelta(minutes=2))
 
 
 if __name__ == "__main__":
