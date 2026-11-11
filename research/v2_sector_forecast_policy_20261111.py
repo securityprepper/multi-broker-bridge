@@ -9,7 +9,7 @@ import json
 import math
 
 POLICY = {
-    "id": "v2-7sector-forward-baselines-20261111-r1",
+    "id": "v2-7sector-forward-baselines-20261111-r2",
     "effective_first_session_et": "2026-11-12",
     "scope": "research_shadow_only",
     "benchmark": {
@@ -24,7 +24,7 @@ POLICY = {
     },
     "outcome": {
         "from": "latest completed five-minute ETF close as of signal",
-        "60m": "fixed 60 minutes after scheduled slot",
+        "60m": "first completed SIP 5-minute bar ending no earlier than actual forecast issuance plus 60 minutes",
         "flat": "14:40 ET completed five-minute close (13:40 America/Chicago)",
         "tiny_return_below_absolute_pct": 0.05,
         "illustrative_round_trip_friction_bp": [30, 60],
