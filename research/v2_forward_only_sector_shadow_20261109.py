@@ -9,6 +9,7 @@ from datetime import datetime,timezone,timedelta,time
 from urllib.parse import urlencode
 from urllib.request import Request,urlopen
 from zoneinfo import ZoneInfo
+from .v2_sector_forecast_policy_20261111 import POLICY_ID, POLICY_SHA256, frozen_forecast
 ET=ZoneInfo("America/New_York")
 UTC=timezone.utc
 BASE="https://data.alpaca.markets/v2/stocks/bars"
@@ -76,9 +77,10 @@ def validate_live_bars(bars,at):
            "bar_available_after_ET":(start+timedelta(minutes=5)).isoformat()}
   rows[s]=v
  return rows
-def asof_signals(now,decision,previous,live):
+def asof_signals(now,decision,previous,live,issued_at=None):
  """Only market bars <= the current clock and prior FIVE completed daily bars."""
  etfresult={}
+ issued_at=issued_at or now
  current=now.astimezone(ET).date().isoformat()
  slotdate=current+" "
  hh,mm=map(int,decision.split(":"))
@@ -105,8 +107,13 @@ def asof_signals(now,decision,previous,live):
    if -1.5<=x<=-.75 and m5<=-.10 and all(
      metrics[p]["from_0930_open_pct"]<=-.20 for p in ("AMD","MU","NVDA")):
     shadow="EXPLORATORY_BEARISH_SEMI_WATCH_ONLY"
+  frozen=frozen_forecast(sector,etf,peers,metrics,previous,issued_at.astimezone(ET))
   etfresult[sector]={"status":"ASOF_FEATURES" if metrics else "ABSTAIN_MISSING_ASOF_DATA",
-                     "features":metrics,"shadow_classification":shadow,
+                     "features":metrics,
+                     "shadow_classification":frozen["benchmark_side"],
+                     "peer_confirmed_classification":frozen["peer_confirmed_side"],
+                     "forward_forecast":frozen,
+                     "legacy_semiconductor_watch":shadow,
                      "after_cost_predictive_alert_authorized":False,
                      "broker_order_permissions":False}
  return etfresult
@@ -170,7 +177,8 @@ def save_once(root,now,decision,report):
   path.unlink(missing_ok=True)
   raise
  return path
-def run(now=None,holiday_check=holiday_unpaused,fetch=fetch_bars):
+def run(now=None,holiday_check=holiday_unpaused,fetch=fetch_bars,issue_clock=None):
+ real_clock=(now is None)
  now=now or datetime.now(UTC)
  if now.tzinfo is None:raise ValueError("timezone required")
  decision=slot(now)
@@ -186,9 +194,15 @@ def run(now=None,holiday_check=holiday_unpaused,fetch=fetch_bars):
  creds=Path(os.environ.get("CREDENTIALS_DIRECTORY",""))
  pri=validate_daily_prior5(fetch(now,"1Day",creds),now)
  bars=validate_live_bars(fetch(now,"5Min",creds),now)
- features=asof_signals(now,decision,pri,bars)
- doc={"schema_version":1,"time_of_observation_utc":now.astimezone(UTC).isoformat(),
+ issued_at=issue_clock() if issue_clock is not None else datetime.now(UTC) if real_clock else now
+ # The true decision issuance is AFTER the final GET; do not falsely backdate to scan start.
+ if issued_at.tzinfo is None or issued_at < now or slot(issued_at)!=decision:
+  raise ValueError("late or inconsistent policy decision issuance")
+ features=asof_signals(now,decision,pri,bars,issued_at=issued_at)
+ doc={"schema_version":2,"time_of_observation_utc":now.astimezone(UTC).isoformat(),
       "time_of_observation_ET":now.astimezone(ET).isoformat(),"forecast_slot_ET":decision,
+      "forecast_actual_issued_at_ET":issued_at.astimezone(ET).isoformat(),
+      "forecast_policy_id":POLICY_ID,"forecast_policy_sha256":POLICY_SHA256,
       "earliest_later_entry_at_ET":(now.astimezone(ET)+timedelta(minutes=5)).isoformat(),
       "source":"Alpaca SIP 5Min completed bars, GET-only",
       "no_current_or_future_outcomes_in_document":True,"research_only":True,
@@ -197,7 +211,9 @@ def run(now=None,holiday_check=holiday_unpaused,fetch=fetch_bars):
  saved=save_once(state,now,decision,doc)
  return {"status":"RESEARCH_SHADOW_SEALED","day":saved.parent.name,"slot":decision,
          "sectors_with_asof":sum(x["status"]=="ASOF_FEATURES" for x in features.values()),
-         "exploratory_semi_weakness":features["semiconductors"]["shadow_classification"] is not None,
+         "exploratory_semi_weakness":features["semiconductors"]["legacy_semiconductor_watch"] is not None,
+         "benchmark_forecasts_issued":sum(x["shadow_classification"] in ("UP","DOWN") for x in features.values()),
+         "peer_forecasts_issued":sum(x["peer_confirmed_classification"] in ("UP","DOWN") for x in features.values()),
          "orders_submitted":0,"market_data_requests":2}
 if __name__=="__main__":
  try:
