@@ -30,5 +30,3 @@ Pure reproducible source: `research/v2_sector_neutral_dislocation_20261111.py` a
 
 ## Next distinct path
 Because both price/volume-only attempts failed to meet evidence thresholds, prioritize a **non-price-origin event** with independent original availability: authenticated issuer/SEC accepted filing, initial receipt timestamp, genuine same-period quantitative analyst revision and negative-news veto; if revision history cannot be licensed and verified, consider officially timestamped Form 4 open-market insider acquisition disclosures as a different hypothesis, matched to non-event sector peers and *next-session* executable SIP quotes. First verify provenance, coverage and sufficient event count before any strategy testing or alerts. Keep the existing research hourly and fail-closed holiday requirements and do not touch V1 or disabled router commissioning.
-
-[executed on device: www3.securityprepper.com (1016f4a4-5f2e-452e-8c88-0e4b9430d76e)]
