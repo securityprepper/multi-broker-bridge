@@ -23,8 +23,13 @@ class PostFlattenAccountReadbackTests(unittest.TestCase):
                          exclusive_paper_account_lock_held=True)
     def test_original_order_only_returns_filled_without_position_readback(self):
         # Diagnostic reproduction of the disabled source's missing final-flat assertion.
-        out=readback_flatten(RID,_flat_id(RID),"4",
-                             lambda method,path:self.order)
+        from unittest.mock import patch
+        def account_or_order(method, path):
+            if path == "/v2/account":
+                return {"id":"PAPER-SIM-ACCOUNT", "trading_blocked": False}
+            return self.order
+        with patch.dict("os.environ", {"PAPER_BRIDGE_EXPECTED_PAPER_ACCOUNT":"PAPER-SIM-ACCOUNT"}):
+            out=readback_flatten(RID,_flat_id(RID),"4",account_or_order)
         self.assertEqual(out["status"],"FLATTEN_FILLED")
     def run_shadow(self,**changes):
         args=dict(self.data);args.update(changes)
