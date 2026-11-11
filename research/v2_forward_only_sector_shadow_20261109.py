@@ -4,6 +4,7 @@ Record observed inputs BEFORE futures/outcomes exist; never rewrite a day/slot.
 """
 from __future__ import annotations
 import json,os,tempfile
+from hashlib import sha256
 from pathlib import Path
 from datetime import datetime,timezone,timedelta,time
 from urllib.parse import urlencode
@@ -209,7 +210,10 @@ def run(now=None,holiday_check=holiday_unpaused,fetch=fetch_bars,issue_clock=Non
       "orders_submitted":0,"PAPER_orders_allowed":False,"LIVE_orders_allowed":False,
       "sectors":features}
  saved=save_once(state,now,decision,doc)
+ # Seal digest is emitted to root-owned systemd journal at issuance, before outcomes.
+ sealed_sha256=sha256(saved.read_bytes()).hexdigest()
  return {"status":"RESEARCH_SHADOW_SEALED","day":saved.parent.name,"slot":decision,
+         "sealed_file_sha256":sealed_sha256,
          "sectors_with_asof":sum(x["status"]=="ASOF_FEATURES" for x in features.values()),
          "exploratory_semi_weakness":features["semiconductors"]["legacy_semiconductor_watch"] is not None,
          "benchmark_forecasts_issued":sum(x["shadow_classification"] in ("UP","DOWN") for x in features.values()),
