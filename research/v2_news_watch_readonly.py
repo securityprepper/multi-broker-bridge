@@ -122,13 +122,17 @@ def ingest(rows, now, previous):
     prior_ids = previous.get("seen", [])
     if not isinstance(prior_ids, list):
         raise ValueError("invalid prior seen IDs")
-    seen = set(map(str, prior_ids))
+    # Preserve chronological insertion order for deterministic bounded de-duplication.
+    # list(set(...)) previously evicted arbitrary article IDs at the 4000 cap.
+    ordered_ids = list(dict.fromkeys(map(str, prior_ids)))
+    seen = set(ordered_ids)
     accepted = []
     for article in rows:
         item = validate_article(article, now)
         if item is None or item["news_id"] in seen:
             continue
         seen.add(item["news_id"])
+        ordered_ids.append(item["news_id"])
         accepted.append(item)
     # Bound replay state; full archive/older entries are not assumed exhaustive.
     journal = list(previous.get("recent", [])) + accepted
@@ -140,7 +144,7 @@ def ingest(rows, now, previous):
         "source": "Alpaca GET news, possibly delayed",
         "broker_read_only": True,
         "orders_submitted": 0,
-        "seen": list(seen)[-4000:],
+        "seen": ordered_ids[-4000:],
         "recent": journal[-300:],
     }
     return new, accepted
@@ -175,7 +179,16 @@ def run(now=None, news_fetcher=get_news, holiday_checker=holiday_allows):
         raise ValueError("private state path not configured")
     previous = json.loads(state.read_text()) if state.exists() else {}
     fetched = news_fetcher(now, creds)
-    updated, fresh = ingest(fetched, now, previous)
+    # First independently observable local boundary after the completed GET.
+    # Poll start is not the time the article became visible to this process.
+    received_at = datetime.now(timezone.utc)
+    if received_at < now:
+        raise ValueError("receipt clock predates poll start")
+    updated, fresh = ingest(fetched, received_at, previous)
+    updated["poll_started_at_utc"] = now.astimezone(timezone.utc).isoformat()
+    updated["poll_completed_at_utc"] = received_at.isoformat()
+    updated["first_seen_time_basis"] = "GET_response_completed_not_publication_or_stream_delivery"
+    updated["historical_first_seen_backfill_permitted"] = False
     write_atomic(state, updated)
     return {"status": "READ_ONLY_NEWS_WATCH_OK", "new_articles": len(fresh),
             "new_earnings_mentions": sum("EARNINGS_" in x["category"] for x in fresh),
