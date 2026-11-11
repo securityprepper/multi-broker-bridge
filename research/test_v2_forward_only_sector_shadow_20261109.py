@@ -48,8 +48,8 @@ class TestForwardShadow(unittest.TestCase):
   d=f.validate_daily_prior5(daily(),NOW)
   b=f.validate_live_bars(live(),NOW)
   s=f.asof_signals(NOW,"09:35",d,b)
-  self.assertEqual(s["semiconductors"]["shadow_classification"],
-      "EXPLORATORY_BEARISH_SEMI_WATCH_ONLY")
+  self.assertEqual(s["semiconductors"]["shadow_classification"],"ABSTAIN")
+  self.assertEqual(s["semiconductors"]["legacy_semiconductor_watch"],"EXPLORATORY_BEARISH_SEMI_WATCH_ONLY")
   self.assertFalse(s["semiconductors"]["broker_order_permissions"])
  def test_missing_critical_peer_abstains(self):
   d=f.validate_daily_prior5(daily(),NOW)
