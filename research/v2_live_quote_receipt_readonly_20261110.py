@@ -98,11 +98,34 @@ def fetch_latest(symbols,feed,headers, *, opener=urlopen):
     received=datetime.now(timezone.utc)
     return payload,received
 
+def preload_bars_like_mbb(symbols, feed, headers, scan_started, *, opener=urlopen):
+    """Simulate MBB's preceding 47m market-data GET, no account/orders data."""
+    if feed not in VALID_FEEDS or len(symbols)>MAX_SYMBOLS:
+        raise ValueError("invalid feed/symbol count")
+    end=scan_started-timedelta(seconds=30)
+    start=end-timedelta(minutes=47)
+    query=urlencode({"symbols":",".join(symbols),
+                     "timeframe":"1Min","start":start.isoformat(),
+                     "end":end.isoformat(),"feed":feed,"limit":10000,"sort":"asc"})
+    req=Request("https://data.alpaca.markets/v2/stocks/bars?"+query,
+                headers=headers,method="GET")
+    with opener(req,timeout=12) as res:
+        if res.status!=200:raise ValueError("historical bars HTTP failure")
+        blob=res.read(3000001)
+        if len(blob)>3000000:raise ValueError("bars payload too large")
+        payload=json.loads(blob)
+    if not isinstance(payload,dict) or not isinstance(payload.get("bars"),dict):
+        raise ValueError("bad bars response")
+    if payload.get("next_page_token"):raise ValueError("truncated bars history")
+    return {"bar_symbols":len(payload["bars"]),
+            "bar_rows":sum(len(x) for x in payload["bars"].values() if isinstance(x,list))}
+
 def main(argv=None):
     ap=argparse.ArgumentParser()
     ap.add_argument("--feed",choices=sorted(VALID_FEEDS),required=True)
     ap.add_argument("--symbols",default="AMD,MU,AMAT,AVGO,INTC,TSM,NVDA")
     ap.add_argument("--pre-get-delay-seconds",type=int,default=0)
+    ap.add_argument("--preload-mbb-bars",action="store_true")
     args=ap.parse_args(argv)
     if not (0<=args.pre_get_delay_seconds<=8):
         raise ValueError("delay out of bounds")
@@ -112,12 +135,16 @@ def main(argv=None):
              "APCA-API-SECRET-KEY":(root/"alpaca_data_secret").read_text().strip(),
              "Accept":"application/json"}
     started=datetime.now(timezone.utc)
-    if args.pre_get_delay_seconds:sleep(args.pre_get_delay_seconds)
     try:
+        bar_evidence=None
+        if args.preload_mbb_bars:
+            bar_evidence=preload_bars_like_mbb(symbols,args.feed,headers,started)
+        if args.pre_get_delay_seconds:sleep(args.pre_get_delay_seconds)
         payload,received=fetch_latest(symbols,args.feed,headers)
         result=categorize_response(symbols,payload,started,received)
         result["feed"]=args.feed
         result["simulated_pre_get_delay_sec"]=args.pre_get_delay_seconds
+        result["preceding_get_only_bars"]=bar_evidence
         print(json.dumps(result,sort_keys=True))
         return 0
     except (HTTPError,URLError,OSError,TimeoutError,ValueError,KeyError,TypeError) as exc:
