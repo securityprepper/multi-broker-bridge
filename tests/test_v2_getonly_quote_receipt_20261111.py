@@ -1,7 +1,8 @@
 import importlib.util,json,unittest
+from pathlib import Path
 from datetime import datetime,timedelta,timezone
 from unittest.mock import patch
-p="/tmp/v2-receipt-quote-only-20261111.py"
+p=Path(__file__).resolve().parents[1]/"research"/"v2_getonly_quote_receipt_20261111.py"
 spec=importlib.util.spec_from_file_location("receipt",p)
 m=importlib.util.module_from_spec(spec)
 spec.loader.exec_module(m)
