@@ -203,7 +203,7 @@ def run(now=None,holiday_check=holiday_unpaused,fetch=fetch_bars,issue_clock=Non
       "time_of_observation_ET":now.astimezone(ET).isoformat(),"forecast_slot_ET":decision,
       "forecast_actual_issued_at_ET":issued_at.astimezone(ET).isoformat(),
       "forecast_policy_id":POLICY_ID,"forecast_policy_sha256":POLICY_SHA256,
-      "earliest_later_entry_at_ET":(now.astimezone(ET)+timedelta(minutes=5)).isoformat(),
+      "earliest_later_entry_at_ET":(issued_at.astimezone(ET)+timedelta(minutes=5)).isoformat(),
       "source":"Alpaca SIP 5Min completed bars, GET-only",
       "no_current_or_future_outcomes_in_document":True,"research_only":True,
       "orders_submitted":0,"PAPER_orders_allowed":False,"LIVE_orders_allowed":False,
