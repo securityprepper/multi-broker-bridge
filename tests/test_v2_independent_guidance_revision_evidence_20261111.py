@@ -8,6 +8,9 @@ ISSUER={
  "cik":CIK,"sec_exhibit_url":"https://www.sec.gov/Archives/edgar/data/1234567/000123456726000001/ex99-1.htm",
  "official_event_type":"RAISED_EPS_GUIDANCE","release_published_at":"2026-11-10T15:00:00Z",
  "sec_accepted_at":"2026-11-10T15:01:00Z","first_observed_at":"2026-11-10T15:01:25Z",
+ "release_original_sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+ "sec_exhibit_first_observed_at":"2026-11-10T15:02:15Z",
+ "sec_exhibit_sha256":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
  "prior_guidance":"4.00","new_guidance":"4.25","fiscal_period":"FY2027",
  "units":"USD_PER_DILUTED_SHARE","share_basis":"AS_REPORTED_UNADJUSTED"}
 REV={
@@ -15,7 +18,8 @@ REV={
  "analyst_firm_id":"research-firm-123","source_document_id":"revision-20261110-1",
  "fiscal_period":"FY2027","units":"USD_PER_DILUTED_SHARE",
  "share_basis":"AS_REPORTED_UNADJUSTED","published_at":"2026-11-10T15:06:00Z",
- "first_observed_at":"2026-11-10T15:07:20Z","old_estimate":"4.20","new_estimate":"4.45"}
+ "first_observed_at":"2026-11-10T15:07:20Z","old_estimate":"4.20","new_estimate":"4.45",
+ "revision_original_sha256":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"}
 
 class IndependentConfluenceTests(unittest.TestCase):
  def check(self,expected,issuer=None,revision=None,asof=ASOF,negative=()):
@@ -35,7 +39,33 @@ class IndependentConfluenceTests(unittest.TestCase):
     "sec_accepted_at":"2026-11-10T15:40:00Z"})
  def test_sec_observation_before_acceptance_rejected(self):
   self.check("INCONSISTENT_SEC_PROVENANCE",issuer={**ISSUER,
-    "first_observed_at":"2026-11-10T15:00:00Z"})
+    "sec_exhibit_first_observed_at":"2026-11-10T15:00:00Z"})
+ def test_issuer_public_release_seen_before_sec_8k_is_legitimate(self):
+  # SEC Item 2.02 report/exhibit can follow a public issuer press release.
+  self.check("INDEPENDENT_CONFLUENCE_EVIDENCE_READY_SHADOW_ONLY",issuer={**ISSUER,
+    "release_published_at":"2026-11-10T14:50:00Z",
+    "first_observed_at":"2026-11-10T14:50:12Z",
+    "sec_accepted_at":"2026-11-10T15:01:00Z",
+    "sec_exhibit_first_observed_at":"2026-11-10T15:02:15Z"})
+ def test_release_seen_before_actual_publication_rejected(self):
+  self.check("INCONSISTENT_RELEASE_PROVENANCE",issuer={**ISSUER,
+    "first_observed_at":"2026-11-10T14:59:00Z"})
+ def test_sec_original_text_first_seen_missing_fails_closed(self):
+  v={**ISSUER};v.pop("sec_exhibit_first_observed_at")
+  self.check("MISSING_SEC_FIRST_SEEN_OR_ORIGINAL_HASH",issuer=v)
+ def test_sec_original_text_digest_missing_fails_closed(self):
+  v={**ISSUER};v.pop("sec_exhibit_sha256")
+  self.check("MISSING_SEC_FIRST_SEEN_OR_ORIGINAL_HASH",issuer=v)
+ def test_sec_first_seen_after_decision_fails_closed(self):
+  self.check("SEC_EXHIBIT_NOT_YET_OBSERVED",issuer={**ISSUER,
+    "sec_exhibit_first_observed_at":"2026-11-10T15:36:00Z"})
+ def test_release_original_digest_missing_fails_closed(self):
+  self.check("MISSING_RELEASE_ORIGINAL_HASH",issuer={**ISSUER,
+    "release_original_sha256":"bad"})
+ def test_analyst_original_text_digest_missing_fails_closed(self):
+  v={**REV};v.pop("revision_original_sha256")
+  self.check("UNVERIFIED_REVISION_ORIGIN",revision=v)
+
  def test_revision_after_signal(self):
   self.check("REVISION_NOT_YET_OBSERVED",revision={**REV,
     "first_observed_at":"2026-11-10T15:40:00Z"})
