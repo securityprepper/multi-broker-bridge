@@ -1,0 +1,34 @@
+{
+  "actual_receipt_clock_counts": {
+    "ACCEPT": 17
+  },
+  "changed_symbols": [
+    "AMD",
+    "MU",
+    "SNDK",
+    "NVDA",
+    "AMAT",
+    "AVGO",
+    "INTC",
+    "TSM",
+    "CRWD",
+    "PANW",
+    "ZS",
+    "CAT",
+    "GE",
+    "BA",
+    "GS",
+    "JPM",
+    "BAC"
+  ],
+  "comparison_is_not_real_v1_scan": true,
+  "count": 17,
+  "illustrative_prior_six_second_scan_start_counts": {
+    "REJECT_QUOTE_FUTURE": 17
+  },
+  "latency_seconds": 0.11,
+  "not_executable_fills": true,
+  "orders_submitted": 0,
+  "quotes_received": 17,
+  "received_at_utc": "2026-11-11T19:39:15.229266+00:00"
+}
