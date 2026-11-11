@@ -1,0 +1,773 @@
+{
+  "cohort_cutoff_date": "2026-07-22",
+  "cohorts": {
+    "earlier_70": {
+      "ALL": {
+        "after30bp_60m": {
+          "mean_pct": 0.24198,
+          "n": 5,
+          "win_rate": 0.6,
+          "winners": 3,
+          "worst_pct": -0.33635
+        },
+        "after30bp_flat": {
+          "mean_pct": 0.51997,
+          "n": 5,
+          "win_rate": 0.8,
+          "winners": 4,
+          "worst_pct": -0.60049
+        },
+        "after60bp_flat": {
+          "mean_pct": 0.21997,
+          "n": 5,
+          "win_rate": 0.6,
+          "winners": 3,
+          "worst_pct": -0.90049
+        },
+        "matched_controls_flat": {
+          "mean_pct": 0.08951,
+          "n": 5,
+          "win_rate": 0.6,
+          "winners": 3,
+          "worst_pct": -0.94442
+        },
+        "signals": 5
+      },
+      "energy": {
+        "after30bp_60m": {
+          "mean_pct": 0.18677,
+          "n": 1,
+          "win_rate": 1.0,
+          "winners": 1,
+          "worst_pct": 0.18677
+        },
+        "after30bp_flat": {
+          "mean_pct": 0.51383,
+          "n": 1,
+          "win_rate": 1.0,
+          "winners": 1,
+          "worst_pct": 0.51383
+        },
+        "after60bp_flat": {
+          "mean_pct": 0.21383,
+          "n": 1,
+          "win_rate": 1.0,
+          "winners": 1,
+          "worst_pct": 0.21383
+        },
+        "matched_controls_flat": {
+          "mean_pct": 0.85442,
+          "n": 1,
+          "win_rate": 1.0,
+          "winners": 1,
+          "worst_pct": 0.85442
+        },
+        "signals": 1
+      },
+      "financials": {
+        "after30bp_60m": {
+          "mean_pct": 0.48876,
+          "n": 2,
+          "win_rate": 0.5,
+          "winners": 1,
+          "worst_pct": -0.33635
+        },
+        "after30bp_flat": {
+          "mean_pct": 1.04675,
+          "n": 2,
+          "win_rate": 1.0,
+          "winners": 2,
+          "worst_pct": 0.00344
+        },
+        "after60bp_flat": {
+          "mean_pct": 0.74675,
+          "n": 2,
+          "win_rate": 0.5,
+          "winners": 1,
+          "worst_pct": -0.29656
+        },
+        "matched_controls_flat": {
+          "mean_pct": 0.48587,
+          "n": 2,
+          "win_rate": 1.0,
+          "winners": 2,
+          "worst_pct": 0.07444
+        },
+        "signals": 2
+      },
+      "gold_miners": {
+        "after30bp_60m": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after30bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after60bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "matched_controls_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "signals": 0
+      },
+      "healthcare": {
+        "after30bp_60m": {
+          "mean_pct": -0.2357,
+          "n": 1,
+          "win_rate": 0.0,
+          "winners": 0,
+          "worst_pct": -0.2357
+        },
+        "after30bp_flat": {
+          "mean_pct": -0.60049,
+          "n": 1,
+          "win_rate": 0.0,
+          "winners": 0,
+          "worst_pct": -0.60049
+        },
+        "after60bp_flat": {
+          "mean_pct": -0.90049,
+          "n": 1,
+          "win_rate": 0.0,
+          "winners": 0,
+          "worst_pct": -0.90049
+        },
+        "matched_controls_flat": {
+          "mean_pct": -0.43421,
+          "n": 1,
+          "win_rate": 0.0,
+          "winners": 0,
+          "worst_pct": -0.43421
+        },
+        "signals": 1
+      },
+      "industrials": {
+        "after30bp_60m": {
+          "mean_pct": 0.28131,
+          "n": 1,
+          "win_rate": 1.0,
+          "winners": 1,
+          "worst_pct": 0.28131
+        },
+        "after30bp_flat": {
+          "mean_pct": 0.59303,
+          "n": 1,
+          "win_rate": 1.0,
+          "winners": 1,
+          "worst_pct": 0.59303
+        },
+        "after60bp_flat": {
+          "mean_pct": 0.29303,
+          "n": 1,
+          "win_rate": 1.0,
+          "winners": 1,
+          "worst_pct": 0.29303
+        },
+        "matched_controls_flat": {
+          "mean_pct": -0.94442,
+          "n": 1,
+          "win_rate": 0.0,
+          "winners": 0,
+          "worst_pct": -0.94442
+        },
+        "signals": 1
+      },
+      "semiconductors": {
+        "after30bp_60m": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after30bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after60bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "matched_controls_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "signals": 0
+      },
+      "software": {
+        "after30bp_60m": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after30bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after60bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "matched_controls_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "signals": 0
+      }
+    },
+    "full": {
+      "ALL": {
+        "after30bp_60m": {
+          "mean_pct": 0.24198,
+          "n": 5,
+          "win_rate": 0.6,
+          "winners": 3,
+          "worst_pct": -0.33635
+        },
+        "after30bp_flat": {
+          "mean_pct": 0.51997,
+          "n": 5,
+          "win_rate": 0.8,
+          "winners": 4,
+          "worst_pct": -0.60049
+        },
+        "after60bp_flat": {
+          "mean_pct": 0.21997,
+          "n": 5,
+          "win_rate": 0.6,
+          "winners": 3,
+          "worst_pct": -0.90049
+        },
+        "matched_controls_flat": {
+          "mean_pct": 0.08951,
+          "n": 5,
+          "win_rate": 0.6,
+          "winners": 3,
+          "worst_pct": -0.94442
+        },
+        "signals": 5
+      },
+      "energy": {
+        "after30bp_60m": {
+          "mean_pct": 0.18677,
+          "n": 1,
+          "win_rate": 1.0,
+          "winners": 1,
+          "worst_pct": 0.18677
+        },
+        "after30bp_flat": {
+          "mean_pct": 0.51383,
+          "n": 1,
+          "win_rate": 1.0,
+          "winners": 1,
+          "worst_pct": 0.51383
+        },
+        "after60bp_flat": {
+          "mean_pct": 0.21383,
+          "n": 1,
+          "win_rate": 1.0,
+          "winners": 1,
+          "worst_pct": 0.21383
+        },
+        "matched_controls_flat": {
+          "mean_pct": 0.85442,
+          "n": 1,
+          "win_rate": 1.0,
+          "winners": 1,
+          "worst_pct": 0.85442
+        },
+        "signals": 1
+      },
+      "financials": {
+        "after30bp_60m": {
+          "mean_pct": 0.48876,
+          "n": 2,
+          "win_rate": 0.5,
+          "winners": 1,
+          "worst_pct": -0.33635
+        },
+        "after30bp_flat": {
+          "mean_pct": 1.04675,
+          "n": 2,
+          "win_rate": 1.0,
+          "winners": 2,
+          "worst_pct": 0.00344
+        },
+        "after60bp_flat": {
+          "mean_pct": 0.74675,
+          "n": 2,
+          "win_rate": 0.5,
+          "winners": 1,
+          "worst_pct": -0.29656
+        },
+        "matched_controls_flat": {
+          "mean_pct": 0.48587,
+          "n": 2,
+          "win_rate": 1.0,
+          "winners": 2,
+          "worst_pct": 0.07444
+        },
+        "signals": 2
+      },
+      "gold_miners": {
+        "after30bp_60m": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after30bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after60bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "matched_controls_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "signals": 0
+      },
+      "healthcare": {
+        "after30bp_60m": {
+          "mean_pct": -0.2357,
+          "n": 1,
+          "win_rate": 0.0,
+          "winners": 0,
+          "worst_pct": -0.2357
+        },
+        "after30bp_flat": {
+          "mean_pct": -0.60049,
+          "n": 1,
+          "win_rate": 0.0,
+          "winners": 0,
+          "worst_pct": -0.60049
+        },
+        "after60bp_flat": {
+          "mean_pct": -0.90049,
+          "n": 1,
+          "win_rate": 0.0,
+          "winners": 0,
+          "worst_pct": -0.90049
+        },
+        "matched_controls_flat": {
+          "mean_pct": -0.43421,
+          "n": 1,
+          "win_rate": 0.0,
+          "winners": 0,
+          "worst_pct": -0.43421
+        },
+        "signals": 1
+      },
+      "industrials": {
+        "after30bp_60m": {
+          "mean_pct": 0.28131,
+          "n": 1,
+          "win_rate": 1.0,
+          "winners": 1,
+          "worst_pct": 0.28131
+        },
+        "after30bp_flat": {
+          "mean_pct": 0.59303,
+          "n": 1,
+          "win_rate": 1.0,
+          "winners": 1,
+          "worst_pct": 0.59303
+        },
+        "after60bp_flat": {
+          "mean_pct": 0.29303,
+          "n": 1,
+          "win_rate": 1.0,
+          "winners": 1,
+          "worst_pct": 0.29303
+        },
+        "matched_controls_flat": {
+          "mean_pct": -0.94442,
+          "n": 1,
+          "win_rate": 0.0,
+          "winners": 0,
+          "worst_pct": -0.94442
+        },
+        "signals": 1
+      },
+      "semiconductors": {
+        "after30bp_60m": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after30bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after60bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "matched_controls_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "signals": 0
+      },
+      "software": {
+        "after30bp_60m": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after30bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after60bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "matched_controls_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "signals": 0
+      }
+    },
+    "later_30": {
+      "ALL": {
+        "after30bp_60m": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after30bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after60bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "matched_controls_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "signals": 0
+      },
+      "energy": {
+        "after30bp_60m": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after30bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after60bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "matched_controls_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "signals": 0
+      },
+      "financials": {
+        "after30bp_60m": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after30bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after60bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "matched_controls_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "signals": 0
+      },
+      "gold_miners": {
+        "after30bp_60m": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after30bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after60bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "matched_controls_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "signals": 0
+      },
+      "healthcare": {
+        "after30bp_60m": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after30bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after60bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "matched_controls_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "signals": 0
+      },
+      "industrials": {
+        "after30bp_60m": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after30bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after60bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "matched_controls_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "signals": 0
+      },
+      "semiconductors": {
+        "after30bp_60m": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after30bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after60bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "matched_controls_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "signals": 0
+      },
+      "software": {
+        "after30bp_60m": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after30bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "after60bp_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "matched_controls_flat": {
+          "mean_pct": null,
+          "n": 0,
+          "win_rate": null,
+          "winners": 0,
+          "worst_pct": null
+        },
+        "signals": 0
+      }
+    }
+  },
+  "historical_last_30_pct_repeatedly_exposed_not_blind": true,
+  "prior_sessions_same_clock_only": true,
+  "research_only": true,
+  "rule": {
+    "decision_et": "10:00",
+    "min_price": 20,
+    "min_volume_30m_shares": 5000,
+    "morning_close_location_min": 0.75,
+    "next_entry_et": "10:05",
+    "one_stock_per_sector_day": true,
+    "price_change_max_pct": 0.75,
+    "price_change_min_pct": 0.1,
+    "prior_complete_sessions": 5,
+    "volume_multiple_min": 2.5
+  },
+  "rule_precommitted": true,
+  "total_signal_events": 5,
+  "unique_dates": 5
+}
