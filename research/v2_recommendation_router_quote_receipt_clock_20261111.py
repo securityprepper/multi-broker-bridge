@@ -10,7 +10,8 @@ This module contains no URLs, credentials, broker calls or order methods.
 """
 from __future__ import annotations
 
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta, timezone, time
+from zoneinfo import ZoneInfo
 from decimal import Decimal, InvalidOperation
 
 RECEIVING_BROKER_QUOTE_MAX_AGE = timedelta(seconds=45)
@@ -79,3 +80,44 @@ def old_rule_would_reject(quote_at: datetime, scan_started_at: datetime,
     """Diagnostic comparison ONLY; must never supply an entry authorization."""
     delta = _utc(scan_started_at) - _utc(quote_at)
     return not timedelta(0) <= delta <= max_age
+
+
+# A separate owner-cutoff race exists in the still-DISABLED router:
+# process_once checks the entry window once, before database work and multiple
+# GETs. It does not re-evaluate immediately before POST /v2/orders. The guard
+# below proves how to fail closed if crossing the owner 13:15 Chicago cutoff.
+# It is not a substitute for same-broker position/order/cash/holiday checks.
+CHICAGO = ZoneInfo("America/Chicago")
+NEW_YORK = ZoneInfo("America/New_York")
+OWNER_ENTRY_CUTOFF = time(13, 15)
+
+
+class EntryWindowClosed(ValueError):
+    """An order MUST NOT be submitted under stale earlier admission."""
+
+
+def validate_immediately_before_post(*, initial_scan_at: datetime,
+                                     broker_post_at: datetime,
+                                     quote_at: datetime,
+                                     max_quote_age: timedelta = RECEIVING_BROKER_QUOTE_MAX_AGE) -> dict:
+    """Offline release-gate prototype, never submits an order.
+
+    Call at the last possible moment before the first broker POST, AFTER the
+    database reservation and its potentially slow roundtrips. A successful
+    previous preflight does not authorize POST once the cutoff has passed.
+    """
+    began, post, qtime = (_utc(t) for t in (initial_scan_at, broker_post_at, quote_at))
+    if post < began:
+        raise EntryWindowClosed("submission clock predates original scan")
+    ct, ny = post.astimezone(CHICAGO), post.astimezone(NEW_YORK)
+    if not (ct.weekday() < 5 and time(8, 30) <= ct.time() < OWNER_ENTRY_CUTOFF
+            and time(9, 30) <= ny.time() < time(16, 0)):
+        raise EntryWindowClosed("receiving-broker entry window closed before POST")
+    if not timedelta(0) < max_quote_age <= RECEIVING_BROKER_QUOTE_MAX_AGE:
+        raise EntryWindowClosed("quote age bound exceeds receiving-broker policy")
+    age = post - qtime
+    if not timedelta(0) <= age <= max_quote_age:
+        raise EntryWindowClosed("quote no longer fresh at intended broker POST")
+    return {"entry_window_open_at_last_check": True,
+            "asof_utc": post.isoformat(),
+            "broker_post_performed": False, "order_authorized": False}
