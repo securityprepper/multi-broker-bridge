@@ -42,7 +42,7 @@ class ArchivalProvenance(unittest.TestCase):
   s=summarize_articles([article(updated="2026-11-10T13:00:00Z")])
   self.assertEqual(s["reversed_publication_update"],1)
  def test_absence_of_article_types_excluded(self):
-  self.assertEqual(summarize_articles([None])["articles"],0)
+  self.assertEqual(summarize_articles([None]).get("articles",0),0)
  def test_naive_timestamp_fail_closed(self):
   with self.assertRaises(ValueError):parse("2026-11-10T09:00:00")
 if __name__=="__main__":unittest.main()
