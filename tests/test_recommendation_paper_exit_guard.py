@@ -74,21 +74,25 @@ class TestExit(unittest.TestCase):
     id=flat_id(ROW["recommendation_id"])
     def remote(method,path):
         if path=="/v2/account":return {"id":"EXPECTED","trading_blocked":False}
-        return {"id":"ORDERID","client_order_id":id,"status":"filled","filled_qty":"2"}
+        if path=="/v2/positions":return []
+        if path=="/v2/orders?status=open&limit=500":return []
+        return {"id":"ORDERID","client_order_id":id,"status":"filled",
+                "symbol":"AMD","side":"sell","qty":"2","filled_qty":"2"}
     with patch.dict("os.environ",{"PAPER_BRIDGE_EXPECTED_PAPER_ACCOUNT":"EXPECTED"}):
-        self.assertEqual(readback_flatten(ROW["recommendation_id"],id,"2",remote)["status"],
-                         "FLATTEN_FILLED")
+        self.assertEqual(readback_flatten(ROW["recommendation_id"],id,"2","AMD",remote)["status"],
+                         "FLATTEN_SELL_FILLED_FLAT_SNAPSHOT_UNLOCKED")
  def test_flat_readback_unfilled(self):
     id=flat_id(ROW["recommendation_id"])
     def remote(method,path):
         if path=="/v2/account":return {"id":"EXPECTED","trading_blocked":False}
-        return {"id":"ORDERID","client_order_id":id,"status":"new","filled_qty":"0"}
+        return {"id":"ORDERID","client_order_id":id,"status":"new",
+                "symbol":"AMD","side":"sell","qty":"2","filled_qty":"0"}
     with patch.dict("os.environ",{"PAPER_BRIDGE_EXPECTED_PAPER_ACCOUNT":"EXPECTED"}):
-        self.assertEqual(readback_flatten(ROW["recommendation_id"],id,"2",remote)["status"],
+        self.assertEqual(readback_flatten(ROW["recommendation_id"],id,"2","AMD",remote)["status"],
                          "FLATTEN_UNCONFIRMED")
  def test_flat_wrong_client_id(self):
     with self.assertRaises(Unsafe):
-        readback_flatten(ROW["recommendation_id"],"WRONG","2",lambda *_:self.fail())
+        readback_flatten(ROW["recommendation_id"],"WRONG","2","AMD",lambda *_:self.fail())
  def test_cancel_requires_broker_readback(self):
     oid="11111111-1111-1111-1111-111111111111"
     def remote(method,path):
