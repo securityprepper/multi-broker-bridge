@@ -1,0 +1,24 @@
+{
+  "actual_precommitted_forecast_sector_slots": 0,
+  "allowed_to_order": false,
+  "asof_feature_sector_slots": 40,
+  "days": {
+    "2026-11-10": {
+      "abstained_sectors": 2,
+      "emitted_forecasts": 0,
+      "feature_sectors": 19,
+      "missing_files": 0,
+      "snapshots": 3
+    },
+    "2026-11-11": {
+      "abstained_sectors": 0,
+      "emitted_forecasts": 0,
+      "feature_sectors": 21,
+      "missing_files": 0,
+      "snapshots": 3
+    }
+  },
+  "missing_slots": 0,
+  "research_only": true,
+  "snapshots": 6
+}
