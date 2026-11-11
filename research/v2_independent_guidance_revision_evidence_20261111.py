@@ -53,7 +53,7 @@ def readiness(issuer,revision,asof,negative_events=()):
     def out(status):
         return {"status":status,"order_authorized":False,
                 "signal_authorized":False,"research_only":True}
-    if not isinstance(issuer,dict):
+    if not issuer or not isinstance(issuer,dict):
         return out("NO_OFFICIAL_ISSUER_EVIDENCE")
     try:
         cik=int(issuer["cik"])
@@ -79,7 +79,7 @@ def readiness(issuer,revision,asof,negative_events=()):
             return out("UNVERIFIED_SHARE_BASIS")
     except (KeyError,TypeError,ValueError,EvidenceError):
         return out("INVALID_OFFICIAL_SOURCE")
-    if not isinstance(revision,dict):
+    if not revision or not isinstance(revision,dict):
         return out("NO_INDEPENDENT_ANALYST_REVISION")
     try:
         if int(revision["issuer_cik"])!=cik:
