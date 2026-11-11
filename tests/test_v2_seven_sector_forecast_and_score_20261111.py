@@ -98,6 +98,9 @@ class TestScorer(unittest.TestCase):
             x=recorder.run(now(slot),holiday_check=lambda t:True,fetch=fake_fetch)
             self.assertEqual(x["status"],"RESEARCH_SHADOW_SEALED")
             self.assertEqual(x["benchmark_forecasts_issued"],7)
+            from hashlib import sha256
+            sealed=state/DAY/(slot.replace(":","")+".json")
+            self.assertEqual(x["sealed_file_sha256"],sha256(sealed.read_bytes()).hexdigest())
         self.assertEqual(len(list((state/DAY).glob("*.json"))),3)
     def test_future_scoring_separated_with_exact_84_rows(self):
         with tempfile.TemporaryDirectory() as td,patch.dict("os.environ",{"V2_SHADOW_STATE_ROOT":td}):
