@@ -35,6 +35,10 @@ def amount(value):
         raise EvidenceError("nonpositive or nonfinite decimal")
     return d
 
+def original_sha256(value):
+    """Only a capture-computed SHA256 digest of the *original* received text."""
+    return isinstance(value,str) and bool(re.fullmatch(r"[a-f0-9]{64}",value))
+
 def sec_archive_url(value,cik):
     if not isinstance(value,str):return False
     p=urlparse(value)
@@ -63,10 +67,24 @@ def readiness(issuer,revision,asof,negative_events=()):
             return out("NOT_RAISED_GUIDANCE")
         event_publish=utc(issuer["release_published_at"])
         sec_accepted=utc(issuer["sec_accepted_at"])
-        event_seen=utc(issuer["first_observed_at"])
+        event_seen=utc(issuer["first_observed_at"]) # first receipt of *issuer release*
         if any(t>now for t in (event_publish,sec_accepted,event_seen)):
             return out("OFFICIAL_EVENT_NOT_YET_OBSERVED")
-        if event_seen < sec_accepted:
+        if event_seen < event_publish:
+            return out("INCONSISTENT_RELEASE_PROVENANCE")
+        # An issuer release can legitimately be published/observed BEFORE
+        # the related Form 8-K is SEC-accepted. This is not an invalid event.
+        # However the independent SEC exhibit must itself have been received
+        # and immutable BEFORE the current research decision.
+        if not (issuer.get("sec_exhibit_first_observed_at") and
+                original_sha256(issuer.get("sec_exhibit_sha256"))):
+            return out("MISSING_SEC_FIRST_SEEN_OR_ORIGINAL_HASH")
+        if not original_sha256(issuer.get("release_original_sha256")):
+            return out("MISSING_RELEASE_ORIGINAL_HASH")
+        sec_seen=utc(issuer["sec_exhibit_first_observed_at"])
+        if sec_seen > now:
+            return out("SEC_EXHIBIT_NOT_YET_OBSERVED")
+        if sec_seen < sec_accepted:
             return out("INCONSISTENT_SEC_PROVENANCE")
         if amount(issuer["new_guidance"])<=amount(issuer["prior_guidance"]):
             return out("NOT_RAISED_GUIDANCE")
@@ -86,7 +104,9 @@ def readiness(issuer,revision,asof,negative_events=()):
             return out("REVISION_WRONG_ISSUER")
         if revision.get("origin_type")!="INDEPENDENT_ANALYST_ESTIMATE":
             return out("REVISION_NOT_INDEPENDENT")
-        if not revision.get("analyst_firm_id") or not revision.get("source_document_id"):
+        if (not revision.get("analyst_firm_id") or
+            not revision.get("source_document_id") or
+            not original_sha256(revision.get("revision_original_sha256"))):
             return out("UNVERIFIED_REVISION_ORIGIN")
         if (revision.get("fiscal_period")!=period or revision.get("units")!=units or
             revision.get("share_basis")!=share_basis):
