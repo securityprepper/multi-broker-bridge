@@ -11,6 +11,14 @@ from .bridge import Unsafe,SubmissionUnknown,BrokerRejected,EVENT_TABLE,INTENT_T
 import json
 
 TERMINAL={"canceled","expired","rejected","done_for_day","filled"}
+# A child order existing in the nested broker response is NOT proof of
+# working stop/target protection. Be conservative about uncertain states;
+# an independently broker-verified active protective pair is required.
+PROTECTIVE_TARGET_WORKING={"new","accepted"}
+# In Alpaca's bracket lifecycle the SELL STOP is normally broker-held
+# while the take-profit child is new. This is valid broker-native OCO
+# protection once the parent is completely filled; a held target is not.
+PROTECTIVE_STOP_WORKING={"new","accepted","held"}
 def qty(x):
     try: d=Decimal(str(x))
     except (InvalidOperation,ValueError): raise Unsafe("invalid broker quantity")
@@ -75,8 +83,13 @@ def assess(row,parent,activities,extra_exit_ids=()):
         return {"state":"UNFILLED" if parent.get("status") not in TERMINAL else "UNFILLED_TERMINAL",
                 "fills":len(seen)}
     if filled_sell<filled_buy:
-        state=("PARTIAL_UNPROTECTED" if filled_buy<qty(row["intended_qty"]) or
-               len(targets)!=1 or len(stops)!=1 else "OPEN_WITH_BRACKET")
+        # In particular a CANCELED/REJECTED stop plus a still-open target is
+        # *not* a bracket-protected long, even if both legs are returned.
+        protected=(len(targets)==1 and len(stops)==1 and
+                   targets[0].get("status") in PROTECTIVE_TARGET_WORKING and
+                   stops[0].get("status") in PROTECTIVE_STOP_WORKING)
+        state=("OPEN_WITH_BRACKET" if filled_buy==qty(row["intended_qty"]) and
+               protected else "PARTIAL_UNPROTECTED")
         return {"state":state,"buy_qty":str(filled_buy),"sell_qty":str(filled_sell),
                 "unprotected_partial":state=="PARTIAL_UNPROTECTED","fills":len(seen)}
     if filled_sell>filled_buy: raise Unsafe("broker oversell")

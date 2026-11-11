@@ -33,6 +33,13 @@ class TestExit(unittest.TestCase):
  def test_hold_while_protected_pre_cutoff(self):
     x=plan(ROW,order(),activity(),positions("2"),[],when(18,30))
     self.assertEqual(x["action"],"NONE")
+ def test_canceled_stop_triggers_early_protection_before_1340(self):
+    p=order()
+    p["legs"][1]["status"]="canceled"
+    x=plan(ROW,p,activity(),positions("2"),[p["legs"][0]],when(18,30))
+    self.assertEqual(x["action"],"FLATTEN_EXCLUSIVE_PAPER")
+    self.assertEqual(x["reason"],"PARTIAL_UNPROTECTED")
+    self.assertEqual(x["stop_bracket_child_ids"],["take-profit-uuid"])
  def test_unfilled_cancel_after_1315(self):
     x=plan(ROW,order("0","new",False),[],[],[],when(19,16))
     self.assertEqual(x["action"],"CANCEL_UNFILLED_PARENT")

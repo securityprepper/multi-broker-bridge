@@ -30,8 +30,37 @@ class TestBrokerReconciliation(unittest.TestCase):
     self.assertIsNone(r["net_pnl"])
     self.assertFalse(r["fees_verified"])
  def test_open_with_active_legs(self):
-    r=assess(ROW,order(),[fill("a","parent-uuid","buy")])
+    p=order()
+    p["legs"][0]["status"]="new"
+    p["legs"][1]["status"]="new"
+    r=assess(ROW,p,[fill("a","parent-uuid","buy")])
     self.assertEqual(r["state"],"OPEN_WITH_BRACKET")
+ def test_normal_broker_held_stop_is_protected(self):
+    p=order()
+    p["legs"][0]["status"]="new"
+    p["legs"][1]["status"]="held"
+    self.assertEqual(assess(ROW,p,[fill("a","parent-uuid","buy")])["state"],
+                     "OPEN_WITH_BRACKET")
+ def test_broker_held_target_is_not_active(self):
+    p=order()
+    p["legs"][0]["status"]="held"
+    p["legs"][1]["status"]="held"
+    self.assertEqual(assess(ROW,p,[fill("a","parent-uuid","buy")])["state"],
+                     "PARTIAL_UNPROTECTED")
+ def test_canceled_stop_cannot_be_treated_as_protected(self):
+    p=order()
+    p["legs"][0]["status"]="new"
+    # Full BUY fill + live target + canceled STOP is UNPROTECTED.
+    r=assess(ROW,p,[fill("a","parent-uuid","buy")])
+    self.assertEqual(r["state"],"PARTIAL_UNPROTECTED")
+ def test_nonworking_target_cannot_be_treated_as_protected(self):
+    for state in ("rejected","pending_cancel",None):
+        p=order()
+        p["legs"][0]["status"]=state
+        p["legs"][1]["status"]="new"
+        with self.subTest(status=state):
+            self.assertEqual(assess(ROW,p,[fill("a","parent-uuid","buy")])["state"],
+                             "PARTIAL_UNPROTECTED")
  def test_partial_is_unprotected(self):
     r=assess(ROW,order(filled="1",legs=False),[fill("a","parent-uuid","buy","1")])
     self.assertEqual(r["state"],"PARTIAL_UNPROTECTED")
