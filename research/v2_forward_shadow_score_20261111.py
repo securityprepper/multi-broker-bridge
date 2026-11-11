@@ -36,6 +36,8 @@ def validate_seal(content, day, slot):
     source = json.loads(content)
     if not isinstance(source, dict) or source.get("schema_version") != 2:
         raise ValueError("not a prospective schema-2 issued forecast")
+    if day < POLICY["effective_first_session_et"]:
+        raise ValueError("retrospective forecast date predates frozen first session")
     if (source.get("research_only") is not True or source.get("PAPER_orders_allowed") is not False
         or source.get("LIVE_orders_allowed") is not False or source.get("orders_submitted") != 0
         or source.get("no_current_or_future_outcomes_in_document") is not True):
@@ -117,6 +119,16 @@ def score_one(side, initial, future):
             "modeled_after_30bp_pct":round(signed-0.30,6),
             "modeled_after_60bp_pct":round(signed-0.60,6)}
 
+def first_completed_five_minute_at_or_after(instant):
+    """No target earlier than signal issuance + the claimed forecast horizon."""
+    if instant.tzinfo is None:
+        raise ValueError("target timestamp timezone required")
+    local=instant.astimezone(ET)
+    midnight=local.replace(hour=0,minute=0,second=0,microsecond=0)
+    elapsed=(local-midnight).total_seconds()
+    end_seconds=math.ceil(elapsed/300)*300
+    return midnight+timedelta(seconds=end_seconds)
+
 def evaluate_seals(day, source_seals, market_bars):
     rows = []
     for slot in capture.SLOTS:
@@ -126,7 +138,7 @@ def evaluate_seals(day, source_seals, market_bars):
             continue
         source, digest=item
         issued = _parse(source["forecast_actual_issued_at_ET"])
-        evaluation={"60m":_time_at(day,slot)+timedelta(minutes=60),
+        evaluation={"60m":first_completed_five_minute_at_or_after(issued+timedelta(minutes=60)),
                     "flat":_time_at(day,"14:40")}
         for sector, (etf, _) in capture.SECTORS.items():
             f=source["sectors"][sector]["forward_forecast"]
@@ -187,6 +199,8 @@ def run(now=None, holiday_check=capture.holiday_unpaused, fetch=capture.fetch_ba
     local=now.astimezone(ET)
     if local.weekday()>=5 or (local.hour,local.minute)<MIN_SCORE_TIME:
         return {"status":"NOT_SCORE_TIME","market_data_requests":0,"orders_submitted":0}
+    if local.date().isoformat() < POLICY["effective_first_session_et"]:
+        return {"status":"POLICY_NOT_YET_EFFECTIVE_NO_SCORE","market_data_requests":0,"orders_submitted":0}
     if not holiday_check(now):
         return {"status":"HOLIDAY_PAUSED_NO_SCORE_OR_POLL","market_data_requests":0,"orders_submitted":0}
     state=Path(os.environ.get("V2_SHADOW_STATE_ROOT",""))
