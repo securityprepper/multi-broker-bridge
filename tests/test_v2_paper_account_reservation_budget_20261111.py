@@ -97,6 +97,13 @@ class Budget(unittest.TestCase):
         self.assertTrue(self.check(fixture(reservations=[r]))["ready"])
     def test_unknown_state_fail_closed(self):
         self.assertEqual(self.check(fixture(reservations=[reservation(state="WHATEVER")]))["reason"],"UNKNOWN_RESERVATION_STATE")
+    def test_negative_commitment_cannot_mask_positive_risk(self):
+        d=fixture(reservations=[reservation(id="r1",value="-1500"),
+                                 reservation(id="r2",value="1500")])
+        self.assertEqual(self.check(d)["reason"],"INVALID_RESERVATION_AMOUNT")
+    def test_zero_active_reservation_rejected(self):
+        d=fixture(reservations=[reservation(value="0")])
+        self.assertEqual(self.check(d)["reason"],"INVALID_RESERVATION_AMOUNT")
     def test_partial_broker_fill_is_counted_as_pending_remainder(self):
         d=fixture(positions=[{"market_value":"9000"}],orders=[{
             "side":"buy","id":"b","qty":"8","filled_qty":"4","limit_price":"250"}])
