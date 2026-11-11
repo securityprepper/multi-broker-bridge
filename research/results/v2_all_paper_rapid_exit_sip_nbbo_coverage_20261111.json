@@ -1,0 +1,124 @@
+{
+  "asof_utc": "2026-11-11T23:29:50.446593+00:00",
+  "paper_scope": "ONE_AUTHENTICATED_ALPACA_PAPER_ACCOUNT_NO_ACCOUNT_ID_EXPORTED",
+  "source": "GET-only private Alpaca PAPER filled-order inventory and historical Alpaca SIP 1Min trade bars/NBBO",
+  "order_level_round_trips": 60,
+  "distinct_trading_days": 3,
+  "strategy_cohorts": {
+    "MBB": {
+      "trades": 51,
+      "actual_gross_usd": -161.12
+    },
+    "FDR": {
+      "trades": 9,
+      "actual_gross_usd": -118.22
+    }
+  },
+  "actual_gross_usd": -279.34,
+  "distinct_symbol_day_pairs_with_SIP_queries": 52,
+  "SIP_bars_returned": 22383,
+  "SIP_coverage_by_date": {
+    "2026-11-09": {
+      "symbol_day_pairs": 32,
+      "bars": 15233
+    },
+    "2026-11-10": {
+      "symbol_day_pairs": 13,
+      "bars": 4452
+    },
+    "2026-11-11": {
+      "symbol_day_pairs": 7,
+      "bars": 2698
+    }
+  },
+  "strict_postentry_complete_1min_path": {
+    "valid": 40,
+    "missing_internal_minute": 16,
+    "first_postentry_minute_later_than_2m": 4,
+    "total": 60
+  },
+  "historical_final_fill_nbbo": {
+    "quote_checks": 120,
+    "fresh_at_most_1_5s_and_spread_at_most_1pct": 62,
+    "stale": 33,
+    "unavailable": 25,
+    "fresh_buy": 33,
+    "fresh_sell": 29,
+    "fresh_best_depth_sufficient": 62
+  },
+  "fixed_1340_CT_nbbo": {
+    "unique_symbol_day_quotes": 52,
+    "fresh_at_most_2s": 44,
+    "stale": 5,
+    "unavailable": 3,
+    "trade_rows_with_fresh_sufficient_bid": 51
+  },
+  "fixed_1340_CT_indicative_bid_counterfactual_51_trades": {
+    "actual_gross_same51_usd": -202,
+    "quote_bid_mark_sum_same51_usd": 2190.16,
+    "not_executable": true,
+    "does_not_include_stop_risk_commissions_or_news": true
+  },
+  "strict_grid": {
+    "arm_count": 100,
+    "all_grid_common_trades": 37,
+    "distinct_days": 3,
+    "mode": "NEXT_COMPLETED_MINUTE_TRADE_OPEN_PROXY_STOP_FIRST_NO_FILL_ASSUMPTION",
+    "cost": "ILLUSTRATIVE_ROUNDTRIP_30BP",
+    "observed_fees_established": false,
+    "after_cost_executable_profit_established": false,
+    "common_arm_after30bp_mark_usd_range": [
+      -345.71,
+      113.04
+    ],
+    "common_arm_median_usd": -114.205,
+    "examples": [
+      {
+        "target_pct": 0.5,
+        "stop_pct": 0.5,
+        "min_hold_min": 0,
+        "positive_after30bp": 12,
+        "total": 37,
+        "after30bp_mark_usd": -262.44
+      },
+      {
+        "target_pct": 1,
+        "stop_pct": 1,
+        "min_hold_min": 0,
+        "positive_after30bp": 16,
+        "total": 37,
+        "after30bp_mark_usd": -206.23
+      },
+      {
+        "target_pct": 1.5,
+        "stop_pct": 2.5,
+        "min_hold_min": 10,
+        "positive_after30bp": 21,
+        "total": 37,
+        "after30bp_mark_usd": 76.97
+      },
+      {
+        "target_pct": 2,
+        "stop_pct": 2.5,
+        "min_hold_min": 30,
+        "positive_after30bp": 19,
+        "total": 37,
+        "after30bp_mark_usd": 17.09
+      }
+    ]
+  },
+  "strategy_decision_exit_reasons": {
+    "FDR_nov9_scheduled_0730_CT_confirmed_count": 9,
+    "MBB_1340_CT_flat_confirmed_count": 3,
+    "MBB_other_limit_sell_exact_reason_unknown_count": 48
+  },
+  "model_exclusions": {
+    "not_verified_accounts": "unobserved_accounts_cannot_be_called_zero",
+    "historical_news_clearance": "NEWS_UNKNOWN_NO_BUY_ELIGIBILITY",
+    "missed_minute_data": "never_impute",
+    "quote": "bid_ask_available_is_not_executable_fill",
+    "missing_fees": "no_actual_net_claim",
+    "train_holdout": "no_untouched_20day_cohort",
+    "released_to_orders": false
+  }
+}
