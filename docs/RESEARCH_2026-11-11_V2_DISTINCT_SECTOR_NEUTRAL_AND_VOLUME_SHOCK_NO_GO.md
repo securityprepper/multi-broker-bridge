@@ -1,0 +1,34 @@
+# 2026-11-11 V2 distinct hypotheses: sector-neutral relative value and prior-five volume absorption (NO-GO)
+
+## Scope, boundary and time
+Research-only on authorized www3, Nov 11 2026 America/Chicago. Holiday revision 2 previously validated unpaused until strictly before Nov 13, 2026 16:13 CST, absent calendar invalidation; no change to holiday calendar, schedules or timers. These tests are **independent of retired sector-direction momentum, GLD lag, opening-gap catalyst, routine reentry and synthetic-trailing variants**. V1 PAPER and LIVE execution, IBKR Gateway, all broker orders, existing stops and 13:15 CT entry / 13:40 CT flat / 14:00 latest-flat gates were untouched. The standalone recommendation-PAPER router remains disabled. No orders, authenticated broker reads or Pushover alerts from these research scripts.
+
+## Input and point-in-time evaluation
+Only read existing split-adjusted Alpaca historical SIP 5-minute trade-bar caches, through Nov 6 2026: SOXX/AMD/MU/NVDA, GDX/NEM/AEM, XLE/XOM/CVX, XLF/JPM/BAC, XLI/CAT/GE, XLV/UNH/LLY, IGV/MSFT/CRM. Data are historical trade bars, **not** executable contemporaneous NBBO/BOATS quotes, borrow entitlement, broker orders, fill probabilities or observed fees. Historical periods were repeatedly exposed in earlier strategy studies, including the later date interval, so chronological later results are **not** genuinely untouched forward tests.
+
+Both models form their 10:00 ET decision **only after the 09:55–10:00 ET bar completes**. Hypothetical entry is the 10:05 ET bar OPEN (a five-minute delay), and hypothetical exit is the 11:05 ET bar OPEN or 14:40 ET bar OPEN (13:40 Chicago). Missing as-of bars fail qualification; missing future entry/exit marks are tallied and not filled by interpolation. The split is fixed on the **calendar of completed SOXX morning sessions**, not on postselected signal dates: earlier before 2026-07-22 versus later from 2026-07-22. Each backtest allows at most one selection per sector/day. Fee+spread+slippage costs are illustrative **30bp or 60bp round trip** and cannot stand in for actual historical NBBO/fills. These research signals are not approved trade alerts.
+
+## Hypothesis A: stock underperformance while its sector is stable
+Precommitted: sector ETF absolute 09:30-open to 09:55-close change <=0.75%, median same-sector peers 30m change >=-0.25%, eligible stock 30m change at least 1.5 percentage points below peers, stock price >=$20, and >=5,000 first-30m traded shares; choose largest relative dislocation once per sector/date, long only. Unlike price-chase, this predicts a **reversal of company-specific relative underperformance**. Evaluate forward single-stock long return against same-date ETF/other-stock controls, both with illustrative friction.
+
+- **Earlier 70%:** 118 candidate trades, **49/118 (41.5%)** after-30bp winners from 10:05 to 13:40 CT; mean **-0.09058%**; worst modeled trade **-3.96751%**.
+- **Later 30%:** 66 trades, **27/66 (40.9%)** winners, mean **-0.28883%**, worst **-3.45388%**. Same-period matched sector/other-stock control averaged **-0.23271%** after 30bp, so relative-value selection was worse than its contemporaneous control. At 60bp the same later-period selected stocks averaged **-0.58883%**. Later 60-minute exit: 22/66 winners, mean **-0.20445%** after 30bp.
+- Of the later selected stock candidates, semiconductors 19 trades mean **-0.6533%**, industrials 14 mean **-0.65061%**, healthcare 17 mean **-0.26502%** after 30bp to flat. Positive-looking financial (n=1) and miner (n=3) samples are far too small to justify a sector carve-out.
+
+**Decision: RETIRE**. Neither the earlier nor later period shows positive net expectancy, and no validated executable order advantage is established. Do not adjust this same parameter family on the repeatedly exposed history to rescue it.
+
+## Hypothesis B: unusually high early volume without already-extreme price movement
+Distinct accumulation mechanism: strictly previous FIVE completed **same-clock** 09:30–10:00 stock sessions establish the median early volume. New 09:30–10:00 volume >=2.5x median and >=5,000 shares, 30m change +0.10% to +0.75%, 10:00 close in the upper quarter of first-30m traded-bar range, price >=$20. One stock per sector/day with highest volume multiple; positive long-only forward response. This does not use future bars to choose entries and does not use publisher/news hindsight.
+
+- Only **five** historical qualifying selected events across the seven sectors, **all five before July 22**. Four of five modeled trades won after assumed 30bp to the 13:40 CT flat; earlier-only mean **+0.51997%**, worst **-0.60049%**. This is **five observations**, not an 80% proven success rate or a sample sufficient for a release.
+- **Zero trades in the later 30%** of historical sessions. No independent later-period success rate, distribution, opportunity frequency or positive forward expectancy exists.
+
+**Decision: NO GO / insufficient independent validation**. Preserve the frozen hypothesis for a genuinely new observation period, but do not commission, alert or lower thresholds based on its five hindsight-reused examples.
+
+## Engineering and limitations
+Pure reproducible source: `research/v2_sector_neutral_dislocation_20261111.py` and `research/v2_prior5_volume_absorption_20261111.py`; source-specific summary JSON in `research/results/`; 11 deterministic as-of/previous-five/latency/split/no-future-leak tests in `tests/test_v2_distinct_sector_neutral_and_volume_20261111.py` PASS. Detailed licensed-event price rows stay on authorized www3 under `/tmp/v2-novel-asof-20261111`, not published to GitHub. No negative-news veto, corporate-action contemporaneous facts, brokerage slippage, fees or real limit-fill probabilities were verified, so even a hypothetical positive outcome would not authorize execution.
+
+## Next distinct path
+Because both price/volume-only attempts failed to meet evidence thresholds, prioritize a **non-price-origin event** with independent original availability: authenticated issuer/SEC accepted filing, initial receipt timestamp, genuine same-period quantitative analyst revision and negative-news veto; if revision history cannot be licensed and verified, consider officially timestamped Form 4 open-market insider acquisition disclosures as a different hypothesis, matched to non-event sector peers and *next-session* executable SIP quotes. First verify provenance, coverage and sufficient event count before any strategy testing or alerts. Keep the existing research hourly and fail-closed holiday requirements and do not touch V1 or disabled router commissioning.
+
+[executed on device: www3.securityprepper.com (1016f4a4-5f2e-452e-8c88-0e4b9430d76e)]
