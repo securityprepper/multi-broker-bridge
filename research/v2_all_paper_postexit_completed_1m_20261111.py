@@ -4,6 +4,7 @@ Only the already authorized private local research cache is consumed. No API cal
 """
 from __future__ import annotations
 import json
+import argparse
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -91,10 +92,14 @@ def aggregate(source):
         result["horizons"][str(minutes)]=summary
     return result
 
-def main():
-    source=json.loads(PRIVATE.read_text())
+def main(argv=None):
+    parser=argparse.ArgumentParser(description="PAPER broker-fills post-exit completed minute research; no API calls")
+    parser.add_argument("--input",default=str(PRIVATE))
+    parser.add_argument("--output",default="/tmp/v2-rapid-exit-run7-postexit-summary-private.json")
+    args=parser.parse_args(argv)
+    source=json.loads(Path(args.input).read_text())
     output=aggregate(source)
-    path=Path("/tmp/v2-rapid-exit-run7-postexit-summary-private.json")
+    path=Path(args.output)
     if path.exists():
         raise RuntimeError("Refusing to overwrite research outcome file")
     path.write_text(json.dumps(output,indent=2,sort_keys=True))
