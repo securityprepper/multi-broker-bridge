@@ -1,0 +1,275 @@
+{
+  "actual_exit_reasons_not_assigned": true,
+  "broker_verified_roundtrips": 60,
+  "causal_method": "entry-fill -> first entirely post-entry completed 1m close -> next minute OPEN mark -> mandatory 13:40 Chicago flat; emergency 2.5% close overrides minimum hold",
+  "grid_scenarios_all": 100,
+  "grid_scenarios_per_source": 100,
+  "historical_bars_not_intrabar_executable_ordering": true,
+  "historical_distinct_days": 3,
+  "hold_group_coverage": {
+    "0": {
+      "grid_size": 20,
+      "illustrative_sums_range_usd": [
+        -362.83,
+        150.11
+      ],
+      "maximum_scorable_marks": 50,
+      "minimum_scorable_marks": 40,
+      "scenario_counts_with_any_unknown": 20,
+      "scenario_counts_zero_verifiable_alternative_exits": 20
+    },
+    "10": {
+      "grid_size": 20,
+      "illustrative_sums_range_usd": [
+        -416.23,
+        150.11
+      ],
+      "maximum_scorable_marks": 48,
+      "minimum_scorable_marks": 40,
+      "scenario_counts_with_any_unknown": 20,
+      "scenario_counts_zero_verifiable_alternative_exits": 20
+    },
+    "15": {
+      "grid_size": 20,
+      "illustrative_sums_range_usd": [
+        -366.02,
+        150.11
+      ],
+      "maximum_scorable_marks": 46,
+      "minimum_scorable_marks": 40,
+      "scenario_counts_with_any_unknown": 20,
+      "scenario_counts_zero_verifiable_alternative_exits": 20
+    },
+    "30": {
+      "grid_size": 20,
+      "illustrative_sums_range_usd": [
+        -281.5,
+        154.4
+      ],
+      "maximum_scorable_marks": 43,
+      "minimum_scorable_marks": 40,
+      "scenario_counts_with_any_unknown": 20,
+      "scenario_counts_zero_verifiable_alternative_exits": 20
+    },
+    "5": {
+      "grid_size": 20,
+      "illustrative_sums_range_usd": [
+        -370.4,
+        150.11
+      ],
+      "maximum_scorable_marks": 49,
+      "minimum_scorable_marks": 40,
+      "scenario_counts_with_any_unknown": 20,
+      "scenario_counts_zero_verifiable_alternative_exits": 20
+    }
+  },
+  "new_policy_go": false,
+  "no_quotes_or_executable_alternatives_proven": true,
+  "paper_live_orders": 0,
+  "precommitted_anchors": {
+    "hold0_target1.0_stop1.0": {
+      "after30bp_mark_proxy_usd": -227.49,
+      "gross_mark_proxy_usd": 12.08,
+      "max_adverse_bar_pct": -1.18156,
+      "max_favorable_bar_pct": 1.45421,
+      "mean_after30bp_mark_return_pct": -0.29934,
+      "median_mark_minutes": 51.68,
+      "min_after30bp_mark_return_pct": -1.48951,
+      "n": 60,
+      "paths_with_same_bar_target_stop_ambiguity": 0,
+      "reasons": {
+        "FLAT_1340_MARK": 12,
+        "STOP_CLOSE": 15,
+        "TARGET_CLOSE": 15
+      },
+      "scorable_mark_proxy": 42,
+      "unknown": {
+        "MISSING_1M": 17,
+        "NO_NEXT_MINUTE_OPEN": 1
+      },
+      "verified_executable_alternative_exits": 0,
+      "winning_mark_proxies_after30bp": 19
+    },
+    "hold0_target2.0_stop2.5": {
+      "after30bp_mark_proxy_usd": 88.68,
+      "gross_mark_proxy_usd": 316.63,
+      "max_adverse_bar_pct": -3.89016,
+      "max_favorable_bar_pct": 2.62217,
+      "mean_after30bp_mark_return_pct": 0.1346,
+      "median_mark_minutes": 168.74,
+      "min_after30bp_mark_return_pct": -2.95387,
+      "n": 60,
+      "paths_with_same_bar_target_stop_ambiguity": 0,
+      "reasons": {
+        "EMERGENCY_CLOSE": 2,
+        "FLAT_1340_MARK": 28,
+        "TARGET_CLOSE": 10
+      },
+      "scorable_mark_proxy": 40,
+      "unknown": {
+        "MISSING_1M": 20
+      },
+      "verified_executable_alternative_exits": 0,
+      "winning_mark_proxies_after30bp": 22
+    },
+    "hold10_target1.0_stop1.0": {
+      "after30bp_mark_proxy_usd": -246.22,
+      "gross_mark_proxy_usd": -6.65,
+      "max_adverse_bar_pct": -1.87713,
+      "max_favorable_bar_pct": 1.45421,
+      "mean_after30bp_mark_return_pct": -0.32173,
+      "median_mark_minutes": 51.68,
+      "min_after30bp_mark_return_pct": -1.86997,
+      "n": 60,
+      "paths_with_same_bar_target_stop_ambiguity": 0,
+      "reasons": {
+        "FLAT_1340_MARK": 12,
+        "STOP_CLOSE": 15,
+        "TARGET_CLOSE": 15
+      },
+      "scorable_mark_proxy": 42,
+      "unknown": {
+        "MISSING_1M": 17,
+        "NO_NEXT_MINUTE_OPEN": 1
+      },
+      "verified_executable_alternative_exits": 0,
+      "winning_mark_proxies_after30bp": 19
+    },
+    "hold15_target1.0_stop1.0": {
+      "after30bp_mark_proxy_usd": -172.68,
+      "gross_mark_proxy_usd": 60.92,
+      "max_adverse_bar_pct": -1.4074,
+      "max_favorable_bar_pct": 1.45421,
+      "mean_after30bp_mark_return_pct": -0.23899,
+      "median_mark_minutes": 53.76,
+      "min_after30bp_mark_return_pct": -1.5489,
+      "n": 60,
+      "paths_with_same_bar_target_stop_ambiguity": 0,
+      "reasons": {
+        "FLAT_1340_MARK": 12,
+        "STOP_CLOSE": 13,
+        "TARGET_CLOSE": 16
+      },
+      "scorable_mark_proxy": 41,
+      "unknown": {
+        "MISSING_1M": 18,
+        "NO_NEXT_MINUTE_OPEN": 1
+      },
+      "verified_executable_alternative_exits": 0,
+      "winning_mark_proxies_after30bp": 20
+    },
+    "hold30_target1.0_stop1.0": {
+      "after30bp_mark_proxy_usd": -88.83,
+      "gross_mark_proxy_usd": 144.77,
+      "max_adverse_bar_pct": -1.7942,
+      "max_favorable_bar_pct": 1.93721,
+      "mean_after30bp_mark_return_pct": -0.11387,
+      "median_mark_minutes": 68.2,
+      "min_after30bp_mark_return_pct": -1.86552,
+      "n": 60,
+      "paths_with_same_bar_target_stop_ambiguity": 0,
+      "reasons": {
+        "FLAT_1340_MARK": 12,
+        "STOP_CLOSE": 11,
+        "TARGET_CLOSE": 18
+      },
+      "scorable_mark_proxy": 41,
+      "unknown": {
+        "MISSING_1M": 19
+      },
+      "verified_executable_alternative_exits": 0,
+      "winning_mark_proxies_after30bp": 22
+    },
+    "hold30_target2.0_stop2.5": {
+      "after30bp_mark_proxy_usd": 88.68,
+      "gross_mark_proxy_usd": 316.63,
+      "max_adverse_bar_pct": -3.89016,
+      "max_favorable_bar_pct": 2.62217,
+      "mean_after30bp_mark_return_pct": 0.1346,
+      "median_mark_minutes": 168.74,
+      "min_after30bp_mark_return_pct": -2.95387,
+      "n": 60,
+      "paths_with_same_bar_target_stop_ambiguity": 0,
+      "reasons": {
+        "EMERGENCY_CLOSE": 2,
+        "FLAT_1340_MARK": 28,
+        "TARGET_CLOSE": 10
+      },
+      "scorable_mark_proxy": 40,
+      "unknown": {
+        "MISSING_1M": 20
+      },
+      "verified_executable_alternative_exits": 0,
+      "winning_mark_proxies_after30bp": 22
+    },
+    "hold5_target1.0_stop1.0": {
+      "after30bp_mark_proxy_usd": -227.49,
+      "gross_mark_proxy_usd": 12.08,
+      "max_adverse_bar_pct": -1.18156,
+      "max_favorable_bar_pct": 1.45421,
+      "mean_after30bp_mark_return_pct": -0.29934,
+      "median_mark_minutes": 51.68,
+      "min_after30bp_mark_return_pct": -1.48951,
+      "n": 60,
+      "paths_with_same_bar_target_stop_ambiguity": 0,
+      "reasons": {
+        "FLAT_1340_MARK": 12,
+        "STOP_CLOSE": 15,
+        "TARGET_CLOSE": 15
+      },
+      "scorable_mark_proxy": 42,
+      "unknown": {
+        "MISSING_1M": 17,
+        "NO_NEXT_MINUTE_OPEN": 1
+      },
+      "verified_executable_alternative_exits": 0,
+      "winning_mark_proxies_after30bp": 19
+    }
+  },
+  "source_anchor": {
+    "FDR": {
+      "after30bp_mark_proxy_usd": -132.27,
+      "gross_mark_proxy_usd": -94.02,
+      "max_adverse_bar_pct": -1.21372,
+      "max_favorable_bar_pct": 1.16188,
+      "mean_after30bp_mark_return_pct": -1.05233,
+      "median_mark_minutes": 13.77,
+      "min_after30bp_mark_return_pct": -1.48951,
+      "n": 9,
+      "paths_with_same_bar_target_stop_ambiguity": 0,
+      "reasons": {
+        "STOP_CLOSE": 6,
+        "TARGET_CLOSE": 1
+      },
+      "scorable_mark_proxy": 7,
+      "unknown": {
+        "MISSING_1M": 1,
+        "NO_NEXT_MINUTE_OPEN": 1
+      },
+      "verified_executable_alternative_exits": 0,
+      "winning_mark_proxies_after30bp": 1
+    },
+    "MBB": {
+      "after30bp_mark_proxy_usd": -113.95,
+      "gross_mark_proxy_usd": 87.38,
+      "max_adverse_bar_pct": -1.87713,
+      "max_favorable_bar_pct": 1.45421,
+      "mean_after30bp_mark_return_pct": -0.1756,
+      "median_mark_minutes": 55.22,
+      "min_after30bp_mark_return_pct": -1.86997,
+      "n": 51,
+      "paths_with_same_bar_target_stop_ambiguity": 0,
+      "reasons": {
+        "FLAT_1340_MARK": 12,
+        "STOP_CLOSE": 9,
+        "TARGET_CLOSE": 14
+      },
+      "scorable_mark_proxy": 35,
+      "unknown": {
+        "MISSING_1M": 16
+      },
+      "verified_executable_alternative_exits": 0,
+      "winning_mark_proxies_after30bp": 18
+    }
+  }
+}
