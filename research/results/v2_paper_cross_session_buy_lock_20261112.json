@@ -1,0 +1,28 @@
+{
+  "buy_watch_appearances": 75,
+  "completed_scans": 629,
+  "conclusion": "CROSS_SESSION_ENTRY_LOCKOUT_CONFIRMED",
+  "cross_session_prior_entry_dates": {
+    "2026-11-09": 58,
+    "2026-11-10": 7,
+    "2026-11-11": 2
+  },
+  "cross_session_prior_entry_skip_appearances": 67,
+  "cross_session_prior_entry_unique_symbols": 21,
+  "logged_order_replies_by_side_status": {
+    "buy:pending_new": 1
+  },
+  "observed_chicago_day": "2026-11-12",
+  "orders_placed_by_audit": 0,
+  "scope": "journal acceptance/skip evidence, NOT missed profitable broker fills",
+  "skip_reasons": {
+    "ENTRY_EXTENSION_BLOCKED": 7,
+    "PRIOR_ENTRY_NOT_ELIGIBLE_FOR_DISCOUNTED_REENTRY": 67
+  },
+  "static_source_cross_session_branch": true,
+  "static_source_direct_news_clearance_found": false,
+  "static_source_only_terminal_zero_fill_removes_tracking": true,
+  "tracked_older_than_chicago_day": 51,
+  "tracked_records": 52,
+  "unique_buy_watch_symbols": 24
+}
