@@ -1,6 +1,7 @@
 import importlib.util,unittest,json
+from pathlib import Path
 from datetime import datetime,timezone,timedelta
-s=importlib.util.spec_from_file_location("fdr","/tmp/v2_fdr_exit_clock_join_20261112.py")
+s=importlib.util.spec_from_file_location("fdr",str(Path(__file__).resolve().parents[1] / "research" / "v2_fdr_exit_clock_join_20261112.py"))
 m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
 def trade(symbol="AMD",exit_at="2026-11-09T13:30:14Z",src="FDR"):
     return {"source":src,"day":"2026-11-09","symbol":symbol,
