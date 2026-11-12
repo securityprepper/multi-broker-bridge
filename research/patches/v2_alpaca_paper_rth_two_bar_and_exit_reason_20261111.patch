@@ -1,0 +1,36 @@
+--- a/multi_broker_bridge/trend.py
++++ b/multi_broker_bridge/trend.py
+@@ -201,7 +201,12 @@
+             elif change>=PROFIT_TARGET:reason="profit target reached"
+             elif high>=position.entry_price*(1+TRAIL_ENABLE) and trail<=-TRAIL_REVERSAL:
+                 reason="trailing peak reversal"
+-            elif _two_falling(bars):reason="two completed bars with lower highs and lower lows"
++            # A pair of slightly lower highs/lows is not an independent RTH
++            # exit. Only a confirmed >=1% profit (PROFIT_TARGET above),
++            # meaningful <=-1% loss (LOSS_WATCH above), or the unchanged
++            # trailing / mandatory exit safeguards may trigger an exit.
++            # This prevents a tiny negative two-bar wiggle from selling a
++            # position solely on candle shape; premarket rules are unchanged.
+             if reason:
+                 output.append({"symbol":symbol,
+                                "action":"SELL_LIMIT_CANDIDATE" if last.bid is not None and executable_session else "EXIT_WATCH",
+--- a/multi_broker_bridge/auto_paper.py
++++ b/multi_broker_bridge/auto_paper.py
+@@ -587,8 +587,15 @@
+                 db.execute("INSERT OR REPLACE INTO tracked VALUES (?,?,?,?,?)",
+                            (symbol,ref,str(price),now.isoformat(),quantity))
+                 db.commit()
+-            placed.append({"symbol":symbol,"side":side,"qty":quantity,
+-                           "status":receipt.get("status"),"broker_order_id":receipt["id"]})
++            # Audit the exact PAPER signal which led to this order request.
++            # An accepted order does not establish a fill; fill UUIDs and
++            # realized P/L must still come from independent broker readback.
++            recorded={"symbol":symbol,"side":side,"qty":quantity,
++                      "status":receipt.get("status"),"broker_order_id":receipt["id"]}
++            if side=="sell":
++                recorded["exit_signal_reason"]=str(row.get("reason","UNKNOWN"))
++                recorded["exit_fill_verified"]=False
++            placed.append(recorded)
+             occupied.add(symbol)
+             # Refresh broker cash/positions before sizing another stock.
+             if side=="buy":
