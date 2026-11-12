@@ -171,7 +171,7 @@ class TrendMonitor:
             elif change>=PROFIT_TARGET:reason="profit target reached"
             elif high>=position.entry_price*(1+TRAIL_ENABLE) and trail<=-TRAIL_REVERSAL:
                 reason="trailing peak reversal"
-            elif _two_falling(bars):reason="two completed bars with lower highs and lower lows"
+            # Two lower-high/lower-low one-minute bars alone are NOT an RTH\n            # sell trigger. The +1% profit, -1% loss, trailing-reversal\n            # and mandatory 13:40 Chicago exit gates above remain unchanged.
             if reason:
                 output.append({"symbol":symbol,
                                "action":"SELL_LIMIT_CANDIDATE" if last.bid is not None and executable_session else "EXIT_WATCH",
