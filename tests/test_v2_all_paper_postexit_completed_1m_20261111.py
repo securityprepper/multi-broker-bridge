@@ -1,12 +1,8 @@
 """Synthetic causal/coverage tests for post-exit completed-bar research."""
-import importlib.util
 import unittest
 from datetime import datetime,timedelta
 from zoneinfo import ZoneInfo
-P="/tmp/v2-rapid-exit-postexit-run7-20261111.py"
-s=importlib.util.spec_from_file_location("postexit",P)
-m=importlib.util.module_from_spec(s)
-s.loader.exec_module(m)
+from research import v2_all_paper_postexit_completed_1m_20261111 as m
 CT=ZoneInfo("America/Chicago")
 DAY="2026-11-11"
 def dt(hhmmss):
