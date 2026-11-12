@@ -1,0 +1,70 @@
+{
+  "actual_exit_trigger_status": "UNKNOWN_WITHOUT_REASON_ORDER_UUID_JOIN",
+  "by_source": {
+    "FDR": {
+      "both_legs_fresh_quote": 1,
+      "gross_losses": 9,
+      "gross_usd": -118.22,
+      "gross_wins": 0,
+      "trades": 9
+    },
+    "MBB": {
+      "both_legs_fresh_quote": 12,
+      "gross_losses": 36,
+      "gross_usd": -161.12,
+      "gross_wins": 14,
+      "trades": 51
+    }
+  },
+  "by_source_side_quote_status": {
+    "FDR|entry": {
+      "FRESH_ASOF_QUOTE": 4,
+      "HISTORICAL_QUOTE_UNAVAILABLE": 2,
+      "QUOTE_STALE": 3
+    },
+    "FDR|exit": {
+      "FRESH_ASOF_QUOTE": 5,
+      "QUOTE_STALE": 4
+    },
+    "MBB|entry": {
+      "FRESH_ASOF_QUOTE": 29,
+      "HISTORICAL_QUOTE_UNAVAILABLE": 9,
+      "QUOTE_STALE": 13
+    },
+    "MBB|exit": {
+      "FRESH_ASOF_QUOTE": 24,
+      "HISTORICAL_QUOTE_UNAVAILABLE": 14,
+      "QUOTE_STALE": 13
+    }
+  },
+  "commission_status": "UNKNOWN",
+  "distinct_days": 3,
+  "distinct_filled_round_trips": 60,
+  "filled_leg_quote_status": {
+    "FRESH_ASOF_QUOTE": 62,
+    "HISTORICAL_QUOTE_UNAVAILABLE": 25,
+    "QUOTE_STALE": 33
+  },
+  "hold_time_bins": {
+    "<=10m": 9,
+    "<=2m": 4,
+    "<=30m": 25,
+    "<=5m": 9,
+    ">30m": 13
+  },
+  "holdout_requirement": "AT_LEAST_20_INDEPENDENT_DAYS_NOT_MET",
+  "hypothetical_executable_quote_and_fill_result": "NOT_ESTABLISHED",
+  "midpoint_cost_descriptive_usd": 30.1,
+  "midpoint_cost_median_per_trade_bp": 4.63,
+  "midpoint_cost_weighted_bp": 12.08,
+  "orders_submitted": 0,
+  "paired_actual_gross_losers": 6,
+  "paired_actual_gross_usd": -14.22,
+  "paired_actual_gross_winners": 6,
+  "paired_entry_fill_above_prior_ask": 2,
+  "paired_exit_fill_below_prior_bid": 0,
+  "research_only": true,
+  "scope": "ONE_AUTHENTICATED_ALPACA_PAPER_ACCOUNT_ID_NOT_IN_SANITIZED_CACHE",
+  "trade_news_asof": "NEWS_UNKNOWN_HISTORICAL_OUTCOME_CONTROL_ONLY",
+  "two_sided_fresh_quote_pairs": 13
+}
