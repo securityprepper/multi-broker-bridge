@@ -98,5 +98,3 @@ if __name__ == "__main__":
         raise SystemExit("Usage: python v2_paper_hold_cohort_20261112.py PRIVATE_BROKER_VERIFIED_JSON")
     d = json.loads(Path(sys.argv[1]).read_text())
     print(json.dumps(analyze(d["trades"]), indent=2))
-
-[executed on device: www3.securityprepper.com (1016f4a4-5f2e-452e-8c88-0e4b9430d76e)]
