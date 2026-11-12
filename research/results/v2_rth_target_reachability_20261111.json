@@ -1,0 +1,83 @@
+{
+  "distinct_sessions": 3,
+  "news_status": "NEWS_UNKNOWN_HISTORICAL_OUTCOME_ONLY",
+  "paper_orders_submitted": 0,
+  "research_only": true,
+  "strategy_version_caveat": "Historical mixed versions; no future-policy validation",
+  "study": "MBB real PAPER RTH filled entries, after-entry 1m SIP target upper bounds",
+  "targets": [
+    {
+      "close_before_minus1pct_losswatch_close_trade_mark": 21,
+      "close_reach_trade_mark": 24,
+      "high_before_minus1pct_losswatch_close_upper_bound": 23,
+      "high_touch_upper_bound": 26,
+      "missing_or_censored_first_event_paths": 2,
+      "target_pct": 0.5,
+      "trades": 38
+    },
+    {
+      "close_before_minus1pct_losswatch_close_trade_mark": 19,
+      "close_reach_trade_mark": 22,
+      "high_before_minus1pct_losswatch_close_upper_bound": 19,
+      "high_touch_upper_bound": 22,
+      "missing_or_censored_first_event_paths": 3,
+      "target_pct": 0.75,
+      "trades": 38
+    },
+    {
+      "close_before_minus1pct_losswatch_close_trade_mark": 12,
+      "close_reach_trade_mark": 14,
+      "high_before_minus1pct_losswatch_close_upper_bound": 13,
+      "high_touch_upper_bound": 16,
+      "missing_or_censored_first_event_paths": 6,
+      "target_pct": 1.0,
+      "trades": 38
+    },
+    {
+      "close_before_minus1pct_losswatch_close_trade_mark": 9,
+      "close_reach_trade_mark": 10,
+      "high_before_minus1pct_losswatch_close_upper_bound": 9,
+      "high_touch_upper_bound": 10,
+      "missing_or_censored_first_event_paths": 6,
+      "target_pct": 1.25,
+      "trades": 38
+    },
+    {
+      "close_before_minus1pct_losswatch_close_trade_mark": 8,
+      "close_reach_trade_mark": 9,
+      "high_before_minus1pct_losswatch_close_upper_bound": 9,
+      "high_touch_upper_bound": 10,
+      "missing_or_censored_first_event_paths": 6,
+      "target_pct": 1.5,
+      "trades": 38
+    },
+    {
+      "close_before_minus1pct_losswatch_close_trade_mark": 2,
+      "close_reach_trade_mark": 3,
+      "high_before_minus1pct_losswatch_close_upper_bound": 2,
+      "high_touch_upper_bound": 3,
+      "missing_or_censored_first_event_paths": 6,
+      "target_pct": 2.0,
+      "trades": 38
+    },
+    {
+      "close_before_minus1pct_losswatch_close_trade_mark": 2,
+      "close_reach_trade_mark": 2,
+      "high_before_minus1pct_losswatch_close_upper_bound": 2,
+      "high_touch_upper_bound": 2,
+      "missing_or_censored_first_event_paths": 6,
+      "target_pct": 2.5,
+      "trades": 38
+    },
+    {
+      "close_before_minus1pct_losswatch_close_trade_mark": 2,
+      "close_reach_trade_mark": 2,
+      "high_before_minus1pct_losswatch_close_upper_bound": 2,
+      "high_touch_upper_bound": 2,
+      "missing_or_censored_first_event_paths": 6,
+      "target_pct": 3.0,
+      "trades": 38
+    }
+  ],
+  "trades": 38
+}
