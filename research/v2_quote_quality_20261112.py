@@ -22,10 +22,18 @@ def classify(payload, *, start, end, side, filled_qty, max_age_s=1.5, max_spread
     """Classify one pre-fill 5s quote window without masking parser failures as API failures."""
     if side not in ('entry','exit') or filled_qty <= 0 or not (start < end):
         raise ValueError('Bad research argument')
-    if not isinstance(payload, dict) or not isinstance(payload.get('quotes'), list):
+    if not isinstance(payload, dict):
         return {'status':'MALFORMED_RESPONSE', 'rejected_rows':0}
     if payload.get('next_page_token'):
         return {'status':'PAGINATION_UNRESOLVED', 'rejected_rows':0}
+    # Alpaca can return HTTP 200 with {"quotes": null, "next_page_token": null}.
+    # This means zero rows in this *response*, not proven market illiquidity.
+    if 'quotes' in payload and payload['quotes'] is None:
+        return {'status':'NO_QUOTE_ROWS_RETURNED', 'rejected_rows':0}
+    if not isinstance(payload.get('quotes'), list):
+        return {'status':'MALFORMED_RESPONSE', 'rejected_rows':0}
+    if not payload['quotes']:
+        return {'status':'NO_QUOTE_ROWS_RETURNED', 'rejected_rows':0}
     good=[]; invalid=0; excluded=0
     for x in payload['quotes']:
         if not isinstance(x,dict):
