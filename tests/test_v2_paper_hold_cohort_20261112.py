@@ -55,5 +55,3 @@ class CohortTests(unittest.TestCase):
         self.assertEqual(m.analyze([trade(1)])["exit_trigger_for_ordinary_mbb"],"UNKNOWN")
 
 if __name__=="__main__":unittest.main()
-
-[executed on device: www3.securityprepper.com (1016f4a4-5f2e-452e-8c88-0e4b9430d76e)]
