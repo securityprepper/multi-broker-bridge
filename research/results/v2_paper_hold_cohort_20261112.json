@@ -1,0 +1,144 @@
+{
+  "scope": "one previously authenticated Alpaca PAPER account, bounded completed broker-filled pairs",
+  "all_completed": {
+    "n": 60,
+    "winning": 14,
+    "losing": 45,
+    "flat": 1,
+    "broker_fill_gross_usd": "-279.34",
+    "median_fill_return_pct": -0.2821
+  },
+  "by_duration": {
+    "<=2m": {
+      "n": 4,
+      "winning": 0,
+      "losing": 4,
+      "flat": 0,
+      "broker_fill_gross_usd": "-18.07",
+      "median_fill_return_pct": -0.2479
+    },
+    ">2-5m": {
+      "n": 9,
+      "winning": 1,
+      "losing": 8,
+      "flat": 0,
+      "broker_fill_gross_usd": "-58.27",
+      "median_fill_return_pct": -0.3341
+    },
+    ">5-10m": {
+      "n": 9,
+      "winning": 0,
+      "losing": 9,
+      "flat": 0,
+      "broker_fill_gross_usd": "-52.42",
+      "median_fill_return_pct": -0.3003
+    },
+    ">10-30m": {
+      "n": 25,
+      "winning": 7,
+      "losing": 18,
+      "flat": 0,
+      "broker_fill_gross_usd": "-146.61",
+      "median_fill_return_pct": -0.3662
+    },
+    ">30m": {
+      "n": 13,
+      "winning": 6,
+      "losing": 6,
+      "flat": 1,
+      "broker_fill_gross_usd": "-3.97",
+      "median_fill_return_pct": 0.0
+    }
+  },
+  "by_source": {
+    "MBB": {
+      "n": 51,
+      "winning": 14,
+      "losing": 36,
+      "flat": 1,
+      "broker_fill_gross_usd": "-161.12",
+      "median_fill_return_pct": -0.1664
+    },
+    "FDR": {
+      "n": 9,
+      "winning": 0,
+      "losing": 9,
+      "flat": 0,
+      "broker_fill_gross_usd": "-118.22",
+      "median_fill_return_pct": -0.7348
+    }
+  },
+  "mbb_under_or_equal_10m": {
+    "n": 22,
+    "winning": 1,
+    "losing": 21,
+    "flat": 0,
+    "broker_fill_gross_usd": "-128.76",
+    "median_fill_return_pct": -0.3077
+  },
+  "mbb_over_10m": {
+    "n": 29,
+    "winning": 13,
+    "losing": 15,
+    "flat": 1,
+    "broker_fill_gross_usd": "-32.36",
+    "median_fill_return_pct": -0.0593
+  },
+  "mbb_rapid_by_day": {
+    "2026-11-09": {
+      "n": 12,
+      "winning": 0,
+      "losing": 12,
+      "flat": 0,
+      "broker_fill_gross_usd": "-64.68",
+      "median_fill_return_pct": -0.3246
+    },
+    "2026-11-10": {
+      "n": 5,
+      "winning": 0,
+      "losing": 5,
+      "flat": 0,
+      "broker_fill_gross_usd": "-55.32",
+      "median_fill_return_pct": -0.4403
+    },
+    "2026-11-11": {
+      "n": 5,
+      "winning": 1,
+      "losing": 4,
+      "flat": 0,
+      "broker_fill_gross_usd": "-8.76",
+      "median_fill_return_pct": -0.0502
+    }
+  },
+  "mbb_rapid_by_session": {
+    "overnight": {
+      "n": 3,
+      "winning": 0,
+      "losing": 3,
+      "flat": 0,
+      "broker_fill_gross_usd": "-16.64",
+      "median_fill_return_pct": -0.3341
+    },
+    "premarket": {
+      "n": 4,
+      "winning": 0,
+      "losing": 4,
+      "flat": 0,
+      "broker_fill_gross_usd": "-22.50",
+      "median_fill_return_pct": -0.2762
+    },
+    "RTH_or_later": {
+      "n": 15,
+      "winning": 1,
+      "losing": 14,
+      "flat": 0,
+      "broker_fill_gross_usd": "-89.62",
+      "median_fill_return_pct": -0.2653
+    }
+  },
+  "hold_duration_is_outcome_associated_not_proven_exit_trigger": true,
+  "exit_trigger_for_ordinary_mbb": "UNKNOWN",
+  "commissions": "UNKNOWN",
+  "qualified_parameter_change": false,
+  "broker_orders_submitted": 0
+}
