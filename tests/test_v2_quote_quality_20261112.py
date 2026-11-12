@@ -9,7 +9,10 @@ def check(data,side='entry',qty=4):
 class TestQuality(unittest.TestCase):
     def test_fresh(self):self.assertEqual(check({'quotes':[D]})['status'],'FRESH_ASOF_DISPLAYED_QUOTE')
     def test_no_proof_of_fill(self):self.assertIs(check({'quotes':[D]})['executable_fill_verified'],False)
-    def test_null_quote_list(self):self.assertEqual(check({'quotes':None})['status'],'MALFORMED_RESPONSE')
+    def test_null_quote_list(self):self.assertEqual(check({'quotes':None,'next_page_token':None,'symbol':'AMD'})['status'],'NO_QUOTE_ROWS_RETURNED')
+    def test_empty_quote_list(self):self.assertEqual(check({'quotes':[]})['status'],'NO_QUOTE_ROWS_RETURNED')
+    def test_missing_quote_field(self):self.assertEqual(check({'symbol':'AMD'})['status'],'MALFORMED_RESPONSE')
+    def test_null_with_pagination_still_fails_closed(self):self.assertEqual(check({'quotes':None,'next_page_token':'more'})['status'],'PAGINATION_UNRESOLVED')
     def test_null_size_is_parse_not_provider_failure(self):
         self.assertEqual(check({'quotes':[dict(D,bs=None)]})['status'],'NO_VALID_QUOTE')
         self.assertTrue(check({'quotes':[dict(D,bs=None)]})['parse_error_present'])
