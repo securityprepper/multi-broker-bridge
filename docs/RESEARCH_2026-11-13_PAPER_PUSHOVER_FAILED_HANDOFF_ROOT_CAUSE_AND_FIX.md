@@ -1,0 +1,43 @@
+# November 13, 2026 — Pushover "PAPER order failed" incident root cause and repaired watcher handoff
+
+**Scope:** authorized www3 Alpaca PAPER watcher pipeline, not IBKR/LIVE. This incident is about misleading Pushover messages and missing/blocked PAPER handoffs; no code can infer an Alpaca *rejected* order from a watcher failing to enqueue its signal.
+
+## Verified historical incident and concrete causes
+
+- **November 13 at 12:24 CT, DDOG**: the one-minute QW1 quality watcher produced a `BUY NOW` signal, but its notification state was `PROVIDER_ACCEPTED` (Pushover provider acceptance), **not** `BROKER_HANDOFF_QUEUED`. Its direct alert fallback prepended **"PAPER ORDER HANDOFF FAILED; NO ORDER PLACED."** The separate watcher PAPER durable SQLite ledger had **zero executions/attempts from QW1 before remediation**. The signal had not become an Alpaca rejected order.
+- **Actual broken pipe:** `securityprepper-quality-watch.service` ran as `alpacafeed` under `ProtectSystem=strict` with **no `ReadWritePaths` for `/var/lib/securityprepper-watcher-paper/inbox`**. `emit_paper_event` therefore could not write its group-private immutable signal file, despite correct UNIX permissions on the directory. The FS5 `trading-sector-monitor.service` had the same systemd sandbox omission. Both services were fixed with **only** a narrow write allowlist for the signal inbox; FS5 additionally ensures the `sectorread` supplementary group. Their existing filesystem sandboxing and broker separation remain.
+- **Independent write proof:** two separate transient **systemd sandbox** one-shot probes, executed as the real `alpacafeed` (UID 993) and `tradingsector` (UID 994) under `ProtectSystem=strict`, each created, flushed and deleted a harmless **non-`.json`** permission probe in the intended inbox. **Both succeeded**. No test-generated valid signal, broker POST, buy, sell or Pushover was sent. The one- and five-minute watchers continue under their original schedule/timer.
+- **A second false-alarm path:** the QW1 source had been tagging a *fresh recent-news cache* as `negative_news_screened=true` without a trusted issuer/SEC/news `NEWS_CLEAR_ASOF`. That allowed the source to publish an apparent `BUY NOW` that the receiving-paper bridge correctly refuses when root evidence is missing. QW1 now requires actual trusted root `NEWS_CLEAR_ASOF` **before** producing a named BUY/handoff, plus rising as-of completed last five minutes, and no BUY after **13:15 CT**. Its EARLY_REBOUND events without a qualified plan/clearance are WATCH ONLY, not pseudo-failed order submissions. The receiver independently rechecks mandatory news/5-minute/broker protections before any order POST.
+- **November 13 at approximately 13:52 CT, AMAT**: after transport repaired, a genuine QW1 `AVOID` signal was safely accepted by the watcher PAPER worker. Broker-side logic verified `NO_HELD_POSITION` and did not submit a sell. The worker nevertheless labeled that `NO_HELD_POSITION` as a failed PAPER order in the Pushover message. NBIS had the same `NO_HELD_POSITION` but its personal-ownership AVOID Pushover was suppressed. This is an unnecessary false failure label, not an Alpaca broker rejection.
+- The worker's Pushover outcome categorization now differentiates **(a)** no PAPER holding/exit not necessary, **(b)** safe source/news/price/entry-cutoff prequalification veto/no broker POST, **(c)** broker order **accepted but not a verified fill**, **(d)** ambiguous submission (do not blindly retry), **(e)** actual known broker order rejection/failure and **(f)** protective-order/close readback anomalies. **Real failed/unknown attempts still produce Pushover after the broker attempt**, preserving user's order-first alerts; expected no-order safety verdicts no longer claim Alpaca itself rejected an order.
+- Additional worker idempotency: a previously handled event's immutable `.json` file is checked against the durable action ledger **before** stale-timestamp validation. It no longer produces a false `INVALID_OR_STALE` result on every later timer run. A pre-existing root-owned **invalid/stale IBM** event (never processed, no broker action) was **moved into root-private quarantine with unchanged SHA256** rather than discarded or retried.
+
+## External broker evidence and limits
+
+A separate authenticated **GET-only Alpaca PAPER account** recent-orders snapshot at **2026-11-13 20:00:19 UTC / 14:00:19 Chicago** reported `paper_only=true`, `broker_verified=true`, `recent_orders_complete=true` and a query horizon beginning **Nov 10 19:50 UTC**, with **19 recent broker orders: 18 FILLED, 1 CANCELED, 0 REJECTED**. This is a *bounded single-account observed snapshot*, not a claim about every historic Alpaca order, account or every external Pushover. It confirms no known broker rejection in the observed sample while exact failed handoff cases originated before a broker POST. Actual Alpaca market hours/entry cutoff/holiday checks remain mandatory.
+
+**Critical open blocker — not called fixed:** the separate trusted root issuer/SEC/licensed-news publisher currently reports **`WAITING_FOR_INDEPENDENT_SOURCE_BUNDLES`** with **0 validated upstream bundles and 0 signed `NEWS_CLEAR_ASOF` files**, even after the user's updated Chicago yesterday-and-today (not 30-day) adverse-news scope. The 300-article rolling news cache plus earnings-event-specific SEC proofs cannot establish complete issuer/exchange and original as-of coverage. Therefore, new MBB, QW1/FS5 and recommendation-to-PAPER BUYs must still **fail closed** for `NEWS_UNKNOWN`. This is intentional adherence to the owner's adverse-news veto, not an Alpaca account-authentication failure and not an excuse to fabricate attestations. The QW1 producer no longer sends such unqualified BUYs as broker failures. This incident repair **does not yet demonstrate a successful qualifying PAPER BUY**: Nov 13 is already past 13:15 CT after the changes, and a future source-qualified market session is required to observe an actual filled buy.
+
+## Deployed specifics and tests
+
+Deployed, with exact source-hash readbacks, narrow root-owned systemd drop-ins, no dirty-repo reset/force push and original backups:
+- `securityprepper-quality-watch.service.d/70-watcher-paper-inbox-write.conf`
+- `trading-sector-monitor.service.d/70-watcher-paper-inbox-write.conf`
+- `/opt/securityprepper/quality-opportunity-watch/quality_watch.py` verified NEWS_CLEAR_ASOF source eligibility + 13:15 cutoff + correct Pushover fallback wording.
+- `/opt/securityprepper/watcher-paper/watcher_paper_executor.py` verified source news gate + accurate outcome messages + processed-event idempotency.
+
+Executed **51** quality watch offline regression tests (all pass) and **42** watcher PAPER offline/contract tests (all pass), **93 total**, plus the two isolated real-sandbox permission probes. Additional no-order-path/accepted-but-not-filled/exception-no-retry tests are included. Each service's pre-existing timer remained enabled and active. Registered PAPER safety source/holiday and 13:40 CT liquidation were untouched. At latest logged time around 14:01 Chicago, QW1 had blocked 13 late would-be BUY candidates as `PAST_1315_PAPER_ENTRY_CUTOFF` with **no BUY Pushover**. The read-only watcher PAPER ledger accurately recorded safe AVOID checks; after processed-file idempotency hotfix a subsequent minute showed `processed: []` rather than repeated stale old records. No LIVE permissions or broker orders were modified during research.
+
+## Audit repository
+
+The isolated `securityprepper/multi-broker-bridge` V2 research branch contains exact reviewable source patch files and root-owned systemd drop-ins:
+- `research/patches/2026-11-13_qw1_news_clearance_and_paper_handoff_alerts.patch`
+- `research/patches/2026-11-13_watcher_paper_outcome_and_idempotency.patch`
+- `ops/securityprepper-quality-watch.service.d/70-watcher-paper-inbox-write.conf`
+- `ops/trading-sector-monitor.service.d/70-watcher-paper-inbox-write.conf`
+- `tests/test_qw1_news_clearance_handoff_20261113.py`
+- `tests/test_paper_outcome_classification_20261113.py`
+
+No private credential, broker account number, raw licensed article, personal holding, Pushover token or authorization was included.
+
+**Decision:** signal delivery and misleading failure classification have been corrected and verified; remaining NEWS_UNKNOWN is an upstream evidence/source-integration blocker, **not an order execution bug**. Do not disable current buy-news veto to manufacture fills. Preserve order-first/Pushover-after-attempt semantics for *real* qualified orders and required alerts for actual broker/safety problems. Monitor after next genuinely eligible future market session; avoid unsupported assertions about automatic filled profits.
