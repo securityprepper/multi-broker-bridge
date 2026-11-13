@@ -1,0 +1,229 @@
+--- a/quality_watch.py
++++ b/quality_watch.py
+@@ -19,8 +19,12 @@
+ import re
+ import sqlite3
+ import sys
++sys.path.insert(0,"/opt/securityprepper/news-watch-v2")
++from timestamp_guard import validate as validate_snapshot_timestamp
+ sys.path.insert(0,"/opt/securityprepper/watcher-paper")
+ from watcher_event import commissioned as paper_handoff_commissioned, emit as emit_paper_event
++sys.path.insert(0,"/opt/securityprepper/recommendation-paper-bridge")
++from recommendation_paper_bridge.news_clearance import require_clear as root_news_clear, NewsBlocked
+ sys.path.insert(0,"/opt/securityprepper/recent-owned-alerts")
+ from ownership import scope as personal_avoid_scope, OwnershipUnknown
+ from urllib.parse import urlencode
+@@ -332,9 +336,10 @@
+ 
+ def source_news(path: Path, now):
+     doc=json.loads(path.read_text())
+-    stamp=iso(doc["asof_utc"])
+-    if doc.get("broker_read_only") is not True or not timedelta(0)<=now-stamp<=timedelta(minutes=3):
+-        raise ValueError("news snapshot stale or unauthenticated")
++    stamp=validate_snapshot_timestamp(doc.get("asof_utc"),now,180,
++                                       "QW1.alpaca_news_cache")
++    if doc.get("broker_read_only") is not True:
++        raise ValueError("news snapshot unauthenticated")
+     rows=doc.get("recent",[])
+     if not isinstance(rows,list):
+         raise ValueError("invalid news journal")
+@@ -394,9 +399,9 @@
+     row=conn.execute("SELECT checked_at,result_json FROM news_checks WHERE symbol=?",(symbol,)).fetchone()
+     if row:
+         try:
+-            checked=iso(row[0])
+-            if (timedelta(0)<=now-checked<timedelta(minutes=3)
+-                and adverse_news_start(now)==adverse_news_start(checked)):
++            checked=validate_snapshot_timestamp(row[0],now,180,
++                                                   "QW1.targeted_news_cache",{"symbol":symbol})
++            if (adverse_news_start(now)==adverse_news_start(checked)):
+                 return json.loads(row[1])
+         except (ValueError,TypeError):
+             pass
+@@ -535,8 +540,8 @@
+     try:
+         when=iso(q["t"])
+         bid,ask=float(q["bp"]),float(q["ap"])
+-        if not timedelta(0)<=now-when<=QUOTE_MAX_AGE:
+-            raise ValueError("stale quote")
++        validate_snapshot_timestamp(when,now,QUOTE_MAX_AGE.total_seconds(),
++                                    "QW1.alpaca_latest_quote",{"symbol":symbol})
+         if bid<=0 or ask<bid or ask<=0:
+             raise ValueError("inverted quote")
+         if (ask-bid)/ask>0.0030:
+@@ -663,7 +668,9 @@
+                  "threshold_pct":threshold,
+                  "anchors":SECTORS[name][2]}
+             out.append(("SECTOR:"+name,sig))
+-        elif detail["status"]=="RISING" and m["p20"]>=0.30 and m["p5"]>=0.10:
++        elif (detail["status"]=="RISING" and m["p20"]>=0.60
++              and m["p5"]>=0.25 and m.get("two_completed_5m_up")
++              and detail.get("positive_peers",0)>=3):
+             prior=conn.execute("SELECT last_alert_status FROM ticker_state WHERE symbol=?",
+                   ("SECTOR:"+name,)).fetchone()
+             if prior and prior[0]=="AVOID":
+@@ -726,6 +733,20 @@
+     required=1 if signal.get("severity",0)>=2 else 2
+     if streak<required:return False
+     if last_at:
++        # Prevent sector AVOID <-> END SHORT chatter from short-term noise.
++        # This does not defer first stock-specific AVOID/urgent news alerts.
++        if symbol.startswith("SECTOR:") and new in ("AVOID","END SHORT"):
++            elapsed=now-iso(last_at)
++            x=signal.get("momentum") or {}
++            sector=signal.get("sector") or {}
++            if last_alert=="AVOID" and new=="END SHORT" and elapsed<timedelta(minutes=60):
++                if not (x.get("two_completed_5m_up") and (x.get("p20") or 0)>=1.0
++                        and sector.get("positive_peers",0)>=3):
++                    return False
++            if last_alert=="END SHORT" and new=="AVOID" and elapsed<timedelta(minutes=90):
++                if not ((x.get("p20") is not None and x["p20"]<=-0.8)
++                        and sector.get("negative_peers",0)>=3):
++                    return False
+         if last_alert==new and now-iso(last_at)<timedelta(hours=2):
+             return False
+         stage_upgrade=(last_alert=="EARLY_REBOUND" and
+@@ -753,14 +774,14 @@
+ 
+ def alert_message(symbol,signal,now):
+     status=signal["status"]
+-    title="Quality Watch: "+status+" "+symbol
++    title="QW1 ONE-MINUTE | "+status+" "+symbol
+     source=("Alpaca SIP confirmed bars; curated quality list; "
+             "independent news and sector screen; no broker order.")
+     x=signal.get("momentum",{})
+     sect=signal.get("sector",{})
+     is_sector=symbol.startswith("SECTOR:")
+     if is_sector:
+-        title="Quality Watch: "+status+" "+signal.get("sector_name",symbol)
++        title="QW1 ONE-MINUTE | "+status+" "+signal.get("sector_name",symbol)
+     lines=[status+" — "+(signal.get("sector_name",symbol) if is_sector else symbol),
+            "Time CT: "+now.astimezone(CT).strftime("%Y-%m-%d %H:%M"),
+            "Reason: "+signal.get("reason",""),
+@@ -818,6 +839,29 @@
+ 
+ def infer_sector_universe(stats,now):
+     return sector_status(stats,now)
++
++def trusted_buy_eligibility(symbol, now):
++    """Pure read-only root attestor: current licensed news cache is NOT clearance.
++
++    When no trusted signed issuer/SEC/licensed-news source proof exists, a
++    price-based BUY signal remains WATCH/NO_ORDER. Existing-position risk
++    alerts and PAPER SELL/flatten are separate and never blocked by this.
++    """
++    if now.tzinfo is None:
++        return False,"NEWS_CLOCK_UNKNOWN"
++    local=now.astimezone(CT)
++    if not (time(8,30)<=local.time()<time(13,15) and local.weekday()<5):
++        return False,"PAST_1315_PAPER_ENTRY_CUTOFF"
++    try:
++        proof=root_news_clear(symbol,now)
++        if not isinstance(proof,dict) or proof.get("status")!="NEWS_CLEAR_ASOF":
++            return False,"NEWS_UNKNOWN_NO_VERIFIED_CLEARANCE"
++    except NewsBlocked as exc:
++        return False,str(exc.status)
++    except (OSError,ValueError,KeyError,TypeError,ImportError):
++        return False,"NEWS_UNKNOWN_ATTESTATION_UNAVAILABLE"
++    return True,"NEWS_CLEAR_ASOF"
++
+ 
+ def run(now=None,state=STATE,news_path=NEWS_STATE,holiday_path=HOLIDAY_STATE,
+         auth=None,credentials=None,requester=post_with_headers,
+@@ -881,7 +925,19 @@
+             except (OSError,ValueError,TypeError,KeyError,TimeoutError):
+                 pass
+         signals=[]
++        buy_preflight_block_counts={}
+         for _,symbol,sig,global_result in prospects:
++            # A complete, current NEWS_CLEAR_ASOF (and pre-13:15 entry time)
++            # is mandatory BEFORE emitting a named BUY or PAPER handoff.
++            # Article-only headline absence is not clearance.
++            ok,reason=trusted_buy_eligibility(symbol,now)
++            if not ok:
++                buy_preflight_block_counts[reason]=buy_preflight_block_counts.get(reason,0)+1
++                continue
++            if sig.get("momentum",{}).get("p5") is None or sig["momentum"]["p5"]<=0:
++                buy_preflight_block_counts["PRICE_LAST_5M_NOT_RISING"] = (
++                    buy_preflight_block_counts.get("PRICE_LAST_5M_NOT_RISING",0)+1)
++                continue
+             targeted=news_cached(conn,symbol,now,auth or {},requester)
+             if not targeted.get("source_checked"):
+                 continue
+@@ -892,6 +948,7 @@
+             if not plan:
+                 continue
+             sig["plan"]=plan
++            sig["news_clearance"]="NEWS_CLEAR_ASOF"
+             news_context=global_result if global_result.get("positive_published_at_utc") else targeted
+             if news_context.get("positive_headline"):
+                 sig["positive_headline"]=news_context["positive_headline"]
+@@ -943,13 +1000,22 @@
+                 continue
+             quote=quote_details(sym,rebound_quotes.get(sym,{}),now)
+             plan=rebound_paper_plan(sym,sig,quote,rebound_closes.get(sym),now)
+-            # Emit an auditable PAPER preflight attempt before the push, even
+-            # when the conservative entry plan declines the trade. The broker
+-            # worker must reject missing plans without submitting an order.
+-            sig["paper_action"]="BUY NOW"
+-            sig["paper_entry_qualified"]=plan is not None
+-            if plan is not None:
++            # An EARLY_REBOUND without an eligible price plan and genuine
++            # issuer/SEC/news clearance is WATCH ONLY, not a failed PAPER buy.
++            # Broker worker still independently rechecks both before POST.
++            eligible,reason=trusted_buy_eligibility(sym,now)
++            ready=(plan is not None and eligible and
++                   sig.get("momentum",{}).get("p5") is not None and
++                   sig["momentum"]["p5"]>0)
++            sig["paper_action"]="BUY NOW" if ready else "WATCH_ONLY"
++            sig["paper_entry_qualified"]=ready
++            if ready:
+                 sig["plan"]=plan
++                sig["news_clearance"]="NEWS_CLEAR_ASOF"
++            else:
++                buy_preflight_block_counts[reason if not eligible else "REBOUND_ENTRY_PLAN_OR_5M_NOT_QUALIFIED"]=(
++                    buy_preflight_block_counts.get(
++                        reason if not eligible else "REBOUND_ENTRY_PLAN_OR_5M_NOT_QUALIFIED",0)+1)
+             signals.append((sym,sig))
+         for sym,sig,ng in adverse:
+             # Reject fabricated global negative news alerts. A strong technical
+@@ -1025,7 +1091,11 @@
+                          "momentum":sig.get("momentum"),
+                          "headline":sig.get("headline",""),
+                          "signal_asof_utc":(sig.get("momentum") or {}).get("asof"),
+-                         "negative_news_screened":bool(news_ready),
++                         "negative_news_screened":(
++                             sig.get("news_clearance")=="NEWS_CLEAR_ASOF"
++                             if sig["status"] not in ("AVOID","END SHORT")
++                             else bool(news_ready)),
++                         "verified_news_clear_asof":sig.get("news_clearance"),
+                          "signal_stage":sig["status"],
+                          "paper_entry_qualified":sig.get("paper_entry_qualified",False),
+                          "related_symbols":(
+@@ -1056,7 +1126,9 @@
+                     continue
+                 # Fail safe: keep the PAPER safety failure visible in logs.
+                 # Direct alert fallback still obeys the personal ownership gate.
+-                message="PAPER ORDER HANDOFF FAILED; NO ORDER PLACED. "+message
++                message=("PAPER HANDOFF UNAVAILABLE ("+
++                         str(handoff.get("status","UNKNOWN"))+
++                         "); NO ALPACA ORDER WAS SUBMITTED. ")+message
+             if sig["status"]=="AVOID" and not owner_notify:
+                 conn.execute("UPDATE notifications SET state=? WHERE event_id=?",
+                              ("AVOID_ALERT_SUPPRESSED_"+owner_status,eid))
+@@ -1084,6 +1156,7 @@
+              json.dumps(sector,sort_keys=True),json.dumps(
+                 {"possible":len(possible),"news_unchecked":news_unchecked,
+                  "shortlist":shortlist,"alerts":alerts,
++                 "buy_preflight_block_counts":buy_preflight_block_counts,
+                  "avoid_alerts_suppressed_nonpaper_filter":suppressed_avoid,
+                  "qualified":[{"symbol":sym,"type":sig["status"],
+                                "reason":sig.get("reason"),"plan":sig.get("plan"),
+@@ -1097,6 +1170,7 @@
+                 "sector_avoid":[s for s,x in sector.items() if x["status"]=="AVOID"],
+                 "news_source_fresh":news_ready,"holiday_ok":gate,
+                 "possible_pre_news":len(possible),"unreviewed_due_to_budget":news_unchecked,
++                "buy_preflight_block_counts":buy_preflight_block_counts,
+                 "qualified_signals":len(signals),"alerts":alerts,
+                 "avoid_alerts_suppressed":len(suppressed_avoid),
+                 "broker_order_attempts":0}
