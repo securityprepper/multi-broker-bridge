@@ -155,6 +155,22 @@ def observed_coverage_gaps():
     except OSError:out["event_specific_issuer_earnings_attestations"]="UNKNOWN"
     return out
 
+def revoke_unqualified_proof(output,symbol):
+    """Immediately revoke a previously signed BUY clearance if a source fails.
+
+    An orphan/stale clearance must not remain BUY-eligible for its remaining
+    freshness interval after the collector loses coverage or finds adverse news.
+    Never follow symlinks and never remove unrelated files.
+    """
+    if not SYMBOL.fullmatch(symbol):raise EvidenceBlocked("BAD_REVOCATION_SYMBOL")
+    target=output/(symbol+".json")
+    if target.is_symlink():raise EvidenceBlocked("UNTRUSTED_CLEARANCE_SYMLINK")
+    if target.exists():
+        owner_protected(target)
+        target.unlink()
+        return True
+    return False
+
 def process(*,now=None,source=SOURCE,output=OUTPUT,gate=GATE,status=STATUS):
     now=now or datetime.now(timezone.utc)
     if now.tzinfo is None:raise EvidenceBlocked("CLOCK_NAIVE")
@@ -165,7 +181,7 @@ def process(*,now=None,source=SOURCE,output=OUTPUT,gate=GATE,status=STATUS):
         return {"status":"HOLIDAY_FAIL_CLOSED_NO_PUBLISH","files_published":0,"orders":0}
     owner_protected(source,directory=True)
     owner_protected(output,directory=True)
-    published=0;blocked={}
+    published=0;blocked={};valid=set();revoked=[]
     files=list(sorted(source.glob("*.json")))
     if len(files)>300:raise EvidenceBlocked("TOO_MANY_SOURCE_BUNDLES")
     for path in files:
@@ -175,9 +191,22 @@ def process(*,now=None,source=SOURCE,output=OUTPUT,gate=GATE,status=STATUS):
             obj=safe_read(path)
             proof=eligible_bundle(path.stem,obj,now)
             atomic_write(output/(path.stem+".json"),proof)
+            valid.add(path.stem)
             published+=1
         except (OSError,ValueError,TypeError,EvidenceBlocked) as ex:
             blocked[path.stem]=str(ex)[:100]
+            if revoke_unqualified_proof(output,path.stem):
+                revoked.append(path.stem)
+    # Also revoke old signed symbols that were entirely absent from the latest
+    # trusted source set. Do not rely merely on their 60-second expiry.
+    existing=list(sorted(output.glob("*.json")))
+    if len(existing)>300:raise EvidenceBlocked("TOO_MANY_OUTPUT_CLEARANCES")
+    for previous in existing:
+        if not SYMBOL.fullmatch(previous.stem):
+            raise EvidenceBlocked("UNTRUSTED_OUTPUT_CLEARANCE_NAME")
+        if previous.stem not in valid:
+            if revoke_unqualified_proof(output,previous.stem):
+                revoked.append(previous.stem)
     details=observed_coverage_gaps()
     publisher_status=("VERIFIED_CLEARANCE_PUBLISHED" if published else
         "WAITING_FOR_INDEPENDENT_SOURCE_BUNDLES" if not files else
@@ -185,6 +214,7 @@ def process(*,now=None,source=SOURCE,output=OUTPUT,gate=GATE,status=STATUS):
     result={"status":publisher_status,
         "asof_utc":now.isoformat(),"source_bundles":len(files),
         "files_published":published,"blocked_count":len(blocked),
+        "revoked_count":len(revoked),"revoked_symbols":revoked,
         "blocked_reasons_by_symbol":blocked,
         "source_gap_summary":details,"orders":0,
         "never_assume_missing_source_is_news_clear":True}
