@@ -1,0 +1,353 @@
+{
+  "all_broker_paired_round_trips": 62,
+  "audit_kind": "NO_TRADE_RESEARCH",
+  "historical_news_eligibility": "NEWS_UNKNOWN",
+  "model": {
+    "NO_IMMEDIATE_PROFIT_ARM1_TRAIL1": {
+      "denominator": 31,
+      "gross_mark_pnl": 154.61,
+      "mean_MAE_pct": -0.606,
+      "mean_MFE_pct": 1.066,
+      "mean_hold_minutes": 135.64,
+      "modeled_max_realized_drawdown_30bp_usd": 215.16,
+      "modeled_wins_after_30bp": 15,
+      "net_30bp_proxy_pnl": -23.62,
+      "net_60bp_proxy_pnl": -201.86,
+      "reason_counts": {
+        "LOSS_CLOSE": 6,
+        "MANDATORY_FLAT": 18,
+        "PEAK_REVERSAL": 7
+      },
+      "worse_than_actual_gross_fill": 11,
+      "worst_modeled_trade_30bp_usd": -28.84
+    },
+    "NO_IMMEDIATE_PROFIT_ARM1_TRAIL15": {
+      "denominator": 31,
+      "gross_mark_pnl": 172.25,
+      "mean_MAE_pct": -0.606,
+      "mean_MFE_pct": 1.101,
+      "mean_hold_minutes": 145.16,
+      "modeled_max_realized_drawdown_30bp_usd": 139.01,
+      "modeled_wins_after_30bp": 15,
+      "net_30bp_proxy_pnl": -5.99,
+      "net_60bp_proxy_pnl": -184.23,
+      "reason_counts": {
+        "LOSS_CLOSE": 6,
+        "MANDATORY_FLAT": 21,
+        "PEAK_REVERSAL": 4
+      },
+      "worse_than_actual_gross_fill": 12,
+      "worst_modeled_trade_30bp_usd": -28.84
+    },
+    "PROFIT15_ARM1_TRAIL1": {
+      "denominator": 31,
+      "gross_mark_pnl": 155.83,
+      "mean_MAE_pct": -0.606,
+      "mean_MFE_pct": 0.859,
+      "mean_hold_minutes": 108.61,
+      "modeled_max_realized_drawdown_30bp_usd": 217.03,
+      "modeled_wins_after_30bp": 15,
+      "net_30bp_proxy_pnl": -22.4,
+      "net_60bp_proxy_pnl": -200.64,
+      "reason_counts": {
+        "LOSS_CLOSE": 6,
+        "MANDATORY_FLAT": 14,
+        "PEAK_REVERSAL": 2,
+        "PROFIT_CLOSE": 9
+      },
+      "worse_than_actual_gross_fill": 11,
+      "worst_modeled_trade_30bp_usd": -28.84
+    },
+    "PROFIT15_ARM1_TRAIL15": {
+      "denominator": 31,
+      "gross_mark_pnl": 166.35,
+      "mean_MAE_pct": -0.606,
+      "mean_MFE_pct": 0.86,
+      "mean_hold_minutes": 109.45,
+      "modeled_max_realized_drawdown_30bp_usd": 206.52,
+      "modeled_wins_after_30bp": 16,
+      "net_30bp_proxy_pnl": -11.89,
+      "net_60bp_proxy_pnl": -190.13,
+      "reason_counts": {
+        "LOSS_CLOSE": 6,
+        "MANDATORY_FLAT": 15,
+        "PEAK_REVERSAL": 1,
+        "PROFIT_CLOSE": 9
+      },
+      "worse_than_actual_gross_fill": 11,
+      "worst_modeled_trade_30bp_usd": -28.84
+    },
+    "PROFIT15_NO_TRAIL": {
+      "denominator": 31,
+      "gross_mark_pnl": 155.45,
+      "mean_MAE_pct": -0.625,
+      "mean_MFE_pct": 0.86,
+      "mean_hold_minutes": 113.13,
+      "modeled_max_realized_drawdown_30bp_usd": 217.41,
+      "modeled_wins_after_30bp": 16,
+      "net_30bp_proxy_pnl": -22.78,
+      "net_60bp_proxy_pnl": -201.02,
+      "reason_counts": {
+        "LOSS_CLOSE": 7,
+        "MANDATORY_FLAT": 15,
+        "PROFIT_CLOSE": 9
+      },
+      "worse_than_actual_gross_fill": 12,
+      "worst_modeled_trade_30bp_usd": -28.84
+    },
+    "PROFIT1_ARM1_TRAIL1": {
+      "denominator": 31,
+      "gross_mark_pnl": 126.53,
+      "mean_MAE_pct": -0.606,
+      "mean_MFE_pct": 0.717,
+      "mean_hold_minutes": 93.9,
+      "modeled_max_realized_drawdown_30bp_usd": 194.35,
+      "modeled_wins_after_30bp": 17,
+      "net_30bp_proxy_pnl": -51.71,
+      "net_60bp_proxy_pnl": -229.95,
+      "reason_counts": {
+        "LOSS_CLOSE": 6,
+        "MANDATORY_FLAT": 12,
+        "PROFIT_CLOSE": 13
+      },
+      "worse_than_actual_gross_fill": 12,
+      "worst_modeled_trade_30bp_usd": -28.84
+    },
+    "PROFIT1_ARM1_TRAIL15": {
+      "denominator": 31,
+      "gross_mark_pnl": 126.53,
+      "mean_MAE_pct": -0.606,
+      "mean_MFE_pct": 0.717,
+      "mean_hold_minutes": 93.9,
+      "modeled_max_realized_drawdown_30bp_usd": 194.35,
+      "modeled_wins_after_30bp": 17,
+      "net_30bp_proxy_pnl": -51.71,
+      "net_60bp_proxy_pnl": -229.95,
+      "reason_counts": {
+        "LOSS_CLOSE": 6,
+        "MANDATORY_FLAT": 12,
+        "PROFIT_CLOSE": 13
+      },
+      "worse_than_actual_gross_fill": 12,
+      "worst_modeled_trade_30bp_usd": -28.84
+    },
+    "PROFIT1_NO_TRAIL": {
+      "denominator": 31,
+      "gross_mark_pnl": 126.53,
+      "mean_MAE_pct": -0.606,
+      "mean_MFE_pct": 0.717,
+      "mean_hold_minutes": 93.9,
+      "modeled_max_realized_drawdown_30bp_usd": 194.35,
+      "modeled_wins_after_30bp": 17,
+      "net_30bp_proxy_pnl": -51.71,
+      "net_60bp_proxy_pnl": -229.95,
+      "reason_counts": {
+        "LOSS_CLOSE": 6,
+        "MANDATORY_FLAT": 12,
+        "PROFIT_CLOSE": 13
+      },
+      "worse_than_actual_gross_fill": 12,
+      "worst_modeled_trade_30bp_usd": -28.84
+    },
+    "RTH_CURRENT_PROFIT1_TRAIL05": {
+      "denominator": 31,
+      "gross_mark_pnl": 130.71,
+      "mean_MAE_pct": -0.552,
+      "mean_MFE_pct": 0.676,
+      "mean_hold_minutes": 78.55,
+      "modeled_max_realized_drawdown_30bp_usd": 163.47,
+      "modeled_wins_after_30bp": 17,
+      "net_30bp_proxy_pnl": -47.53,
+      "net_60bp_proxy_pnl": -225.77,
+      "reason_counts": {
+        "LOSS_CLOSE": 5,
+        "MANDATORY_FLAT": 9,
+        "PEAK_REVERSAL": 7,
+        "PROFIT_CLOSE": 10
+      },
+      "worse_than_actual_gross_fill": 11,
+      "worst_modeled_trade_30bp_usd": -28.84
+    }
+  },
+  "observed_sessions": [
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12"
+  ],
+  "original_gross_realized_on_equal_sample": -18.18,
+  "other_premarket_or_source_excluded": 22,
+  "per_day": {
+    "NO_IMMEDIATE_PROFIT_ARM1_TRAIL1": {
+      "2026-11-09": {
+        "n": 16,
+        "net_30bp_proxy": -97.19
+      },
+      "2026-11-10": {
+        "n": 8,
+        "net_30bp_proxy": -42.35
+      },
+      "2026-11-11": {
+        "n": 6,
+        "net_30bp_proxy": 82.02
+      },
+      "2026-11-12": {
+        "n": 1,
+        "net_30bp_proxy": 33.9
+      }
+    },
+    "NO_IMMEDIATE_PROFIT_ARM1_TRAIL15": {
+      "2026-11-09": {
+        "n": 16,
+        "net_30bp_proxy": -47.94
+      },
+      "2026-11-10": {
+        "n": 8,
+        "net_30bp_proxy": -42.35
+      },
+      "2026-11-11": {
+        "n": 6,
+        "net_30bp_proxy": 50.4
+      },
+      "2026-11-12": {
+        "n": 1,
+        "net_30bp_proxy": 33.9
+      }
+    },
+    "PROFIT15_ARM1_TRAIL1": {
+      "2026-11-09": {
+        "n": 16,
+        "net_30bp_proxy": -112.79
+      },
+      "2026-11-10": {
+        "n": 8,
+        "net_30bp_proxy": -45.29
+      },
+      "2026-11-11": {
+        "n": 6,
+        "net_30bp_proxy": 111.98
+      },
+      "2026-11-12": {
+        "n": 1,
+        "net_30bp_proxy": 23.7
+      }
+    },
+    "PROFIT15_ARM1_TRAIL15": {
+      "2026-11-09": {
+        "n": 16,
+        "net_30bp_proxy": -102.28
+      },
+      "2026-11-10": {
+        "n": 8,
+        "net_30bp_proxy": -45.29
+      },
+      "2026-11-11": {
+        "n": 6,
+        "net_30bp_proxy": 111.98
+      },
+      "2026-11-12": {
+        "n": 1,
+        "net_30bp_proxy": 23.7
+      }
+    },
+    "PROFIT15_NO_TRAIL": {
+      "2026-11-09": {
+        "n": 16,
+        "net_30bp_proxy": -113.17
+      },
+      "2026-11-10": {
+        "n": 8,
+        "net_30bp_proxy": -45.29
+      },
+      "2026-11-11": {
+        "n": 6,
+        "net_30bp_proxy": 111.98
+      },
+      "2026-11-12": {
+        "n": 1,
+        "net_30bp_proxy": 23.7
+      }
+    },
+    "PROFIT1_ARM1_TRAIL1": {
+      "2026-11-09": {
+        "n": 16,
+        "net_30bp_proxy": -80.94
+      },
+      "2026-11-10": {
+        "n": 8,
+        "net_30bp_proxy": -51.86
+      },
+      "2026-11-11": {
+        "n": 6,
+        "net_30bp_proxy": 66.57
+      },
+      "2026-11-12": {
+        "n": 1,
+        "net_30bp_proxy": 14.52
+      }
+    },
+    "PROFIT1_ARM1_TRAIL15": {
+      "2026-11-09": {
+        "n": 16,
+        "net_30bp_proxy": -80.94
+      },
+      "2026-11-10": {
+        "n": 8,
+        "net_30bp_proxy": -51.86
+      },
+      "2026-11-11": {
+        "n": 6,
+        "net_30bp_proxy": 66.57
+      },
+      "2026-11-12": {
+        "n": 1,
+        "net_30bp_proxy": 14.52
+      }
+    },
+    "PROFIT1_NO_TRAIL": {
+      "2026-11-09": {
+        "n": 16,
+        "net_30bp_proxy": -80.94
+      },
+      "2026-11-10": {
+        "n": 8,
+        "net_30bp_proxy": -51.86
+      },
+      "2026-11-11": {
+        "n": 6,
+        "net_30bp_proxy": 66.57
+      },
+      "2026-11-12": {
+        "n": 1,
+        "net_30bp_proxy": 14.52
+      }
+    },
+    "RTH_CURRENT_PROFIT1_TRAIL05": {
+      "2026-11-09": {
+        "n": 16,
+        "net_30bp_proxy": -76.04
+      },
+      "2026-11-10": {
+        "n": 8,
+        "net_30bp_proxy": -38.64
+      },
+      "2026-11-11": {
+        "n": 6,
+        "net_30bp_proxy": 66.57
+      },
+      "2026-11-12": {
+        "n": 1,
+        "net_30bp_proxy": 0.58
+      }
+    }
+  },
+  "rth_eligible_all_models": 31,
+  "rth_incomplete": {
+    "MISSING_COMPLETE_1M_PATH": 9
+  },
+  "rth_mbb_entries": 40,
+  "source_account_scopes": [
+    "ONE_PAPER_ACCOUNT_AUTHENTICATED_ACCOUNT_ID_UNAVAILABLE",
+    "ONE_VERIFIED_ALPACA_PAPER_ACCOUNT_ID_UNAVAILABLE"
+  ]
+}
