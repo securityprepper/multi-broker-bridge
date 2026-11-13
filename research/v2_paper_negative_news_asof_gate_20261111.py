@@ -6,8 +6,9 @@ to convert missing coverage or historical headline-only archives into BUY.
 """
 from __future__ import annotations
 
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta, timezone, time
 from typing import Any
+from zoneinfo import ZoneInfo
 
 CATEGORIES = frozenset({
     "earnings", "guidance", "dilution", "restatement", "liquidity",
@@ -19,6 +20,18 @@ ADVERSE = "NEWS_MATERIAL_ADVERSE"
 WATCH = "NEWS_REVIEW_WATCH_ONLY"
 UNKNOWN = "NEWS_UNKNOWN"
 CLEAR = "NEWS_CLEAR_ASOF"
+CHICAGO = ZoneInfo("America/Chicago")
+
+def yesterday_today_start(now: datetime) -> datetime:
+    """Chicago calendar YESTERDAY at 00:00, not rolling 24/48h or 30d.
+
+    On Monday this starts Sunday midnight, not the prior market Friday.
+    zoneinfo computes the proper DST-specific UTC boundary on each date.
+    """
+    if now.tzinfo is None:
+        raise ValueError("decision time must have timezone")
+    yesterday = now.astimezone(CHICAGO).date() - timedelta(days=1)
+    return datetime.combine(yesterday, time.min, CHICAGO).astimezone(timezone.utc)
 
 def _as_utc(raw: Any) -> datetime:
     if not isinstance(raw, str):
@@ -33,7 +46,10 @@ def _valid_cik(raw: Any) -> bool:
 
 def _result(status: str, reason: str, decision_at: datetime) -> dict:
     return {"status": status, "reason": reason,
-            "asof_utc": decision_at.isoformat(), "paper_order_eligible": status == CLEAR}
+            "asof_utc": decision_at.isoformat(),
+            "adverse_news_window": "YESTERDAY_AND_TODAY_AMERICA_CHICAGO",
+            "adverse_news_from_utc": yesterday_today_start(decision_at).isoformat(),
+            "paper_order_eligible": status == CLEAR}
 
 def evaluate_news_asof(
     *, symbol: str, exchange: str, issuer_cik: str, asof_utc: str,
@@ -46,6 +62,7 @@ def evaluate_news_asof(
     provenance, account-specific gates and a final recheck at order time.
     """
     now = _as_utc(asof_utc)
+    window_start = yesterday_today_start(now)
     if not (isinstance(symbol, str) and symbol == symbol.upper()
             and 1 <= len(symbol) <= 12 and symbol.replace(".", "").isalnum()
             and isinstance(exchange, str) and exchange in {"NYSE", "NASDAQ", "AMEX"}
@@ -72,15 +89,26 @@ def evaluate_news_asof(
             return _result(WATCH, "MALFORMED_OR_CONTRADICTORY_EVIDENCE", now)
         if item.get("symbol") != symbol or item.get("issuer_cik") != issuer_cik:
             continue  # unrelated issuer cannot veto or clear this one
+        # Window is based on the original headline PUBLICATION date in
+        # America/Chicago, not the age of its historical market impact.
+        try:
+            published = _as_utc(item["published_at"])
+        except (ValueError, TypeError, KeyError):
+            return _result(WATCH, "NEWS_TIME_PROVENANCE_MISSING", now)
+        if published < window_start:
+            continue  # owner scope: never veto using older news
+        if published > now:
+            continue  # the news was not published at decision time
         if item.get("source") not in SOURCES:
             return _result(WATCH, "UNTRUSTED_OR_CONTRADICTORY_NEWS", now)
         try:
-            published = _as_utc(item["published_at"])
             first_seen = _as_utc(item["first_observed_at"])
         except (ValueError, TypeError, KeyError):
             return _result(WATCH, "NEWS_TIME_PROVENANCE_MISSING", now)
-        if first_seen > now or published > now:
-            continue  # cannot retrospectively veto a historical BUY
+        if first_seen > now:
+            continue  # first observer had not received it at decision time
+        if first_seen < published:
+            return _result(WATCH, "NEWS_RECEIPT_BEFORE_PUBLICATION", now)
         if not item.get("source_reference") or not item.get("content_hash"):
             return _result(WATCH, "NEWS_SOURCE_PROVENANCE_MISSING", now)
         category = item.get("category")
@@ -112,7 +140,7 @@ def evaluate_news_asof(
         except (KeyError, ValueError, TypeError):
             continue
         if not (timedelta(0) <= now - observed <= timedelta(minutes=2)
-                and since <= now - timedelta(days=30)
+                and since <= window_start
                 and now - timedelta(seconds=60) <= until <= now
                 and row.get("source_reference") and row.get("content_hash")):
             continue
