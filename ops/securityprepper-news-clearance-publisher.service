@@ -1,0 +1,32 @@
+[Unit]
+Description=Verified issuer/SEC/licensed-news PAPER clearance publisher (fail closed)
+After=local-fs.target
+ConditionPathIsDirectory=/etc/securityprepper/recommendation-paper-bridge/news-source-proofs
+ConditionPathIsDirectory=/etc/securityprepper/recommendation-paper-bridge/news-clearance
+
+[Service]
+Type=oneshot
+User=root
+Group=sectorread
+WorkingDirectory=/opt/securityprepper/recommendation-paper-bridge
+Environment=PYTHONPATH=/opt/securityprepper/recommendation-paper-bridge
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/usr/bin/python3 -B -m recommendation_paper_bridge.news_clearance_publisher --once
+StateDirectory=securityprepper-news-clearance-publisher
+StateDirectoryMode=0750
+ReadWritePaths=/etc/securityprepper/recommendation-paper-bridge/news-clearance /var/lib/securityprepper-news-clearance-publisher
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_UNIX
+CapabilityBoundingSet=CAP_CHOWN CAP_DAC_READ_SEARCH
+AmbientCapabilities=
+LockPersonality=true
+RestrictSUIDSGID=true
+TimeoutStartSec=15
