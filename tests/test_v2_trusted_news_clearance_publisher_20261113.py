@@ -3,7 +3,7 @@ import json,os,tempfile,unittest
 from pathlib import Path
 from datetime import datetime,timedelta,timezone
 from unittest.mock import patch
-from recommendation_paper_bridge.news_eligibility import CATEGORIES,CLEAR
+from recommendation_paper_bridge.news_eligibility import CATEGORIES,CLEAR,yesterday_today_start
 from recommendation_paper_bridge.news_clearance import require_clear
 from recommendation_paper_bridge.news_clearance_publisher import process,eligible_bundle,EvidenceBlocked
 NOW=datetime(2026,11,13,15,40,tzinfo=timezone.utc)
@@ -14,15 +14,20 @@ def build():
     for src in ("sec_edgar","issuer_ir","licensed_news"):
         coverage.append({"symbol":SYM,"issuer_cik":CIK,"source":src,
           "verified_complete":True,"first_observed_at":ts(-4),
-          "coverage_since":ts(-31*86400),
+          "coverage_since":yesterday_today_start(NOW).isoformat(),
           "coverage_through":ts(-1),
           "source_reference":"source:"+src,"content_hash":DIG,
           "categories":list(CATEGORIES)})
     receipts={k:{"verified_original_snapshot":True,
           "provider_reference":"source:"+k,"original_receipt_sha256":DIG,
-          "received_at_utc":ts(-4),"full_pagination_or_feed_coverage_proven":True}
+          "received_at_utc":ts(-4),
+          "coverage_since_utc":yesterday_today_start(NOW).isoformat(),
+          "coverage_through_utc":ts(-1),
+          "full_pagination_or_feed_coverage_proven":True}
           for k in ("sec_edgar","issuer_ir","licensed_news")}
-    return {"schema_version":1,"source_scope":"COMPLETE_INDEPENDENT_30D_ISSUER_SEC_LICENSED_NEWS",
+    return {"schema_version":1,"source_scope":"COMPLETE_INDEPENDENT_YESTERDAY_TODAY_ISSUER_SEC_LICENSED_NEWS",
+      "window_timezone":"America/Chicago",
+      "screening_start_utc":yesterday_today_start(NOW).isoformat(),
       "symbol":SYM,"issuer_cik":CIK,"exchange":"NASDAQ",
       "fresh_collector_observed_at_utc":ts(-4),
       "identity":{"verified":True,"symbol":SYM,"issuer_cik":CIK,
@@ -108,6 +113,21 @@ class Publisher(unittest.TestCase):
             f=src/(SYM+".json");f.chmod(0o666)
             r=process(now=NOW,source=src,output=out,gate=gate,status=status)
             self.assertEqual(r["files_published"],0)
+    def test_reject_old_30day_scope_legacy(self):
+        a=build()
+        a["source_scope"]="COMPLETE_INDEPENDENT_30D_ISSUER_SEC_LICENSED_NEWS"
+        with self.assertRaisesRegex(EvidenceBlocked,"YESTERDAY_TODAY_SOURCE_SCOPE"):
+            eligible_bundle(SYM,a,NOW)
+    def test_window_start_must_match_chicago_yesterday(self):
+        a=build()
+        a["screening_start_utc"]=ts(-24*3600)
+        with self.assertRaisesRegex(EvidenceBlocked,"SCREENING_WINDOW_NOT_YESTERDAY_TODAY"):
+            eligible_bundle(SYM,a,NOW)
+    def test_issuer_IR_coverage_missing_first_hour_of_yesterday_rejected(self):
+        a=build()
+        a["independent_source_receipts"]["issuer_ir"]["coverage_since_utc"]=ts(-24*3600)
+        with self.assertRaisesRegex(EvidenceBlocked,"SOURCE_ORIGINAL_RECEIPT_INCOMPLETE"):
+            eligible_bundle(SYM,a,NOW)
     def test_cannot_place_broker_orders(self):
         from recommendation_paper_bridge.news_clearance_publisher import __file__ as source
         text=Path(source).read_text()
