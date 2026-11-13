@@ -1,0 +1,12 @@
+[Unit]
+Description=Refresh complete two-day issuer SEC licensed-news source proofs before PAPER publisher
+
+[Timer]
+OnCalendar=*-*-* *:*:05
+AccuracySec=1s
+RandomizedDelaySec=0
+Persistent=false
+Unit=securityprepper-news-source-collector.service
+
+[Install]
+WantedBy=timers.target
