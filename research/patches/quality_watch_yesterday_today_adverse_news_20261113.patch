@@ -1,0 +1,47 @@
+--- a/quality_watch.py
++++ b/quality_watch.py
+@@ -282,8 +282,15 @@
+     # conservative BUY veto; no high-severity standalone AVOID alert.
+     return len(tagged)==1
+ 
++def adverse_news_start(now):
++    """Previous Chicago calendar midnight: ONLY yesterday and today for BUY veto."""
++    if now.tzinfo is None: raise ValueError("news decision time needs a timezone")
++    day=now.astimezone(CT).date()-timedelta(days=1)
++    return datetime.combine(day,time.min,CT).astimezone(UTC)
++
+ def news_effect(symbol,articles,now):
+     adverse=[];recent_adverse=[];recent_severe=[];positive=[]
++    start=adverse_news_start(now)
+     for item in articles:
+         if not credible_news_target(symbol,item):continue
+         try:
+@@ -291,7 +298,7 @@
+         except (TypeError,KeyError,ValueError):
+             continue
+         lag=now-published
+-        if lag<timedelta(seconds=-60) or lag>timedelta(days=7):
++        if published<start or published>now:
+             continue
+         head=str(item.get("headline") or "")[:250]
+         if NEGATIVE.search(head):
+@@ -343,7 +350,7 @@
+     return now<=nxt+timedelta(minutes=2)
+ 
+ def targeted_news(symbol,now,auth,requester=post_with_headers):
+-    p={"symbols":symbol,"start":(now-timedelta(days=7)).isoformat(),
++    p={"symbols":symbol,"start":adverse_news_start(now).isoformat(),
+        "end":now.isoformat(),"sort":"desc","limit":50,"include_content":"false"}
+     items=[]
+     for _ in range(4):
+@@ -387,7 +394,9 @@
+     row=conn.execute("SELECT checked_at,result_json FROM news_checks WHERE symbol=?",(symbol,)).fetchone()
+     if row:
+         try:
+-            if timedelta(0)<=now-iso(row[0])<timedelta(minutes=3):
++            checked=iso(row[0])
++            if (timedelta(0)<=now-checked<timedelta(minutes=3)
++                and adverse_news_start(now)==adverse_news_start(checked)):
+                 return json.loads(row[1])
+         except (ValueError,TypeError):
+             pass
