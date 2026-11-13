@@ -1,7 +1,7 @@
 """Root-owned issuer/SEC/licensed-news attestation publisher for Alpaca PAPER BUY clearance.
 
 Only independently attested, complete, original-evidence source bundles can yield
-NEWS_CLEAR_ASOF; does NOT pretend a headline scan is full issuer/SEC/30d news
+NEWS_CLEAR_ASOF; screens only Chicago YESTERDAY and TODAY, not thirty-day news
 coverage. No broker / market-data GET / HTTP / Pushover / LIVE permissions.
 Absence/ambiguity => NO FILE and NEWS_UNKNOWN in every receiving broker.
 """
@@ -10,7 +10,9 @@ import argparse,hashlib,json,os,re,stat,tempfile
 from pathlib import Path
 from datetime import datetime,timedelta,timezone,date
 from zoneinfo import ZoneInfo
-from recommendation_paper_bridge.news_eligibility import evaluate_news_asof,CLEAR
+from recommendation_paper_bridge.news_eligibility import (
+    evaluate_news_asof,CLEAR,yesterday_today_start
+)
 
 SOURCE=Path("/etc/securityprepper/recommendation-paper-bridge/news-source-proofs")
 OUTPUT=Path("/etc/securityprepper/recommendation-paper-bridge/news-clearance")
@@ -68,8 +70,13 @@ def holiday_allows(doc,now):
     return revision>=2 and now<expiry and coverage>=now.astimezone(ZoneInfo("America/Chicago")).date()
 
 def eligible_bundle(symbol,doc,now):
-    if not isinstance(doc,dict) or doc.get("schema_version")!=1 or doc.get("source_scope")!="COMPLETE_INDEPENDENT_30D_ISSUER_SEC_LICENSED_NEWS":
-        raise EvidenceBlocked("UNPROVEN_COMPLETE_SOURCE_SCOPE")
+    if (not isinstance(doc,dict) or doc.get("schema_version")!=1 or
+        doc.get("source_scope")!="COMPLETE_INDEPENDENT_YESTERDAY_TODAY_ISSUER_SEC_LICENSED_NEWS"):
+        raise EvidenceBlocked("UNPROVEN_COMPLETE_YESTERDAY_TODAY_SOURCE_SCOPE")
+    window_start=yesterday_today_start(now)
+    if (doc.get("window_timezone")!="America/Chicago" or
+        when(doc.get("screening_start_utc"))!=window_start):
+        raise EvidenceBlocked("SCREENING_WINDOW_NOT_YESTERDAY_TODAY")
     if (doc.get("symbol")!=symbol or
         doc.get("issuer_cik") is None or
         doc.get("exchange") not in {"NYSE","NASDAQ","AMEX"}):
@@ -87,6 +94,8 @@ def eligible_bundle(symbol,doc,now):
             or not details.get("provider_reference") or
             not re.fullmatch(r"[0-9a-f]{64}",str(details.get("original_receipt_sha256","")))
             or not timedelta(0)<=now-when(details.get("received_at_utc"))<=timedelta(seconds=120)
+            or when(details.get("coverage_since_utc"))>window_start
+            or not now-timedelta(seconds=60)<=when(details.get("coverage_through_utc"))<=now
             or details.get("full_pagination_or_feed_coverage_proven") is not True):
             raise EvidenceBlocked("SOURCE_ORIGINAL_RECEIPT_INCOMPLETE")
     try:
@@ -101,6 +110,8 @@ def eligible_bundle(symbol,doc,now):
     return {"schema_version":1,"producer":PRODUCER,"symbol":symbol,
         "exchange":doc["exchange"],"issuer_cik":doc["issuer_cik"],
         "produced_at_utc":now.isoformat(),"identity":doc["identity"],
+        "window_timezone":"America/Chicago",
+        "adverse_news_screening_start_utc":window_start.isoformat(),
         "coverage":doc["coverage"],"evidence":doc["evidence"],
         "source_bundle_sha256":hashlib.sha256(json.dumps(doc,sort_keys=True,separators=(",",":")).encode()).hexdigest()}
 
@@ -123,13 +134,13 @@ def atomic_write(destination,doc):
         if os.path.exists(temp):os.unlink(temp)
 
 def observed_coverage_gaps():
-    # These are observations of the two available research pipelines, NOT
-    # a root-verified 30-day full SEC + issuer IR + licensed-news clearance.
+    # Observed coverage does NOT certify full Chicago yesterday+today review.
     out={"source_bundle_dir_exists":SOURCE.exists(),
         "source_bundle_count":len(list(SOURCE.glob("*.json"))) if SOURCE.is_dir() else 0,
-        "issuer_ir_30d_complete":"UNVERIFIED",
-        "sec_all_material_filings_30d_complete":"UNVERIFIED",
-        "licensed_news_30d_full_pagination":"UNVERIFIED"}
+        "adverse_news_review_window":"YESTERDAY_AND_TODAY_AMERICA_CHICAGO",
+        "issuer_ir_yesterday_today_complete":"UNVERIFIED",
+        "sec_all_material_filings_yesterday_today_complete":"UNVERIFIED",
+        "licensed_news_yesterday_today_full_pagination":"UNVERIFIED"}
     try:
         x=json.loads(NEWS_CACHE.read_text())
         out.update({"news_cache_recent_window":len(x.get("recent",[])),
