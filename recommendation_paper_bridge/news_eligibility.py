@@ -14,6 +14,7 @@ CATEGORIES = frozenset({
     "earnings", "guidance", "dilution", "restatement", "liquidity",
     "litigation", "regulatory", "analyst_downgrade",
     "corporate_development", "imminent_event",
+    "analyst_upgrade",
 })
 SOURCES = frozenset({"sec_edgar", "issuer_ir", "licensed_news"})
 ADVERSE = "NEWS_MATERIAL_ADVERSE"
@@ -119,7 +120,7 @@ def evaluate_news_asof(
             return _result(ADVERSE, f"ADVERSE_{category.upper()}", now)
         if status in {"pending_allegation", "contradictory", "review_needed", "materiality_unknown"}:
             return _result(WATCH, f"REVIEW_{category.upper()}", now)
-        if status != "verified_nonmaterial":
+        if status not in {"verified_nonmaterial", "verified_nonadverse"}:
             return _result(WATCH, "UNSUPPORTED_NEWS_CLASSIFICATION", now)
 
     # Evidence absence is never clearance. Independent source attestations,
