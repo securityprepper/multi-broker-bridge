@@ -1,0 +1,34 @@
+[Unit]
+Description=Authenticated issuer RSS + SEC + licensed Alpaca adverse-news source collector (NO ORDERS)
+Wants=network-online.target
+After=network-online.target
+ConditionPathIsDirectory=/etc/securityprepper/recommendation-paper-bridge/news-source-proofs
+
+[Service]
+Type=oneshot
+User=root
+Group=sectorread
+WorkingDirectory=/opt/securityprepper/recommendation-paper-bridge
+Environment=PYTHONPATH=/opt/securityprepper/recommendation-paper-bridge
+Environment=PYTHONDONTWRITEBYTECODE=1
+LoadCredential=alpaca_data_key_id:/etc/securityprepper/alpaca-feed/private/alpaca_data_key_id
+LoadCredential=alpaca_data_secret:/etc/securityprepper/alpaca-feed/private/alpaca_data_secret
+ExecStart=/usr/bin/python3 -B -m recommendation_paper_bridge.news_source_collector --once
+StateDirectory=securityprepper-news-source-collector
+StateDirectoryMode=0750
+ReadWritePaths=/etc/securityprepper/recommendation-paper-bridge/news-source-proofs /var/lib/securityprepper-news-source-collector
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+CapabilityBoundingSet=CAP_CHOWN CAP_DAC_READ_SEARCH
+AmbientCapabilities=
+LockPersonality=true
+RestrictSUIDSGID=true
+TimeoutStartSec=100
