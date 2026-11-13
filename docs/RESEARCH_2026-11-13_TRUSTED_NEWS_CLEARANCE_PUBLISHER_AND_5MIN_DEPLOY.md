@@ -42,3 +42,9 @@ GitHub isolated branch `research/rebound-v2-conditional-exits` now stores:
 - the source history and this report. Installed source changes were made only with exact pre-change SHA checks and readback; backups retained under private host scratch. No unrelated production dirty checkout was reset or force-pushed.
 
 **Current decision: preserve missing-news NO BUY.** Fixing the underlying data-source completeness (including trusted original issuer IR releases and independently complete recent licensed news) is necessary before any clearance may legitimately be issued. The publisher is ready to consume verified source bundles as those collectors/entitlements are commissioned; its mere successful execution does **not** mean any stock was cleared.
+
+## Additional independent readback after live deployment (2026-11-13, around 10:01 CT)
+
+The active `securityprepper-news-watch-v2.timer` and new `securityprepper-news-clearance-publisher.timer` both remained enabled and active; the recommendation-PAPER router and MBB executor timers were also enabled and active. New licensed-news source state reported a real `poll_completed_at_utc` and `GET_RESPONSE_COMPLETED_FOR_NEW_RECORDS_ONLY`, with older first-seen backfill disallowed. Root publisher status was `WAITING_FOR_INDEPENDENT_SOURCE_BUNDLES`, source bundles 0, published clearances 0. Actual `alpacafeed` user access to `require_clear("AMD",current_clock)` returned `NEWS_UNKNOWN:TRUSTED_CLEARANCE_UNAVAILABLE`.
+
+The post-patch bounded MBB journal inspection (since Nov 13 09:31 Chicago) found **45 NEWS_UNKNOWN_NO_VERIFIED_CLEARANCE buy skips** and **zero BUY order responses**. This proves the safety veto is being exercised for those scoped scans, not that every market opportunity was evaluated or every unrelated brokerage/executor was flat. No broker orders were submitted by the clearance publisher or read-only inspection.
