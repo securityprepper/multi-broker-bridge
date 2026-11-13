@@ -1,0 +1,94 @@
+--- a/watcher_paper_executor.py
++++ b/watcher_paper_executor.py
+@@ -129,8 +129,9 @@
+     plan=evidence.get("plan")
+     if not isinstance(plan,dict) or event["action"] not in ("BUY NOW","BUY AT PULLBACK"):
+         raise bridge.Unsafe("NO_VERIFIED_QUALITY_ENTRY_PLAN")
+-    if not evidence.get("negative_news_screened"):
+-        raise bridge.Unsafe("SOURCE_NEWS_SCREEN_UNKNOWN")
++    if (not evidence.get("negative_news_screened")
++        or evidence.get("verified_news_clear_asof")!="NEWS_CLEAR_ASOF"):
++        raise bridge.Unsafe("SOURCE_NEWS_CLEAR_ASOF_REQUIRED")
+     if not evidence.get("momentum",{}).get("asof"):
+         raise bridge.Unsafe("SOURCE_PRICE_PROVENANCE_MISSING")
+     return event["symbol"],plan,event["action"]
+@@ -184,10 +185,16 @@
+     # The independent router's calibrated gates also require the current
+     # holiday status, verified source news, unextended ask, broker inventory,
+     # matching approved PAPER account and sufficiently available cash.
+-    if event["source"]=="QW1":
+-        symbol,plan,verified_action=eligible_quality_plan(event)
+-    else:
+-        symbol,plan,verified_action=eligible_sector_plan(event)
++    try:
++        if event["source"]=="QW1":
++            symbol,plan,verified_action=eligible_quality_plan(event)
++        else:
++            symbol,plan,verified_action=eligible_sector_plan(event)
++    except bridge.Unsafe as exc:
++        # Before any receiving-broker inquiry or order POST, this is NOT
++        # a failed Alpaca order, but a rejected source qualification.
++        return {"status":"NO_ORDER_SOURCE_PREQUALIFICATION",
++                "reason":str(exc)[:100],"broker_post_attempted":False}
+     at,bid,ask=quote_now(symbol)
+     rec_id=event["event_id"] if symbol==event["symbol"] else (
+         event["source"]+"-"+event["event_id"].split("-")[1]+"-"+symbol+"-"+
+@@ -458,6 +465,34 @@
+                 "reason":"PERSONAL_OWNERSHIP_RECONCILIATION_UNKNOWN"}
+ 
+ 
++def paper_outcome_label(result):
++    """Distinguish a no-POST policy veto from an actual broker attempt.
++
++    Keep failed and unknown submissions visible; do not claim a FILL when
++    Alpaca merely accepts an order or the API times out.
++    """
++    broker_outcome=str(result.get("status","UNKNOWN"))[:120]
++    reason=str(result.get("reason",""))[:100]
++    if broker_outcome.startswith("BROKER_ACCEPTED"):
++        return "PAPER ORDER ACCEPTED (NOT A FILLED TRADE)"
++    if broker_outcome=="PAPER_CLOSE_ACCEPTED_NOT_A_FILL":
++        return "PAPER CLOSE ACCEPTED (NOT A FILLED TRADE)"
++    if broker_outcome=="NO_HELD_POSITION":
++        return "ALPACA PAPER: NO POSITION HELD; NO SELL ORDER NEEDED (NOT A BROKER FAILURE)"
++    if broker_outcome.startswith(("CLOSE_BLOCKED_","CANCEL_REQUESTED_","BUY_CANCEL_",
++          "PROTECTIVE_SELL_","OPEN_ORDER_","POSITIONS_","LATEST_POSITION_",
++          "POST_CANCEL_","MARKET_CLOSED_")) or broker_outcome.endswith("_NO_CLOSE"):
++        return "PAPER EXIT PROTECTION / VERIFICATION BLOCKED; NO CONFIRMED SELL: "+broker_outcome
++    if broker_outcome=="NO_ORDER_OUTSIDE_RTH_BRACKET_WINDOW":
++        return "NOT ELIGIBLE: after protected 13:15 CT PAPER entry cutoff; NO ORDER SENT"
++    if broker_outcome in ("NO_ORDER_OR_UNKNOWN_NO_RETRY","UNKNOWN_NO_RETRY") or "UNKNOWN_NO_RETRY" in broker_outcome:
++        return "PAPER SUBMISSION STATUS UNKNOWN / DO NOT RETRY; verify broker order readback: "+broker_outcome
++    if broker_outcome.startswith("NO_ORDER_"):
++        suffix=(": "+reason) if reason else ""
++        return "PAPER BUY NOT ELIGIBLE / SAFETY GATE, NO BROKER POST: "+broker_outcome+suffix
++    return "PAPER ORDER ATTEMPT REJECTED OR FAILED (NOT FILLED): "+broker_outcome
++
++
+ def notify(event,result,attempt_at=None):
+     personal=personal_avoid_notification_check(event)
+     if not personal["notify"]:
+@@ -473,9 +508,7 @@
+     broker_outcome=str(result.get("status","UNKNOWN"))
+     if result.get("error_type"):
+         broker_outcome+=" ("+str(result["error_type"])[:50]+")"
+-    outcome_label=("PAPER ACCEPTED (NOT A FILL)" if broker_outcome.startswith("BROKER_ACCEPTED")
+-                   else "PAPER CLOSE ACCEPTED (NOT A FILL)" if broker_outcome=="PAPER_CLOSE_ACCEPTED_NOT_A_FILL"
+-                   else "PAPER NOT PLACED / FAILED / UNKNOWN: "+broker_outcome)
++    outcome_label=paper_outcome_label(result)
+     title=("WATCHER PAPER "+event["source"]+" | "+stage+" "+event["symbol"])
+     message=(title+"\nProposed paper action: "+event["action"]+"\nSignal (CT): "+bridge.utc(event["issued_at_utc"]).astimezone(bridge.CT).strftime("%m/%d %H:%M:%S")
+         +"\nAlpaca PAPER result: "+outcome_label
+@@ -520,6 +553,12 @@
+     out=[]
+     try:
+         for path in sorted(INBOX.glob("*.json"))[:MAX_INBOX]:
++            # Already reserved/handled events are immutable history, NOT new
++            # stale failures each subsequent minute. The DB id is exact and
++            # broker action idempotency remains enforced below as well.
++            if db.execute("SELECT 1 FROM actions WHERE event_id=?",
++                          (path.stem,)).fetchone():
++                continue
+             try:
+                 evt=read_event(path,now)
+             except (OSError,ValueError,KeyError,TypeError):
