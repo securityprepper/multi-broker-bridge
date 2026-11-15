@@ -119,12 +119,11 @@ def asof_signals(now,decision,previous,live,issued_at=None):
                      "broker_order_permissions":False}
  return etfresult
 def holiday_unpaused(now):
- from holiday_gate import current_gate
- p=Path(os.environ.get("V2_SHADOW_HOLIDAY_GATE",""))
- if not p.is_absolute() or not p.parent.exists():raise ValueError("missing private holiday cache")
- gate,state=current_gate(p,now)
- if gate is None:raise ValueError("unverified holiday gate")
- return gate.get("paused") is False
+ # Use the minute-published authoritative, root-owned gate directly, not the
+ # retired V2-shadow copy or its environment override. Fail closed on stale
+ # projection even if the longer calendar boundary is still in the future.
+ from .v2_shadow_authoritative_gate_20261115 import unpaused
+ return unpaused(now)
 def fetch_bars(now,frame,cred_dir,opener=urlopen):
  if not cred_dir.is_absolute():raise ValueError("protected data credential directory required")
  key=(cred_dir/"alpaca_data_key_id").read_text().strip()

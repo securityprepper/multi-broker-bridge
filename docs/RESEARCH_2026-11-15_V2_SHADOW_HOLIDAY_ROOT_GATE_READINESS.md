@@ -1,0 +1,11 @@
+# November 15, 2026 — V2 forward-shadow calendar-gate data-loss prevention (research only)
+
+**Finding:** The GET-only, forward-only research shadow recorder still has `V2_SHADOW_HOLIDAY_GATE` pointing to `/var/lib/securityprepper-v2-forward-shadow/holiday_gate.json` in its deployed systemd unit. That legacy cache last had its validated boundary at November 13, 2026, 16:13 CST. The authoritative root-owned `/var/cache/securityprepper-holiday/task-gate.json` is now published every minute, and at verification November 15 00:29 CST was fresh, revision 2, unpaused, with calendar next check November 20 16:07 CST. The separate November 14 repair already moved the news source collector and clearance publisher onto this root gate; this research recorder was not changed.
+
+## Isolated candidate
+
+The V2 recorder's research source now reads only the **root-owned current projection** via `research/v2_shadow_authoritative_gate_20261115.py`, deliberately ignoring the legacy `V2_SHADOW_HOLIDAY_GATE` environment value. It verifies the protected parent and regular file, rejects symlinks and writable-by-other files, schema/status/revision/coverage, pause state, publication clock, the at-most-150-second projection validity and the next calendar boundary. Any failed validation stops before market data retrieval. No network request is made to get holiday status; the root publisher remains the sole refresher.
+
+The change is **ONLY on the isolated V2 research branch**, not deployed on the host. No systemd units, timers, broker credentials/orders, live V1 PAPER/LIVE strategies, execution decisions, safety stops or historical sealed research observations were modified. An authorized read-only shadow release is needed before the **next eligible market recorder slot**; verify two actual scheduled post-release seals and stop the recorder if either does not pass the fresh root-gate check. Do not substitute a stale legacy cache or claim any prospective forecast success from this change.
+
+No new trading strategy or broker order authorization follows from this fix. The original November 13 two-calendar-date adverse-news and last-five-completed-minute BUY gates remain wholly separate and unchanged.
