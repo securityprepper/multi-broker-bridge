@@ -1,0 +1,7 @@
+# November 16, 2026 — V2 research script integrity repair (offline only)
+
+During the regular all-Alpaca-PAPER rapid-exit research verification, a focused regression run found **8 tracked Python files** (four research scripts, four tests) on the canonical `research/rebound-v2-conditional-exits` branch with literal `[executed on device: ...]` host-tool footer lines appended after the source. These are syntactically invalid Python and prevent reproducible investigation; they are **not evidence of a trading or broker failure**.
+
+Only these extraneous tool-footer lines were removed, plus a correction to the synthetic FDR test fixture import path so the existing research module resolves from the sibling `research/` directory. All 8 source/test files now parse. The new read-only test suite traverses the research and test module trees, parses each with Python `ast`, and rejects copied remote-device footers. No price-, news-, execution-, signal-, safety-, stop-, timer-, or order-related logic was modified. Historical research estimates remain unchanged. The research still has only four broker-filled trading dates in its bounded Nov 9–12 PAPER cohort; the required at least 20 distinct, untouched trading dates and actual execution-level hypothetical slippage/fill evidence remain absent. No trading parameter GO follows.
+
+Deployment boundary: research branch only; active V1 and PAPER/LIVE brokers, www3 services, unrelated worktrees, and holiday gate unchanged.

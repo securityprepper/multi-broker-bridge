@@ -72,6 +72,3 @@ def trade_print_peak_boundary(entry_fill: str, trade_bar_high: str,
         "source": "SIP_TRADE_BAR_HIGH_NOT_AN_EXECUTABLE_BID",
         "fill_inference_permitted": False,
     }
-
-
-[executed on device: www3.securityprepper.com (1016f4a4-5f2e-452e-8c88-0e4b9430d76e)]

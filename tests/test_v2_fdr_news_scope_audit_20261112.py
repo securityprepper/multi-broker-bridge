@@ -3,7 +3,7 @@ import importlib.util
 import pathlib
 import unittest
 
-audit_path = pathlib.Path(__file__).with_name("v2_fdr_news_scope_audit_20261112.py")
+audit_path = pathlib.Path(__file__).resolve().parents[1] / "research" / "v2_fdr_news_scope_audit_20261112.py"
 spec = importlib.util.spec_from_file_location("fdr_news_scope_research", audit_path)
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
@@ -35,5 +35,3 @@ class ScopeTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
-[executed on device: www3.securityprepper.com (1016f4a4-5f2e-452e-8c88-0e4b9430d76e)]

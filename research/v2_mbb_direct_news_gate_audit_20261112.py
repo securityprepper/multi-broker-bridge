@@ -84,5 +84,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-[executed on device: www3.securityprepper.com (1016f4a4-5f2e-452e-8c88-0e4b9430d76e)]
