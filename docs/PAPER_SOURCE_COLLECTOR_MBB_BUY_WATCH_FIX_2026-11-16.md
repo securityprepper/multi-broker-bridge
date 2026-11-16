@@ -110,3 +110,10 @@ The GET-only source collector reads the timestamped latest completed `SCAN_COMPL
 ```
 
 Rollback if necessary: after validating an unpaused fresh holiday gate and ensuring the collector service is not in the middle of an execution, atomically restore the saved rollback copy to the same source file with original root owner and 0644 permissions; do not change service units, timers, or any active broker executor.
+
+
+## Prospective live candidate-selection acceptance (read-only, Nov 16 10:39 CT)
+
+The independently sampled journal interval from 10:07–10:39 America/Chicago (after collector deployment) contained **38** completed MBB executor scan events and **32** successful JSON collector events. Four MBB scan events contained one or more issuer-feed-approved BUY_WATCH symbols, totaling **13 approved-watch appearances** (repeat symbols across scans are NOT distinct securities/trades). In collector cycles completed within 90 seconds after those scans, **13/13 watch appearances were selected**; **zero missing** in this bounded sample. The test matched service journal publication timestamps and explicitly checked the actual collector `selected_symbols`, not only the new selection code. This closes the previously unobserved live nonempty-watch acceptance condition for this sampled period, but is **not** proof that all eligible companies produce complete valid original news evidence, publisher `NEWS_CLEAR_ASOF`, broker qualification, fills or positive P/L. Research collected no broker data or order permissions from this sample; historical 1/6 miss replay remains a distinct, earlier period.
+
+Independent broker GET-only history read during the same research window returned 277 unique FILL activities since Nov 9, with **0** new activities on/after Nov 13 00:00 UTC for the one credential-scoped PAPER account; other accounts remain UNKNOWN. No new after-fee trading edge. Neither collector nor broker execution settings changed during this verification.
