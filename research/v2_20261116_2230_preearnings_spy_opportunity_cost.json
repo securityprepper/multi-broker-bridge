@@ -1,0 +1,97 @@
+{
+  "all_pairs": 3809,
+  "asof_utc": "2026-11-17T04:34:57.227764+00:00",
+  "baseline_caveat": "SPY total cost/expense and dividend differences not reconciled; not an executable bid/ask price",
+  "broker_calls": "NONE; Alpaca historical market-data GET-only",
+  "cluster_week_bootstrap95_5d_mean_excess": [
+    -0.5607,
+    1.6986
+  ],
+  "complete_spy_pairs": 3809,
+  "horizons": {
+    "10": {
+      "all": {
+        "mean_excess_pct_points": 1.4951,
+        "median_excess_pct_points": 1.4853,
+        "n": 3809,
+        "outperform_fraction": 0.5781,
+        "outperform_spy": 2202
+      },
+      "nontracked": {
+        "mean_excess_pct_points": 1.7341,
+        "median_excess_pct_points": 1.6917,
+        "n": 3671,
+        "outperform_fraction": 0.5898,
+        "outperform_spy": 2165
+      },
+      "tracked_98_sector": {
+        "mean_excess_pct_points": -4.863,
+        "median_excess_pct_points": -6.0148,
+        "n": 138,
+        "outperform_fraction": 0.2681,
+        "outperform_spy": 37
+      }
+    },
+    "15": {
+      "all": {
+        "mean_excess_pct_points": 1.6937,
+        "median_excess_pct_points": 1.7504,
+        "n": 3809,
+        "outperform_fraction": 0.5823,
+        "outperform_spy": 2218
+      },
+      "nontracked": {
+        "mean_excess_pct_points": 2.0403,
+        "median_excess_pct_points": 1.9621,
+        "n": 3671,
+        "outperform_fraction": 0.5947,
+        "outperform_spy": 2183
+      },
+      "tracked_98_sector": {
+        "mean_excess_pct_points": -7.5255,
+        "median_excess_pct_points": -8.0598,
+        "n": 138,
+        "outperform_fraction": 0.2536,
+        "outperform_spy": 35
+      }
+    },
+    "5": {
+      "all": {
+        "mean_excess_pct_points": 0.7112,
+        "median_excess_pct_points": 0.7879,
+        "n": 3809,
+        "outperform_fraction": 0.5558,
+        "outperform_spy": 2117
+      },
+      "nontracked": {
+        "mean_excess_pct_points": 0.7706,
+        "median_excess_pct_points": 0.8395,
+        "n": 3671,
+        "outperform_fraction": 0.5614,
+        "outperform_spy": 2061
+      },
+      "tracked_98_sector": {
+        "mean_excess_pct_points": -0.8694,
+        "median_excess_pct_points": -1.4413,
+        "n": 138,
+        "outperform_fraction": 0.4058,
+        "outperform_spy": 56
+      }
+    }
+  },
+  "limitations": [
+    "Retrospective, after-event Nasdaq calendar is not original issuer release evidence",
+    "Not before-entry sourced original event confirmation, prices are CLOSE not ASK/BID/noon",
+    "No actual contemporaneous EPS estimate revisions, no original prior-report anchor, no trading eligibility",
+    "Cluster bootstrap only controls for overlapping event weeks, not overlapping symbol or revised earnings calendar",
+    "No fill/fees/SL/market order, calendar-price set suffers survivorship and missing events",
+    "No forward test or held-out after-fee edge; never deploy on this"
+  ],
+  "market_index": "SPY",
+  "missing": 0,
+  "n_calendar_week_clusters": 16,
+  "no_orders": true,
+  "source_calendar_and_prices": "immutable previously collected Nasdaq retrospective calendar + paid split-adjusted SIP daily historical market-data GET",
+  "spy_price_dates": 97,
+  "strategy_changes": 0
+}
