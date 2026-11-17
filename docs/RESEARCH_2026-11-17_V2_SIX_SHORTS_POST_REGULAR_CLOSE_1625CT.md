@@ -1,0 +1,13 @@
+# November 17, 2026 — V2 Alpaca PAPER six shorts persisted beyond regular-session market close (new boundary escalation)
+
+**Scope:** Read-only safety verification; no production edits, broker POST, order cancels, notifications, restarts, service changes or policy changes.
+
+**New fact versus prior 14:35 CT warning:** At **2026-11-17 16:25:56.452150 UTC-06:00** (original broker snapshot `asof_utc=2026-11-17T22:25:56.452150+00:00`), after the 15:00 CT close of the normal US equity session, the authorized www3 PAPER-only broker GET inventory confirmed `broker_verified=true`, `account_status=ACTIVE`, `market_open=false`, **6 positions, all short**, and **0 working open orders**. The positions were AMD -4, INTC -36, NVDA -13, SNDK -2, TSM -5, and WDC -7 shares. Thus the previously documented missed 13:40 and 14:00 CT flat deadlines have now become a materially different **post-regular-session overnight exposure** with no working broker-native protection.
+
+**Provenance:** `/var/lib/securityprepper-paper-inventory/current.json` from `securityprepper-paper-inventory-readonly.service`, SHA256 `ae326c00713d75dea31bc604ba899051512f4f39dd03d9dbda43d133fcd73285`. Snapshot age 283 seconds at the 16:30:39 CT audit. Fresh root-owned holiday `task-gate.json` revalidated at that audit (`status_valid=true`, rev2, unpaused, coverage good, publish age 37.6s, validity and next boundary future). The 16:30:33 CT `securityprepper-direction-paper-executor.service` run returned `EXECUTED_PAPER_ONLY`, `order_attempts=0`, `risk_exits=[]` and zero broker order attempts. This is a broker-inventory status and executor log readback, not proof of future status or trading profitability.
+
+**Existing known causes, not rediscovered:** V2 signed short quantity mismatch and a 14:00 rather than 13:40 software cutoff were independently reproduced before this incident; the duplicate-signal summary exception was separately discovered. Do not classify them as new bugs. This audit does not prove a particular exit price or a working stop; it confirms none were in the account-matched open-order inventory.
+
+**Safety consequence:** Short positions continuing beyond the close may have overnight price-gap and liquidity exposure. The owner must review the account and decide how to handle open PAPER shorts; no LIVE or PAPER execution was authorized by this read-only research run. A separately approved PAPER-only correction needs signed-quantity validation, correct 13:40 CT flat, duplicate handling, and observed order/fill readback. The known missing protection is **not** repaired by this research.
+
+**Branch:** `research/rebound-v2-conditional-exits` head checked as `710ace780014c2cddfe317d4bb74d4d381b109a8` immediately before filing. No other files were overwritten.
