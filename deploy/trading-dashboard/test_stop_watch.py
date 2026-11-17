@@ -59,4 +59,23 @@ class Integration(unittest.TestCase):
   self.order["state"]="filled";a,_=self.go()
   c=next(c for c in a["coverage"] if c["broker"]=="Robinhood Live")
   self.assertIn("UNAVAILABLE",c["status"])
+ def ib_setup(self,empty=False,wrong_run=False):
+  self.order["state"]="filled"
+  self.pos.append(dict(self.pos[0],account="IBKR:U1",broker="IBKR"))
+  prior=self.rows
+  def rows(table,*args):
+   if table=="sp_broker_collection_runs":return [dict(account="U1",run="live1",asof=self.ts,pc=1,oc=1)]
+   if table=="sp_live_broker_position_order_snapshots":
+    return [] if empty else [dict(account="U1",run="old" if wrong_run else "live1",id="stop1",symbol="AMD",side="SELL",state="Submitted",qty=3,filled=0,asof=self.ts,payload={"stop_price":100,"tif":"GTC"})]
+   return prior(table,*args)
+  self.rows=rows
+ @patch("stop_watch.push_report",return_value={"status":1,"request":"fake"})
+ def test_verified_ib_live_breach(self,push):
+  self.ib_setup();a,_=self.go();self.assertEqual(len(a["entries"]),1);self.assertEqual(a["entries"][0]["account"],"IBKR:U1")
+ @patch("stop_watch.push_report")
+ def test_verified_empty_ib_manifest_is_current(self,push):
+  self.ib_setup(empty=True);a,_=self.go();c=next(c for c in a["coverage"] if c["broker"]=="IBKR Live");self.assertEqual(c["status"],"CURRENT");push.assert_not_called()
+ @patch("stop_watch.push_report")
+ def test_old_ib_order_run_excluded(self,push):
+  self.ib_setup(wrong_run=True);a,_=self.go();self.assertEqual(a["entries"],[]);push.assert_not_called()
 if __name__=="__main__":unittest.main()

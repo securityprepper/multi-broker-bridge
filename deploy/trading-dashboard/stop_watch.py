@@ -28,20 +28,29 @@ def watch(rows,sql,positions,quotes,now,issues):
             if isinstance(payload,str): payload=json.loads(payload)
             o.update(account="RH:"+aid,tif=payload.get("time_in_force"),paper=False)
             orders.append(o)
+    manifests=rows("sp_broker_collection_runs",
+        {"account":"account_id","run":"run_id","asof":"observed_at_utc","pc":"positions_complete","oc":"orders_complete"},
+        "broker='IBKR' AND account_kind='LIVE' AND status='VERIFIED_READBACK' ORDER BY observed_at_utc DESC")
+    ib_latest={}
+    for r in manifests: ib_latest.setdefault(r["account"],r)
     ib=rows("sp_live_broker_position_order_snapshots",
         {"account":"account_id","run":"snapshot_run_id","id":"native_record_id","symbol":"symbol","side":"side",
          "state":"order_state","qty":"quantity","filled":"filled_quantity","asof":"observed_at_utc","payload":"payload_json"},
         "broker='IBKR' AND record_type='WORKING_ORDER' AND observed_at_utc>=UTC_TIMESTAMP()-INTERVAL 2 MINUTE ORDER BY observed_at_utc DESC")
-    # Existing IBKR projection does not publish a complete-account manifest.
-    # Never use it to authorize a trade. Matching current rows suffice only for reporting.
-    for o in ib:
-        payload=json.loads(o.pop("payload"))
-        o.update(account="IBKR:"+o["account"],stop=payload.get("auxPrice",payload.get("stop_price")),
-                 tif=payload.get("tif",payload.get("time_in_force")),paper=False)
-        if o["account"].startswith("IBKR:DU"): continue
-        orders.append(o)
-        eligible.extend(p for p in positions if p["account"]==o["account"])
-    coverage.append({"broker":"IBKR Live","status":"CURRENT MATCHED ORDER ROWS; account coverage incomplete" if ib else "UNAVAILABLE — no current Live order snapshot"})
+    for aid,r in ib_latest.items():
+        ok=bool(r["pc"] and r["oc"] and fresh(r["asof"],now,120))
+        coverage.append({"broker":"IBKR Live","account":"IBKR:"+aid,"asof":r["asof"],"status":"CURRENT" if ok else "STALE OR INCOMPLETE — cannot verify stops"})
+        if not ok: continue
+        eligible.extend(p for p in positions if p["account"]=="IBKR:"+aid)
+        for o in ib:
+            if o["account"]!=aid or o["run"]!=r["run"]: continue
+            payload=o["payload"]
+            if isinstance(payload,str): payload=json.loads(payload)
+            item=dict(o,account="IBKR:"+aid,stop=payload.get("auxPrice",payload.get("stop_price")),
+                      tif=payload.get("tif",payload.get("time_in_force")),paper=False)
+            orders.append(item)
+    if not ib_latest:
+        coverage.append({"broker":"IBKR Live","status":"UNAVAILABLE — no verified Live account snapshot"})
     for kind,label in (("AGENTIC","Robinhood Agentic"),("REGULAR","Robinhood Live")):
         if not any(r.get("kind")==kind for r in latest.values()):
             coverage.append({"broker":label,"status":"UNAVAILABLE — no collection"})

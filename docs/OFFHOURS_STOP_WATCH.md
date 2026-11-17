@@ -100,3 +100,13 @@ there is no tick-continuous monitoring claim. Existing minute bars remain the
 price basis. Holiday pauses and freshness gates are unchanged. Both Robinhood
 Live and Agentic are strictly report-only. Three additional integration checks
 verify regular-account breach handling, Agentic labels, and missing Live coverage.
+
+## Verified IBKR collection-manifest integration
+The stop watcher now requires the latest VERIFIED_READBACK Live account manifest
+from sp_broker_collection_runs, complete positions/open orders, and a fresh
+matching run ID. Prior-run working orders cannot trigger reports. Complete empty
+accounts have explicit CURRENT coverage. Three additional integration tests
+cover matching breach, old-run exclusion, and empty manifests (27 tests total).
+ChatGPT IBKR connector access is distinct from the host Gateway API and cannot
+by itself commission the background feed. The host collector expects read-only
+Live socket API at 127.0.0.1:4001. Paper remains on 4002. No LIVE closes enabled.
