@@ -19,7 +19,7 @@ def watch(rows,sql,positions,quotes,now,issues):
     for aid,r in latest.items():
         ok=bool(r["pc"] and r["oc"] and fresh(r["asof"],now,120))
         label="Robinhood Agentic" if r["kind"]=="AGENTIC" else "Robinhood Live"
-        coverage.append({"broker":label,"account":"RH:"+aid,"asof":r["asof"],"status":"CURRENT" if ok else "STALE OR INCOMPLETE — cannot verify stops"})
+        coverage.append({"broker":label,"account":"RH:"+aid,"asof":r["asof"],"status":"CURRENT" if ok else ("ORDERS INCOMPLETE — cannot verify stops" if r["pc"] and not r["oc"] and fresh(r["asof"],now,120) else "STALE OR INCOMPLETE — cannot verify stops")})
         if not ok: continue
         eligible.extend(dict(p,broker=label) for p in positions if p["account"]=="RH:"+aid)
         for o in raw:
@@ -39,7 +39,7 @@ def watch(rows,sql,positions,quotes,now,issues):
         "broker='IBKR' AND record_type='WORKING_ORDER' AND observed_at_utc>=UTC_TIMESTAMP()-INTERVAL 2 MINUTE ORDER BY observed_at_utc DESC")
     for aid,r in ib_latest.items():
         ok=bool(r["pc"] and r["oc"] and fresh(r["asof"],now,120))
-        coverage.append({"broker":"IBKR Live","account":"IBKR:"+aid,"asof":r["asof"],"status":"CURRENT" if ok else "STALE OR INCOMPLETE — cannot verify stops"})
+        coverage.append({"broker":"IBKR Live","account":"IBKR:"+aid,"asof":r["asof"],"status":"CURRENT" if ok else ("ORDERS INCOMPLETE — cannot verify stops" if r["pc"] and not r["oc"] and fresh(r["asof"],now,120) else "STALE OR INCOMPLETE — cannot verify stops")})
         if not ok: continue
         eligible.extend(p for p in positions if p["account"]=="IBKR:"+aid)
         for o in ib:
