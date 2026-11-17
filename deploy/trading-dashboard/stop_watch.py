@@ -7,8 +7,8 @@ sys.path.insert(0,"/opt/securityprepper/multi-broker-bridge")
 from multi_broker_bridge.offhours_stop import detect,session,fresh,num
 def watch(rows,sql,positions,quotes,now,issues):
     runs=rows("sp_robinhood_mcp_collection_runs",
-        {"account":"account_id","capture":"capture_id","asof":"completed_at_utc","pc":"positions_complete","oc":"orders_complete"},
-        "account_kind='AGENTIC' AND completed_at_utc IS NOT NULL ORDER BY completed_at_utc DESC")
+        {"account":"account_id","kind":"account_kind","capture":"capture_id","asof":"completed_at_utc","pc":"positions_complete","oc":"orders_complete"},
+        "account_kind IN ('AGENTIC','REGULAR') AND completed_at_utc IS NOT NULL ORDER BY completed_at_utc DESC")
     latest={}
     for r in runs: latest.setdefault(r["account"],r)
     orders=[]; eligible=[]; coverage=[]
@@ -18,9 +18,10 @@ def watch(rows,sql,positions,quotes,now,issues):
         "observed_at_utc>=UTC_TIMESTAMP()-INTERVAL 5 MINUTE")
     for aid,r in latest.items():
         ok=bool(r["pc"] and r["oc"] and fresh(r["asof"],now,120))
-        coverage.append({"broker":"Robinhood Agentic","account":"RH:"+aid,"asof":r["asof"],"status":"CURRENT" if ok else "STALE OR INCOMPLETE — cannot verify stops"})
+        label="Robinhood Agentic" if r["kind"]=="AGENTIC" else "Robinhood Live"
+        coverage.append({"broker":label,"account":"RH:"+aid,"asof":r["asof"],"status":"CURRENT" if ok else "STALE OR INCOMPLETE — cannot verify stops"})
         if not ok: continue
-        eligible.extend(p for p in positions if p["account"]=="RH:"+aid)
+        eligible.extend(dict(p,broker=label) for p in positions if p["account"]=="RH:"+aid)
         for o in raw:
             if o["account"]!=aid or o["capture"]!=r["capture"]: continue
             payload=o.pop("payload")
@@ -41,7 +42,9 @@ def watch(rows,sql,positions,quotes,now,issues):
         orders.append(o)
         eligible.extend(p for p in positions if p["account"]==o["account"])
     coverage.append({"broker":"IBKR Live","status":"CURRENT MATCHED ORDER ROWS; account coverage incomplete" if ib else "UNAVAILABLE — no current Live order snapshot"})
-    if not latest: coverage.append({"broker":"Robinhood Agentic","status":"UNAVAILABLE — no collection"})
+    for kind,label in (("AGENTIC","Robinhood Agentic"),("REGULAR","Robinhood Live")):
+        if not any(r.get("kind")==kind for r in latest.values()):
+            coverage.append({"broker":label,"status":"UNAVAILABLE — no collection"})
     entries=detect(eligible,orders,quotes,now)
     if session(now) not in ("REGULAR","CLOSED"):
         issues.extend("Stop watch: "+c["broker"]+" "+c["status"] for c in coverage if c["status"]!="CURRENT")

@@ -6,7 +6,7 @@ import stop_watch
 class Integration(unittest.TestCase):
  def setUp(self):
   self.now=datetime(2026,11,17,5,tzinfo=timezone.utc);self.ts=self.now.isoformat();self.old={}
-  self.run={"account":"a","capture":"r","asof":self.ts,"pc":1,"oc":1}
+  self.run={"kind":"AGENTIC","account":"a","capture":"r","asof":self.ts,"pc":1,"oc":1}
   self.order=dict(account="a",capture="r",id="equity:1",symbol="AMD",side="sell",state="confirmed",qty=3,filled=1,stop=100,asof=self.ts,payload={"time_in_force":"gtc"})
   self.pos=[dict(account="RH:a",symbol="AMD",asset="EQUITY",qty=3,paper=False,broker="Robinhood",position_asof=self.ts)]
   self.quotes={"AMD":dict(price=99.9,asof=self.ts,stale=False)}
@@ -46,4 +46,17 @@ class Integration(unittest.TestCase):
  @patch("stop_watch.push_report",return_value={"status":1,"request":"fake"})
  def test_changed_stop_new_alert(self,push):
   self.go();self.order["stop"]=101;self.go();self.assertEqual(push.call_count,2)
+ @patch("stop_watch.push_report",return_value={"status":1,"request":"fake"})
+ def test_regular_robinhood_live_breach(self,push):
+  self.run["kind"]="REGULAR";a,_=self.go()
+  self.assertEqual(a["entries"][0]["broker"],"Robinhood Live")
+  self.assertFalse(a["live_closing_enabled"]);push.assert_called_once()
+ @patch("stop_watch.push_report",return_value={"status":1,"request":"fake"})
+ def test_agentic_breach_label(self,push):
+  a,_=self.go();self.assertEqual(a["entries"][0]["broker"],"Robinhood Agentic")
+ @patch("stop_watch.push_report")
+ def test_missing_regular_coverage(self,push):
+  self.order["state"]="filled";a,_=self.go()
+  c=next(c for c in a["coverage"] if c["broker"]=="Robinhood Live")
+  self.assertIn("UNAVAILABLE",c["status"])
 if __name__=="__main__":unittest.main()

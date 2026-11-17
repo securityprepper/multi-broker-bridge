@@ -1,6 +1,6 @@
 # Off-hours software stop watch
 
-Deployed report-only observer for IBKR Live and Robinhood Agentic long stock positions.
+Deployed report-only observer for IBKR Live, Robinhood Live (REGULAR), and Robinhood Agentic long stock positions.
 No LIVE submission or cancellation method exists in the observer. Live closing remains
 disabled pending separate owner authorization and complete readiness evidence.
 
@@ -48,7 +48,7 @@ CREATE TABLE sp_offhours_stop_paper_tests (
 Use the existing securityprepper_trading Percona database.
 
 ## Verification on November 16, 2026 (Chicago)
-- 13 pure detector/exit-plan tests and 8 integration tests passed.
+- 13 pure detector/exit-plan tests and 11 integration tests passed.
 - Alpaca PAPER: one SPY share bought at $739.84. A native GTC stop at $740.20
   remained unfilled while the overnight quote was $739.76, 0.0594% below it.
   The detector identified it; cancellation was confirmed, an extended-hours
@@ -66,7 +66,8 @@ Use the existing securityprepper_trading Percona database.
   Expected IBKR account comes from IBKR_EXPECTED_PAPER_ACCOUNT; gate JSON must
   be freshly copied from the trusted publisher before the test.
 - At commissioning, Robinhood Agentic had zero positions and working orders.
-  The regular Robinhood account is deliberately outside this task's scope.
+  On November 17 the owner added the regular Robinhood Live account; both kinds
+  now receive the same report-only detection, dashboard and Pushover coverage.
 - IBKR Live has no current persisted position/order feed and no Live gateway
   listener on the connected IBKR host. The dashboard clearly reports this gap.
 
@@ -90,3 +91,12 @@ https://www.interactivebrokers.com/support/faq/content/691836583
 https://www.interactivebrokers.com/campus/trading-lessons/overnight-trading-in-tws/
 https://robinhood.com/us/en/support/articles/extendedhours-trading/
 https://docs.alpaca.markets/us/docs/orders-at-alpaca
+
+## November 17 account coverage and cadence update
+Verified both root-managed timers enabled and firing on consecutive minutes.
+Robinhood snapshots run at :15, dashboard/detection at :45 each minute off-hours.
+Current connector is request/response snapshots, not a streaming subscription;
+there is no tick-continuous monitoring claim. Existing minute bars remain the
+price basis. Holiday pauses and freshness gates are unchanged. Both Robinhood
+Live and Agentic are strictly report-only. Three additional integration checks
+verify regular-account breach handling, Agentic labels, and missing Live coverage.
