@@ -1,0 +1,331 @@
+{
+  "SPY": "paid SIP split-adjusted daily CLOSE, positive volume",
+  "analysis_split": "calendar events Aug-Sep vs Oct-Nov, neither an untouched forward holdout",
+  "asof_utc": "2026-11-17T06:29:13.054523+00:00",
+  "broker_access": "NONE; historical market-data GET only",
+  "classification": "EXPLORATORY_RETROSPECTIVE_CLOSE_TO_CLOSE_NO_INDEPENDENT_HOLDOUT_NO_BROKER_FILLS",
+  "complete_spy_date_pairs": 3809,
+  "different_independently_validated_holdout_sessions": 0,
+  "duplicate_symbol_year_removed": 1150,
+  "eps_revision_original_availability_verified": false,
+  "estimated_roundtrip_cost_bps_for_sensitivity_only": 20,
+  "frozen_prior_strength_rule": "At the close five sessions before a calendar-listed release, prior 5-session and 10-session stock returns both positive AND each exceeds SPY over the same completed prior spans; do not use post-entry future price to select.",
+  "groups": {
+    "ALL": {
+      "all": {
+        "mean_excess_minus_20bps_cost_pp": 0.0584,
+        "mean_excess_spy_close_pp": 0.2584,
+        "mean_forward_close_pct": 1.6124,
+        "mean_minus_20bps_cost_pct": 1.4124,
+        "median_forward_close_pct": 1.032,
+        "n": 2659,
+        "outperform_spy": 1372,
+        "outperform_spy_fraction": 0.516,
+        "up": 1583,
+        "up_fraction": 0.5953
+      },
+      "labels": {
+        "BOTH_PRIOR_STRENGTHS": {
+          "mean_excess_minus_20bps_cost_pp": -0.6532,
+          "mean_excess_spy_close_pp": -0.4532,
+          "mean_forward_close_pct": 0.9443,
+          "mean_minus_20bps_cost_pct": 0.7443,
+          "median_forward_close_pct": 0.7785,
+          "n": 1036,
+          "outperform_spy": 494,
+          "outperform_spy_fraction": 0.4768,
+          "up": 596,
+          "up_fraction": 0.5753,
+          "week_bootstrap_95_mean_excess_spy_pp": [
+            -2.7114,
+            2.1567
+          ]
+        },
+        "NO_PRIOR_STRENGTH": {
+          "mean_excess_minus_20bps_cost_pp": 1.0007,
+          "mean_excess_spy_close_pp": 1.2007,
+          "mean_forward_close_pct": 2.5095,
+          "mean_minus_20bps_cost_pct": 2.3095,
+          "median_forward_close_pct": 1.574,
+          "n": 1037,
+          "outperform_spy": 591,
+          "outperform_spy_fraction": 0.5699,
+          "up": 652,
+          "up_fraction": 0.6287,
+          "week_bootstrap_95_mean_excess_spy_pp": [
+            0.3807,
+            1.7167
+          ]
+        },
+        "ONLY_PRIOR_10": {
+          "mean_excess_minus_20bps_cost_pp": -1.1095,
+          "mean_excess_spy_close_pp": -0.9095,
+          "mean_forward_close_pct": 0.4954,
+          "mean_minus_20bps_cost_pct": 0.2954,
+          "median_forward_close_pct": -0.067,
+          "n": 243,
+          "outperform_spy": 101,
+          "outperform_spy_fraction": 0.4156,
+          "up": 118,
+          "up_fraction": 0.4856
+        },
+        "ONLY_PRIOR_5": {
+          "mean_excess_minus_20bps_cost_pp": 0.1862,
+          "mean_excess_spy_close_pp": 0.3862,
+          "mean_forward_close_pct": 1.7096,
+          "mean_minus_20bps_cost_pct": 1.5096,
+          "median_forward_close_pct": 1.777,
+          "n": 343,
+          "outperform_spy": 186,
+          "outperform_spy_fraction": 0.5423,
+          "up": 217,
+          "up_fraction": 0.6327
+        }
+      },
+      "nonsector_aligned": {
+        "mean_excess_minus_20bps_cost_pp": -0.6041,
+        "mean_excess_spy_close_pp": -0.4041,
+        "mean_forward_close_pct": 1.0236,
+        "mean_minus_20bps_cost_pct": 0.8236,
+        "median_forward_close_pct": 0.818,
+        "n": 1017,
+        "outperform_spy": 489,
+        "outperform_spy_fraction": 0.4808,
+        "up": 591,
+        "up_fraction": 0.5811
+      },
+      "sector98_aligned": {
+        "mean_excess_minus_20bps_cost_pp": -3.2784,
+        "mean_excess_spy_close_pp": -3.0784,
+        "mean_forward_close_pct": -3.2976,
+        "mean_minus_20bps_cost_pct": -3.4976,
+        "median_forward_close_pct": -2.835,
+        "n": 19,
+        "outperform_spy": 5,
+        "outperform_spy_fraction": 0.2632,
+        "up": 5,
+        "up_fraction": 0.2632
+      },
+      "week_clusters": 15
+    },
+    "EARLY_AUG_SEP": {
+      "all": {
+        "mean_excess_minus_20bps_cost_pp": -0.8711,
+        "mean_excess_spy_close_pp": -0.6711,
+        "mean_forward_close_pct": 2.069,
+        "mean_minus_20bps_cost_pct": 1.869,
+        "median_forward_close_pct": 0.8855,
+        "n": 1508,
+        "outperform_spy": 598,
+        "outperform_spy_fraction": 0.3966,
+        "up": 854,
+        "up_fraction": 0.5663
+      },
+      "labels": {
+        "BOTH_PRIOR_STRENGTHS": {
+          "mean_excess_minus_20bps_cost_pp": -2.482,
+          "mean_excess_spy_close_pp": -2.282,
+          "mean_forward_close_pct": 0.6383,
+          "mean_minus_20bps_cost_pct": 0.4383,
+          "median_forward_close_pct": -0.046,
+          "n": 565,
+          "outperform_spy": 163,
+          "outperform_spy_fraction": 0.2885,
+          "up": 281,
+          "up_fraction": 0.4973,
+          "week_bootstrap_95_mean_excess_spy_pp": [
+            -3.6122,
+            2.4721
+          ]
+        },
+        "NO_PRIOR_STRENGTH": {
+          "mean_excess_minus_20bps_cost_pp": 0.9979,
+          "mean_excess_spy_close_pp": 1.1979,
+          "mean_forward_close_pct": 3.8735,
+          "mean_minus_20bps_cost_pct": 3.6735,
+          "median_forward_close_pct": 2.469,
+          "n": 585,
+          "outperform_spy": 305,
+          "outperform_spy_fraction": 0.5214,
+          "up": 382,
+          "up_fraction": 0.653,
+          "week_bootstrap_95_mean_excess_spy_pp": [
+            -0.5263,
+            1.7789
+          ]
+        },
+        "ONLY_PRIOR_10": {
+          "mean_excess_minus_20bps_cost_pp": -1.6298,
+          "mean_excess_spy_close_pp": -1.4298,
+          "mean_forward_close_pct": 0.9644,
+          "mean_minus_20bps_cost_pct": 0.7644,
+          "median_forward_close_pct": 0.0,
+          "n": 163,
+          "outperform_spy": 57,
+          "outperform_spy_fraction": 0.3497,
+          "up": 81,
+          "up_fraction": 0.4969
+        },
+        "ONLY_PRIOR_5": {
+          "mean_excess_minus_20bps_cost_pp": -1.1762,
+          "mean_excess_spy_close_pp": -0.9762,
+          "mean_forward_close_pct": 1.7241,
+          "mean_minus_20bps_cost_pct": 1.5241,
+          "median_forward_close_pct": 0.999,
+          "n": 195,
+          "outperform_spy": 73,
+          "outperform_spy_fraction": 0.3744,
+          "up": 110,
+          "up_fraction": 0.5641
+        }
+      },
+      "nonsector_aligned": {
+        "mean_excess_minus_20bps_cost_pp": -2.4696,
+        "mean_excess_spy_close_pp": -2.2696,
+        "mean_forward_close_pct": 0.7011,
+        "mean_minus_20bps_cost_pct": 0.5011,
+        "median_forward_close_pct": -0.011,
+        "n": 554,
+        "outperform_spy": 160,
+        "outperform_spy_fraction": 0.2888,
+        "up": 277,
+        "up_fraction": 0.5
+      },
+      "sector98_aligned": {
+        "mean_excess_minus_20bps_cost_pp": -3.1045,
+        "mean_excess_spy_close_pp": -2.9045,
+        "mean_forward_close_pct": -2.524,
+        "mean_minus_20bps_cost_pct": -2.724,
+        "median_forward_close_pct": -2.25,
+        "n": 11,
+        "outperform_spy": 3,
+        "outperform_spy_fraction": 0.2727,
+        "up": 4,
+        "up_fraction": 0.3636
+      },
+      "week_clusters": 9
+    },
+    "LATER_OCT_NOV": {
+      "all": {
+        "mean_excess_minus_20bps_cost_pp": 1.2762,
+        "mean_excess_spy_close_pp": 1.4762,
+        "mean_forward_close_pct": 1.0142,
+        "mean_minus_20bps_cost_pct": 0.8142,
+        "median_forward_close_pct": 1.184,
+        "n": 1151,
+        "outperform_spy": 774,
+        "outperform_spy_fraction": 0.6725,
+        "up": 729,
+        "up_fraction": 0.6334
+      },
+      "labels": {
+        "BOTH_PRIOR_STRENGTHS": {
+          "mean_excess_minus_20bps_cost_pp": 1.5406,
+          "mean_excess_spy_close_pp": 1.7406,
+          "mean_forward_close_pct": 1.3114,
+          "mean_minus_20bps_cost_pct": 1.1114,
+          "median_forward_close_pct": 1.335,
+          "n": 471,
+          "outperform_spy": 331,
+          "outperform_spy_fraction": 0.7028,
+          "up": 315,
+          "up_fraction": 0.6688,
+          "week_bootstrap_95_mean_excess_spy_pp": [
+            1.3853,
+            2.8692
+          ]
+        },
+        "NO_PRIOR_STRENGTH": {
+          "mean_excess_minus_20bps_cost_pp": 1.0043,
+          "mean_excess_spy_close_pp": 1.2043,
+          "mean_forward_close_pct": 0.7442,
+          "mean_minus_20bps_cost_pct": 0.5442,
+          "median_forward_close_pct": 0.8115,
+          "n": 452,
+          "outperform_spy": 286,
+          "outperform_spy_fraction": 0.6327,
+          "up": 270,
+          "up_fraction": 0.5973,
+          "week_bootstrap_95_mean_excess_spy_pp": [
+            0.3932,
+            1.9688
+          ]
+        },
+        "ONLY_PRIOR_10": {
+          "mean_excess_minus_20bps_cost_pp": -0.0493,
+          "mean_excess_spy_close_pp": 0.1507,
+          "mean_forward_close_pct": -0.4603,
+          "mean_minus_20bps_cost_pct": -0.6603,
+          "median_forward_close_pct": -0.0745,
+          "n": 80,
+          "outperform_spy": 44,
+          "outperform_spy_fraction": 0.55,
+          "up": 37,
+          "up_fraction": 0.4625
+        },
+        "ONLY_PRIOR_5": {
+          "mean_excess_minus_20bps_cost_pp": 1.9812,
+          "mean_excess_spy_close_pp": 2.1812,
+          "mean_forward_close_pct": 1.6903,
+          "mean_minus_20bps_cost_pct": 1.4903,
+          "median_forward_close_pct": 2.287,
+          "n": 148,
+          "outperform_spy": 113,
+          "outperform_spy_fraction": 0.7635,
+          "up": 107,
+          "up_fraction": 0.723
+        }
+      },
+      "nonsector_aligned": {
+        "mean_excess_minus_20bps_cost_pp": 1.628,
+        "mean_excess_spy_close_pp": 1.828,
+        "mean_forward_close_pct": 1.4094,
+        "mean_minus_20bps_cost_pct": 1.2094,
+        "median_forward_close_pct": 1.363,
+        "n": 463,
+        "outperform_spy": 329,
+        "outperform_spy_fraction": 0.7106,
+        "up": 314,
+        "up_fraction": 0.6782
+      },
+      "sector98_aligned": {
+        "mean_excess_minus_20bps_cost_pp": -3.5175,
+        "mean_excess_spy_close_pp": -3.3175,
+        "mean_forward_close_pct": -4.3613,
+        "mean_minus_20bps_cost_pct": -4.5613,
+        "median_forward_close_pct": -3.656,
+        "n": 8,
+        "outperform_spy": 2,
+        "outperform_spy_fraction": 0.25,
+        "up": 1,
+        "up_fraction": 0.125
+      },
+      "week_clusters": 7
+    }
+  },
+  "input_3809_event_pairs": 3809,
+  "limitations": [
+    "Earnings dates gathered retrospectively and may differ from pre-signal availability",
+    "Pre5 pre10 returns reconstructed algebraically from 5/10/15-day END-anchored closes; confirm time ordering in regression",
+    "Historic strategy not precommitted before the retrospective outcomes existed, so later chronological split is descriptive",
+    "No genuine immutable pre-event issuer calendar, EPS revision, 1m quotes, release-time, noon-before release, fill, fees, protective stop or overnight gap outcomes",
+    "20bps is hypothetical transaction friction, not a verified broker execution cost",
+    "Symbol-year dedup removes repeated-quarter dependence but remaining ticker and sector correlations persist",
+    "Cluster bootstrap uses calendar week only; broad event cohort is survivorship-selected"
+  ],
+  "no_live_or_paper_changes": true,
+  "no_orders": true,
+  "original_issuer_earnings_date_verified": false,
+  "outcome": "pre5 close -> previous trading-day close, NOT noon exit, bid/ask or fill",
+  "post_signal_bid_ask_spread_and_exit_1300_et_known": false,
+  "raw_record_n_disclosed": 0,
+  "source_paths": [
+    "/var/lib/securityprepper-earnings-anticipation/research-20261116-broad-market-pre-earnings-3809.json",
+    "/var/lib/securityprepper-earnings-anticipation/research-20261116-sector-98-last-earnings.json"
+  ],
+  "source_sha256": {
+    "/var/lib/securityprepper-earnings-anticipation/research-20261116-broad-market-pre-earnings-3809.json": "e76e9332aa2ae2b0900317b403ca9c8676c418afe4b1c717ccf06a18c450bc6a",
+    "/var/lib/securityprepper-earnings-anticipation/research-20261116-sector-98-last-earnings.json": "2f5ac57ca2c35be845612edb55f26a42984dc34958b641c71d48a21ec3a95360"
+  },
+  "unique_symbol_year_primary_pairs": 2659
+}
