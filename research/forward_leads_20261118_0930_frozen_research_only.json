@@ -1,0 +1,664 @@
+{
+  "broad_market_first_snapshot_top_movers_not_entry_signals": [
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 129.85,
+      "rth_change_pct_at_snapshot": 10.069,
+      "rth_price_at_snapshot": 142.925,
+      "source_kind": "top_gainers",
+      "symbol": "TJX"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 203.93,
+      "rth_change_pct_at_snapshot": 6.468,
+      "rth_price_at_snapshot": 217.12,
+      "source_kind": "top_gainers",
+      "symbol": "TTWO"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 159.53,
+      "rth_change_pct_at_snapshot": 6.093,
+      "rth_price_at_snapshot": 169.2499,
+      "source_kind": "top_gainers",
+      "symbol": "TGT"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 219.58,
+      "rth_change_pct_at_snapshot": 5.793,
+      "rth_price_at_snapshot": 232.3,
+      "source_kind": "top_gainers",
+      "symbol": "CRWD"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 309.29,
+      "rth_change_pct_at_snapshot": 5.618,
+      "rth_price_at_snapshot": 326.6649,
+      "source_kind": "top_gainers",
+      "symbol": "PANW"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 174.54,
+      "rth_change_pct_at_snapshot": 4.887,
+      "rth_price_at_snapshot": 183.07,
+      "source_kind": "top_gainers",
+      "symbol": "OKTA"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 187,
+      "rth_change_pct_at_snapshot": 4.615,
+      "rth_price_at_snapshot": 195.63,
+      "source_kind": "top_gainers",
+      "symbol": "GNRC"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 104.14,
+      "rth_change_pct_at_snapshot": 4.6,
+      "rth_price_at_snapshot": 108.93,
+      "source_kind": "top_gainers",
+      "symbol": "LULU"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 1099.02,
+      "rth_change_pct_at_snapshot": 4.492,
+      "rth_price_at_snapshot": 1148.39,
+      "source_kind": "top_gainers",
+      "symbol": "FIX"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 84.64,
+      "rth_change_pct_at_snapshot": 3.982,
+      "rth_price_at_snapshot": 88.01,
+      "source_kind": "top_gainers",
+      "symbol": "AKAM"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 124.5,
+      "rth_change_pct_at_snapshot": 3.679,
+      "rth_price_at_snapshot": 129.08,
+      "source_kind": "top_gainers",
+      "symbol": "FTNT"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 250.05,
+      "rth_change_pct_at_snapshot": 3.673,
+      "rth_price_at_snapshot": 259.235,
+      "source_kind": "top_gainers",
+      "symbol": "WSM"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 220.45,
+      "rth_change_pct_at_snapshot": 3.543,
+      "rth_price_at_snapshot": 228.26,
+      "source_kind": "top_gainers",
+      "symbol": "ROST"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 17.61,
+      "rth_change_pct_at_snapshot": 3.35,
+      "rth_price_at_snapshot": 18.2,
+      "source_kind": "top_gainers",
+      "symbol": "NCLH"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 73.09,
+      "rth_change_pct_at_snapshot": 3.256,
+      "rth_price_at_snapshot": 75.47,
+      "source_kind": "top_gainers",
+      "symbol": "FLEX"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 307.39,
+      "rth_change_pct_at_snapshot": 3.183,
+      "rth_price_at_snapshot": 317.175,
+      "source_kind": "top_gainers",
+      "symbol": "RCL"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 341.6,
+      "rth_change_pct_at_snapshot": 3.129,
+      "rth_price_at_snapshot": 352.29,
+      "source_kind": "top_gainers",
+      "symbol": "AVGO"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 243.16,
+      "rth_change_pct_at_snapshot": 3.089,
+      "rth_price_at_snapshot": 250.67,
+      "source_kind": "top_gainers",
+      "symbol": "EXPE"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 35.83,
+      "rth_change_pct_at_snapshot": 2.972,
+      "rth_price_at_snapshot": 36.895,
+      "source_kind": "top_gainers",
+      "symbol": "CMG"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 45.59,
+      "rth_change_pct_at_snapshot": 2.873,
+      "rth_price_at_snapshot": 46.9,
+      "source_kind": "top_gainers",
+      "symbol": "LUV"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 28.16,
+      "rth_change_pct_at_snapshot": 2.656,
+      "rth_price_at_snapshot": 28.908,
+      "source_kind": "top_gainers",
+      "symbol": "CCL"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 40.13,
+      "rth_change_pct_at_snapshot": 2.592,
+      "rth_price_at_snapshot": 41.17,
+      "source_kind": "top_gainers",
+      "symbol": "SW"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 257.89,
+      "rth_change_pct_at_snapshot": 2.575,
+      "rth_price_at_snapshot": 264.53,
+      "source_kind": "top_gainers",
+      "symbol": "AMZN"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 71.1,
+      "rth_change_pct_at_snapshot": 2.574,
+      "rth_price_at_snapshot": 72.93,
+      "source_kind": "top_gainers",
+      "symbol": "CVNA"
+    },
+    {
+      "original_source_time": "2026-11-18T15:35:08.189102+00:00",
+      "previous_completed_rth_close": 44.73,
+      "rth_change_pct_at_snapshot": 2.515,
+      "rth_price_at_snapshot": 45.855,
+      "source_kind": "top_gainers",
+      "symbol": "MKC"
+    }
+  ],
+  "data_lineage": {
+    "QW_scan_count": 5,
+    "QW_scans_readonly_sqlite": "/var/lib/securityprepper-quality-watch/state.sqlite3",
+    "broad_scan_asof_utc": "2026-11-18T15:35:08.189102+00:00",
+    "broad_source_sha256": "50e6086c12bbd971ed71b91778f02644c477e74dbf934670ba26f63a5a20360c"
+  },
+  "first_local_observed_qw_research_leads": [
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "expanded_buy_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "EXPE"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "expanded_buy_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "AMAT"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "expanded_buy_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "INTU"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "expanded_buy_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "FDX"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "expanded_buy_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "CME"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "expanded_buy_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "V"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "expanded_buy_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "TMUS"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "EXPE"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "TEAM"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "INTU"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "NOW"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "RPD"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "RTX"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "FROG"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "LOW"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "TMUS"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "SYK"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "CMG"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "AMAT"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "CME"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "BIIB"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "CSCO"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "broad_sp500_research_leads",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "GNRC"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "broad_sp500_research_leads",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "LULU"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "broad_sp500_research_leads",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "CMG"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "broad_sp500_research_leads",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "CVNA"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "broad_sp500_research_leads",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "ODFL"
+    },
+    {
+      "asof": "2026-11-18T15:30:57.218272+00:00",
+      "kind": "broad_sp500_research_leads",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:29:00+00:00",
+      "scan_id": 6563,
+      "symbol": "NRG"
+    },
+    {
+      "asof": "2026-11-18T15:31:57.202775+00:00",
+      "kind": "expanded_buy_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:30:00+00:00",
+      "scan_id": 6564,
+      "symbol": "RBA"
+    },
+    {
+      "asof": "2026-11-18T15:31:57.202775+00:00",
+      "kind": "expanded_buy_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:30:00+00:00",
+      "scan_id": 6564,
+      "symbol": "SPOT"
+    },
+    {
+      "asof": "2026-11-18T15:31:57.202775+00:00",
+      "kind": "expanded_buy_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:30:00+00:00",
+      "scan_id": 6564,
+      "symbol": "T"
+    },
+    {
+      "asof": "2026-11-18T15:31:57.202775+00:00",
+      "kind": "expanded_buy_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:30:00+00:00",
+      "scan_id": 6564,
+      "symbol": "WDAY"
+    },
+    {
+      "asof": "2026-11-18T15:31:57.202775+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:30:00+00:00",
+      "scan_id": 6564,
+      "symbol": "WDAY"
+    },
+    {
+      "asof": "2026-11-18T15:31:57.202775+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:30:00+00:00",
+      "scan_id": 6564,
+      "symbol": "DDOG"
+    },
+    {
+      "asof": "2026-11-18T15:31:57.202775+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:30:00+00:00",
+      "scan_id": 6564,
+      "symbol": "SPOT"
+    },
+    {
+      "asof": "2026-11-18T15:31:57.202775+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:30:00+00:00",
+      "scan_id": 6564,
+      "symbol": "RBA"
+    },
+    {
+      "asof": "2026-11-18T15:31:57.202775+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:30:00+00:00",
+      "scan_id": 6564,
+      "symbol": "T"
+    },
+    {
+      "asof": "2026-11-18T15:31:57.202775+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:30:00+00:00",
+      "scan_id": 6564,
+      "symbol": "CI"
+    },
+    {
+      "asof": "2026-11-18T15:31:57.202775+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:30:00+00:00",
+      "scan_id": 6564,
+      "symbol": "DVN"
+    },
+    {
+      "asof": "2026-11-18T15:32:57.243654+00:00",
+      "kind": "expanded_buy_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:31:00+00:00",
+      "scan_id": 6565,
+      "symbol": "AGI"
+    },
+    {
+      "asof": "2026-11-18T15:32:57.243654+00:00",
+      "kind": "expanded_buy_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:31:00+00:00",
+      "scan_id": 6565,
+      "symbol": "KGC"
+    },
+    {
+      "asof": "2026-11-18T15:32:57.243654+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:31:00+00:00",
+      "scan_id": 6565,
+      "symbol": "CRM"
+    },
+    {
+      "asof": "2026-11-18T15:32:57.243654+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:31:00+00:00",
+      "scan_id": 6565,
+      "symbol": "TENB"
+    },
+    {
+      "asof": "2026-11-18T15:32:57.243654+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:31:00+00:00",
+      "scan_id": 6565,
+      "symbol": "AMT"
+    },
+    {
+      "asof": "2026-11-18T15:32:57.243654+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:31:00+00:00",
+      "scan_id": 6565,
+      "symbol": "AGI"
+    },
+    {
+      "asof": "2026-11-18T15:32:57.243654+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:31:00+00:00",
+      "scan_id": 6565,
+      "symbol": "GILD"
+    },
+    {
+      "asof": "2026-11-18T15:32:57.243654+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:31:00+00:00",
+      "scan_id": 6565,
+      "symbol": "KGC"
+    },
+    {
+      "asof": "2026-11-18T15:33:57.223615+00:00",
+      "kind": "expanded_buy_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:32:00+00:00",
+      "scan_id": 6566,
+      "symbol": "DG"
+    },
+    {
+      "asof": "2026-11-18T15:33:57.223615+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:32:00+00:00",
+      "scan_id": 6566,
+      "symbol": "DG"
+    },
+    {
+      "asof": "2026-11-18T15:33:57.223615+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:32:00+00:00",
+      "scan_id": 6566,
+      "symbol": "BSX"
+    },
+    {
+      "asof": "2026-11-18T15:34:57.202020+00:00",
+      "kind": "expanded_buy_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:33:00+00:00",
+      "scan_id": 6567,
+      "symbol": "TGT"
+    },
+    {
+      "asof": "2026-11-18T15:34:57.202020+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:33:00+00:00",
+      "scan_id": 6567,
+      "symbol": "TGT"
+    },
+    {
+      "asof": "2026-11-18T15:34:57.202020+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:33:00+00:00",
+      "scan_id": 6567,
+      "symbol": "FANG"
+    },
+    {
+      "asof": "2026-11-18T15:34:57.202020+00:00",
+      "kind": "news_preflight_candidates",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:33:00+00:00",
+      "scan_id": 6567,
+      "symbol": "SLB"
+    },
+    {
+      "asof": "2026-11-18T15:34:57.202020+00:00",
+      "kind": "broad_sp500_research_leads",
+      "news_clearance": "UNKNOWN",
+      "raw_signal_timestamp": "2026-11-18T15:33:00+00:00",
+      "scan_id": 6567,
+      "symbol": "TGT"
+    }
+  ],
+  "preserved_holdout_future_date_only": true,
+  "qualifications_not_established": [
+    "issuer NEWS_CLEAR_ASOF",
+    "receiver executable bid/ask",
+    "actual allowed entry",
+    "after-fee P&L",
+    "after-signal market outcomes"
+  ],
+  "source_window_end_utc_exclusive": "2026-11-18T15:35:00Z",
+  "source_window_start_utc": "2026-11-18T15:30:00Z",
+  "trading_date_chicago": "2026-11-18",
+  "type": "RESEARCH_FROZEN_FORWARD_COHORT_NO_ORDER"
+}
