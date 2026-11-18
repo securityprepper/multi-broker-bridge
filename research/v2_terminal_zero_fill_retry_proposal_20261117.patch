@@ -1,0 +1,79 @@
+--- a/direction_paper.py
++++ b/direction_paper.py
+@@ -710,8 +710,37 @@
+                     ('BROKER_FILL_VERIFIED',state,orderid,float(price),float(qty),stamped.isoformat(),aid))
+                 filled.append((aid,symbol,side,role,float(price),float(qty),stamped))
+             elif state in ('rejected','canceled','expired','done_for_day'):
+-                db.execute('UPDATE paper_attempts SET outcome=?,broker_status=?,broker_order_id=? WHERE id=?',
+-                    ('BROKER_ORDER_TERMINAL_UNFILLED',state,orderid,aid))
++                # Terminal status alone is NOT proof of a zero-fill order.
++                # A partial terminal close must not be reinterpreted as
++                # unfilled or as a fully closed lot.
++                if not isinstance(orderid,str) or not orderid:
++                    raise ValueError('TERMINAL_ORDER_ID_UNVERIFIED')
++                cumulative=Decimal(str(result.get('filled_qty')))
++                if not cumulative.is_finite() or cumulative<0:
++                    raise ValueError('TERMINAL_FILLED_QTY_UNVERIFIED')
++                requested=db.execute('SELECT qty FROM paper_attempts WHERE id=?',
++                                     (aid,)).fetchone()
++                if not requested:
++                    raise ValueError('MISSING_ORIGINAL_ORDER_QTY')
++                requested_qty=Decimal(str(requested[0]))
++                if cumulative>requested_qty:
++                    raise ValueError('TERMINAL_OVERFILL_OR_MISMATCH')
++                if cumulative==0:
++                    db.execute('UPDATE paper_attempts SET outcome=?,broker_status=?,'
++                        'broker_order_id=?,filled_qty=? WHERE id=?',
++                        ('BROKER_ORDER_TERMINAL_UNFILLED',state,orderid,0.0,aid))
++                else:
++                    # Partial fills cannot be safely timestamped from a
++                    # terminal-order summary. Do not infer realized P&L.
++                    # Require independent fill activities before remnant exit.
++                    price=Decimal(str(result.get('filled_avg_price')))
++                    if not price.is_finite() or price<=0:
++                        raise ValueError('TERMINAL_PARTIAL_PRICE_UNVERIFIED')
++                    db.execute('UPDATE paper_attempts SET outcome=?,broker_status=?,'
++                        'broker_order_id=?,filled_qty=?,fill_price=?,exit_reason=? '
++                        'WHERE id=?',
++                        ('BROKER_PARTIAL_TERMINAL_UNRESOLVED',state,orderid,
++                         float(cumulative),float(price),'PARTIAL_FILL_NEEDS_ACTIVITY_JOIN',aid))
+             else:
+                 db.execute('UPDATE paper_attempts SET broker_status=?,broker_order_id=? WHERE id=?',
+                            (state,orderid,aid))
+@@ -752,14 +781,34 @@
+ 
+ def risk_exit_order(db,signal,entry_id,symbol,side,qty,market,why,now,broker=paper_api):
+     """One exchange-eligible limit close for a software profit/stop; never retry unknown."""
++    role='RISK_EXIT_'+why
+     exit_signal=dict(signal)
+-    exit_signal['id']=signal['id']+'-'+hashlib.sha256((entry_id+'|'+why).encode()).hexdigest()[:9]
++    # A single broker-verified terminal ZERO-FILL may advance one
++    # generation. Unknown, partial, accepted or unverified outcomes cannot.
++    # Each candidate is reserved before POST by attempt_order.
++    for generation in range(10):
++        salt=entry_id+'|'+why+(('|retry'+str(generation)) if generation else '')
++        signal_id=signal['id']+'-'+hashlib.sha256(salt.encode()).hexdigest()[:9]
++        old=db.execute('SELECT a.outcome,a.broker_status,a.filled_qty,'
++            'a.broker_order_id FROM paper_attempts a '
++            'WHERE a.signal_id=? AND a.role=?',(signal_id,role)).fetchone()
++        if old is not None:
++            outcome,status,filled,order_id=old
++            if not (outcome=='BROKER_ORDER_TERMINAL_UNFILLED' and
++                    status in ('rejected','canceled','expired','done_for_day') and
++                    order_id and filled is not None and
++                    Decimal(str(filled))==Decimal('0')):
++                return None
++            continue
++        exit_signal['id']=signal_id
++        break
++    else:
++        return None  # maximum bounded retry generations
+     # Keep signal FK valid by inserting the synthetic safety-source event.
+     try:
+         save_signal(db,exit_signal,now)
+     except (sqlite3.Error,ValueError):return None
+     reverse='sell' if side=='buy' else 'buy'
+-    role='RISK_EXIT_'+why
+     try:
+         result=attempt_order(db,exit_signal,symbol,reverse,qty,market,role,now,broker)
+     except (OrderRejected,UnknownSubmission,ValueError,TypeError,KeyError,sqlite3.Error):
