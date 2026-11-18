@@ -26,6 +26,20 @@ The required policy is **no new special strategy entry after 13:15 CT and no ove
 
 A read-only query of the distinct Percona R1M PAPER `OPEN_CONFIRMED/BROKER_FILL_VERIFIED` entries found **35 filled entries since November 14 and zero fills after 13:15 CT** in that bounded period. Thus **the flaw is verified in current code, but an actual after-cutoff fill is not established**. At 05:31 CST, the account-matched PAPER inventory showed three new R1M shorts, ASML -1, PLTR -12 and TSM -5, with no broker-native working orders. Each had matching source and filled entry in the independent R1M Percona ledger and is managed by its separate software-exit routine. This study does **not** classify those ordinary pre-13:15 entries as a new unprotected-position incident.
 
+
+## Independent second safety gap: forced-flat condition resets at midnight
+
+The installed `manage_research_exits()` independently computes
+
+```python
+latest=(local.weekday()<5 and
+        (local.hour>13 or (local.hour==13 and local.minute>=40)))
+```
+
+A verified R1M entry overdue for the mandated 13:40 CT flat remains due **after midnight**. But the current check turns false at 00:00 CT and remains false until 13:40 CT the next day. Consequently, an old position whose first limit exit expired, was blocked, or did not fully fill may stop receiving its mandatory session-flat trigger for up to **13 hours 40 minutes**. This is a code-level hazard and does not establish that any actual overdue R1M position survived midnight.
+
+The companion exact-AST, broker-free regression `research/test_r1m_session_flat_sticky_20261118.py` evaluated nine boundary timestamps; **four** should have remained flat-due but returned false in installed code. The PAPER-only repair must use the **original entry or filled timestamp** and the corresponding session's 13:40 CT boundary as a persistent deadline, together with open-order / terminal-fill reconciliation, without replacing the independent stop protections or weakening receiving broker checks. Do not deploy from research.
+
 ## Proposed narrow remediation — NOT deployed
 
 Before any PAPER release, replace the cutoff with a **positive eligibility window**, for example:
