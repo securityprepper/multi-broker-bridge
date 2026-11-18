@@ -1,0 +1,101 @@
+--- a/direction_paper.py
++++ b/direction_paper.py
+@@ -688,17 +688,20 @@
+     """Broker GET-only reconciliation, without assuming POST acceptance is a fill."""
+     migrate_audit(db)
+     filled=[];unknown=[]
+-    rows=db.execute('SELECT id,client_order_id,symbol,side,role,outcome,broker_status '
++    rows=db.execute('SELECT id,client_order_id,symbol,side,role,outcome,broker_status,broker_order_id,qty '
+         'FROM paper_attempts WHERE broker_post_attempted=1 AND (filled_at_utc IS NULL '
+         'OR outcome IN (\'BROKER_POST_UNKNOWN_NO_RETRY\',\'BROKER_READBACK_UNKNOWN\')) '
+         'ORDER BY before_order_utc DESC LIMIT 100').fetchall()
+-    for aid,client,symbol,side,role,status,broker_status in rows:
++    for aid,client,symbol,side,role,status,broker_status,previous_order_id,order_qty in rows:
+         try:
+             result=broker('GET','/v2/orders:by_client_order_id?'+urlencode({'client_order_id':client}))
+-            if not isinstance(result,dict) or result.get('client_order_id')!=client or result.get('symbol')!=symbol:
++            if (not isinstance(result,dict) or result.get('client_order_id')!=client
++                or result.get('symbol')!=symbol or result.get('side')!=side):
+                 raise ValueError('ORDER_READBACK_MISMATCH')
+             state=str(result.get('status','UNKNOWN'))
+             orderid=result.get('id')
++            if not orderid or (previous_order_id and orderid!=previous_order_id):
++                raise ValueError('ORDER_ID_READBACK_MISMATCH')
+             if state=='filled':
+                 qty=Decimal(str(result.get('filled_qty')))
+                 price=Decimal(str(result.get('filled_avg_price')))
+@@ -710,12 +713,29 @@
+                     ('BROKER_FILL_VERIFIED',state,orderid,float(price),float(qty),stamped.isoformat(),aid))
+                 filled.append((aid,symbol,side,role,float(price),float(qty),stamped))
+             elif state in ('rejected','canceled','expired','done_for_day'):
+-                db.execute('UPDATE paper_attempts SET outcome=?,broker_status=?,broker_order_id=? WHERE id=?',
+-                    ('BROKER_ORDER_TERMINAL_UNFILLED',state,orderid,aid))
++                # A terminal status does NOT imply zero fills. Only explicit,
++                # broker-reconciled cumulative filled_qty=0 is retryable.
++                actual=Decimal(str(result.get('filled_qty')))
++                requested=Decimal(str(order_qty))
++                if not actual.is_finite() or not requested.is_finite() or not (Decimal('0')<=actual<=requested):
++                    raise ValueError('TERMINAL_FILL_QTY_UNKNOWN')
++                if actual==0:
++                    outcome='BROKER_ORDER_TERMINAL_UNFILLED'
++                    price=None
++                else:
++                    # Block retries and preserve actual partial quantity. An
++                    # independent complete fill/lot reconciliation is required.
++                    outcome='BROKER_TERMINAL_PARTIAL_UNRESOLVED'
++                    price=Decimal(str(result.get('filled_avg_price')))
++                    if not price.is_finite() or price<=0:
++                        raise ValueError('TERMINAL_PARTIAL_PRICE_UNKNOWN')
++                db.execute('UPDATE paper_attempts SET outcome=?,broker_status=?,broker_order_id=?, '
++                    'filled_qty=?,fill_price=? WHERE id=?',
++                    (outcome,state,orderid,float(actual),float(price) if price else None,aid))
+             else:
+                 db.execute('UPDATE paper_attempts SET broker_status=?,broker_order_id=? WHERE id=?',
+                            (state,orderid,aid))
+-        except (OrderRejected,UnknownSubmission,OSError,ValueError,TypeError,KeyError):
++        except (OrderRejected,UnknownSubmission,OSError,ValueError,TypeError,KeyError,ArithmeticError):
+             unknown.append(client)
+     db.commit()
+     for aid,sym,side,role,price,qty,at in filled:
+@@ -753,7 +773,40 @@
+ def risk_exit_order(db,signal,entry_id,symbol,side,qty,market,why,now,broker=paper_api):
+     """One exchange-eligible limit close for a software profit/stop; never retry unknown."""
+     exit_signal=dict(signal)
+-    exit_signal['id']=signal['id']+'-'+hashlib.sha256((entry_id+'|'+why).encode()).hexdigest()[:9]
++    base=signal['id']+'-'+hashlib.sha256((entry_id+'|'+why).encode()).hexdigest()[:9]
++    role='RISK_EXIT_'+why
++    history=db.execute(
++        'SELECT a.client_order_id,a.broker_order_id,a.outcome,a.broker_status,'
++        'a.filled_qty,a.qty FROM paper_attempts a WHERE a.signal_id LIKE ? '
++        'AND a.role=? ORDER BY a.before_order_utc DESC LIMIT 4',
++        (base+'%',role)).fetchall()
++    if len(history)>=4:return None # bounded PAPER-only retries
++    if history:
++        client,orderid,outcome,status,filled,prior_qty=history[0]
++        if outcome!='BROKER_ORDER_TERMINAL_UNFILLED' or status not in (
++                'rejected','canceled','expired','done_for_day'):
++            return None
++        if not orderid or filled is None or Decimal(str(filled))!=0 or Decimal(str(prior_qty))!=Decimal(str(qty)):
++            return None
++        # Distinct, identity-matched native broker GET, immediately before
++        # reserving another attempt. Never infer zero fill from a status name.
++        try:
++            verified=broker('GET','/v2/orders:by_client_order_id?'+urlencode({'client_order_id':client}))
++            if (not isinstance(verified,dict) or verified.get('client_order_id')!=client
++                or verified.get('id')!=orderid or verified.get('symbol')!=symbol
++                or verified.get('side')!=('sell' if side=='buy' else 'buy')
++                or verified.get('status')!=status
++                or Decimal(str(verified.get('filled_qty')))!=0):
++                return None
++            broker_positions,broker_orders=broker_inventory(broker)
++            if any(o.get('symbol')==symbol for o in broker_orders):return None
++            if owned_whole_position_qty(broker_positions.get(symbol),side,qty)!=qty:
++                return None
++        except (OrderRejected,UnknownSubmission,ValueError,TypeError,KeyError,OSError,ArithmeticError):
++            return None
++        exit_signal['id']=base+'-r'+str(len(history))
++    else:
++        exit_signal['id']=base
+     # Keep signal FK valid by inserting the synthetic safety-source event.
+     try:
+         save_signal(db,exit_signal,now)
