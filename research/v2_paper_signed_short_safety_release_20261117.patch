@@ -1,0 +1,171 @@
+--- a/direction_paper.py
++++ b/direction_paper.py
+@@ -371,6 +371,63 @@
+     return (local.date()+dt.timedelta(days=1) if local.hour>=20 and local.weekday()!=4
+             else local.date()).isoformat()
+ 
++def owned_whole_position_qty(position,entry_side,filled_qty):
++    """Broker-signed whole net position must exclusively match this verified fill.
++
++    Alpaca reports short qty and qty_available as NEGATIVE. Require the
++    correct broker side, exact signed entire position, sufficient *signed*
++    availability, a finite integral fill and no substitute data. A mismatch
++    never authorizes closing an unrelated net position.
++    """
++    if not isinstance(position,dict) or entry_side not in ("buy","sell"):
++        return None
++    if position.get("side")!=("long" if entry_side=="buy" else "short"):
++        return None
++    try:
++        filled=Decimal(str(filled_qty))
++        broker_qty=Decimal(str(position["qty"]))
++        available=Decimal(str(position["qty_available"]))
++        if not all(x.is_finite() for x in (filled,broker_qty,available)):
++            return None
++        if filled<=0 or filled!=filled.to_integral_value():
++            return None
++        signed=filled if entry_side=="buy" else -filled
++        if broker_qty!=signed or available*signed<=0:
++            return None
++        if abs(available)<filled or abs(available)>abs(broker_qty):
++            return None
++        return int(filled)
++    except (KeyError,TypeError,ValueError,ArithmeticError):
++        return None
++
++
++def v2_entry_window(now):
++    """V2 may open only premarket/regular trading before 13:15 CT."""
++    chicago=now.astimezone(CT)
++    eastern=now.astimezone(ET)
++    return (chicago.weekday()<5 and eastern.weekday()<5 and
++            eastern.time()>=dt.time(4,0) and
++            chicago.time()<dt.time(13,15))
++
++
++def paper_exit_window(now):
++    """Limit PAPER close orders to actual ET premarket/RTH/after-hours."""
++    eastern=now.astimezone(ET)
++    return (eastern.weekday()<5 and
++            dt.time(4,0)<=eastern.time()<dt.time(20,0))
++
++
++def session_flat_due(signal_at,now):
++    """13:40 CT deadline is sticky across session boundaries and overnight.
++
++    A stale or previous-session open lot remains due; there is no upper
++    clock bound that silently disables its forced close overnight.
++    """
++    entry=utc(signal_at).astimezone(CT)
++    deadline=entry.replace(hour=13,minute=40,second=0,microsecond=0)
++    return now.astimezone(CT)>=deadline
++
++
+ def decide_and_attempt(db,signal,now,broker=paper_api,quotes=quote_snapshot,
+                        news_clear=require_clear,news_short=short_news_allowed):
+     """If a real POST occurs, it is auditable. Otherwise do not emit a trading alert."""
+@@ -389,8 +446,20 @@
+         if sym not in positions:continue
+         position=positions[sym]
+         side=str(position.get('side','')).lower()
+-        heldqty=Decimal(str(position.get('qty_available') or position.get('qty') or '0'))
+-        if heldqty<=0:continue
++        # Alpaca short quantities are signed; do not mistake a negative
++        # whole short for an absent position.
++        try:
++            signed=Decimal(str(position['qty']))
++            available=Decimal(str(position['qty_available']))
++        except (KeyError,TypeError,ValueError,ArithmeticError):
++            continue
++        if not signed.is_finite() or not available.is_finite():continue
++        heldqty=abs(signed)
++        if heldqty<=0 or heldqty!=heldqty.to_integral_value():continue
++        if (signed>0 and side!='long') or (signed<0 and side!='short'):
++            continue
++        if available*signed<=0 or abs(available)<heldqty or abs(available)>heldqty:
++            continue
+         if kind=='SEMICONDUCTOR_ETF_PROXY':
+             if side!='long':continue
+         elif kind=='STORAGE_ETF_PROXY':
+@@ -408,9 +477,10 @@
+            "WHERE a.symbol=? AND s.source IN ('OWNED','V2') "
+            "AND a.role='OPEN_CONFIRMED' AND a.outcome='BROKER_FILL_VERIFIED' "
+            'AND a.closed_at_utc IS NULL ORDER BY a.filled_at_utc DESC LIMIT 1',(sym,)).fetchone()
+-        if (not owned or Decimal(str(owned[0] or '0'))!=Decimal(str(qty))
+-            or (side=='buy' and owned[1]!='sell')
+-            or (side=='sell' and owned[1]!='buy')):
++        if (not owned or
++            owned_whole_position_qty(position,owned[1],owned[0])!=qty or
++            (side=='buy' and owned[1]!='sell') or
++            (side=='sell' and owned[1]!='buy')):
+             return acts,'OPPOSITE_PAPER_POSITION_NOT_EXCLUSIVELY_BRIDGE_OWNED'
+         try:
+             asset_check(sym,now,broker)
+@@ -422,6 +492,17 @@
+         if a['status']!='BROKER_READBACK_FILLED':
+             return acts,'WAIT_CLOSE_FILL_BEFORE_REVERSE'
+     if stage=='CLOSE_ONLY':return acts,'CLOSE_ONLY_NO_NEW_POSITION'
++    if signal['source']=='V2':
++        # V2 is an intraday PAPER experiment: no late or overnight entry,
++        # and no fresh entries while an earlier V2 position is still open.
++        if not v2_entry_window(now):
++            return acts,'V2_ENTRY_OUTSIDE_0400_ET_TO_1315_CT'
++        overdue=db.execute("SELECT 1 FROM paper_attempts a JOIN signals s "
++            "ON s.signal_id=a.signal_id WHERE s.source='V2' "
++            "AND a.role='OPEN_CONFIRMED' AND a.outcome='BROKER_FILL_VERIFIED' "
++            "AND a.closed_at_utc IS NULL LIMIT 1").fetchone()
++        if overdue:
++            return acts,'V2_UNCLOSED_POSITION_NO_NEW_ENTRY'
+     # Never apply a source-stock quote/extension threshold to an unrelated
+     # leveraged proxy ETF. That needs its OWN verified target baseline.
+     if target!=signal['symbol']:
+@@ -514,7 +595,10 @@
+     if execute and signal['source']=='V2' and signal.get('price') is None:
+         signal=enrich_v2_completed_source(signal,now)
+     if not save_signal(db,signal,now):
+-        return {'signal':signal['id'],'status':'ALREADY_HANDLED','order_attempts':0}
++        return {'signal':signal['id'],'source':signal['source'],
++                'stage':signal['stage'],'direction':signal['direction'],
++                'symbol':signal['symbol'],'status':'ALREADY_HANDLED',
++                'order_attempts':0,'notification':'NO_POST_NO_TRADING_ALERT'}
+     acts=[]
+     reason='SHADOW_ONLY'
+     if execute:
+@@ -705,25 +789,24 @@
+         if sym in active:continue
+         pos=positions.get(sym)
+         if not pos:continue
+-        if Decimal(str(pos.get('qty') or '0'))!=Decimal(str(qty)):
+-            continue # broker's net position not exclusively our fill
+-        if side=='buy' and pos.get('side')!='long':continue
+-        if side=='sell' and pos.get('side')!='short':continue
+-        available=Decimal(str(pos.get('qty_available') or pos.get('qty') or '0'))
+-        if available<=0:continue
+-        closeqty=min(int(available),int(qty))
+-        if closeqty<1:continue
++        closeqty=owned_whole_position_qty(pos,side,qty)
++        if closeqty is None:continue
++        # A stale premarket/overnight quote is never enough to POST a
++        # day/extended-hours close in a nontrading session.
++        if not paper_exit_window(now):continue
+         try:
+             q=quotes(sym,now)
+         except (OrderRejected,UnknownSubmission,OSError,ValueError,TypeError,KeyError):continue
+         px=q['bid'] if side=='buy' else q['ask']
+         initial=Decimal(str(entry))
+         change=(px/initial-1)*100*(1 if side=='buy' else -1)
+-        local=now.astimezone(CT)
+-        near_cutoff=local.weekday()<5 and local.hour>=14 and local.hour<20
+-        why=('PROFIT_TARGET' if change>=Decimal('1.0') else
+-             'STOP_LOSS' if change<=Decimal('-1.0') else
+-             'SESSION_FLAT_1400_CT' if near_cutoff else None)
++        # Flat is higher priority than price-based exits once due. This
++        # creates a distinct single-use client ID from an earlier failed
++        # profit/stop attempt without ever retrying an UNKNOWN order.
++        due=session_flat_due(signal_at,now)
++        why=('SESSION_FLAT_1340_CT' if due else
++             'PROFIT_TARGET' if change>=Decimal('1.0') else
++             'STOP_LOSS' if change<=Decimal('-1.0') else None)
+         if why is None:continue
+         original=make_signal(source,sid+'|RISK_EXIT',sym,direction,stage,signal_at,
+                               price=entry)
