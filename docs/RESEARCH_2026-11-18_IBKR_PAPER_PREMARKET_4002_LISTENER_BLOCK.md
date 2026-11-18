@@ -1,0 +1,15 @@
+# 2026-11-18 03:32 CST — IBKR PAPER premarket commissioning new listener blocker
+
+**Scope:** Read-only host/network status inspection for the previously owner-authorized isolated one-share (maximum $2,000) IBKR PAPER off-hours stop-watch commissioning. No gateway restart, authenticated-session change, broker order, port remapping, systemd change, credentials disclosure, or broker API request.
+
+**Holiday gate:** The authoritative www3 root-owned `/var/cache/securityprepper-holiday/task-gate.json` was independently validated fresh, unpaused, revision 2, America/Chicago, with valid current calendar coverage and next boundary after as-of time, immediately before this investigation.
+
+**New blocker:** On device `ibkr-bridge-primary-chi` at **2026-11-18 03:32:38 CST** (09:32:38 UTC), `ibkr-gateway.service` was active, MainPID 1141135 (active since 2026-11-17 23:45:20 UTC), but `ss -lntp` showed the Gateway Java process listening on **`*:4001` only**. Independent localhost-only TCP connect succeeded on port **4001** and failed with `ConnectionRefusedError` on **4002**. This is not broker-certified account identity: port 4001 must NOT be assumed to represent the expected PAPER account.
+
+The approved `/opt/ibkr-bridge/offhours_paper_commission.py` hardcodes the existing authenticated Gateway at `127.0.0.1:4002` with fixed client ID 179; it also requires `IBKR_EXPECTED_PAPER_ACCOUNT` to match the service configuration and a fresh explicitly copied root-owned holiday gate. The existing `/opt/ibkr-bridge/offhours-test-gate.json` was dated **November 17 at 05:26 UTC**, and is stale for this run; it was **not reused**. The previously authorized one-share PAPER test was **not attempted**.
+
+**Owner intervention needed:** Restore/check the authenticated **PAPER** Gateway listener on local port **4002**, without starting a second broker session, silently swapping to 4001, weakening IBKR precautions or modifying production trading code. Then verify exact PAPER account identity, current position/order/execution manifests and fresh root holiday-gate copy before any one-share premarket SMART commissioning. An active Gateway service does not prove readiness.
+
+**Unrelated V2 safety resolution:** www3 exact-account matched Alpaca PAPER GET readback at 2026-11-18 03:28 CST and V2 fill ledger independently confirmed all six formerly unprotected November 17 V2 shorts (AMD, INTC, NVDA, SNDK, TSM, WDC) had now been fully bought to cover between **03:02 and 03:11 CST** using `RISK_EXIT_SESSION_FLAT_1340_CT` orders, and zero V2 verified fills remained open. Separate R1M PAPER shorts still exist with independently assigned 0.50/0.75/1.00% software stops; a follow-up read-only quote check at 03:31:44 CST found no current threshold breached. This is not evidence that broker-native stops exist, nor a new profitable strategy result.
+
+**Deployment boundaries:** Do not create new broker orders, restart IBKR Gateway, edit V1 or active LIVE execution, change the recurring research schedule or override the holiday pause. Preserve read-only research and remain silent on unchanged findings.
