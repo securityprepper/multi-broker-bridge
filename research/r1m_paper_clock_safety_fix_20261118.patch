@@ -1,0 +1,103 @@
+--- a/one_minute_research.py
++++ b/one_minute_research.py
+@@ -601,6 +601,37 @@
+     if (date-freshest).days>5:return None
+     return price
+ 
++def r1m_entry_allowed(now):
++    """Only weekday SIP/premarket entries, 04:00 ET to <13:15 CT.
++
++    A negative time window would reopen at 19:00 CT when the data feed
++    switches to BOATS; a positive allow-window fails closed at both ends.
++    This gate is separate from and in addition to broker/newsclear checks.
++    """
++    if not isinstance(now,dt.datetime) or now.tzinfo is None:
++        return False
++    chicago=now.astimezone(CT)
++    eastern=now.astimezone(ET)
++    return (chicago.weekday()<5 and eastern.weekday()<5
++            and dt.time(3,0)<=chicago.time()<dt.time(13,15)
++            and eastern.time()>=dt.time(4,0)
++            and feed_for(now)=='sip')
++
++
++def r1m_flat_due(original_fill_at,now):
++    """Persist 13:40 CT exit eligibility from the original verified fill.
++
++    An overdue lot remains due after midnight, across weekends and into
++    the next supported broker trading session; do not reset at midnight.
++    Actual broker quote/position/order/session preflight is still required.
++    """
++    if not isinstance(now,dt.datetime) or now.tzinfo is None:
++        raise ValueError('R1M_FLAT_CLOCK_UNVERIFIED')
++    original=dp.utc(original_fill_at).astimezone(CT)
++    deadline=original.replace(hour=13,minute=40,second=0,microsecond=0)
++    return now.astimezone(CT)>=deadline
++
++
+ def research_open(db,signal,now,broker=dp.paper_api,quotes=dp.quote_snapshot,
+                   news_clear=dp.require_clear,short_news=dp.short_news_allowed):
+     """Shared PAPER per-order maximum, no preexisting position/open order, borrow/news/extension vetted."""
+@@ -609,9 +640,8 @@
+     if count>=MAX_ENTRIES_PER_SESSION:return [],'RESEARCH_DAILY_CAP_REACHED'
+     if per.get(symbols,0)>=MAX_PER_SYMBOL_PER_SESSION:return [],'RESEARCH_SYMBOL_CAP_REACHED'
+     if active>=MAX_CONCURRENT_OPEN:return [],'RESEARCH_CONCURRENT_POSITION_CAP'
+-    local=now.astimezone(CT)
+-    if local.weekday()<5 and (13<=local.hour<19) and (local.hour>13 or local.minute>=15):
+-        return [],'RESEARCH_ENTRY_CUTOFF_BEFORE_MANDATORY_2PM_FLAT'
++    if not r1m_entry_allowed(now):
++        return [],'RESEARCH_ENTRY_OUTSIDE_0400_ET_TO_1315_CT'
+     if signal.get('vs_close_pct') is None or signal.get('price') is None:
+         return [],'ENTRY_REQUIRES_VERIFIED_PRIOR_RTH_CLOSE_AND_SOURCE_PRICE'
+     positions,orders=dp.broker_inventory(broker)
+@@ -688,7 +718,8 @@
+     PAPER extended-hours exits are software-triggered LIMIT orders, not
+     guaranteed stops. All blocked attempts remain visible to audit.
+     """
+-    rows=db.execute('SELECT a.id,a.symbol,a.side,a.filled_qty,a.fill_price,a.signal_id,s.stage '
++    rows=db.execute('SELECT a.id,a.symbol,a.side,a.filled_qty,a.fill_price,a.signal_id,'
++         's.stage,a.filled_at_utc,s.signal_at_utc '
+          'FROM paper_attempts a JOIN signals s ON s.signal_id=a.signal_id '
+          "WHERE s.source='R1M' AND a.role='OPEN_CONFIRMED' "
+          "AND a.outcome='BROKER_FILL_VERIFIED' AND a.closed_at_utc IS NULL "
+@@ -696,7 +727,7 @@
+     if not rows:return [],[]
+     positions,orders=dp.broker_inventory(broker)
+     sent=[];blocked=[]
+-    for aid,sym,side,filledqty,entry,signal_id,entry_stage in rows:
++    for aid,sym,side,filledqty,entry,signal_id,entry_stage,filled_at,signal_at in rows:
+         if sym not in positions:continue
+         if not no_other_orders(sym,orders):
+             blocked.append((sym,'PENDING_ORDER'))
+@@ -711,9 +742,14 @@
+             continue
+         px=q['bid'] if side=='buy' else q['ask']
+         edge=(px/held['price']-1)*100*(1 if side=='buy' else -1)
+-        local=now.astimezone(CT)
+-        latest=(local.weekday()<5 and
+-                (local.hour>13 or (local.hour==13 and local.minute>=40)))
++        # The original broker fill is the trusted anchor for this lot.
++        # For older verified fills missing a receipt timestamp, fall back
++        # to the immutable original signal timestamp rather than now.
++        try:
++            latest=r1m_flat_due(filled_at or signal_at,now)
++        except (ValueError,TypeError,KeyError):
++            blocked.append((sym,'R1M_ORIGINAL_ENTRY_CLOCK_UNKNOWN'))
++            continue
+         # Historical peak evidence is per exact R1M fill; do not infer a
+         # target hit from unexecuted market high/low or another strategy.
+         previous=db.execute('SELECT highest_favorable,first_dollar_target_seen_at_utc '
+@@ -736,9 +772,11 @@
+         # The exact stop arm assigned before entry controls this PAPER exit.
+         # Old pre-test positions keep their original historical threshold.
+         stop_pct=stoparms.stop_for_entry(db,aid,entry_stage)
+-        if edge<=-stop_pct:
++        # Mandatory liquidation supersedes price-based reasons once due.
++        # Keep the same deterministic role/intent after midnight.
++        if latest:why='FLAT_BY_1340_CT'
++        elif edge<=-stop_pct:
+             why='STOP_LOSS_'+str(stop_pct).replace('.','P')+'PCT'
+-        elif latest:why='FLAT_BY_2PM_CT'
+         elif dollar_hit:why='DOLLAR_GAIN_MOMENTUM_FADING'
+         else:continue
+         sig=dp.make_signal('R1M',signal_id+'|SOFTWARE_'+why,sym,
