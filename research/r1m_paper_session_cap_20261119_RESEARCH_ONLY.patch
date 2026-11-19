@@ -1,0 +1,42 @@
+--- a/one_minute_research.py
++++ b/one_minute_research.py
+@@ -520,16 +520,34 @@
+          now.isoformat(),float(signal.get('price') or 0),signal['id']))
+     db.commit()
+ 
++def r1m_entry_session_bounds(now):
++    """Aware UTC boundaries for the actual 04:00 ET R1M PAPER entry day.
++
++    Do not use a rolling 24h window: after DST, a broker session can span
++    23/25 elapsed hours. Weekend/overnight permission is handled separately
++    by r1m_entry_allowed; this is ONLY a counting window.
++    """
++    if not isinstance(now,dt.datetime) or now.tzinfo is None:
++        raise ValueError('R1M_SESSION_CLOCK_UNVERIFIED')
++    local=now.astimezone(ET)
++    date=local.date()-(dt.timedelta(days=1) if local.time()<dt.time(4,0)
++                       else dt.timedelta(0))
++    begin=dt.datetime.combine(date,dt.time(4),tzinfo=ET).astimezone(UTC)
++    end=dt.datetime.combine(date+dt.timedelta(days=1),dt.time(4),tzinfo=ET).astimezone(UTC)
++    return begin.isoformat(),end.isoformat()
++
++
+ def research_open_count(db,now):
+-    ses=session_key(now)
++    begin,end=r1m_entry_session_bounds(now)
+     count=db.execute('SELECT COUNT(*) FROM paper_attempts a JOIN signals s ON a.signal_id=s.signal_id '
+           "WHERE s.source='R1M' AND a.role='OPEN_CONFIRMED' AND a.broker_post_attempted=1 "
+-          'AND s.signal_at_utc>=?',
+-          ((now-dt.timedelta(days=1)).isoformat(),)).fetchone()[0]
++          'AND s.signal_at_utc>=? AND s.signal_at_utc<?',
++          (begin,end)).fetchone()[0]
+     bysym=dict(db.execute('SELECT a.symbol,COUNT(*) FROM paper_attempts a JOIN signals s ON '
+           "a.signal_id=s.signal_id WHERE s.source='R1M' AND a.role='OPEN_CONFIRMED' "
+-          'AND a.broker_post_attempted=1 AND s.signal_at_utc>=? GROUP BY a.symbol',
+-          ((now-dt.timedelta(days=1)).isoformat(),)).fetchall())
++          'AND a.broker_post_attempted=1 AND s.signal_at_utc>=? AND s.signal_at_utc<? GROUP BY a.symbol',
++          (begin,end)).fetchall())
++    # In contrast to entry-window counters, live exposure stays global.
+     active=db.execute('SELECT COUNT(*) FROM paper_attempts a JOIN signals s ON a.signal_id=s.signal_id '
+             "WHERE s.source='R1M' AND a.role='OPEN_CONFIRMED' "
+             'AND a.outcome=? AND a.closed_at_utc IS NULL',('BROKER_FILL_VERIFIED',)).fetchone()[0]
