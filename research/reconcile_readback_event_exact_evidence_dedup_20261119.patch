@@ -1,0 +1,44 @@
+--- a/recommendation_paper_bridge/reconcile.py
++++ b/recommendation_paper_bridge/reconcile.py
+@@ -167,6 +167,32 @@
+             "fill_not_order_acceptance":True}
+     return result
+ 
++def record_readback_if_changed(cur,rec_id,result):
++    """Record only new broker FILL evidence, never repeated poll noise.
++
++    The intent's last_checked_utc must still be updated every poll, and
++    subsequent fee/protection checks must still run; no order permissions change.
++    Transaction/intent-row locking remains owned by the existing reconciler.
++    """
++    cur.execute("SELECT evidence_json FROM "+EVENT_TABLE+
++        " WHERE recommendation_id=%s AND event_type='BROKER_FILL_READBACK'"+
++        " ORDER BY id DESC LIMIT 1",(rec_id,))
++    fetched=cur.fetchone()
++    prior=(fetched or {}).get("evidence_json")
++    if prior is not None:
++        try:
++            old=(json.loads(prior) if isinstance(prior,(str,bytes,bytearray))
++                 else prior)
++            if not isinstance(old,dict):
++                raise Unsafe("malformed prior PAPER FILL event evidence")
++        except (ValueError,TypeError) as exc:
++            raise Unsafe("unparseable prior PAPER FILL event evidence") from exc
++        if old==result:
++            return False
++    event(cur,rec_id,"BROKER_FILL_READBACK",result)
++    return True
++
++
+ def reconcile_once(connect=db_connect,httpfn=http):
+     # Separate GET-only reconciliation, even for uncertain previous attempts.
+     # REQUIRE account allowlist: no unscoped account audit.
+@@ -229,7 +255,7 @@
+                     " SET status=%s,broker_status=%s,broker_order_id=%s,last_checked_utc=UTC_TIMESTAMP(6)"+
+                     " WHERE recommendation_id=%s",(current,current,row["broker_order_id"],
+                                                     row["recommendation_id"]))
+-                event(cur,row["recommendation_id"],"BROKER_FILL_READBACK",result)
++                record_readback_if_changed(cur,row["recommendation_id"],result)
+                 conn.commit()
+                 output.append({"recommendation_id":row["recommendation_id"],"state":current})
+             except (Unsafe,SubmissionUnknown,BrokerRejected) as exc:
