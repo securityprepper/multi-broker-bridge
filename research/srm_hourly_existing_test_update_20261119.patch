@@ -1,0 +1,23 @@
+--- a/test_monitor.py
++++ b/test_monitor.py
+@@ -5,7 +5,7 @@
+ import unittest
+ from pathlib import Path
+ from unittest.mock import patch
+-spec=importlib.util.spec_from_file_location("srm","/opt/securityprepper/sustained-riser-monitor/monitor.py")
++spec=importlib.util.spec_from_file_location("srm","/tmp/srm_riser_hour_safety_research_20261119/monitor.py")
+ m=importlib.util.module_from_spec(spec)
+ spec.loader.exec_module(m)
+ UTC=dt.timezone.utc
+@@ -75,7 +75,10 @@
+    scan,now=self.scan_at(minute,False);m.decide(scan,now,s)
+   self.assertEqual(m.current_status(s,now),[])
+   scan,now=self.scan_at(5);p,_=m.decide(scan,now,s)
+-  self.assertEqual(p,[])
++  self.assertEqual(len(p),1)
++  self.assertEqual(p[0]['consecutive_hours'],1)
++  self.assertNotEqual(p[0]['episode_started_at_utc'],
++                      (self.now-dt.timedelta(minutes=60,seconds=15)).isoformat())
+  def test_real_run_queues_each_hour_order_first_without_repeats(self):
+   import tempfile
+   from unittest.mock import patch
