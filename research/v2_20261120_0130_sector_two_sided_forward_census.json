@@ -1,0 +1,268 @@
+{
+  "after_signal_directional_accuracy_15m_down": {
+    "eligible": 1,
+    "success": 0
+  },
+  "after_signal_directional_accuracy_15m_up": {
+    "eligible": 0,
+    "success": 0
+  },
+  "after_signal_directional_accuracy_60m_down": {
+    "eligible": 1,
+    "success": 0
+  },
+  "after_signal_directional_accuracy_60m_up": {
+    "eligible": 0,
+    "success": 0
+  },
+  "asof_utc": "2026-11-20T07:35:08.230588+00:00",
+  "broker_after_fee_trades": 0,
+  "daily_summary": [
+    {
+      "date": "2026-11-18",
+      "peer_confirmed_etf_extremes": 0,
+      "raw_etf_2close_extremes": 0,
+      "stock_weakness_signals": 7,
+      "symbols_full_78_bars": 28
+    },
+    {
+      "date": "2026-11-19",
+      "peer_confirmed_etf_extremes": 1,
+      "raw_etf_2close_extremes": 1,
+      "stock_weakness_signals": 9,
+      "symbols_full_78_bars": 28
+    }
+  ],
+  "extreme_events": [
+    {
+      "after_signal": {
+        "15m_price_delta_pct": 2.126,
+        "60m_price_delta_pct": 0.542
+      },
+      "date": "2026-11-19",
+      "direction": "DOWN",
+      "peer_2of3_confirmed": true,
+      "peer_available": 3,
+      "peers_same_direction": 3,
+      "sector": "SOXX",
+      "signal_available_utc": "2026-11-19T17:20:00+00:00",
+      "signal_close_pct_from_open": -5.397,
+      "threshold_pct": 5
+    }
+  ],
+  "independent_holdout_days": 0,
+  "method_notes": "Each 5m bar available only at completed end; earliest two-ETF 5m close shock/side/day, independent 2of3 peers. 15m and 60m future closes are NOT executable fills. No after-fee claim; 2 days are insufficient holdout.",
+  "news_clear_asof_verified": false,
+  "not_actionable": true,
+  "peer_names": 21,
+  "quotes_and_spreads_validated": false,
+  "research_only": true,
+  "source": "licensed Alpaca SIP completed 5Min bars, full RTH 78 bars per observed symbol",
+  "study_days": [
+    "2026-11-18",
+    "2026-11-19"
+  ],
+  "universe_sector_etfs": [
+    "SOXX",
+    "GDX",
+    "XLE",
+    "XLF",
+    "XLI",
+    "XLV",
+    "IGV"
+  ],
+  "weakness_2p5_total_and_1pp_last15_events": [
+    {
+      "asof_utc": "2026-11-18T14:50:00+00:00",
+      "date": "2026-11-18",
+      "future_after_signal": {
+        "15m_pct": 0.456,
+        "60m_pct": -0.737
+      },
+      "last_15m_decline_pp": -1.245,
+      "prior_regular_close_decline_pct": -6.21,
+      "signal_before_1315_ct": true,
+      "symbol": "GDX"
+    },
+    {
+      "asof_utc": "2026-11-18T14:50:00+00:00",
+      "date": "2026-11-18",
+      "future_after_signal": {
+        "15m_pct": 0.048,
+        "60m_pct": -1.16
+      },
+      "last_15m_decline_pp": -1.181,
+      "prior_regular_close_decline_pct": -5.687,
+      "signal_before_1315_ct": true,
+      "symbol": "NEM"
+    },
+    {
+      "asof_utc": "2026-11-18T14:50:00+00:00",
+      "date": "2026-11-18",
+      "future_after_signal": {
+        "15m_pct": 0.368,
+        "60m_pct": -0.712
+      },
+      "last_15m_decline_pp": -1.699,
+      "prior_regular_close_decline_pct": -7.396,
+      "signal_before_1315_ct": true,
+      "symbol": "AEM"
+    },
+    {
+      "asof_utc": "2026-11-18T14:50:00+00:00",
+      "date": "2026-11-18",
+      "future_after_signal": {
+        "15m_pct": 0.837,
+        "60m_pct": -0.13
+      },
+      "last_15m_decline_pp": -1.69,
+      "prior_regular_close_decline_pct": -3.833,
+      "signal_before_1315_ct": true,
+      "symbol": "CVX"
+    },
+    {
+      "asof_utc": "2026-11-18T14:50:00+00:00",
+      "date": "2026-11-18",
+      "future_after_signal": {
+        "15m_pct": 1.247,
+        "60m_pct": -0.207
+      },
+      "last_15m_decline_pp": -2.381,
+      "prior_regular_close_decline_pct": -2.812,
+      "signal_before_1315_ct": true,
+      "symbol": "CAT"
+    },
+    {
+      "asof_utc": "2026-11-18T14:50:00+00:00",
+      "date": "2026-11-18",
+      "future_after_signal": {
+        "15m_pct": -0.003,
+        "60m_pct": -2.006
+      },
+      "last_15m_decline_pp": -2.933,
+      "prior_regular_close_decline_pct": -4.305,
+      "signal_before_1315_ct": true,
+      "symbol": "UNH"
+    },
+    {
+      "asof_utc": "2026-11-18T14:55:00+00:00",
+      "date": "2026-11-18",
+      "future_after_signal": {
+        "15m_pct": 0.526,
+        "60m_pct": 0.774
+      },
+      "last_15m_decline_pp": -1.372,
+      "prior_regular_close_decline_pct": -3.728,
+      "signal_before_1315_ct": true,
+      "symbol": "CRM"
+    },
+    {
+      "asof_utc": "2026-11-19T15:35:00+00:00",
+      "date": "2026-11-19",
+      "future_after_signal": {
+        "15m_pct": -5.668,
+        "60m_pct": -2.49
+      },
+      "last_15m_decline_pp": -4.018,
+      "prior_regular_close_decline_pct": -4.071,
+      "signal_before_1315_ct": true,
+      "symbol": "AMD"
+    },
+    {
+      "asof_utc": "2026-11-19T17:05:00+00:00",
+      "date": "2026-11-19",
+      "future_after_signal": {
+        "15m_pct": 0.276,
+        "60m_pct": 0.842
+      },
+      "last_15m_decline_pp": -1.43,
+      "prior_regular_close_decline_pct": -3.22,
+      "signal_before_1315_ct": true,
+      "symbol": "GDX"
+    },
+    {
+      "asof_utc": "2026-11-19T17:05:00+00:00",
+      "date": "2026-11-19",
+      "future_after_signal": {
+        "15m_pct": 0.287,
+        "60m_pct": 0.949
+      },
+      "last_15m_decline_pp": -1.368,
+      "prior_regular_close_decline_pct": -3.243,
+      "signal_before_1315_ct": true,
+      "symbol": "NEM"
+    },
+    {
+      "asof_utc": "2026-11-19T17:05:00+00:00",
+      "date": "2026-11-19",
+      "future_after_signal": {
+        "15m_pct": 0.542,
+        "60m_pct": 1.376
+      },
+      "last_15m_decline_pp": -1.461,
+      "prior_regular_close_decline_pct": -2.548,
+      "signal_before_1315_ct": true,
+      "symbol": "AEM"
+    },
+    {
+      "asof_utc": "2026-11-19T17:05:00+00:00",
+      "date": "2026-11-19",
+      "future_after_signal": {
+        "15m_pct": 0.132,
+        "60m_pct": 0.803
+      },
+      "last_15m_decline_pp": -1.35,
+      "prior_regular_close_decline_pct": -3.271,
+      "signal_before_1315_ct": true,
+      "symbol": "WPM"
+    },
+    {
+      "asof_utc": "2026-11-19T17:05:00+00:00",
+      "date": "2026-11-19",
+      "future_after_signal": {
+        "15m_pct": -0.39,
+        "60m_pct": 0.646
+      },
+      "last_15m_decline_pp": -2.278,
+      "prior_regular_close_decline_pct": -2.699,
+      "signal_before_1315_ct": true,
+      "symbol": "GS"
+    },
+    {
+      "asof_utc": "2026-11-19T17:00:00+00:00",
+      "date": "2026-11-19",
+      "future_after_signal": {
+        "15m_pct": -0.965,
+        "60m_pct": -0.56
+      },
+      "last_15m_decline_pp": -1.282,
+      "prior_regular_close_decline_pct": -2.788,
+      "signal_before_1315_ct": true,
+      "symbol": "CAT"
+    },
+    {
+      "asof_utc": "2026-11-19T17:05:00+00:00",
+      "date": "2026-11-19",
+      "future_after_signal": {
+        "15m_pct": -0.178,
+        "60m_pct": 0.444
+      },
+      "last_15m_decline_pp": -1.303,
+      "prior_regular_close_decline_pct": -2.585,
+      "signal_before_1315_ct": true,
+      "symbol": "GE"
+    },
+    {
+      "asof_utc": "2026-11-19T15:30:00+00:00",
+      "date": "2026-11-19",
+      "future_after_signal": {
+        "15m_pct": -0.187,
+        "60m_pct": -1.522
+      },
+      "last_15m_decline_pp": -1.299,
+      "prior_regular_close_decline_pct": -4.16,
+      "signal_before_1315_ct": true,
+      "symbol": "UNH"
+    }
+  ]
+}
