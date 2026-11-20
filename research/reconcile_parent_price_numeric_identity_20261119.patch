@@ -1,0 +1,25 @@
+--- a/recommendation_paper_bridge/reconcile.py
++++ b/recommendation_paper_bridge/reconcile.py
+@@ -24,8 +24,21 @@
+         or parent.get("client_order_id")!=row["client_order_id"]
+         or parent.get("symbol")!=row["symbol"] or parent.get("side")!="buy"
+         or parent.get("order_class")!="bracket" or parent.get("type")!="limit"
+-        or str(parent.get("limit_price"))!=str(row["limit_price"])):
++        or not same_positive_price(parent.get("limit_price"),row["limit_price"])):
+         raise Unsafe("PAPER parent identity or bracket parameters mismatch")
++
++def same_positive_price(broker_value,ledger_value):
++    """Exact numeric equality; broker and DB use different decimal scales.
++
++    Finite positive values only. No rounding, tolerance or permission change.
++    """
++    try:
++        broker=Decimal(str(broker_value))
++        ledger=Decimal(str(ledger_value))
++        return (broker.is_finite() and ledger.is_finite()
++                and broker>0 and ledger>0 and broker==ledger)
++    except (InvalidOperation,ValueError,TypeError):
++        return False
+ 
+ def assess(row,parent,activities,extra_exit_ids=()):
+     """No fabricated fee/net P&L. Requires activity UUIDs and order UUIDs."""
