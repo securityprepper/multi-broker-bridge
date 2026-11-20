@@ -1,0 +1,238 @@
+--- a/monitor.py
++++ b/monitor.py
+@@ -8,6 +8,7 @@
+ import json
+ import math
+ import os
++import stat
+ from pathlib import Path
+ import sqlite3
+ import sys
+@@ -46,17 +47,31 @@
+     return t.astimezone(UTC)
+ 
+ def authorized_gate(now):
+-    """Reuse persisted validated decision until boundary; no network fallback."""
+-    try:
++    """Fail closed on untrusted, stale, invalid or paused root holiday evidence."""
++    try:
++        if not isinstance(now,dt.datetime) or now.tzinfo is None:
++            return False,"GATE_CLOCK_INVALID"
++        info=GATE.lstat()
++        if (not stat.S_ISREG(info.st_mode) or info.st_uid!=0 or
++            info.st_mode & 0o022):
++            return False,"GATE_FILE_UNTRUSTED"
+         x=json.loads(GATE.read_text())
+-        if x.get("schema_version")!=1 or x.get("status_valid") is not True or x.get("timezone")!="America/Chicago":
++        if (x.get("schema_version")!=1 or x.get("status_valid") is not True or
++            x.get("timezone")!="America/Chicago" or not x.get("calendar_revision")):
+             return False,"GATE_INVALID"
+-        if x.get("calendar_coverage_ok") is not True or x.get("calendar_coverage_through","")<now.astimezone(CT).date().isoformat():
++        if (x.get("calendar_coverage_ok") is not True or
++            x.get("calendar_coverage_through","")<now.astimezone(CT).date().isoformat()):
+             return False,"COVERAGE_INVALID"
+-        if stamp(x["next_check_at"])<=now:return False,"HOLIDAY_BOUNDARY_DUE"
+-        if x.get("paused") is not False:return False,"HOLIDAY_PAUSED"
++        published=stamp(x["published_at"])
++        valid_until=stamp(x["valid_until"])
++        if not 0<=(now-published).total_seconds()<=150 or now>=valid_until:
++            return False,"GATE_STALE"
++        if stamp(x["next_check_at"])<=now:
++            return False,"HOLIDAY_BOUNDARY_DUE"
++        if x.get("paused") is not False:
++            return False,"HOLIDAY_PAUSED"
+         return True,"GATE_VALID"
+-    except (OSError,ValueError,KeyError,TypeError):
++    except (OSError,ValueError,KeyError,TypeError,OverflowError):
+         return False,"GATE_UNAVAILABLE"
+ 
+ def latest_scan():
+@@ -258,22 +273,47 @@
+     temp.write_text(json.dumps(obj,sort_keys=True,separators=(",",":")))
+     os.replace(temp,path)
+ 
++def end_unverified_episodes(state,now):
++    """Missing/stale observations break the continuously verified episode."""
++    for ep in (state.get("episodes") or {}).values():
++        if ep.get("active") is True:
++            ep["active"]=False
++            ep["ended_at"]=now.isoformat()
++            ep["misses"]=max(1,int(ep.get("misses",0))+1)
++
++
+ def decide(scan,now,state):
+-    """One signal each verified consecutive hour; per-symbol persistent episode."""
+-    if not scan:return [],"NO_SCAN"
+-    elapsed=(now-stamp(scan["asof"])).total_seconds()
+-    if not 0<=elapsed<=MAX_AGE_SECONDS:return [],"SCAN_STALE"
++    """One hour per verified continuous episode; never bridge missing bars."""
++    if not scan:
++        end_unverified_episodes(state,now)
++        return [],"NO_SCAN"
++    try:
++        elapsed=(now-stamp(scan["asof"])).total_seconds()
++    except (ValueError,KeyError,TypeError):
++        elapsed=float("inf")
++    if not 0<=elapsed<=MAX_AGE_SECONDS:
++        end_unverified_episodes(state,now)
++        return [],"SCAN_STALE"
+     episodes=state.setdefault("episodes",{})
+     active_rows={r["symbol"]:r for r in observations(scan,now) if r["kind"]=="SUSTAINED_RISER"}
+     picks=[]
+     for symbol,row in sorted(active_rows.items(),key=lambda item:-item[1]["strength"]):
+         last=stamp(row["observed"])
+         prev=episodes.get(symbol,{})
++        # A repeated source bar or a skipped verified minute is not continuous
++        # evidence. Do not advance H2 from a stale duplicate or missing scan.
++        if prev.get("last_observed")==row["observed"] and prev.get("active") is True:
++            prev["active"]=False
++            prev["misses"]=max(1,int(prev.get("misses",0))+1)
++            prev["ended_at"]=now.isoformat()
++            episodes[symbol]=prev
++            continue
+         try:
+-            contiguous=(prev.get("feed")==row["feed"] and
+-                        int(prev.get("misses",0))<2 and
+-                        0<=(last-stamp(prev["last_observed"])).total_seconds()<=180 and
+-                        0<=(now-stamp(prev["last_seen"])).total_seconds()<=180)
++            contiguous=(prev.get("active") is True and
++                        prev.get("feed")==row["feed"] and
++                        int(prev.get("misses",0))==0 and
++                        (last-stamp(prev["last_observed"])).total_seconds()==60 and
++                        0<=(now-stamp(prev["last_seen"])).total_seconds()<=90)
+         except (KeyError,ValueError,TypeError):
+             contiguous=False
+         if not contiguous:
+@@ -294,14 +334,10 @@
+         # A prior hour must be explicitly alerted before hour-two is claimed.
+         prev["active"]=True
+         episodes[symbol]=prev
+-        # Never produce repeated hour-one events if a strict trend briefly
+-        # fails two scans and then reappears within the same hour.
+-        guard=state.setdefault("first_hour_alerted_at",{})
+-        last_hour_one=guard.get(symbol)
+-        repeated_hour_one=(hours==1 and last_hour_one is not None and
+-            0<=(now-stamp(last_hour_one)).total_seconds()<3600)
++        # Fresh episode IDs, not a per-symbol cooldown, distinguish a new
++        # real H1 from a duplicate of the previous episode.
+         if (prev["active"] and hours>prev["last_alerted_hour"]
+-            and not repeated_hour_one and len(picks)<SCAN_ALERT_LIMIT):
++            and len(picks)<SCAN_ALERT_LIMIT):
+             item=dict(row)
+             item["consecutive_hours"]=hours
+             item["episode_started_at_utc"]=prev["started_at"]
+@@ -311,14 +347,58 @@
+         if symbol in active_rows:continue
+         try:
+             prev["misses"]=int(prev.get("misses",0))+1
+-            if prev["misses"]>=2 or (now-stamp(prev["last_seen"])).total_seconds()>180:
+-                prev["active"]=False
+-                prev["ended_at"]=now.isoformat()
++            # A single omitted verified source scan ends continuity.
++            prev["active"]=False
++            prev["ended_at"]=now.isoformat()
+             if (now-stamp(prev["last_seen"])).total_seconds()>7*86400:
+                 del episodes[symbol]
+         except (KeyError,ValueError,TypeError):
+             del episodes[symbol]
+     return picks,"OK"
++
++
++def journal_verified_hour(row,now):
++    """Durable episode-hour evidence independent of PAPER routing outcome.
++
++    Journal a verified episode key exactly once BEFORE broker handoff. The
++    caller holds the existing SRM systemd exclusive lock. The record is not
++    an order receipt; order-outcomes-*.jsonl establishes actual broker status.
++    """
++    symbol=row["symbol"]
++    started=row["episode_started_at_utc"]
++    hour=int(row["consecutive_hours"])
++    if hour<1 or not symbol or not started:
++        raise ValueError("INVALID_VERIFIED_EPISODE")
++    path=ROOT/("sustained-alerts-"+now.astimezone(CT).strftime("%Y-%m-%d")+".jsonl")
++    # The same exact episode key must never be re-emitted across calendar
++    # files after a midnight rollover, restart, or interrupted handoff.
++    for existing_path in sorted(ROOT.glob("sustained-alerts-*.jsonl")):
++        if existing_path.is_symlink():
++            raise OSError("JOURNAL_SYMLINK")
++        with existing_path.open(encoding="utf8") as existing:
++            for line in existing:
++                if not line.strip():continue
++                try:prior=json.loads(line)
++                except (ValueError,TypeError):
++                    raise OSError("JOURNAL_CORRUPT")
++                if (prior.get("symbol"),prior.get("first_trend_at_utc"),
++                    prior.get("hour"))==(symbol,started,hour):
++                    return False
++    record={"symbol":symbol,"first_trend_at_utc":started,"hour":hour,
++            "issued_at_utc":now.isoformat(),"verified_at_utc":row["observed"],
++            "latest_price_asof_utc":row["latest_price_asof_utc"],
++            "price_source":row.get("price_source"),"price":row["latest_price"],
++            "changes_pct":row["changes_pct"],
++            "fundamentals":row.get("fundamentals"),
++            "route_status":"ROUTE_OUTCOME_UNKNOWN_USE_ORDER_RECEIPTS",
++            "text":row["alert_text"]}
++    flags=os.O_WRONLY|os.O_APPEND|os.O_CREAT
++    flags|=getattr(os,"O_NOFOLLOW",0)
++    fd=os.open(path,flags,0o600)
++    with os.fdopen(fd,"a",encoding="utf8") as out:
++        out.write(json.dumps(record,sort_keys=True,separators=(",",":"))+"\n")
++        out.flush();os.fsync(out.fileno())
++    return True
+ 
+ 
+ def last_order_outcomes():
+@@ -447,7 +527,10 @@
+     state=load_state()
+     known=set(state.get("seen",{}))
+     picks,status=decide(scan,now,state)
+-    if status!="OK":return {"status":status,"paper_orders":0,"pushes":0}
++    if status!="OK":
++        if notify:
++            atomic_json(ROOT/"state.json",state)
++        return {"status":status,"paper_orders":0,"pushes":0}
+     financials=read_financials(now)
+     for row in picks:
+         format_alert(row,now,financials)
+@@ -473,13 +556,24 @@
+         hour=row["consecutive_hours"]
+         ep=state["episodes"][symbol]
+         if notify:
+-            # Reserve BEFORE the filesystem handoff. Crash/ambiguous I/O must
+-            # never repeat a broker-intended event on the next timer run.
++            # Report the verified hour regardless of a later PAPER route veto.
++            # The journal is append-only and keyed by exact episode and hour,
++            # not the per-symbol cooldown or broker acceptance.
++            try:
++                recorded=journal_verified_hour(row,now)
++            except (OSError,ValueError,KeyError,TypeError):
++                ep["last_handoff_status"]="EVENT_JOURNAL_UNAVAILABLE_NO_ORDER"
++                continue
+             ep["last_alerted_hour"]=hour
+             if hour==1:
+                 state.setdefault("first_hour_alerted_at",{})[symbol]=now.isoformat()
+             ep["last_handoff_status"]="HANDOFF_UNKNOWN_NO_RETRY"
+             atomic_json(ROOT/"state.json",state)
++            if not recorded:
++                # The source event might have been journaled just before an
++                # interrupted run; never issue a duplicate broker handoff.
++                ep["last_handoff_status"]="JOURNAL_DUPLICATE_NO_RETRY"
++                continue
+             # The existing PAPER-only order-first executor owns final Pushover.
+             # Monitor has no broker credentials, posts no orders, and never
+             # claims a fill before independent broker verification.
+@@ -503,13 +597,6 @@
+         ep["last_handoff_status"]=status
+         handoffs.append({"symbol":symbol,"hour":hour,"status":status})
+         if status=="QUEUED":attempts+=1
+-        if status in ("QUEUED","DUPLICATE"):
+-            journal=ROOT/("sustained-alerts-"+now.astimezone(CT).strftime("%Y-%m-%d")+".jsonl")
+-            with journal.open("a",encoding="utf8") as fp:
+-                fp.write(json.dumps({"symbol":symbol,"hour":hour,
+-                    "first_trend_at_utc":row["episode_started_at_utc"],
+-                    "issued_at_utc":now.isoformat(),"route_status":status,
+-                    "price":row["latest_price"],"text":row["alert_text"]},sort_keys=True)+"\n")
+     # The 5-second SIP/BOATS detector owns Major Mover Pushover when healthy.
+     # On outage, retain only the strict 1m/5m shock fallback, not legacy daily gainers.
+     fast_ok=False
