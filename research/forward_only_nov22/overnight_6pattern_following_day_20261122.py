@@ -72,7 +72,7 @@ def main():
    if not(prev and s_prev and e_prev):continue
    prev=float(prev);s_prev=float(s_prev);e_prev=float(e_prev)
    start=float(me["split_adj_rth_open"]);end=float(me["hard_flat_price"]) if me.get("hard_flat_price") else None
-   if not end or start<5 or end<5:continue
+   if not end or start<=0 or end<=0:continue
    mstart=float(sp["split_adj_rth_open"]);mend=float(sp["hard_flat_price"]) if sp.get("hard_flat_price") else None
    estart=float(et["split_adj_rth_open"]);eend=float(et["hard_flat_price"]) if et.get("hard_flat_price") else None
    if not (mend and eend):continue
