@@ -73,7 +73,7 @@ def main():
    r=refs.get(("SPY",d));e=refs.get((sector,d));peers=breadth.get((g,d))
    if not(r and e and peers):failures["MISSING_BENCHMARKS"]+=1;continue
    flat=x.get("hard_flat_price");openp=x["rth_open"];prev=x.get("prev_rth_close")
-   if not flat or flat<=0 or not openp or openp<5 or not prev or prev<=0:continue
+   if not flat or flat<=0 or not openp or openp<=0 or not prev or prev<=0:continue
    bf=e.get("flatten");mf=r.get("flatten")
    closes=x["minute_close"];highs=x["minute_high"];lows=x["minute_low"];sp=r["close"];sc=e["close"]
    used=set();gpp=ret(prev,openp)
@@ -136,7 +136,7 @@ def main():
       key=(name,direction)
       if key in used:continue
       used.add(key)
-      if not flat or flat<5:continue
+      if not flat or flat<=0:continue
       # Contemporaneous signal price is completed minute close. The notional
       # return to 13:40 is indicative, not a broker bid/ask-executable fill.
       ret_s=ret(price,flat); signed=direction*ret_s
