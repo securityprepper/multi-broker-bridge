@@ -67,5 +67,5 @@ The full permanent internal daily ledger contains all 126,352 day labels (includ
 ## Data and reproducibility
 
 - Source dataset, downloads, immutable evidence, per-session day labels and modeled receipts: root-owned isolated /var/lib/securityprepper-two-year-sector-backtest, /var/lib/securityprepper-two-year-early-session-research and /var/lib/securityprepper-two-year-intraday-research on authorized www3; no broker credentials exported.
-- Read-only scripts: [seven reproducible research stages](https://github.com/securityprepper/multi-broker-bridge/tree/research/rebound-v2-conditional-exits/research/two_year_early_session_20261121).
+- Read-only scripts: [eight reproducible research stages](https://github.com/securityprepper/multi-broker-bridge/tree/research/rebound-v2-conditional-exits/research/two_year_early_session_20261121).
 - Companion derived [per-symbol summary](PUBLIC_ORDINARY_STOCK_LAST_SESSION_OVER5_HISTORICAL_RESEARCH.csv), [same-event stop grid](MATCHED_STOP_SENSITIVITY_BY_PERIOD_AND_SIDE.csv) and [same-event rule sensitivity](MATCHED_STOP_EACH_RULE_OOS.csv), all no-trading historical research.
